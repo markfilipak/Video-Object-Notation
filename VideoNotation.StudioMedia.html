@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="content-type" content="text/html; charset=utf-8">
+<TITLE>Studio Media Guide</TITLE>
+<STYLE>
+*{font-family:monospace}
+BODY{background-color:white}
+BLOCKQUOTE{margin-top:0;margin-bottom:0}
+IMG{border:1px solid black}
+PRE{background-color:#F0F0F0;padding:0.5em;margin:0.25em 0}
+TD{vertical-align:top}
+TT{background-color:#F0F0F0;padding:0 0.2em;white-space:nowrap}
+.bold{font-family:serif;font-size:0.85em;font-style:italic;font-weight:bold}
+.column_header{border-bottom:solid black 1px;vertical-align:bottom;white-space:nowrap}
+.commentary{font-family:serif;font-size:0.95em;font-style:italic}
+.right_nowrap{text-align:right;white-space:nowrap}
+.center_nowrap{text-align:center;white-space:nowrap}
+.type{font-family:serif;font-size:0.95em;font-style:italic}
+</STYLE>
+</HEAD>
+<BODY>
+
+<SPAN class="bold">Looking at only studio Blu-rays & DVDs, how many video species are there and how can they be positively and reliably identified?</SPAN><BR>
+Use FFprobe <SPAN style="white-space:nowrap">(https://ffmpeg.org/download.html)</SPAN>, installation is not required) &mdash; pull FFprobe out of it and run it.<BR>
+For Blu-rays, browse to the Blu-ray disc & open a terminal session & submit <SPAN style="border:black solid 1px"><TT>ffprobe /BDMV/STREAM/</TT>xxxxx<TT>.m2ts</TT></SPAN>.<BR>
+For DVDs, browse to the DVD disc & open a terminal session & submit <SPAN style="border:black solid 1px"><TT>ffprobe /VIDEO_TS/VTS_</TT>xx<TT>_1.VOB</TT></SPAN>.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>FFprobe reports "3840x2160 [SAR 1:1 DAR 16:9]"  for 4K HD videos              ...found on studio Blu-rays
+                "1920x1080 [SAR 1:1 DAR 16:9]"      2K HD videos              ...found on studio Blu-rays
+                 "720x576 [SAR 64:45 DAR 16:9]"     16:9 ersatz PAL videos    ...found on studio Blu-rays & DVDs
+                 "720x576 [SAR 16:15 DAR 4:3]"       4:3 ersatz PAL videos    ...found on studio Blu-rays & DVDs
+                 "720x480 [SAR 32:27 DAR 16:9]"     16:9 ersatz NTSC videos   ...found on studio Blu-rays & DVDs
+                 "720x480 [SAR 8:9 DAR 4:3]"         4:3 ersatz NTSC videos   ...found on studio Blu-rays & DVDs
+</PRE></TD></TR></TABLE><BR>
+
+The objective here is to identify studio Blu-ray & DVD videos, to rigorously analyze their properties, and to avoid making faulty measurements and hasty conclusions due to bogus TV settings.<BR><BR>
+
+<SPAN class="bold">Specimens.</SPAN><BR><BR>
+
+<!-- Clint Eastwood -->
+
+Clint Eastwood from the <I>THE GOOD, THE BAD AND THE UGLY</I>, 16:9 ersatz PAL & 16:9 ersatz NTSC DVDs.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>16:9 Ersatz PAL DVD<BR><A href="file:Clint%20Eastwood,%20film%20to%20ersatz%20PAL%20to%20dots.jpg"><IMG src="Clint Eastwood, film to ersatz PAL to dots.jpg" onload="this.width/=2"></A></TD>
+    <TD>16:9 Ersatz NTSC DVD<BR><A href="file:Clint%20Eastwood,%20film%20to%20ersatz%20NTSC%20to%20dots.jpg"><IMG src="Clint Eastwood, film to ersatz NTSC to dots.jpg" onload="this.width/=2"></A></TD></TR></TABLE><BR>
+
+<SPAN class="bold">Why are the videos called "ersatz"?</SPAN>
+Blu-rays & DVDs are digital media, but real PAL & NTSC are not digital.
+What are called "PAL" & "NTSC" are actually digital simulations, so they are ersatz.<BR><BR>
+
+<SPAN class="bold">What is a pseudo picture?</SPAN>
+Samples are data, not a picture.
+But pixels can be viewed as though a picture.
+The result is a pseudo picture.<BR><BR>
+
+<SPAN class="bold">Why are film frames & pseudo pictures & TVs shown at the sizes they are?</SPAN>
+They are just conveniently sized.
+Nothing is to scale because there is no scale relationship between millimeters & pixels & dots.
+What matters is their aspects.<BR><BR>
+
+<SPAN class="bold">Why does the film frame look squeezed?</SPAN>
+It looks squeezed because it is squeezed.
+The squeeze is called anamorphism: Any of various wide screen processes by CinemaScope, Panavision and others.
+Though 1.5x anamorphic and 1.25x anamorphic can be found, they are rare.
+Almost all wide screen films were 2x anamorphic.
+Anamorphism is a trick that enables 1.37 aspect, 35mm film frames to project wide screen images (in this case, CinemaScope 2.35 aspect).<BR><BR>
+
+<SPAN class="bold">The ersatz PAL pseudo picture is taller than the ersatz NTSC pseudo picture, so why are the TV displays the same size?</SPAN>
+The TVs are the same size because they are the same TV.
+Instead of producing extra display height, the extra lines of PAL pseudo pictures produce more lines and thinner lines.
+But the story doesn't end there.
+Internally, TVs convert the image dots to physical dots.
+Whether ersatz PAL's finer resolution makes a difference depends on each particular TV's physical dot dimensions and spacing.
+Physical dot dimensions & spacing varies between TV models but unfortunately, TV manufacturers don't disclose that information, so short of taking TVs apart, empirical analyis is impossible.<BR><BR>
+
+<!-- Emily Watson -->
+
+Emily Watson from the <I>HILLARY AND JACKIE</I>, 4:3 ersatz PAL & 4:3 ersatz NTSC DVDs.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>4:3 Ersatz PAL DVD<BR><A href="file:Emily%20Watson,%20film%20to%20ersatz%20PAL%20to%20dots.jpg"><IMG src="Emily Watson, film to ersatz PAL to dots.jpg" onload="this.width/=2"></A></TD>
+    <TD>4:3 Ersatz NTSC DVD<BR><A href="file:Emily%20Watson,%20film%20to%20ersatz%20NTSC%20to%20dots.jpg"><IMG src="Emily Watson, film to ersatz NTSC to dots.jpg" onload="this.width/=2"></A></TD></TR></TABLE><BR>
+
+<SPAN class="bold">Why is the Watson film matting larger than the Eastwood film matting?</SPAN>
+Though the film frames are the same size, the difference is the difference between a DAR of 16/9 and a DAR of 4/3.
+For Eastwood, the calculation is 2x(21.31 mm)/height = 16/9.
+For Watson, the calculation is 2x(21.31 mm)/height = 4/3.
+Tip: To quickly see that 4/3 is 'taller' than 16/9, express 4/3 as 16/12.<BR><BR>
+
+<!-- Ioan Gruffudd -->
+
+Ioan Gruffudd from the <I>HORATIO HORNBLOWER</I>, 16:9 ersatz PAL & 4:3 ersatz NTSC DVDs.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>16:9 Ersatz PAL DVD<BR><A href="file:Ioan%20Gruffudd,%20film%20to%20ersatz%20PAL%20to%20dots.jpg"><IMG src="Ioan Gruffudd, film to ersatz PAL to dots.jpg" onload="this.width/=2"></A></TD>
+    <TD>4:3 Ersatz NTSC DVD<BR><A href="file:Ioan%20Gruffudd,%20film%20to%20ersatz%20NTSC%20to%20dots.jpg"><IMG src="Ioan Gruffudd, film to ersatz NTSC to dots.jpg" onload="this.width/=2"></A></TD></TR></TABLE><BR>
+
+<SPAN class="bold">Why is the film source shown as a 16mm negative?</SPAN>
+Two reasons: 1, documentaries accompanying the <I>HORATIO HORNBLOWER</I> episodes show that it was shot with an ARRIFLEX 416 camera (which is 16mm), and 2, since the episodes were shot for TV, not cinema, post production was probably entirely digital, so the source would have been the negatives, not projection prints.<BR><BR>
+
+<SPAN class="bold">What do the shaded sections represent?</SPAN>
+The ersatz PAL version is 16:9 aspect.
+That is 33% wider than the 4:3 aspect, ersatz NTSC version.
+The ersatz PAL version was not available, so the shaded sections were added to represent what's missing.<BR><BR>
+
+<!-- What can go wrong? -->
+
+<SPAN class="bold">What can go wrong?</SPAN>
+Look at the pictures below.
+The TVs have been set to, top row: 'fill height' - 'fit', bottom row: 'fill width' - 'fit'.
+None of them have correct aspect.
+To confirm that they are not what you are seeing, view videos on a computer and use MPV <SPAN style="white-space:nowrap">(https://mpv.io/installation/)</SPAN> to make a pair of screen captures.
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD style="border-bottom:black solid 1px;text-align:center">Bogus</TD>
+    <TD>&nbsp;&nbsp;</TD>
+    <TD style="border-bottom:black solid 1px;text-align:center">Valid</TD></TR>
+<TR><TD><BR>
+        <A href="file:Clint%20Eastwood,%20cropped%20-%20squeezed.jpg"><IMG style="border:none" src="Clint Eastwood, cropped - squeezed.jpg" onload="this.width/=2"></A>
+        <BR><BR>
+        <A href="file:Ioan%20Gruffudd,%20cropped%20-%20squashed.jpg"><IMG style="border:none" src="Ioan Gruffudd, cropped - squashed.jpg" onload="this.width/=2"></A></TD>
+    <TD></TD>
+    <TD><BR>
+        To capture pseudo pictures, submit <SPAN style="border:black solid 1px"><TT>mpv --video-aspect=0 VTS_</TT>xx<TT>_1.VOB</TT></SPAN> & press 's'.
+        <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+        <TR><TD class="column_header center_nowrap">For</TD>
+            <TD>&nbsp;&nbsp;</TD>
+            <TD class="column_header center_nowrap">capture is</TD></TR>
+        <TR><TD class="center_nowrap">"720x576 [SAR 16:15 DAR 16:9]"</TD>
+            <TD></TD>
+            <TD class="center_nowrap">720 x 576</TD></TR>
+        <TR><TD class="center_nowrap">"720x576 [SAR 16:15 DAR 4:3]"</TD>
+            <TD></TD>
+            <TD class="center_nowrap">720 x 576</TD></TR>
+        <TR><TD class="center_nowrap">"720x480 [SAR 32:27 DAR 16:9]"</TD>
+            <TD></TD>
+            <TD class="center_nowrap">720 x 480</TD></TR>
+        <TR><TD class="center_nowrap">"720x480 [SAR 8:9 DAR 4:3]"</TD>
+            <TD></TD>
+            <TD class="center_nowrap">720 x 480</TD></TR>
+        <TR><TD></TD>
+            <TD></TD>
+            <TD></TD></TR></TABLE>
+        <BR>
+        to capture rendered pictures, submit <SPAN style="border:black solid 1px"><TT>mpv VTS_</TT>xx<TT>_1.VOB</TT></SPAN> & press 's'.
+        On 16:9 aspect TVs:
+        <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+        <TR><TD class="column_header center_nowrap">For</TD>
+            <TD>&nbsp;&nbsp;</TD>
+            <TD class="column_header center_nowrap">capture is</TD>
+            <TD>&nbsp;&nbsp;</TD>
+            <TD class="column_header center_nowrap">for images</TD>
+            <TD>&nbsp;&nbsp;</TD>
+            <TD class="column_header center_nowrap">black bars</TD></TR>
+        <TR><TD class="center_nowrap">"720x576 [SAR 64:45 DAR 16:9]"</TD>
+            <TD></TD>
+            <TD class="center_nowrap">1024 x 576</TD>
+            <TD></TD>
+            <TD class="center_nowrap">wider than 16:9</TD>
+            <TD></TD>
+            <TD class="center_nowrap">top & bottom</TD></TR>
+        <TR><TD></TD>
+            <TD></TD>
+            <TD></TD>
+            <TD></TD>
+            <TD class="center_nowrap">narrower than 16:9</TD>
+            <TD></TD>
+            <TD class="center_nowrap">left & right</TD></TR>
+        <TR><TD class="center_nowrap">"720x576 [SAR 16:15 DAR 4:3]"</TD>
+            <TD></TD>
+            <TD class="center_nowrap">786 x 576</TD>
+            <TD></TD>
+            <TD class="center_nowrap">wider than 4:3</TD>
+            <TD></TD>
+            <TD class="center_nowrap">all sides</TD></TR>
+        <TR><TD></TD>
+            <TD></TD>
+            <TD></TD>
+            <TD></TD>
+            <TD class="center_nowrap">equal to 4:3</TD>
+            <TD></TD>
+            <TD class="center_nowrap">left & right</TD></TR>
+        <TR><TD class="center_nowrap">"720x480 [SAR 32:27 DAR 16:9]"</TD>
+            <TD></TD>
+            <TD class="center_nowrap">853 x 480</TD>
+            <TD></TD>
+            <TD class="center_nowrap">wider than 16:9</TD>
+            <TD></TD>
+            <TD class="center_nowrap">top & bottom</TD></TR>
+        <TR><TD></TD>
+            <TD></TD>
+            <TD></TD>
+            <TD></TD>
+            <TD class="center_nowrap">narrower than 16:9</TD>
+            <TD></TD>
+            <TD class="center_nowrap">left & right</TD></TR>
+        <TR><TD class="center_nowrap">"720x480 [SAR 8:9 DAR 4:3]"</TD>
+            <TD></TD>
+            <TD class="center_nowrap">720 x 540</TD>
+            <TD></TD>
+            <TD class="center_nowrap">wider than  4:3</TD>
+            <TD></TD>
+            <TD class="center_nowrap">all sides</TD></TR>
+        <TR><TD></TD>
+            <TD></TD>
+            <TD></TD>
+            <TD></TD>
+            <TD class="center_nowrap">equal to  4:3</TD>
+            <TD></TD>
+            <TD class="center_nowrap">left & right</TD></TR></TABLE><BR>
+            <SPAN class="bold">Why does </SPAN><TT>720 x 540</TT><SPAN class="bold"> seem odd?</SPAN>
+                It seems odd but it's not &mdash; see <A href="#lessthan1"><B>Rendering when SAR is less than 1</B></A>.
+                </TD></TR></TABLE><BR><BR>
+
+<SPAN class="bold">What is DAR?</SPAN>
+Display aspect ratio specifies the geometry of the display (TV) area that the cinematographer intends to fill.
+DAR can be expressed as a ratio, a rational number, or a decimal number (e.g., 16:9, 16/9, or 1.77[7..]).
+The display area doesn't have to be the entire TV screen.
+A 4:3 aspect video, for example, fills just 75% of a 16:9 aspect TV.
+MPEG stream metadata provides for 4 DAR values: 1:1, 4:3, 16:9, or 221:100 &mdash; source: ITU, H.262, aspect_ratio_information.<BR><BR><BR>
+
+<A name="SAR">
+<SPAN class="bold">What is SAR?</SPAN>
+Sample aspect ratio controls image geometry for video samplers and digital cinema (before encoding) and renderers (after decoding), and it has specific meanings for each.<BR><BR>
+
+<B>SAR in film sampling.</B><BR>
+SAR is a ratio, <I class="bold">dX</I>:<I class="bold">dY</I> or <I class="bold">dX</I>/<I class="bold">dY</I>.
+<BLOCKQUOTE><I class="bold">dX</I> is the sampler's pixel-to-pixel (horizontal) spacing.</BLOCKQUOTE>
+<BLOCKQUOTE><I class="bold">dY</I> is the sampler's line-to-line (vertical) spacing.</BLOCKQUOTE>
+Each particular size of film frame has a specific DAR and a specific SAR.<BR>
+For example, a CinemaScope 2.35 aspect, 2x anamorphic, projection film frame measures 21.31 x 18.16 mm &mdash; source: Paul Read & Mark-Paul Meyer, <I>Restoration of Motion Picture Film</I>.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>1,&nbsp;</TD>
+    <TD>The CinemaScope film frames must be matted to approximately 21.31 x 23.97 mm before sampling.<br>
+        Proof: Based on the equation, DAR = 2x(frame-width)/(frame-height),<BR>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(mm-frame-height) = 2x(mm-frame-width)/DAR = 2x(21.31 mm)/(16/9).</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>2,&nbsp;</TD>
+    <TD>Suppose the target is ersatz PAL (i.e., 720 pixels-per-row x 576 rows-per-frame).</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>2.1,&nbsp;</TD>
+    <TD>The sampler's <I class="bold">dX</I> spacing must be as close as possible to 0.029597[2..] mm.<BR>
+        Proof: (mm per pixel) = (mm per line)/(pixels per line) = (21.31 mm)/720.</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>2.2,&nbsp;</TD>
+    <TD>The sampler's <I class="bold">dY</I> spacing must be as close as possible to 0.04161458[3..] mm.<BR>
+        Proof: (mm per row) = (mm per frame-height)/(rows per frame-height) = (23.97 mm)/576.</TD></TR></TABLE>
+Combining the two spacings in a single number, the unsqueezed <I class="bold">dX</I>/<I class="bold">dY</I> quotient is 1.42244472256987901543596161869.<BR>
+Proof: 2x(0.029597[2..] mm)/(0.04161458[3..] mm).<BR>
+That quotient almost exactly matches 64/45 SAR.<BR>
+Note that SAR is in the ITU, H.262 specification [see note&nbsp;1] but not actually included in MPEG metadata.
+Instead, MPEG metadata includes aspect_ratio_information (i.e., DAR), horizontal_size (i.e., pixels per row), and vertical_size (i.e., rows per frame).<BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;1]&nbsp;</TD>
+    <TD>SAR = aspect_ratio_information/(horizontal_size/vertical_size) &mdash; source: ITU, H.262.</TD></TR></TABLE><BR>
+
+<SPAN class="bold">In </SPAN>2.1<SPAN class="bold">, above, </SPAN>"21.31 mm"<SPAN class="bold"> means that what is sampled is the anamorphic film frame.
+Shouldn't it be unsqueezed, first?</SPAN>
+Squeeze doesn't matter.
+720 pixels per line is 720 pixels per line regardless whether the line is squeezed or not.<BR><BR>
+
+<B>SAR in digital cinema</B>.<BR>
+Digital cinema destined for DVD has to live with SAR values that were established for film sampling.
+In other words, digital cinema has to fake it.<BR>
+For example, The ARRI Alexa SXT digital cinema camera has 2242 x 1441 RGB-equivalent resolution.
+To shoot a 2.40 aspect video at highest resolution, the exposed sensor area is 2208 x 920 spherical [see note&nbsp;1] or 1728 x 1440 anamorphic
+(or, for DCI, 2040 x 850 spherical [see note&nbsp;2] or 1728 x 1440 anamorphic).
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;1]&nbsp;</TD>
+    <TD>2208 is the largest part of 2242 that produces a whole number of lines for both 2.40 aspect shooting & 16:9 matted display.</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;2]&nbsp;</TD>
+    <TD>2040 is the largest part of 2048 that produces a whole number of lines for 2.40 aspect shooting.</TD></TR></TABLE><BR>
+
+<B>SAR in rendering.</B><BR>
+The following identity equation controls rendered geometry and scaling in 2 dimensions.<BR>
+<BLOCKQUOTE>
+<TT>(DPP dots-per-pixel)/(DPL dots-per-line) = (LPR lines-per-row)/(PPR pixels-per-row)</TT><br>
+or, dropping the units, <TT>DPP/DPL = LPR/PPR</TT>.</BLOCKQUOTE>
+The rendering method employed depends on whether SAR is 1 or greater, or SAR is less than 1.<BR><BR>
+
+<B>Rendering when SAR is 1 or greater</B> &mdash; horizontal scaling is applied.<BR>
+Set <TT>LPR</TT> = 1 (i.e., line count = row count), and set <TT>DPL</TT> & <TT>PPR</TT> per the table below, then solve <TT>DPP/DPL = LPR/PPR</TT> for <TT>DPP</TT>.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+For "3840x2160 [SAR 1:1 DAR 16:9]", DPL = 3840, LPR = 1,   PPR = 3840  =>  DPP = DPLxLPR/PPR =     3840x1/3840 =   1 dot per pixel
+    "1920x1080 [SAR 1:1 DAR 16:9]",       1920,       1,         1920                        =     1920x1/1920 =   1 dot per pixel
+     "720x576 [SAR 64:45 DAR 16:9]",      1024,       1,          720                        =     1024x1/720  = 64 dots per 45 pixels
+     "720x576 [SAR 16:15 DAR 4:3]",        768,       1,          720                        =      768x1/720  = 16 dots per 15 pixels
+     "720x480 [SAR 32:27 DAR 16:9]",    2560/3,       1,          720                        = (2560/3)x1/720  = 32 dots per 27 pixels</PRE></TD></TR></TABLE>
+It is seen that when SAR is 1 or greater, SAR = <TT>DPP</TT>.<BR><BR>
+
+<A name="lessthan1">
+<B>Rendering when SAR is less than 1</B> &mdash; vertical scaling is applied.<BR>
+Set <TT>DPP</TT> = 1 (i.e., dot count = pixel count), and set <TT>DPL</TT> = 640, and set <TT>PPR</TT> = 720, then solve <TT>DPP/DPL = LPR/PPR</TT> for <TT>LPR</TT>.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+For "720x480 [SAR 8:9 DAR 4:3]",    DPL =  640, DPP = 1,   PPR =  720  =>  LPR = PPRxDPP/DPL =      720x1/640  = 9 lines per 8 rows</PRE></TD></TR></TABLE>
+It is seen that when SAR is less than 1, SAR = 1/<TT>LPR</TT>.<BR><BR>
+
+<SPAN class="bold">What is PAR?</SPAN>
+PAR is an ambiguous term that is best avoided.
+To some, PAR is "pixel aspect ratio".
+To others, PAR is "picture aspect ratio".
+To the MPEG engineers, PAR doesn't exist.
+But some tools (and therefore, people) do use the term, so some mention here seems appropriate if only as a caution.<BR><BR>
+
+<B>PAR as "pixel aspect ratio".</B><BR>
+DaVinci Resolve, for example, seems to use PAR to characterize the <I class="bold">dX</I>/<I class="bold">dY</I> of any video having non-square pixels.
+Resolve's PAR seems to actually be SAR except for a single exception that Resolve cites as "CinemaScope".
+Resolve's documentation states, "HD is square pixels, but NTSC has a pixel aspect ratio of 0.9:1, and Anamorphic CinemaScope is 2:1 aspect".
+The 1st clause is correct of course, but the 2nd clause is wrong for either pixels or dots, and the 3rd clause is false for all 3 versions of CinemaScope, either squeezed or unsqueezed.
+So what DaVinci Resolve actually means by the phrase "pixel aspect ratio" is unknown at best.<BR><BR>
+
+<B>PAR as "picture aspect ratio".</B><BR>
+"DAR = PARxSAR" is a well known equation from which "PAR = DAR/SAR" is obtained.
+It applies only if SAR is a dots-per-pixel scale factor &mdash; see <A href="#SAR"><B><I>What is SAR?</I></B></A> &mdash; and therefore applies to rendering, only.
+As seen in the table that follows, "DAR/SAR" matches "(pixels per row)/(rows per frame)" (and also matches what is shown in the H.262 specification [see note&nbsp;1]).<BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+For "3840x2160 [SAR 1:1 DAR 16:9]",  DAR/SAR = (16/9)/(1/1)   = 16/9, (pixels per row)/(rows per frame) = 3840/2160 = 16/9
+    "1920x1080 [SAR 1:1 DAR 16:9]",            (16/9)/(1/1)   = 16/9,                                     1920/1080 = 16/9
+     "720x576 [SAR 64:45 DAR 16:9]",           (16/9)/(64/45) =  5/4,                                      720/576  =  5/4
+     "720x576 [SAR 16:15 DAR 4:3]",             (4/3)/(16/15) =  5/4,                                      720/576  =  5/4
+     "720x480 [SAR 32:27 DAR 16:9]",           (16/9)/(32/27) =  3/2,                                      720/480  =  3/2
+     "720x480 [SAR 8:9 DAR 4:3]",               (4/3)/(8/9)   =  3/2,                                      720/480  =  3/2</PRE></TD></TR></TABLE>
+Whether it is considered "pixel aspect ratio" or "(pseudo) picture aspect ratio", PAR has no utility.
+Either "DAR/SAR" or "(pixels per row)/(rows per frame)" are preferred.<BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;1]&nbsp;</TD>
+    <TD>To see the match in the H.262 specification, refer to the equation in section 6.3.3, "Sequence header", and substitute 1/SAR for H.262's upside-down SAR, and substitute 1/DAR for H.262's upside-down DAR.</TD></TR></TABLE><BR><BR>
+
+<B>Cinema media reference.</B> Studio Blu-rays & DVDs never contain cinema but, instead, contain one of the following:
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+                             __________MPV Shift+I displays___________  _______________________FFprobe reports_____________________
+16:9 cine-slow [see note 1]  FPS 23.976 (specified) 23.976 (estimated)  1920x1080 [SAR 1:1 DAR 16:9], 23.98 fps, 23.98 tbr, 90k tbn
+ 4:3 cine-slow [see note 1]  FPS 23.976 (specified) 23.976 (estimated)  1920x1080 [SAR 1:1 DAR 4:3], 23.98 fps, 23.98 tbr, 90k tbn
+16:9 NTSC-soft [see note 2]  FPS 29.970 (specified) 23.976 (estimated)   720x480 [SAR 32:27 DAR 16:9], 29.97 fps, 59.94 tbr, 90k tbn
+ 4:3 NTSC-soft [see note 2]  FPS 29.970 (specified) 23.976 (estimated)   720x480 [SAR 8:9 DAR 4:3], 29.97 fps, 59.94 tbr, 90k tbn
+16:9  PAL-fast [see note 3]  FPS 25.000 (specified) 25.000 (estimated)   720x576 [SAR 64:45 DAR 16:9], 25 fps, 25 tbr, 90k tbn
+ 4:3  PAL-fast [see note 3]  FPS 25.000 (specified) 25.000 (estimated)   720x576 [SAR 16:15 DAR 4:3], 25 fps, 25 tbr, 90k tbn
+16:9  PAL-soft [see note 4]          -unknown (no specimens)-                              -unknown (no specimens)-
+ 4:3  PAL-soft [see note 4]          -unknown (no specimens)-                              -unknown (no specimens)-
+16:9  PAL-hard [see note 5]          -unknown (no specimens)-                              -unknown (no specimens)-
+ 4:3  PAL-hard [see note 5]          -unknown (no specimens)-                              -unknown (no specimens)-
+16:9 NTSC-hard [see note 6]  FPS 29.970 (specified) 29.970 (estimated)   720x480 [SAR 32:27 DAR 16:9], 29.97 fps, 29.97 tbr, 90k tbn
+ 4:3 NTSC-hard [see note 6]  FPS 29.970 (specified) 29.970 (estimated)   720x480 [SAR 8:9 DAR 4:3], 29.97 fps, 29.97 tbr, 90k tbn</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;1]&nbsp;</TD>
+    <TD>Cine-slow is cinema forced from 3750 PTS ticks per second to 3753.75.
+        The forcing stretches each runtime hour to 1:00:03.6.
+        To retain audio sync with the forced video, 48kHz cinema audio has been up-sampled to 48.048kHz in advance.
+        When the up-sampled audio is forced back to 48kHz during 24'fps play, tonality becomes 2 cents flat [see note&nbsp;7].</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;2]&nbsp;</TD>
+    <TD>NTSC-soft is cinema forced from 3750 PTS ticks per second to 3753.75 and with metadata that requests player telecine to 3003 PTS ticks per second.
+        Runtime and audio are identical to cine-slow.</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;3]&nbsp;</TD>
+    <TD>PAL-fast is cinema forced from 3750 PTS ticks per second to 3600.
+        The forcing shrinks each runtime hour to 57:36.
+        To retain audio sync with the forced video, 48kHz cinema audio has been down-sampled to 46.080kHz in advance.
+        When the down-sampled audio is forced back to 48kHz during 25fps play, tonality becomes 71 cents sharp [see note&nbsp;8].</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;4]&nbsp;</TD>
+    <TD>PAL-soft is unforced cinema but with metadata that requests player telecine to 3600 PTS ticks per second.
+        Since it is unforced, runtime and audio are cinema-true.
+        Whether PAL-soft videos actually exist is unknown.</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;5]&nbsp;</TD>
+    <TD>PAL-hard is unforced cinema telecined to 3600 ticks per second.
+        Since it is unforced, runtime and audio are cinema-true.
+        Whether PAL-hard videos actually exist is unknown.</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;6]&nbsp;</TD>
+    <TD>NTSC-hard is cinema telecined to 3000 PTS ticks per second, then forced to 3003.
+        The forcing stretches each runtime hour to 1:00:03.6.
+        To retain audio sync with the forced video, 48kHz cinema audio has been up-sampled to 48.048kHz in advance.
+        When the up-sampled audio is forced back to 48kHz during 30'fps play, tonality becomes 2 cents flat [see note&nbsp;7].</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;7]&nbsp;</TD>
+    <TD>No players play at 24pps (i.e., unforced) because the included audio has already been upsampled.
+        Unforcing the video with upsampled audio would produce unsynchronized audio.
+        Players could downsample the upsampled audio but that is time consuming, so they don't bother playing at 24pps.</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;8]&nbsp;</TD>
+    <TD>No players play at 24pps (i.e., unforced) because the included audio has already been downsampled.
+        Unforcing the video with downsampled audio would produce unsynchronized audio.
+        Players could upsample the downsampled audio but that is time consuming, so they don't bother playing at 24pps.</TD></TR></TABLE><BR>
+
+<B>Summary of media v. cinema runtimes</B>.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+                     __________________notation for mastering from camera shots___________________  ____media runtime_____
+cinema to cine-slow  [24pps{48kHz__48.048kHz}]24'fps                                                (cinema runtime)x1.001
+cinema to NTSC-soft  [24pps{48kHz__48.048kHz}]24'fps                                                (cinema runtime)x1.001
+cinema to PAL-fast   [24pps{48kHz__46.080kHz}]25fps                                                 (cinema runtime)x0.96
+cinema to PAL-soft   -unknown (no specimens)-                                                       -unknown (no specimens)-
+cinema to PAL-hard   [24pps__48hps__(Aa-Xx)(Aa-LlLm-WxXx)=50hps__25tps]25fps                         cinema runtime
+cinema to NTSC-hard  [24pps__48hps__(Aa-Dd)(AaBbBcCdDd)=60hps__30tps{48kHz__48.048kHz}]30'fps       (cinema runtime)x1.001</PRE></TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+                     _____________________notation for remastering from media_____________________  ____cinema runtime____
+cine-slow to cinema  24'fps[{48.048kHz__48kHz}]24fps                                                (media runtime)/1.001
+NTSC-soft to cinema  24'fps[{48.048kHz__48kHz}]24fps                                                (media runtime)/1.001
+PAL-fast to cinema   25fps[{46.080kHz__48kHz}]24fps                                                 (media runtime)/0.96
+PAL-soft to cinema   -unknown (no specimens)-                                                       -unknown (no specimens)-
+PAL-hard to cinema   25fps[25tps__50hps__(Aa-LlLm-WxXx)(Aa-Xx)=48hps__24pps]24fps                    media runtime
+NTSC-hard to cinema  30'fps[30tps__60hps__(AaBbBcCdDd)(Aa-Dd)=48hps__24pps{48.048kHz__48kHz}]24fps  (media runtime)/1.001</PRE></TD></TR></TABLE><BR><BR>
+
+<B>Film print projectable areas</B> [see note&nbsp;1].
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+      Fox Movietone 1.20   0.840 x 0.700  in                                                &mdash; [see SMPE&nbsp;XII] p.905
+    silent standard 1.33                      23.00 x 17.25 mm                              &mdash; [see R&M]
+                    1.33                      23.50 x 17.63 mm                 DIN standard &mdash; ARRI ground glass K2.44420.E
+     Academy format 1.37   0.825 x 0.600  in                                                &mdash; [see SMPTE&nbsp;63] p.109
+     Academy format 1.37                      20.96 x 15.25 mm                 ASA standard &mdash; [see R&M]
+     Academy format 1.37                      21.11 x 15.29 mm                 ISO standard &mdash; [see R&M]
+                    1.38                      21.00 x 15.20 mm                 DIN standard &mdash; ARRI ground glass K2.44420.0
+               IMAX 1.44                       69.6 x 48.5  mm  70mm 'lazy-15'              &mdash; [see Pytlak&nbsp;1]
+                    1.66   0.825 x 0.497  in  20.96 x 12.62 mm                 ASA standard &mdash; [see Pytlak&nbsp;2], [see R&M]
+                    1.66                      21.00 x 12.65 mm                 DIN standard &mdash; ARRI ground glass K2.44420.A
+                    1.67                      21.11 x 12.62 mm                 ISO standard &mdash; [see R&M]
+        MGM Realife 1.75   0.904 x 0.517  in                                                &mdash; [see C&H], p.6.
+                    1.85                      23.50 x 12.70 mm                 DIN standard &mdash; ARRI ground glass K2.44420.G
+                    1.85                      21.00 x 11.30 mm                 DIN standard &mdash; ARRI ground glass K2.44420.B
+        VistaVision 1.85   0.825 x 0.446  in  20.96 x 11.33 mm                 ASA standard &mdash; [see Pytlak&nbsp;2], [see R&M]
+        VistaVision 1.86                      21.11 x 11.33 mm                 ISO standard &mdash; [see R&M]
+        VistaVision 1.89  1.3665 x 0.7225 in                    35mm 'lazy-8'  ASA standard &mdash; [see SMPTE&nbsp;64] p.226
+        VistaVision 1.96  1.4180 x 0.7225 in                    35mm 'lazy-8'  ASA standard &mdash; [see SMPTE&nbsp;64] p.226
+         SuperScope 2.00   0.715 x 0.715  in  18.16 x 18.16 mm  2x anamorph    ASA standard &mdash; [see SMPTE&nbsp;64] p.688
+           Grandeur 2.00   1.768 x 0.885  in                                                &mdash; [see C&H] p.5
+          Univisium 2.00                      24.00 x 12.00 mm                              &mdash; "Vittorio Storaro, univisium.pdf"
+  Cinestage/Todd-AO 2.10   0.906 x 0.675  in                                                &mdash; [see C&H] p.31
+Panavision Super 70 2.19   1.912 x 0.870  in  48.56 x 22.10 mm                 ISO standard &mdash; [see Pytlak&nbsp;1], [see R&M]
+            Todd-AO 2.20                      48.60 x 22.00 mm                 ASA standard &mdash; [see R&M]
+Super Technirama 70 2.20                      48.60 x 22.00 mm                 ASA standard &mdash; [see C&H] p.29
+        CinemaScope 2.34                      21.31 x 18.16 mm  2x anamorph    ASA standard &mdash; [see R&M]
+     SuperScope 235 2.35   0.715 x 0.608  in  18.16 x 15.45 mm  2x anamorph                 &mdash; [see see note&nbsp;2]
+                    2.30                      21.00 x 18.20 mm                 DIN standard &mdash; ARRI ground glass K2.44420.C
+                    2.35                      23.50 x 10.00 mm                 DIN standard &mdash; ARRI ground glass K2.44420.F
+        CinemaScope 2.39   0.838 x 0.700  in                    2x anamorph   ANSI standard &mdash; [see SMPTE&nbsp;80] p.843
+      Panavision 35 2.39   0.825 x 0.690  in  20.96 x 17.53 mm  2x anamorph                 &mdash; [see Pytlak&nbsp;2]
+         Technirama 2.41   1.421 x 0.881  in  36.11 x 22.38 mm  1.5x anamorph 35mm 'lazy-8' &mdash; [see see note&nbsp;3]
+        CinemaScope 2.55   0.912 x 0.715  in  23.16 x 18.16 mm  2x anamorph    ASA standard &mdash; [see SMPTE&nbsp;64] p.688, [see R&M]
+</PRE></TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;1]&nbsp;</TD>
+    <TD>Nominal perf-to-perf spacing, camera: 0.1866 inch, projector: 0.1870 inch.</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;2]&nbsp;</TD>
+    <TD>The height of projection prints is unknown.
+        The height shown has been calculated from known width & known aspect.</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;3]&nbsp;</TD>
+    <TD><I>Technirama Process Debuts In Italy</I>, <I>International Projectionist</I> magazine, May 1957.</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[C&H]&nbsp;</TD>
+    <TD>Robert E. Carr and R.M. Hayes, <I>Wide Screen Movies</I> as corrected by Daniel J. Sherlock, <I>WIDE SCREEN MOVIES CORRECTIONS - Rev. 2.0</I></TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[Pytlak&nbsp;1]&nbsp;</TD>
+    <TD>John Pytlak (Eastman Kodak Company), <I>Image Area Comparisons</I>, post to filmshooting.com discussion board, 26 Aug 2005.</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[Pytlak&nbsp;2]&nbsp;</TD>
+    <TD>John Pytlak (Eastman Kodak Company), <I>Caring About Composition</I>, 2001 <SPAN style="white-space:nowrap"> (https://web.archive.org/web/20051112210901/http://www.kodak.com/US/en/motion/newsletters/pytlak/spring2001P.shtml).</SPAN></TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[R&M]&nbsp;</TD>
+    <TD>Paul Read & Mark-Paul Meyer, <I>Restoration of Motion Picture Film</I>, p.33.</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[SMPE&nbsp;XII]&nbsp;</TD>
+    <TD><I>Transactions of S.M.P.E., Vol. XII</I> (1928).</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[SMPTE&nbsp;63]&nbsp;</TD>
+    <TD><I>Journal of the SMPTE Volume 63</I> (1954).</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[SMPTE&nbsp;64]&nbsp;</TD>
+    <TD><I>Journal of the SMPTE Volume 64</I> (1955).</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[SMPTE&nbsp;80]&nbsp;</TD>
+    <TD><I>Journal of the SMPTE Volume 80</I> (1971).</TD></TR></TABLE>
+
+</BODY></HTML>

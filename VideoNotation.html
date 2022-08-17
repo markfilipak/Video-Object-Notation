@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="content-type" content="text/html; charset=utf-8">
+<TITLE>A Video Notation</TITLE>
+<STYLE>
+*{font-family:monospace}
+BODY{background-color:white}
+BLOCKQUOTE{margin-top:0;margin-bottom:0}
+IMG{border:1px solid black}
+PRE{background-color:#F0F0F0;padding:0.5em;margin:0.25em 0}
+TABLE{padding:0;margin:0;border:none;vertical-align:top}
+TR{padding:0;margin:0;vertical-align:top}
+TD{padding:0;margin:0;vertical-align:top}
+TT{background-color:#F0F0F0;padding:0 0.2em;white-space:nowrap}
+.bold{font-family:serif;font-size:0.85em;font-style:italic;font-weight:bold}
+.column_header{border-bottom:solid black 1px;vertical-align:bottom;white-space:nowrap}
+.commentary{font-family:serif;font-size:0.95em;font-style:italic}
+.right_nowrap{text-align:right;white-space:nowrap}
+.center_nowrap{text-align:center;white-space:nowrap}
+.type{font-family:serif;font-size:0.95em;font-style:italic}
+</STYLE>
+</HEAD>
+<BODY>
+
+<B>A Video Object Notation, by Mark Filipak, 2022-08-17.</B><BR>
+Also available: A <A href="VideoNotation.StudioMedia.html">Studio Media Guide<A><BR><BR>
+
+Notations are read from left to right, beginning with a beginning stream and ending with an ending stream &mdash; see <A href="#Streams"><B>Streams</B></A>.<BR><BR>
+
+<TT><B>24'</B></TT> is a contraction of 24/1.001, <TT><B>30'</B></TT> is a contraction of 30/1.001, and so on.<BR><BR>
+
+<B>Stripped from notations:</B><BR>
+<TT>...</TT> (3 dots) and all that follows them to the end of line are stripped &mdash; they can serve as comments.<BR>
+Whitespace is stripped, so whitespace can be used to beautify notations.<BR>
+Strings of the form <TT>=</TT><I class="type">rate</I><TT>pps</TT>, <TT>=</TT><I class="type">rate</I><TT>tps</TT>, etc. are stripped &mdash; use them to improve readability.<BR><BR><BR>
+
+<B>Giving names to commonly encountered cinema sources</B> &mdash; they're not part of the notation but they're useful.<BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD class="right_nowrap"><B>cinema</B>&nbsp;</TD>
+    <TD>is 24pps (pictures per second) as shot with cinema cameras and as shown in cinemas.</TD></TR>
+<TR><TD class="right_nowrap"><B>cine-slow</B>&nbsp;</TD>
+    <TD>is cinema that has been forced to 24'fps.
+        The forcing stretches each runtime hour to 1:00:03.6.
+        To retain audio sync with the forced video, 48kHz cinema audio has been up-sampled to 48.048kHz in advance.
+        When the up-sampled audio is played back at 48kHz during 24'fps play, tonality becomes 2 cents flat &mdash; very little, but apparently enough to make musicians unhappy.</TD></TR>
+<TR><TD class="right_nowrap"><B>NTSC-soft</B>&nbsp;</TD>
+    <TD>is identical to cine-slow but adds metadata that requests players to perform 4-to-5 telecine (to 30'fps).</TD></TR>
+<TR><TD class="right_nowrap"><B>PAL-fast</B>&nbsp;</TD>
+    <TD>(aka PAL speed-up) is cinema that has been forced to 25fps.
+        The forcing shrinks each runtime hour to 57:36.
+        To retain audio sync with the forced video, 48kHz cinema audio has been down-sampled to 46.080kHz in advance.
+        When the down-sampled audio is played back at 48kHz during 25fps play, tonality becomes 71 cents sharp &mdash; almost from C to C# and easily discerned.</TD></TR>
+<TR><TD class="right_nowrap"><B>PAL-soft</B>&nbsp;</TD>
+    <TD>is unforced cinema but with metadata that requests players to perform 24-to-25 telecine (to 25fps).
+        Since it is unforced, runtime and audio are true-to-cinema.
+        Whether PAL-soft videos actually exist is unknown.</TD></TR>
+<TR><TD class="right_nowrap"><B>PAL-hard</B>&nbsp;</TD>
+    <TD>(aka Euro telecine) is unforced cinema that has been 24-to-25 telecined to 25fps.
+        Since it is unforced, runtime and audio are true-to-cinema.
+        Whether PAL-hard videos actually exist is unknown.</TD></TR>
+<TR><TD class="right_nowrap"><B>NTSC-hard</B>&nbsp;</TD>
+    <TD>is cinema that has been 4-to-5 telecined to 30tps, then forced to 30'fps.
+        The forcing stretches each runtime hour to 1:00:03.6.
+        To retain audio sync with the forced video, 48kHz cinema audio has been up-sampled to 48.048kHz in advance.
+        When the up-sampled audio is played back at 48kHz during 30'fps play, tonality becomes 2 cents flat.</TD></TR></TABLE><BR><BR>
+
+<!-- Streams -->
+
+<A name="Streams">
+<B>Streams.</B><BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD class="right_nowrap"><TT>[</TT></TD>
+    <TD><I class="type">stream</I><TT>]</TT><I class="type">rate</I><TT>fps</TT> is a raw stream of camera shots or film samples framed & encoded at <I class="type">rate</I> FPS.</TD></TR>
+<TR><TD class="right_nowrap"><I class="type">rate</I><TT>fps[</TT></TD>
+    <TD><I class="type">stream</I><TT>]</TT><I class="type">rate</I><TT>fps</TT> can be a remuxed stream or a transcoded stream.</TD></TR></TABLE><BR>
+
+Chains of transcodes, <I class="type">rate</I><TT>fps[</TT><I class="type">stream</I><TT>]</TT><I class="type">rate</I><TT>fps[</TT><I class="type">stream</I><TT>]</TT><I class="type">rate</I><TT>fps</TT> etc., are allowed without limit.<BR><BR>
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD class="right_nowrap"><TT>[</TD>
+    <TD colspan=3><I class="type">rate</I><TT>pps__</TT><I class="type">picture-stream</I> is a raw stream of pictures from a cinema camera or film sampler.</TD></TR>
+<TR><TD class="right_nowrap"><I class="type">rate</I><TT>fps[</TT></TD>
+    <TD colspan=3><I class="type">rate</I><TT>pps__</TT><I class="type">picture-stream</I> is a decoded stream of pictures.</TD></TR>
+<TR><TD></TD>
+    <TD class="column_header">a picture stream begins</TD>
+    <TD></TD>
+    <TD class="column_header">a picture stream ends</TD></TR>
+<TR><TD></TD>
+    <TD>following <I class="type">rate</I><TT>pps__</TT></TD>
+    <TD></TD>
+    <TD> on (prior to) <I class="type">rate</I><TT>hps</TT>, else on <TT>]</TT> or <TT>~</TT>, else with (and including) the end of a 'look'-'seen'</TD></TR>
+<TR><TD><BR></TD></TR>
+
+<TR><TD class="right_nowrap"><I class="type">rate</I><TT>fps[</TT></TD>
+    <TD colspan=3><I class="type">rate</I><TT>tps__</TT><I class="type">telecine-stream</I> is a decoded stream of mixed pictures & telepairs.</TD></TR>
+<TR><TD></TD>
+    <TD class="column_header">a telecine stream begins</TD>
+    <TD></TD>
+    <TD class="column_header">a telecine stream ends</TD></TR>
+<TR><TD></TD>
+    <TD>following <I class="type">rate</I><TT>tps__</TT></TD>
+    <TD></TD>
+    <TD> on <I class="type">rate</I><TT>hps</TT>, else on <TT>]</TT> or <TT>~</TT>, else with the end of a 'look'-'seen'</TD></TR>
+<TR><TD><BR></TD></TR>
+
+<TR><TD class="right_nowrap"><TT>[</TT></TD>
+    <TD colspan=3><I class="type">rate</I><TT>sps__</TT><I class="type">scan-stream</I> is a raw stream of scanpairs from a TV camera.</TD></TR>
+<TR><TD class="right_nowrap"><I class="type">rate</I><TT>fps[</TT></TD>
+    <TD colspan=3><I class="type">rate</I><TT>sps__</TT><I class="type">scan-stream</I> is a decoded stream of scanpairs.</TD></TR>
+<TR><TD></TD>
+    <TD class="column_header">a scan stream begins</TD>
+    <TD></TD>
+    <TD class="column_header">a scan stream ends</TD></TR>
+<TR><TD></TD>
+    <TD>following <I class="type">rate</I><TT>sps__</TT></TD>
+    <TD></TD>
+    <TD> on <I class="type">rate</I><TT>hps</TT>, else on <TT>]</TT>, else with the end of a 'look'-'seen'</TD></TR>
+<TR><TD><BR></TD></TR>
+
+<TR><TD class="right_nowrap"><I class="type">rate</I><TT>fps[</TT></TD>
+    <TD colspan=3><I class="type">rate</I><TT>dps__</TT><I class="type">decode-stream</I> is a decoded stream of generic decodes that could resolve to pictures, telepairs, or scanpairs.</TD></TR>
+<TR><TD></TD>
+    <TD class="column_header">a decode stream begins</TD>
+    <TD>&nbsp&nbsp;</TD>
+    <TD class="column_header">a decode stream ends</TD></TR>
+<TR><TD></TD>
+    <TD>following <I class="type">rate</I><TT>dps__</TT></TD>
+    <TD></TD>
+    <TD> on <I class="type">rate</I><TT>pps</TT> or <I class="type">rate</I><TT>tps</TT> or <I class="type">rate</I><TT>sps</TT></TD></TR>
+<TR><TD><BR></TD></TR>
+
+<TR><TD></TD>
+    <TD colspan=3><I class="type"></TT><I class="type">rate</I><TT>hps__</TT>halfpic-stream</I> is a stream of halfpics (half pictures) unweaved/deinterlaced from other streams.</TD></TR>
+<TR><TD></TD>
+    <TD class="column_header">a halfpic stream begins</TD>
+    <TD></TD>
+    <TD class="column_header">a halfpic stream ends</TD></TR>
+<TR><TD></TD>
+    <TD>following <I class="type">rate</I><TT>hps__</TT></TD>
+    <TD></TD>
+    <TD> on <I class="type">rate</I><TT>pps</TT> or <I class="type">rate</I><TT>tps</TT> or <I class="type">rate</I><TT>sps</TT></TD></TR></TABLE><BR><BR>
+
+<!-- Audio -->
+
+<B>Audio Conversions.</B><BR>
+Audio up- down-sampling is generally needed to synchronize audio to video changes.<BR>
+<TT>~</TT><I class="type">factor</I><TT>up~</TT> means up-sample audio by <I class="type">factor</I>.
+<BLOCKQUOTE>
+Typical: <TT>~1.001up~</TT> up-samples 48kHz audio to 48.048kHz.<BR>
+Typical: <TT>~0.96up~</TT> up-samples 46.08kHz audio back to 48kHz.</BLOCKQUOTE>
+<DIV>
+Compare a <TT>[24pps]24fps</TT> 1kHz tone,
+<AUDIO controls style="width:10em;height:1.5em"><SOURCE src="1000Hz.mp3" type="audio/mpeg"></AUDIO>,
+to <TT>[24pps~1.001up~]24'fps</TT>,
+<AUDIO controls style="width:10em;height:1.5em"><SOURCE src="1000Hz.cine-slow.mp3" type="audio/mpeg"></AUDIO>.
+Try quickly clicking both!</DIV><BR>
+<TT>~</TT><I class="type">factor</I><TT>down~</TT> means down-sample audio by <I class="type">factor</I>.
+<BLOCKQUOTE>
+Typical: <TT>~1.001down~</TT> down-samples 48.048kHz audio back to 48kHz.<BR>
+Typical: <TT>~0.96down~</TT> down-samples 48kHz audio to 46.08kHz.</BLOCKQUOTE>
+<DIV>
+Compare a <TT>[24pps]24fps</TT> 1kHz tone,
+<AUDIO controls style="width:10em;height:1.5em"><SOURCE src="1000Hz.mp3" type="audio/mpeg"></AUDIO>,
+to <TT>[24pps~0.96down~]25fps</TT>,
+<AUDIO controls style="width:10em;height:1.5em"><SOURCE src="1000Hz.PAL-fast.mp3" type="audio/mpeg"></AUDIO>.</DIV><BR>
+Any <I class="type">factor</I> is possible. <TT>1.001</TT> & <TT>0.96</TT> are merely the most common factors.<BR><BR><BR>
+
+<!-- Strides -->
+
+<B>Strides</B> &mdash; also see <A href="#'Look'-'seen'"><B>'Look'-'seen' notation & scanner</B></A>.<BR>
+<TT>(</TT><B><I>look</I></B><TT>)</TT> &mdash; parentheses delimit 'look' strides.<BR>
+<TT>(</TT><B><I>begseen</I></B><TT>)</TT> <TT>(</TT><B><I>seen</I></B><TT>)</TT> <TT>(</TT><B><I>endseen</I></B><TT>)</TT> <TT>(</TT><B><I>unseen</I></B><TT>)</TT> &mdash; parentheses delimit the other terms in 'look'-'seen' phrases.<BR><BR><BR>
+
+<!-- Operators -->
+
+<B>Operators.</B><BR>
+<TT>__</TT> (2 underlines) means "evaluate here".
+It causes the lefthand notation to be evaluated and accummulates the resulting stream elements.
+It also marks a natural point to fork the righthand notation as a separate thread.<BR>
+<TT>&</TT> (ampersand) between 2 tokens interpolates between the tokens' replacement stream elements and creates a new output stream element.
+For example, <TT>A&C</TT> creates <TT>B</TT>.<BR><BR><BR>
+
+<!-- Methods -->
+
+<B>Methods.</B>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD></TD><TD><TT>.</TT><B><I>method(params)</I></B> is a built-in function (such as a function that creates a stream).</TD></TR>
+<TR><TD><B><I>token</I></B></TD><TD><TT>.</TT><B><I>method(params)</I></B> is a method (such as a function that manipulates pixels) applied to a token's replacement stream element.<BR></TD></TR></TABLE>
+Example: <TT>[.pictures(24,240)__(12)(1.fill(red)2.fill(blue))__48hps__(Aa-Dd)(AaBbBcCdDd)=60hps__30tps]30fps</TT> creates 8 seconds of video that showcases telecine mechanics.<BR><BR><BR>
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+
+<!-- Tokens within strides -->
+
+<TR><TD colspan=2><B>Tokens within strides:</B></TD></TR>
+<TR><TD class="right_nowrap"><TT>0</TT>..<TT>9</TT>&nbsp;</TD>
+    <TD>signify temporary/undifferentiated stream elements [see note&nbsp;1].</TD></TR>
+<TR><TD><BR></TD></TR>
+<TR><TD class="right_nowrap"><TT>-</TT>&nbsp;</TD>
+    <TD>(hyphen) is a wildcard that signifies one instance of an arbitrary stream element [see note&nbsp;1].</TD></TR>
+<TR><TD><BR></TD></TR>
+
+<TR><TD class="right_nowrap"><TT>A</TT>..<TT>Z</TT>&nbsp;</TD>
+    <TD><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+        <TR><TD>in&nbsp;</TD>
+            <TD style="text-align:center">picture streams</TD>
+            <TD>&nbsp;</TD>
+            <TD>signifies&nbsp;</TD>
+            <TD style="text-align:center">pictures.</TD>
+            <TD>For example:&nbsp;</TD>
+            <TD><TT>A</TT> <TT>B</TT> <TT>C</TT> in <TT>ABC</TT>.</TD></TR>
+        <TR><TD>in&nbsp;</TD>
+            <TD style="text-align:center">picture streams</TD>
+            <TD></TD>
+            <TD>signifies&nbsp;</TD>
+            <TD style="text-align:center">top halfpics.</TD>
+            <TD></TD>
+            <TD><TT>A</TT> <TT>B</TT> <TT>C</TT> in <TT>AaBbCc</TT>.</TD></TR>
+        <TR><TD>in&nbsp;</TD>
+            <TD style="text-align:center">telecine streams</TD>
+            <TD></TD>
+            <TD>signifies&nbsp;</TD>
+            <TD style="text-align:center">top halfpics.</TD>
+            <TD></TD>
+            <TD><TT>A</TT> <TT>B</TT> <TT>B</TT> in <TT>AaBbBcs</TT>.</TD></TR>
+        <TR><TD>in&nbsp;</TD>
+            <TD style="text-align:center">scan streams</TD>
+            <TD></TD>
+            <TD>signifies&nbsp;</TD>
+            <TD style="text-align:center">top scans.</TD>
+            <TD></TD>
+            <TD><TT>A</TT> <TT>C</TT> <TT>E</TT> in <TT>AbCdEf</TT>.</TD></TR>
+        <TR><TD>in&nbsp;</TD>
+            <TD style="text-align:center">scan streams</TD>
+            <TD></TD>
+            <TD>signifies&nbsp;</TD>
+            <TD style="text-align:center">top scans.</TD>
+            <TD></TD>
+            <TD><TT>B</TT> <TT>D</TT> <TT>F</TT> in <TT>aBcDeF</TT>.</TD></TR>
+        </TABLE></TD></TR>
+
+<TR><TD class="right_nowrap"><TT>a</TT>..<TT>z</TT>&nbsp;</TD>
+    <TD><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+        <TR><TD>in&nbsp;</TD>
+            <TD style="text-align:center">picture streams</TD>
+            <TD>&nbsp;</TD>
+            <TD>signifies&nbsp;</TD>
+            <TD style="text-align:center">bottom halfpics.</TD>
+            <TD>&nbsp;For example:&nbsp;</TD>
+            <TD><TT>a</TT> <TT>b</TT> <TT>c</TT> in <TT>AaBbCc</TT>.</TD></TR>
+        <TR><TD>in&nbsp;</TD>
+            <TD style="text-align:center">telecine streams</TD>
+            <TD></TD>
+            <TD>signifies&nbsp;</TD>
+            <TD style="text-align:center">bottom halfpics.</TD>
+            <TD></TD>
+            <TD><TT>a</TT> <TT>b</TT> <TT>c</TT> in <TT>AaBbBc</TT>.</TD></TR>
+        <TR><TD>in&nbsp;</TD>
+            <TD style="text-align:center">scan streams</TD>
+            <TD></TD>
+            <TD>signifies&nbsp;</TD>
+            <TD style="text-align:center">bottom scans.</TD>
+            <TD></TD>
+            <TD><TT>b</TT> <TT>d</TT> <TT>f</TT> in <TT>AbCdEf</TT>.</TD></TR>
+        <TR><TD>in&nbsp;</TD>
+            <TD style="text-align:center">scan streams</TD>
+            <TD></TD>
+            <TD>signifies&nbsp;</TD>
+            <TD style="text-align:center">bottom scans.</TD>
+            <TD></TD>
+            <TD><TT>a</TT> <TT>c</TT> <TT>e</TT> in <TT>aBcDeF</TT>.</TD></TR>
+        </TABLE></TD></TR>
+
+<TR><TD colspan=2>The information above may be more accessable via the table below.</TD></TR>
+<TR><TD>&nbsp;</TD>
+    <TD><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+        <TR><TD colspan=3 class="column_header"><B>Tokens in notations</B></TD>
+            <TD>&nbsp;&nbsp;</TD>
+            <TD class="column_header"><B>Depictions in timing diagrams</B> [see note&nbsp;2]</TD></TR>
+        <TR><TD class="column_header">If in picture streams</TD>
+            <TD>&nbsp;&nbsp;</TD>
+            <TD class="column_header">If in halfpic streams</TD>
+            <TD></TD>
+            <TD><TT>[A+a][B+b]</TT> = 2 consecutive picture frames</TD></TR>
+        <TR><TD style="white-space:nowrap"><TT>AaBb</TT> = 2 consecutive pictures</TD>
+            <TD></TD>
+            <TD><TT>AaBb</TT> = 4 consecutive halfpics</TD>
+            <TD></TD>
+            <TD><TT>(A+a)(B+b)</TT> = pictures decoded from <TT>[A+a][B+b]</TT></TD></TR>
+        <TR><TD style="white-space:nowrap"><TT>AB</TT> = shorthand for <TT>AaBb</TT></TD>
+            <TD></TD>
+            <TD><TT>AB</TT> = top halfpics of <TT>AaBb</TT></TD>
+            <TD></TD>
+            <TD><TT>(A)(a)(B)(b)</TT> = halfpics unweaved from <TT>(A+a)(B+b)</TT></TD></TR>
+        <TR><TD></TD>
+            <TD></TD>
+            <TD><TT>ab</TT> = bottom halfpics of <TT>AaBb</TT></TD>
+            <TD></TD>
+            <TD></TD></TR>
+        <TR><TD class="column_header">If in telecine streams</TD>
+            <TD></TD>
+            <TD></TD>
+            <TD></TD>
+            <TD><TT>[A+a][A+b]</TT> = 2 consecutive telecine frames</TD></TR>
+        <TR><TD style="white-space:nowrap"><TT>AaAb</TT> = 2 consecutive telepairs</TD>
+            <TD></TD>
+            <TD><TT>AaAb</TT> = 4 consecutive halfpics</TD>
+            <TD></TD>
+            <TD><TT>(A+a)(A+b)</TT> = 1 picture + 1 telepair decoded from <TT>[A+a][A+b]</TT></TD></TR>
+        <TR><TD></TD>
+            <TD></TD>
+            <TD><TT>AA</TT> = top halfpics of <TT>AaAb</TT></TD>
+            <TD></TD>
+            <TD><TT>(A)(a)(A)(b)</TT> = halfpics unweaved/deinterlaced from <TT>(A+a)(A+b)</TT></TD></TR>
+        <TR><TD></TD>
+            <TD></TD>
+            <TD><TT>ab</TT> = bottom halfpics of <TT>AaAb</TT></TD>
+            <TD></TD>
+            <TD></TD></TR>
+        <TR><TD class="column_header">If in scan streams</TD>
+            <TD></TD>
+            <TD></TD>
+            <TD></TD>
+            <TD><TT>[A+b][C+d]</TT> = 2 consecutive scan frames, top field first</TD></TR>
+        <TR><TD style="white-space:nowrap"><TT>AbCd</TT> = 2 consecutive scanpairs</TD>
+            <TD></TD>
+            <TD><TT>AbCd</TT> = 4 consecutive scans</TD>
+            <TD></TD>
+            <TD><TT>[a+B][c+D]</TT> = 2 consecutive scan frames, bottom field first</TD></TR>
+        <TR><TD style="white-space:nowrap"><TT>aBcD</TT> = 2 consecutive scanpairs</TD>
+            <TD></TD>
+            <TD><TT>aBcD</TT> = 4 consecutive scans</TD>
+            <TD></TD>
+            <TD><TT>(A+b)(C+d)</TT> = scanpairs decoded from <TT>[A+b][C+d]</TT></TD></TR>
+        <TR><TD></TD>
+            <TD></TD>
+            <TD><TT>AC</TT> = top scans of <TT>AbCd</TT></TD>
+            <TD></TD>
+            <TD><TT>(a+B)(c+D)</TT> = scanpairs decoded from <TT>[a+B][c+D]</TT></TD></TR>
+        <TR><TD></TD>
+            <TD></TD>
+            <TD><TT>BD</TT> = top scans of <TT>aBcD</TT></TD>
+            <TD></TD>
+            <TD><TT>(A)(b)(C)(d)</TT> = scans deinterlaced from <TT>(A+b)(C+d)</TT></TD></TR>
+        <TR><TD></TD>
+            <TD></TD>
+            <TD><TT>bd</TT> = bottom scans of <TT>AbCd</TT></TD>
+            <TD></TD>
+            <TD><TT>(a)(B)(c)(D)</TT> = scans deinterlaced from <TT>(a+B)(c+D)</TT></TD></TR>
+        <TR><TD></TD>
+            <TD></TD>
+            <TD><TT>ac</TT> = bottom scans of <TT>aBcD</TT></TD>
+            <TD></TD>
+            <TD></TD></TR>
+        </TABLE></TD></TR>
+<TR><TD colspan=2>
+        <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+        <TR><TD>[note&nbsp;1]&nbsp;</TD>
+            <TD>The type of stream element (picture telepair scanpair or halfpic) is implied by the type of stream (<I class="type">rate</I><TT>pps</TT> <I class="type">rate</I><TT>tps</TT> <I class="type">rate</I><TT>sps</TT> or <I class="type">rate</I><TT>hps</TT>).</TD></TR>
+        </TABLE></TD></TR>
+<TR><TD colspan=2>
+        <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+        <TR><TD>[note&nbsp;2]&nbsp;</TD>
+            <TD>Timing diagrams appear solely to aid visualization but are not part of the notation.</TD></TR>
+        </TABLE></TD></TR>
+<TR><TD><BR><BR></TD></TR>
+
+<!-- Tokens that cross stride boundaries -->
+
+<TR><TD colspan=2><B>Tokens that cross stride boundaries:</B></TD></TR>
+<TR><TD class="right_nowrap"><TT>^</TT>&nbsp;</TD>
+    <TD>(caret) in the current stride is replaced by a copy of the matching stream element [see note&nbsp;1] from the ending of the previous stride.
+        For example: <TT>(Ab)(Ab)(A^)(A^)</TT> [see note&nbsp;2] takes the 3-scanpair stream, <TT>AbCdEf</TT>, substitutes according to <TT>AbC^E^</TT>, and outputs <TT>AbCbEd</TT>.</TD></TR>
+<TR><TD class="right_nowrap"><TT>$</TT>&nbsp;</TD>
+    <TD>(dollar) in the current stride is replaced by a copy of the matching stream element [see note&nbsp;1] from the beginning of the next stride.
+        For example: <TT>(Ab)($b)($b)(Ab)</TT> [see note&nbsp;2] takes the 3-scanpair stream, <TT>AbCdEf</TT>, substitutes according to <TT>$b$d$f</TT>, and outputs <TT>CbEdEf</TT>.</TD></TR>
+<TR><TD class="right_nowrap"><TT>..</TT>&nbsp;</TD>
+    <TD>(2 dots) selects an entire stream &mdash; it does not form strides.
+        If it precedes tokens, <TT>..</TT> returns all stream elements from the beginning of the stream to the 1st token-matching stream element.
+        For example: <TT>(..1-)(..11--)</TT> repeats a stream's final 2 stream elements.
+        If it follows tokens, <TT>..</TT> returns all stream elements to the end of the stream.
+        For example: <TT>(-..)(..)</TT> drops a stream's 1st stream element.
+        Note that <TT>..</TT> can be an empty stream.</TD></TR>
+<TR><TD colspan=2>
+        <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+        <TR><TD>[note&nbsp;1]&nbsp;</TD>
+            <TD>The type of stream element (picture telepair scanpair or halfpic) is implied by the type of stream (<I class="type">rate</I><TT>pps</TT> <I class="type">rate</I><TT>tps</TT> <I class="type">rate</I><TT>sps</TT> or <I class="type">rate</I><TT>hps</TT>).</TD></TR>
+        </TABLE></TD></TR>
+<TR><TD colspan=2>
+        <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+        <TR><TD>[note&nbsp;2]&nbsp;</TD>
+            <TD><TT>(Ab)(Ab)(A^)(A^)</TT> & <TT>(Ab)($b)($b)(Ab)</TT> denote <TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>endseen</B></I><TT>)</TT> terms &mdash; see <A href="#'Look'-'seen'"><B>'Look'-'seen' notation & scanner</B></A>.</TD></TR>
+        </TABLE></TD></TR></TABLE><BR><BR>
+
+
+<SPAN class="commentary">
+The notation strictly distinguishes between images versus frames.
+To appreciate the difference consider this: <A href="#4-to-5-interpolation" class="commentary">4-to-5-interpolation</A> creates strides of interpolated pictures having durations 1/32,
+1/32, 1/24, 1/32, 1/32 seconds.
+When those pictures are forced into 1/30 second frames, they exhibit 27% judder @ 24 judders per second and 3+3+4+3+3 3+3+4+3+3 etc. cadence.
+A clear distinction between images and frames make such computations (and comparisons based on them) possible &mdash; compare judder percent, judders per second, and cadence with typical parameters such as "fast", "medium", "slow", "extra_slow", etc. found in typical video tools.
+To prepare the reader for such distinctions, some terms need to be introduced.</SPAN><BR><BR>
+
+<!-- Terms -->
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD class="column_header"><B>Image Terms</B></TD>
+    <TD>&nbsp;&nbsp;</TD>
+    <TD class="column_header">Meanings</TD>
+    <TD>&nbsp;&nbsp;</TD>
+    <TD class="column_header">Seen elsewhere as</TD></TR>
+<TR><TD class="right_nowrap"><I><B>pictures</B></I></TD>
+    <TD></TD>
+    <TD>Image datasets, formed of lines of dots, in which all lines portray the same instant in time.
+        Also, picture samples after scaling by SAR.
+        Also, decombed telepairs and decombed scanpairs.</TD>
+    <TD></TD>
+    <TD><I>frames, frame pictures, progressive frames</I></TD></TR>
+<TR><TD class="right_nowrap"><I><B>pps</B></I></TD>
+    <TD></TD>
+    <TD>Pictures per second.
+        Also, a signifier denoting a picture stream.</TD>
+    <TD></TD>
+    <TD><I>fps, Hz</I></TD></TR>
+<TR><TD class="right_nowrap"><I><B>telepairs</B></I></TD>
+    <TD></TD>
+    <TD>Image datasets, formed of lines of dots, in which the odd numbered lines & the even numbered lines are a mix of 2 consecutive pictures and therefore separated in time by 1/tps seconds.
+        Also, telepair samples after scaling by SAR.
+        Note that decombing a telepair produces a picture.</TD>
+    <TD></TD>
+    <TD><I>frames, frame pictures, interlaced frames, interlaced pictures, pictures</I></TD></TR>
+<TR><TD class="right_nowrap"><I><B>tps</B></I></TD>
+    <TD></TD>
+    <TD>Telecines (i.e., combined pictures & telepairs) per second.
+        Also, a signifier denoting a telecine stream.</TD>
+    <TD></TD>
+    <TD><I>fps, Hz</I></TD></TR>
+<TR><TD class="right_nowrap"><I><B>scanpairs</B></I></TD>
+    <TD></TD>
+    <TD>Image datasets, formed of lines of dots, in which the odd numbered lines & the even numbered lines are separated in time by (1/sps)/2 seconds.
+        Also, scanpair samples after scaling by SAR.
+        Note that decombing a scanpair produces a picture.</TD>
+    <TD></TD>
+    <TD><I>frames, <I>interlaced pictures, pictures</I></TD></TR>
+<TR><TD class="right_nowrap"><I><B>sps</B></I></TD>
+    <TD></TD>
+    <TD>Scanpairs per second.
+        Also, a signifier denoting a scan stream.</TD>
+    <TD></TD>
+    <TD><I>fps, Hz</I></TD></TR>
+<TR><TD class="right_nowrap"><I><B>halfpic</B></I></TD>
+    <TD></TD>
+    <TD>One of a pair of half-height, 2x aspect, image datasets unweaved from pictures or deinterlaced from telepairs or scanpairs.</TD>
+    <TD></TD>
+    <TD><I>field, picture, progressive segment</I></TD></TR>
+<TR><TD class="right_nowrap"><I><B>hps</B></I></TD>
+    <TD></TD>
+    <TD>Halfpics per second.
+        Also, a signifier denoting a halfpic stream.</TD>
+    <TD></TD>
+    <TD></TD></TR>
+<TR><TD class="right_nowrap"><I><B>dps</B></I></TD>
+    <TD></TD>
+    <TD>Decodes per second.
+        Denotes an ambiguous stream type that will be determined by follow on notation.</TD>
+    <TD></TD>
+    <TD></TD></TR>
+
+<TR><TD class="column_header"><B>Sample Terms</B></TD>
+    <TD></TD>
+    <TD class="column_header">Meanings</TD>
+    <TD></TD>
+    <TD class="column_header">Seen elsewhere as</TD></TR>
+<TR><TD class="right_nowrap"><I><B>samples</B></I></TD>
+    <TD></TD>
+    <TD>Image datasets, formed of rows of pixels, that have been cropped or matted to DAR and scaled by 1/SAR.
+        Samples are what are subsequently encoded and stored in frames.</TD>
+    <TD></TD>
+    <TD rowspan=4><I>fields, frame pictures, frames, pictures, pixels</I></TD></TR>
+<TR><TD class="right_nowrap"><I><B>picture samples</B></I></TD>
+    <TD></TD>
+    <TD>Samples derived from pictures.</TD>
+    <TD></TD></TR>
+<TR><TD class="right_nowrap"><I><B>telepair samples</B></I></TD>
+    <TD></TD>
+    <TD>Samples derived from telepairs.</TD>
+    <TD></TD></TR>
+<TR><TD class="right_nowrap"><I><B>scanpair samples</B></I></TD>
+    <TD></TD>
+    <TD>Samples derived from scanpairs.</TD>
+    <TD></TD></TR>
+
+<TR><TD class="column_header"><B>Stream Terms</B></TD>
+    <TD></TD>
+    <TD class="column_header">Meanings</TD>
+    <TD></TD>
+    <TD class="column_header">Seen elsewhere as</TD></TR>
+<TR><TD class="right_nowrap"><I><B>picture stream</B></I></TD>
+    <TD></TD>
+    <TD>A stream of pictures &mdash; comb free, even when there's motion.</TD>
+    <TD></TD>
+    <TD></TD></TR>
+<TR><TD class="right_nowrap"><I><B>telecine stream</B></I></TD>
+    <TD></TD>
+    <TD>A stream of mixed pictures and telepairs &mdash; a mix of comb free and motion combed.</TD>
+    <TD></TD>
+    <TD></TD></TR>
+<TR><TD class="right_nowrap"><I><B>scan stream</B></I></TD>
+    <TD></TD>
+    <TD>A stream of scanpairs &mdash; all are motion combed.</TD>
+    <TD></TD>
+    <TD></TD></TR>
+<TR><TD class="right_nowrap"><I><B>halfpic stream</B></I></TD>
+    <TD></TD>
+    <TD>A stream of halfpics.</TD>
+    <TD></TD>
+    <TD></TD></TR></TABLE><BR><BR>
+
+<!-- The simplest useful notations -->
+
+<B>The simplest useful notations.</B>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+24'fps[~1.001down~]24fps   ...remux cine-slow to cinema.</PRE></TD></TR>
+</TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+24'fps[~1.001down~]24fps   ...remux NTSC-soft to cinema.</PRE></TD></TR>
+</TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+25fps[~0.96up~]24fps    ...remux PAL-fast to cinema.</PRE></TD></TR></TABLE><BR><BR>
+
+
+<!-- An introduction to basic picture stream processing -->
+
+<B>An introduction to basic picture stream processing</B> &mdash; an introduction, but one that does nothing useful.<BR>
+Basic picture stream processing as functions (but functions are not part of the notation):
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+frame stream > decode > sample stream > synchronize audio > encode > frame stream
+                        \____________\__ samples > scale by SAR > picture stream > scale by 1/SAR > samples
+                                                                  \_____________\__ pictures > unweave > halfpic stream > weave > pictures</PRE></TD></TR></TABLE>
+
+Basic picture stream processing as notation (in which the functions are implied):
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+            decode unweave        synchronize audio (up-sample in this case)
+           /      /              /
+24fps[24pps__48hps__24pps~1.001up~]24'fps
+                         \               \
+                          weave           encode</PRE></TD></TR></TABLE><BR><BR>
+
+
+<!-- An introduction to basic scan stream processing -->
+
+<B>An introduction to basic scan stream processing</B>, bob decombing.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+[25sps__50hps__(Ab)(AAbb)=100hps__50pps]50fps</PRE></TD></TR>
+</TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+[30'sps__60'hps__(Ab)(AAbb)=120'hps__60'pps]60'fps</PRE></TD></TR></TABLE><BR><BR>
+
+
+<!-- 'Look'-'seen' notation & scanner -->
+
+<A name="'Look'-'seen'">
+<B>'Look'-'seen' notation & scanner.</B><BR>
+The terms in parentheses above, <TT>(Ab)(AAbb)</TT>, are 'look'-'seen's.
+The following introduction is presented at this point because familiarity with it is needed for the sections that follow.<BR><BR>
+
+'Look'-'seen's are the most important of the notation's engines. Supported 'look'-'seen' notations are<BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>seen</B></I><TT>)</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...2 terms</TD></TR>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>unseen</B></I><TT>)</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...3 terms</TD></TR>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>seen</B></I><TT>)()</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <TT>()</TT> is the 'unseen killer' that 'kills' all 'unseen' strides</TD></TR>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>endseen</B></I><TT>)</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...4 terms</TD></TR>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(=)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>endseen</B></I><TT>)</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <TT>(=)</TT> sets <TT>(</TT><I><B>begseen</B></I><TT>)</TT> to <TT>(</TT><I><B>seen</B></I><TT>)</TT></TD></TR>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(=)</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <TT>(=)</TT> sets <TT>(</TT><I><B>endseen</B></I><TT>)</TT> to <TT>(</TT><I><B>seen</B></I><TT>)</TT></TD></TR>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>endseen</B></I><TT>)(</TT><I><B>unseen</B></I><TT>)</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...5 terms</TD></TR>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>endseen</B></I><TT>)()</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <TT>()</TT> is the 'unseen killer'</TD></TR>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(=)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>endseen</B></I><TT>)(</TT><I><B>unseen</B></I><TT>)</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <TT>(=)</TT> sets <TT>(</TT><I><B>begseen</B></I><TT>)</TT> to <TT>(</TT><I><B>seen</B></I><TT>)</TT></TD></TR>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(=)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>endseen</B></I><TT>)()</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <TT>(=)</TT> sets <TT>(</TT><I><B>begseen</B></I><TT>)</TT> to <TT>(</TT><I><B>seen</B></I><TT>)</TT> &mdash; <TT>()</TT> is the 'unseen killer'</TD></TR>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(=)(</TT><I><B>unseen</B></I><TT>)</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <TT>(=)</TT> sets <TT>(</TT><I><B>endseen</B></I><TT>)</TT> to <TT>(</TT><I><B>seen</B></I><TT>)</TT></TD></TR>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(=)()</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <TT>(=)</TT> sets <TT>(</TT><I><B>endseen</B></I><TT>)</TT> to <TT>(</TT><I><B>seen</B></I><TT>)</TT> &mdash; <TT>()</TT> is the 'unseen killer'</TD></TR></TABLE><BR>
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD class="right_nowrap"><TT>(</TT><I><B>look</B></I><TT>)</TT>&nbsp;</TD>
+    <TD colspan=2>'watches' the input stream (as though watching a passing parade) and 'looks' for inner matches.
+        For example: 2-3-2-3-telecine (which has a <TT>AaBbBcCdDd</TT> stride) 'looks for' <TT>..1.1..2.2</TT> as inner matches.</TD></TR>
+<TR><TD><BR></TD></TR>
+<TR><TD class="right_nowrap">If <TT>(</TT><I><B>look</B></I><TT>)</TT>&nbsp;</TD>
+    <TD><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+        <TR><TD style="width:2em"></TD>
+            <TD style="text-indent:-2em">'sees' an inner match, it passes the 'look' stride & stide-count number of input elements to <TT>(</TT><I><B>begseen</B></I><TT>)</TT> <TT>(</TT><I><B>seen</B></I><TT>)</TT> or <TT>(</TT><I><B>endseen</B></I><TT>)</TT>, increments the 'look' pointer by stide-count, and continues 'looking' until the input stream is exhausted,</TD></TR></TABLE></TD></TR>
+<TR><TD></TD>
+    <TD><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+        <TR><TD style="width:2em"></TD>
+            <TD style="text-indent:-2em">otherwise,
+                <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+                <TR><TD style="width:2em"></TD><TD style="text-indent:-2em">if <TT>(</TT><I><B>unseen</B></I><TT>)</TT> is present, <TT>(</TT><I><B>look</B></I><TT>)</TT> passes 1 <TT>pps</TT>/<TT>tps</TT>/<TT>sps</TT> input element (or 2 <TT>hps</TT> input elements) to <TT>(</TT><I><B>unseen</B></I><TT>)</TT>, increments the 'look' pointer by 1 (or by 2), and continues 'looking'.</TD></TR></TABLE>
+                otherwise, it passes the 1 (or 2) input elements to the right (i.e., to the remaining notation) and continues 'looking'.</TD></TR></TABLE></TD></TR>
+<TR><TD><BR></TD></TR>
+<TR><TD colspan=2>
+<SPAN class="commentary">
+A notation interpreter-processor is unforgiving. It deals harshly with any stale input elements left in </SPAN><TT>(</TT><I><B>begseen</B></I><TT>)</TT>/<TT>(</TT><I><B>seen</B></I><TT>)</TT>/<TT>(</TT><I><B>endseen</B></I><TT>)</TT>/<TT>(</TT><I><B>unseen</B></I><TT>)</TT><SPAN class="commentary"> when the input stream is exhasted.
+The stale elements are force-passed, unchanged, to the right (with an error notice).</SPAN></TD></TR>
+<TR><TD><BR></TD></TR>
+<TR><TD class="right_nowrap"><TT>(</TT><I><B>seen</B></I><TT>)</TT>&nbsp;</TD>
+    <TD>is passed the specified stride when <TT>(</TT><I><B>look</B></I><TT>)</TT> 'sees' it (i.e., when there's an inner match).
+        <I><B>seen</B></I> can be a simple replacement stride, or it can be an entire notation of its own with embedded 'look'-'seen's and/or any other notations.
+        The output of the <TT>(</TT><I><B>seen</B></I><TT>)</TT> term is passed to the right and the 'look' pointer is incremented by stide-count.</TD></TR>
+<TR><TD class="right_nowrap"><TT>(</TT><I><B>begseen</B></I><TT>)</TT>&nbsp;</TD>
+    <TD>operates indentically as <TT>(</TT><I><B>seen</B></I><TT>)</TT> but only on the begining matching stride (thereby handling scene changes for example).
+        To reduce clutter, <TT>(</TT><I><B>begseen</B></I><TT>)</TT> can be set to <TT>(=)</TT> when <I><B>begseen</B></I> and <I><B>seen</B></I> are the same.</TD></TR>
+<TR><TD class="right_nowrap"><TT>(</TT><I><B>endseen</B></I><TT>)</TT>&nbsp;</TD>
+    <TD>operates indentically as <TT>(</TT><I><B>begseen</B></I><TT>)</TT> but on the ending matching stride of course.
+        To reduce clutter, <TT>(</TT><I><B>endseen</B></I><TT>)</TT> can be set to <TT>(=)</TT> when <I><B>endseen</B></I> and <I><B>seen</B></I> are the same.</TD></TR>
+<TR><TD class="right_nowrap"><TT>(=)</TT>&nbsp;</TD>
+    <TD>can set either <I><B>begseen</B></I> or <I><B>endseen</B></I> to output the same sequence as <I><B>seen</B></I>.</TD></TR>
+<TR><TD class="right_nowrap"><TT>(</TT><I><B>unseen</B></I><TT>)</TT>&nbsp;</TD>
+    <TD>is passed the remainder of the input stream, if any.</TD></TR>
+<TR><TD class="right_nowrap"><TT>()</TT>&nbsp;</TD>
+  <TD>is a blank term, so it has no output.
+      It is most useful as an 'unseen killer' that strips strides that are not 'seen'. But it could conceivably be used to 'kill' any of the 'seen' terms.
+      For example, recall that <TT>(-..)(..)</TT> drops a stream's beginning stream element. In contrast, <TT>(AaBbBcCdDd)()(Ad-Dd)(=)</TT> drops only the beginning stride of a particular stream (a 2-3-2-3-telecine stream in this case).</TD></TR></TABLE>
+Nesting 'look'-'seen' notations can create extremely complex processes that are nonetheless fairly easy to read &mdash; without FFmpeg-style select filters or time- or frame-specific, scene change directives.<BR><BR>
+
+Example of 'look'-'seen' stream handling for 5-to-4-detelecine.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+30'tps__60'hps__   ...assume a 30'tps stream, unweave/deinterlace to 60'hps stream
+(AaBbBcCdDd)       ...'look' for 2-3-2-3-telecine (i.e., 10-halfpic strides with ..1.1..2.2 inner matches) and,
+(Aa-Dd)            ...if 'seen', output AaBbCcDd & set 'look' pointer + 10 & repeat 'look' for more 2-3-2-3-telecine, but
+(                  ...if 'unseen',
+  (AaAbBcCcDd)       ...'look' for 3-2-3-2-telecine (i.e., 10-halfpic strides with 1.1..2.2.. inner matches) and,
+  (Aa-Dd)            ...if 'seen', output AaBbCcDd & set 'look' pointer + 10 & repeat 'look' for more 3-2-3-2-telecine,
+                     ...else, output Aa & set 'look' pointer + 2 and
+)                  ...repeat the 'look'-'seen' until the input stream is exhausted.
+=48'hps__24'pps</PRE></TD></TR></TABLE>
+
+Below is a stride-by-stride, detail sequence illustrating how 'look'-'seen' works.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+____________input stream of 50 halfpics___________                               _______output stream of 42 halfpics_______
+AbCdEfGgHhHiIjJjKkLlLmMnNnOoOpPqQqRrSsStTuUuVvWxYz                               AbCdEfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWxYz
+. . . .         .         .         .         . .     ..1.1..2.2   1.1..2.2..    . . . .       .       .       .       . .
+.......... ==========================================> 'unseen' ==> 'unseen' ==> Ab
+  .<-------------------------------------------------------------------- +2        .
+  ......1.1. ========================================> 'unseen' ==> 'unseen' ====> Cd
+    .<------------------------------------------------------------------ +2          .
+    ....1.1... ======================================> 'unseen' ==> 'unseen' ======> Ef
+      .<---------------------------------------------------------------- +2            .
+      ..1.1..2.2 ====================================>  'seen' ======================> GgHhIiJj
+                .<--------------------------------------- +10                                  .
+                ..1.1..2.2 ==========================>  'seen' ==============================> KkLlMmNn
+                          .<----------------------------- +10                                          .
+                          1.1..2.2.. ================> 'unseen' ===> 'seen' =========================> OoPpQqRr
+                                    .<-------------------------------- +10                                     .
+                                    1.1..2.2.. ======> 'unseen' ===> 'seen' =================================> SsTtUuVv
+                                              .<---------------------- +10                                             .
+                                              .... ==> 'unseen' ==> 'unseen' ========================================> Wx
+                                                .<---------------------- +2                                              .
+                                                .. ==> 'unseen' ==> 'unseen' ==========================================> Yz</PRE></TD></TR></TABLE><BR><BR>
+
+<SPAN class="commentary">
+Below are 3 bob alternatives.
+They illustrate how the notation concisely documents subtle differences that would be difficult to describe in words.</SPAN><BR><BR>
+
+<B>lbs-decomb</B> &mdash; Preserves stride rate, avoids combing by interpolating, no bob, the beginning stride is half-bobbed.<BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+...             +-begin-stride----->+-more-strides----->  +-end-stride------->
+...    ________ (A_______)(b_______)(C_______)(d_______)..(Y_______)(z_______)  'look' for the next 2 scans with NO inner matches
+...   /      __ (A_______)(A&b_____)                                            'begseen', so (copy)(half-bob)
+...  /      /      ________________ (C_______)(b&d_____)                        'seen', so (copy)(interpolate)
+... /      /      /  ____________________________________ (Y_______)(x&z_____)  'endseen', so (copy)(interpolate)
+.../      /      /  /
+(Ab)(A A&b)(A ^&b)(=)</PRE></TD></TR></TABLE>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 30 halfpic interpolations per runtime second &mdash; Generations: 0.<BR><BR>
+
+<B>lse-decomb</B> &mdash; Preserves stride rate, avoids combing by interpolating, no bob, the end stride is half-bobbed.<BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+...             +-begin-stride----->+-more-strides----->  +-end-stride------->
+...    ________ (A_______)(b_______)(C_______)(d_______)..(Y_______)(z_______)  'look' for the next 2 scans with NO inner matches
+...   /  ______ (A&C_____)(b_______)                                            'begseen', so (interpolate)(copy)
+...  /  /      ____________________ (C&E_____)(d_______)                        'seen', so (interpolate)(copy)
+... /  /      /      ____________________________________ (Y&z_____)(z_______)  'endseen', so (half-bob)(copy)
+.../  /      /      /
+(Ab)(=)(A&$ b)(A&b b)</PRE></TD></TR></TABLE>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 30 halfpic interpolations per runtime second &mdash; Generations: 0.<BR><BR>
+
+<B>lbse-decomb</B> &mdash; Doubles stride rate, avoids combing by interpolating, no bob, the beginning & end strides are half-bobbed.<BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+...             +-begin-stride----->+-more-strides----->  +-end-stride------->
+...    ________ (A_______)(b_______)(C_______)(d_______)..(Y_______)(z_______)  'look' for the next 2 scans with NO inner matches
+...   /         (A__)(A&b)(A&C)(b__)                                            'begseen', so (copy)(half-bob)(interpolate)(copy)
+...  /            /            ____ (C__)(b&d)(C&E)(d__)                        'seen', so (copy)(interpolate)(interpolate)(copy)
+... /            /            /            ______________ (Y__)(x&z)(Y&z)(z__)  'endseen', so (copy)(interpolate)(half-bob)(copy)
+.../            /            /            /
+(Ab)(A A&b A&$ b)(A ^&b A&$ b)(A ^&b A&b b)</PRE></TD></TR></TABLE>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 60 halfpic interpolations per runtime second &mdash; Generations: 0.<BR><BR>
+
+<SPAN class="commentary">
+Above: What if FFmpeg functions were so simple?
+What if FFmepeg documentation was so concise?
+Imagine the complexity of the equivalent FFmpeg filter complexes.</SPAN><BR><BR><BR>
+
+<SPAN class="commentary">
+Below are NTSC & PAL detelecine notations.</SPAN><BR><BR>
+
+<B>10-to-8-detelecine.</B>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+60hps__         ...(beginning with halfpics),
+(AaBbBcCdDd)    ...'look' for ..1.1..2.2 inner match &
+(Aa-Dd)         ...detelecine if 'seen',
+(               ... but if 'unseen',
+  (AaAbBcCcDd)    ...'look' for 1.1..2.2.. inner match &
+  (Aa-Dd)         ...detelecine if 'seen'
+)</PRE></TD></TR></TABLE><BR>
+
+<B>50-to-48-detelecine.</B>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+50hps__                    ...(beginning with halfpics),
+(Aa-LlLm-WxXx)(Aa-Xx)      ...'look' for ......................1.1......................2.2  & detelecine if 'seen', but if 'unseen',
+((Aa-KkKl-VwWwXx)(Aa-Xx)    ...'look' for ....................1.1......................2.2..  & detelecine if 'seen', but if 'unseen',
+ ((Aa-JjJk-UvVv-Xx)(Aa-Xx)   ...'look' for ..................1.1......................2.2....  & detelecine if 'seen', but if 'unseen',
+  ((Aa-IiIj-TuUu-Xx)(Aa-Xx)   ...'look' for ................1.1......................2.2......  & detelecine if 'seen', but if 'unseen',
+   ((Aa-HhHi-StTt-Xx)(Aa-Xx)   ...'look' for ..............1.1......................2.2........  & detelecine if 'seen', but if 'unseen',
+    ((Aa-GgGh-RsSs-Xx)(Aa-Xx)   ...'look' for ............1.1......................2.2..........  & detelecine if 'seen', but if 'unseen',
+     ((Aa-FfFg-QrRr-Xx)(Aa-Xx)   ...'look' for ..........1.1......................2.2............  & detelecine if 'seen', but if 'unseen',
+      ((Aa-EeEf-PqQq-Xx)(Aa-Xx)   ...'look' for ........1.1......................2.2..............  & detelecine if 'seen', but if 'unseen',
+       ((Aa-DdDe-OpPp-Xx)(Aa-Xx)   ...'look' for ......1.1......................2.2................  & detelecine if 'seen', but if 'unseen',
+        ((Aa-CcCd-NoOo-Xx)(Aa-Xx)   ...'look' for ....1.1......................2.2..................  & detelecine if 'seen', but if 'unseen',
+         ((AaBbBc-MnNn-Xx)(Aa-Xx)    ...'look' for ..1.1......................2.2....................  & detelecine if 'seen', but if 'unseen',
+          ((AaAb-LmMm-Xx)(Aa-Xx)      ...'look' for 1.1......................2.2......................  & detelecine if 'seen'
+)))))))))))</PRE></TD></TR></TABLE>
+
+Note how the 'look'-'seen's have been constructed to 'look for' the latest possible inner match, first.
+That usually produces the best and fastest results.<BR><BR>
+Also note that 50-to-48-detelecine contains 12 nested 'look'-'seen's.
+One of the best properties of nested 'look'-'seen's is that once a nesting level 'sees' an inner match, it continues 'looking' at the same level (without traversing the hierarchy) until the inner match fails.
+When the inner match fails, that nesting level's 'unseen' is executed.
+Within that 'unseen' term are found inner nesting levels.<BR><BR>
+Eventually, all inner levels go 'unseen'.
+At that time, the hierarchy is traversed once more from the beginning 'looking for' the current 50 halfpics against the inner matches. If all levels go 'unseen', then 50-to-48-detelecine finishes with status: 'all-unseen'.<BR><BR>
+When 50-to-48-detelecine finishes with 'all-unseen', it abandons the current 50 halfpics and passes just the first 2 halfpics to the output and increments the 'look' pointer by 2 instead of by 50.
+It then resumes 'looking for' 12, 50 halfpic inner matches in the remaining input stream until the input stream is exhausted.<BR><BR>
+
+<SPAN class="commentary">
+The preceding description doesn't apply to solely 50-to-48-detelecine.
+It applies to all nested 'look'-'seen's.
+Building an equivalent nested, back-&-forth, FFmpeg filter complex would be insanely difficult.
+In fact, building an equivalent FFmpeg filter complex is probably impossible.
+The proposed notation accomplishes it in just 302 characters:</SPAN><BR><BR><BR>
+
+<SPAN class="commentary">
+Below is standard 2-3-2-3 telecine followed by 2 smooth video, telecine alternatives.
+They illustrate how the notation can make complex operations compact and easy to understand.</SPAN><BR><BR>
+
+<B>2-3-2-3-telecine.</B>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+...                                          +-all-strides-------------------------->
+...              ___________________________ (A_______)(B_______)(C_______)(D_______)  top halfpics
+...             /___________________________ (a_______)(b_______)(c_______)(d_______)  bottom halfpics
+...            /                          __ (A_-20%)(B_________+60%)(C_-20%)(D_-20%)  top halfpics
+...           /                          /__ (a_-20%)(b_-20%)(c_-20%)(d_________+60%)  bottom halfpics
+...          /                          /
+[24pps__48hps__(Aa-Dd)(AaBbBcCdDd)=60hps__30tps~1.001up~]30'fps</PRE></TD></TR></TABLE>
+PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%/2) [see note&nbsp;1] @ 6 judders per second &mdash; Cadence: 4+3+3+3+3 4+3+3+3+3 etc. [see note&nbsp;2] (which is 2+1+1+2+2 2+1+1+2+2 etc. plus 2+2+2+1+1 2+2+2+1+1 etc. superimposed) &mdash; Burden: None &mdash; Generations: 0.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;1]&nbsp;</TD>
+    <TD>Judder is the worst case 'jump' at any frame-to-frame change.
+        For the <TT>(A_-20%)(B_________+60%)</TT> top halfpic change (where, for example, <TT>(B_________+60%)</TT> means it is 60% longer than <TT>(B_______)</TT>), the judder is 80%.
+        Likewise, for bottom halfpics, <TT>(c_-20%)(d_________+60%)</TT> is 80% judder.</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;2]&nbsp;</TD>
+    <TD>Cadence is the stride-to-stride smoothness.
+        To visualize it, imagine a clip showing a mouse running across a tiled floor.
+        4+3+3+3+3 4+3+3+3+3 etc. cadence, for example, means that during 10 uniform frame times, the mouse traverses 4 tiles + 3 tiles + 3 tiles + 3 tiles + 3 tiles + 4 tiles + 3 tiles + 3 tiles + 3 tiles + 3 tiles etc.</TD></TR></TABLE><BR>
+
+<A name="4-to-5-interpolation">
+<B>4-to-5-interpolation:</B> A telecine alternative &mdash; turns strides of 4 pictures into strides of 5 via 2-pass interpolation.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+                                   ... +-all-strides------------------------------------------------------------------>  1/6 second
+[24pps__(A-D)                      ... (A___.____.____.___)(B___.____.____.___)(C___.____.____.___)(D___.____.____.___)
+...       _____________________________.         1    2              1                   1              2    1           generations
+...      /    _________________________.______________.              .                   .              .
+...     /    /    _____________________.______________.______________.                   .              .
+...    /    /    /     ________________.______________.______________.___________________.              .
+...   /    /    /     /    ____________.______________.______________.___________________.______________.
+...  /    /    /     /    /            .              .              .                   .              .
+(=)(A A..&B B.&.C C.&.D D&..$)     ... (A____________)(I1___________)(I2________________)(I3___________)(I4___________)  'seen'
+   (A A..&B B.&.C C.&.D D)=30pps   ... (A____________)(I1___________)(I2________________)(I3______)(D_________________)  'endseen'
+]30fps                             ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]  'seen' encode
+                                   ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3________+60%][D_________-20%]  'endseen' encode</PRE></TD></TR></TABLE>
+
+PTSs: Forced 30pps to 30'fps &mdash; Combing: None &mdash; Judder: 27% @ 6 judders per second &mdash; Cadence: 3+3+4+3+3 3+3+4+3+3 etc. &mdash; Burden: 36 picture interpolations per runtime second &mdash; Generations: 2-1-1-2.<BR><BR>
+
+<B>1-to-5-interpolation:</B> A telecine alternative &mdash; 4-pass interpolation &mdash; smooth video optimized for 60Hz & 120Hz TVs.<BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+                                   ... +-all-strides------------------------------------------------------------------>  1/24 second
+[24pps__(A)                        ... (A___.____.____.____.____.____.____.____.____.____.____.____.____.____.____.___)
+...       _____________________________.         3    4    2         3         1         3         2    4    3           generations
+...      /    _________________________.______________.              .                   .              .
+...     /    /  _______________________.______________.______________.                   .              .
+...    /    /  /   ____________________.______________.______________.___________________.              .
+...   /    /  /   /  __________________.______________.______________.___________________.______________.
+...  /    /  /   /  /                  .              .              .                   .              .
+(=)(A A..&..&...&..&..$)           ... (A____________)(I1___________)(I2________________)(I3___________)(I4___________)  'seen'
+   (AAAAA)                         ... (A____________)(A____________)(A_________________)(A____________)(A____________)  'endseen'
+]120fps                            ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]  'seen' encode</PRE></TD></TR></TABLE>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: 27% @ 24 judders per second [see note&nbsp;1] &mdash; Cadence: 3+3+4+3+3 3+3+4+3+3 etc. &mdash; Burden: 216 picture interpolations per runtime second &mdash; Generations: 4-3-3-4.<BR><BR>
+<A name="60Hz">
+1-to-5-interpolation on 120Hz & 60Hz TVs compared:
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+                                       (A____________)(I1___________)(I2________________)(I3___________)(I4___________)..  'seen'
+                                       [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]..  on 120Hz TV
+                                       [A________________________+6.7%][I2_______________________-8.5%][I4_____________..  on 60Hz TV</PRE></TD></TR></TABLE>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: 15% @ 24 judders per second [see note&nbsp;1] &mdash; Cadence: 6+7+6+7+6 6+7+6+7+6 etc. &mdash; Burden: 216 picture interpolations per runtime second &mdash; Generations: 4-3-3-4.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>[note&nbsp;1]&nbsp;</TD>
+    <TD>Judder rates above 17 judders per second are generally considered judder-free.</TD></TR></TABLE><BR><BR>
+
+
+<SPAN class="commentary">
+What follows is a 3-step example of how to extend a basic notation to expand coverage from 1 stream to multiple streams.</SPAN><BR><BR>
+
+1, What's the difference between the following?
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+30'fps[30'dps__60'hps__                                   ...decode and unweave/deinterlace
+(AaBbBcCdDd)                                              ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
+(Aa-Dd)=48'hps__                                          ...if 2-3-2-3-telecine is 'seen', detelecine
+24'pps]24'fps                                             ...weave & encode</PRE></TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+30'fps[30'dps__60'hps__                                   ...decode and unweave/deinterlace
+(AaBbBcCdDd)                                              ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
+(Aa-Dd)                                                   ...if 2-3-2-3-telecine is 'seen', detelecine<B style="color:#EA0000">
+(                                                         ...if 2-3-2-3-telecine is 'unseen',
+  (AaAbBcCcDd)                                              ...'look' for 3-2-3-2-telecine (10 halfpics, 1.1..2.2.. inner match)
+  (Aa-Dd)                                                   ...if 3-2-3-2-telecine is 'seen', detelecine
+)</B>=48'hps__24'pps]24'fps                                   ...weave & encode</PRE></TD></TR></TABLE>
+The 1st handles 2-3-2-3-telecined streams, only.<BR>
+The 2nd handles both 2-3-2-3-telecined & <B style="color:#EA0000">3-2-3-2-telecined</B> streams.<BR><BR>
+
+2, What difference does the following make?
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+30'fps[30'dps__60'hps__                                   ...decode and unweave/deinterlace
+(AaBbBcCdDd)                                              ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
+(Aa-Dd<B style="color:#EA0000">=48'hps__24'pps</B>)                                    ...if 2-3-2-3-telecine is 'seen', detelecine & <B style="color:#EA0000">weave</B>
+(                                                         ...if 2-3-2-3-telecine is 'unseen',
+  (AaAbBcCcDd)                                              ...'look' for 3-2-3-2-telecine (10 halfpics, 1.1..2.2.. inner match)
+  (Aa-Dd<B style="color:#EA0000">=48'hps__24'pps</B>)                                    ...if 3-2-3-2-telecine is 'seen', detelecine & <B style="color:#EA0000">weave
+  (                                                         ...if 3-2-3-2-telecine is 'unseen',
+    (Ab)                                                      ...'look' for NTSC scanpairs (2 halfpics, no inner match),
+    (A A&b A&$ b)(A ^&b A&$ b)(A ^&b A&b b)=120'hps__60'pps   ...if an NTSC scanpair is 'seen', lbse-decomb & weave
+  )                                                         ...</B>
+)                                                         ...
+]24'fps                                                   ...encode</PRE></TD></TR></TABLE>
+Handles 2-3-2-3-telecined & 3-2-3-2-telecined & <B style="color:#EA0000">NTSC scan</B> streams.
+To provide for NTSC scanpairs, <B style="color:#EA0000">weave</B> has been moved/duplicated so that each stream will have its own weave term.<BR>
+Note that if the processing ended at this step, the detelecines would be encoded as <TT>24'pps]24'fps</TT> but the <B style="color:#EA0000">lbse-decombed NTSC scanpairs</B> would be encoded as <TT>60'pps]24'fps</TT>.
+Since <TT>60'pps]24'fps</TT> would force slow motion (which is not what is intended), a common encoding must be found that can accommodate both 24'pps and 60'pps.<BR><BR>
+
+3, What difference does the following make?
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+30'fps[30'dps__60'hps__                                     ...decode and unweave/deinterlace
+(AaBbBcCdDd)                                                ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
+(                                                           ...if 2-3-2-3-telecine is 'seen',
+  Aa-Dd=48'hps__24'pps<B style="color:#EA0000">__</B>                                      ...detelecine & weave<B style="color:#EA0000">
+  (A)(=)(A A..&..&...&..&..$)(AAAAA)=120'pps                  ...do 1-to-5-interpolation</B>
+)                                                           ...
+(                                                           ...if 2-3-2-3-telecine is 'unseen',
+  (AaAbBcCcDd)                                                ...'look' for 3-2-3-2-telecine (10 halfpics, 1.1..2.2.. inner match)
+  (                                                           ...if 3-2-3-2-telecine is 'seen',
+    Aa-Dd=48'hps__24'pps<B style="color:#EA0000">__</B>                                      ...detelecine & weave<B style="color:#EA0000">
+    (A)(=)(A A..&..&...&..&..$)(AAAAA)=120'pps                  ...do 1-to-5-interpolation</B>
+  )                                                           ...
+  (                                                           ...if 3-2-3-2-telecine is 'unseen',
+    (Ab)                                                        ...'look' for NTSC scanpairs (2 halfpics, no inner match),
+    (A A&b A&$ b)(A^& b A&$ b)(A ^&b A&b b)=120'hps__60'pps<B style="color:#EA0000">__</B>   ...if NTSC TV scanpair is 'seen', lbse-decomb & weave<B style="color:#EA0000">
+    (1)(11)=120'pps                                             ...double pictures</B>
+  )                                                           ...
+)                                                           ...
+<B style="color:#EA0000">~1.001down~</B>]120fps                                          ...<B style="color:#EA0000">down-sample audio</B> & encode</PRE></TD></TR></TABLE>
+The prior notation ended with the cinema segments at 24'pps and the TV segments at 60'pps.
+The added notation <B style="color:#EA0000">converts all to 120'pps</B> and then encodes as 120fps with a needed <B style="color:#EA0000">audio down-sample</B>.<BR><BR><BR>
+
+
+<SPAN class="commentary">
+Below: The above is utilized while also fixing a bad telecine.</SPAN><BR><BR>
+
+<!-- A bad telecine -->
+
+<B>A bad telecine.</B><BR>
+<A href="file:'The%20Secret%20of%20SARAH%20SIDDONS',%20Lisa%20Orgolini%20interview,%20'ALL%20ABOUT%20EVE',%2000390.m2ts.jpg"><IMG src="'The Secret of SARAH SIDDONS', Lisa Orgolini interview, 'ALL ABOUT EVE', 00390.m2ts.jpg" onload="this.width/=2"></A><BR><BR>
+
+<SPAN class=bold>What notation characterizes the video?</SPAN><BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+[24pps__48hps__(Aa-Dd)(AaBcCdDdDd)=60hps__30tps~1.001up~]30'fps</PRE></TD></TR></TABLE>
+<SPAN class=bold>What notation will fix the video?</SPAN><BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+30'fps[30'tps__60'hps__<B style="color:#EA0000">
+(AaB c CdDdDd)          ...'look' for .....12121 inner matches &
+(AaB a&c BcCdDd)__      ...if 'seen', interpolate b = a&c and drop extra Dd</B>
+30'tps]30'fps</PRE></TD></TR></TABLE><BR>
+
+<SPAN class="commentary">
+The video segment above is part of a "Making Of" documentary that includes two more segment types: 30'sps NTSC TV clips and 30'tps cinema telecines, all mixed up.</SPAN><BR>
+<SPAN class=bold>What notation will improve the whole lot and convert to 120fps, smooth video in a single transcode?</SPAN><BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+30'fps[30'dps__60'hps__<B style="color:#EA0000">
+(AaB c CdDdDd)(AaB a&c BcCdDd)__</B>
+(AaBbBcCdDd)(Aa-Dd=48'hps__24'pps__(A)(=)(A A..&..&...&..&..$)(AAAAA)=120'pps)
+(
+  (AaAbBcCcDd)(Aa-Dd=48'hps__24'pps__(A)(=)(A A..&..&...&..&..$)(AAAAA)=120'pps)
+  (
+    (Ab)(A A&b A&$ b)(A^& b A&$ b)(A ^&b A&b b)=120'hps__60'pps__(1)(11)=120'pps
+  )
+)
+~1.001down~]120fps</PRE></TD></TR></TABLE><BR><BR>
+
+<SPAN class="commentary">
+Has the following ever happened to you? You craft a mind bending FFmpeg filter complex intended to implement something like the above and, after it mysteriously malfunctions, you discover that, based
+on complex and/or unpredictable circumstances, some filters drop a variable number of frames, thereby further extending and complicating your work (or worse, prompting you to give up and default to yadif).
+The notation will avoid that by enabling you to positively account for every frame, every millisecond.</SPAN><BR><BR><BR>
+
+
+<SPAN class="commentary">
+Extra credit.</SPAN><BR><BR>
+60Hz TVs that have variable rate screens will sync to and play 57.6fps just fine.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+24'fps[24'pps__
+(A-E)(=)(A A......&B B....&..C C...&...D D..&....E E&......$)(A A......&B B....&..C C...&...D D..&....E E)=28.8'pps__(1)(11)=57.6'pps
+~1.001down~]57.6fps</PRE></TD></TR></TABLE>
+PTSs: Forced 57.6'pps to 57.6fps &mdash; Combing: ___ &mdash; Judder: ___% @ ___ judders per second &mdash; Cadence: ___+___+___+___+___+___ &mdash; Burden: ___ &mdash; Generations: ___.<BR><BR>
+
+<SPAN class="commentary">
+Can you fill the blanks and compare them with this: <A href="#60Hz">1-to-5-interpolation to 120fps when viewed on a 60Hz TV</A>?</SPAN><BR><BR>
+
+<A href="#hint" onclick="javascript:document.getElementById('hint').style.display='block'">See a hint</A>.<BR>
+<A name="hint">
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 id="hint" style="display:none">
+<TR><TD><PRE>
++-all-strides---------------------------------------------------------------------------------------------------------->  5/24 second
+(A_.__.__.__.__.__.__._)(B_.__.__.__.__.__.__._)(C_.__.__.__.__.__.__._)(D_.__.__.__.__.__.__._)(E_.__.__.__.__.__.__._)  24'pps
+                     .                 .                    .                    .                 .                      generations
+                     .                 .                    .                    .                 .
+(A__________________)(I1______________)(I2_________________)(I3_________________)(I4______________)(I5_________________)  interp pictures
+[A_______][A_______][I1______][I1______][I2______][I2______][I3______][I3______][I4______][I4______][I5______][I5______]  57.6'fps
+(A_________________)(I1________________)(I2________________)(I3________________)(I4________________)(I5________________)  28.8'pps pictures</PRE></TD></TR></TABLE><BR>
+
+
+<A href="#solve" onclick="javascript:document.getElementById('solve').style.display='block'">See the solution</A>.<BR>
+<A name="solve">
+<DIV id="solve" style="display:none">
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
++---------------------------------------------------------------------------------------------------------------------->  5/24 second
+(A_.__.__.__.__.__.__._)(B_.__.__.__.__.__.__._)(C_.__.__.__.__.__.__._)(D_.__.__.__.__.__.__._)(E_.__.__.__.__.__.__._)  24'pps
+            1     2  3              1  3  2                 1                 2  3  1              3  2     1             generations
+                     .                 .                    .                    .                 .
+(A__________________)(I1______________)(I2_________________)(I3_________________)(I4______________)(I5_________________)  interp pictures
+[A_______][A_______][I1______][I1______][I2______][I2______][I3______][I3______][I4______][I4______][I5______][I5______]  57.6'fps
+(A____________-4.8%)(I1__________+11.1%)(I2___________-4.8%)(I3___________-4.8%)(I4__________+11.1%)(I5___________-4.8%)  28.8'pps pictures</PRE></TD></TR></TABLE>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: 16% @ 9.6 judders per second &mdash; Cadence: 7+6+7+7+6+7 7+6+7+7+6+7 etc. &mdash; Burden: 62.4 picture interpolations per runtime second &mdash; Generations: 3-3-1-3-3.<BR><BR>
+
+<SPAN class="commentary">
+Compare the numbers above to the numbers below (from 1-to-5-interpolation viewed on a 60Hz TV, rescaled).</SPAN><BR><BR>
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
++---------------------------------------------------------------------------------------------------------------------->  5/24 second
+[A__+6.7%][__-8.5%][___+6.7%][__-8.5%][___+6.7%][C__-8.5%][__+6.7%][___-8.5%][__+6.7%][___-8.5%][E__+6.7%][__-8.5%][____  120fps on 60Hz TV</PRE></TD></TR></TABLE>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: 15% @ 24 judders per second &mdash; Cadence: 6+7+6+7+6 6+7+6+7+6 etc. &mdash; Burden: 216 picture interpolations per runtime second &mdash; Generations: 4-3-3-4.<BR><BR>
+
+<SPAN class="commentary">
+The following table compares the two approaches. The numbers speak for themselves.</SPAN><BR>
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD class="column_header center_nowrap">frame rate</TD>
+    <TD>&nbsp;&nbsp;</TD>
+    <TD class="column_header center_nowrap">Judder</TD>
+    <TD>&nbsp;&nbsp;</TD>
+    <TD class="column_header center_nowrap">Judders per second</TD>
+    <TD>&nbsp;&nbsp;</TD>
+    <TD class="column_header center_nowrap">Cadence</TD>
+    <TD>&nbsp;&nbsp;</TD>
+    <TD class="column_header center_nowrap">Picture interpolations per runtime second</TD>
+    <TD>&nbsp;&nbsp;</TD>
+    <TD class="column_header center_nowrap">Generations</TD></TR>
+<TR><TD class="center_nowrap">57.6'fps</TD>
+    <TD></TD>
+    <TD class="center_nowrap">16%</TD>
+    <TD></TD>
+    <TD class="center_nowrap">9.6</TD>
+    <TD></TD>
+    <TD class="center_nowrap">7+6+7+7+6+7 7+6+7+7+6+7 etc.</TD>
+    <TD></TD>
+    <TD class="center_nowrap">62.4</TD>
+    <TD></TD>
+    <TD class="center_nowrap">3-3-1-3-3</TD></TR>
+<TR><TD class="center_nowrap">60fps</TD>
+    <TD></TD>
+    <TD class="center_nowrap">15%</TD>
+    <TD></TD>
+    <TD class="center_nowrap">24</TD>
+    <TD></TD>
+    <TD class="center_nowrap">6+7+6+7+6 6+7+6+7+6 etc.</TD>
+    <TD></TD>
+    <TD class="center_nowrap">216</TD>
+    <TD></TD>
+    <TD class="center_nowrap">4-3-3-4</TD></TR></TABLE>
+
+<SPAN class="commentary">Tradeoffs:
+What impact does </SPAN>Judders per second<SPAN class="commentary"> have?
+How about </SPAN>Picture interpolations per runtime second<SPAN class="commentary">?
+How about </SPAN>Generations<SPAN class="commentary">?</SPAN></DIV><BR><BR>
+
+<SPAN class="commentary">
+There are many more interesting (and perhaps superior) transcodes to be explored for various stored and/or streamed applications.</SPAN><BR><BR>
+
+<SPAN class="commentary">
+Do you think the notation would make a good planning & documentation tool?<BR>
+Do you think that implementing a notation interpreter plus the needed primatives for actual transcoding would be worth the time & effort?</SPAN><BR>
+
+</BODY></HTML>
