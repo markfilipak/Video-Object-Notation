@@ -371,16 +371,16 @@ Example: <TT>[.pictures(24,240)__(12)(1.fill(red)2.fill(blue))__48hps__(Aa-Dd)(A
 <TR><TD colspan=2><B>Tokens that cross stride boundaries:</B></TD></TR>
 <TR><TD class="right_nowrap"><TT>^</TT>&nbsp;</TD>
     <TD>(caret) in the current stride is replaced by a copy of the matching stream element [see note&nbsp;1] from the ending of the previous stride.
-        For example: <TT>(Ab)(Ab)(A^)(A^)</TT> [see note&nbsp;2] takes the 3-scanpair stream, <TT>AbCdEf</TT>, substitutes according to <TT>AbC^E^</TT>, and outputs <TT>AbCbEd</TT>.</TD></TR>
+        For example: <TT>(Ab)(Ab)(A^)(A^)</TT> [see note&nbsp;2] takes the 3-scanpair stream, <TT>Ab Cd Ef</TT>, substitutes according to <TT>Ab C^ E^</TT>, and outputs <TT>Ab Cb Ed</TT>.</TD></TR>
 <TR><TD class="right_nowrap"><TT>$</TT>&nbsp;</TD>
     <TD>(dollar) in the current stride is replaced by a copy of the matching stream element [see note&nbsp;1] from the beginning of the next stride.
-        For example: <TT>(Ab)($b)($b)(Ab)</TT> [see note&nbsp;2] takes the 3-scanpair stream, <TT>AbCdEf</TT>, substitutes according to <TT>$b$dEf</TT>, and outputs <TT>CbEdEf</TT>.</TD></TR>
+        For example: <TT>(Ab)($b)($b)(Ab)</TT> [see note&nbsp;2] takes the 3-scanpair stream, <TT>Ab Cd Ef</TT>, substitutes according to <TT>$b $d Ef</TT>, and outputs <TT>Cb Ed Ef</TT>.</TD></TR>
 <TR><TD class="right_nowrap"><TT>..</TT>&nbsp;</TD>
     <TD>(2 dots) selects an entire stream &mdash; it does not form strides.
         If it precedes tokens, <TT>..</TT> returns all stream elements from the beginning of the stream to the 1st token-matching stream element.
         For example: <TT>(..1-)(..11--)</TT> repeats a stream's final 2 stream elements.
         If it follows tokens, <TT>..</TT> returns all stream elements to the end of the stream.
-        For example: <TT>(-..)(..)</TT> drops a stream's 1st stream element.
+        For example: <TT>(1..)(..)</TT> drops a stream's 1st stream element and <TT>(12..)(..)</TT> drops a stream's 1st 2 stream element(s) but only if they differ.
         Note that <TT>..</TT> can be an empty stream.</TD></TR>
 <TR><TD colspan=2>
         <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
@@ -627,7 +627,7 @@ The stale elements are force-passed, unchanged, to the right (with an error noti
 <TR><TD class="right_nowrap"><TT>(</TT><I><B>seen</B></I><TT>)</TT>&nbsp;</TD>
     <TD>is passed the specified stride when <TT>(</TT><I><B>look</B></I><TT>)</TT> 'sees' it (i.e., when there's an inner match).
         <I><B>seen</B></I> can be a simple replacement stride, or it can be an entire notation of its own with embedded 'look'-'seen's and/or any other notations.
-        The output of the <TT>(</TT><I><B>seen</B></I><TT>)</TT> term is passed to the right and the 'look' pointer is incremented by stide-count.</TD></TR>
+        The output of the <TT>(</TT><I><B>seen</B></I><TT>)</TT> term is passed to the right (to remaining notation) and the 'look' pointer is incremented by stide-count.</TD></TR>
 <TR><TD class="right_nowrap"><TT>(</TT><I><B>begseen</B></I><TT>)</TT>&nbsp;</TD>
     <TD>operates indentically as <TT>(</TT><I><B>seen</B></I><TT>)</TT> but only on the begining matching stride (thereby handling scene changes for example).
         To reduce clutter, <TT>(</TT><I><B>begseen</B></I><TT>)</TT> can be set to <TT>(=)</TT> when <I><B>begseen</B></I> and <I><B>seen</B></I> are the same.</TD></TR>
@@ -637,11 +637,16 @@ The stale elements are force-passed, unchanged, to the right (with an error noti
 <TR><TD class="right_nowrap"><TT>(=)</TT>&nbsp;</TD>
     <TD>can set either <I><B>begseen</B></I> or <I><B>endseen</B></I> to output the same sequence as <I><B>seen</B></I>.</TD></TR>
 <TR><TD class="right_nowrap"><TT>(</TT><I><B>unseen</B></I><TT>)</TT>&nbsp;</TD>
-    <TD>is passed the remainder of the input stream, if any.</TD></TR>
+    <TD>accummulates input elements by 1 <TT>pps</TT>/<TT>tps</TT>/<TT>sps</TT> (or by 2 <TT>hps</TT>) element(s) at a time while 'look' continues to not 'see' an inner match.
+        If there's an 'unseen' discontinuity, meaning: If there's a stream break during the accumulation (i.e., if the 'look'-'seen' switches from 'unseen', to 'seen', and back to 'unseen'), then the 'look'-'seen' signals the discontinuity by tagging the new element(s) as a new stream.
+        When 'look' signals the discontinuity, 'unseen' responds by force-passing the current accumulated input elements, if any, and begin accummulating anew.
+        Of course, that does not interfere with any embedded 'look'-'seen's and their ability to 'see' their own inner matches and to stride and process the accumulated input element(s).</TD></TR>
 <TR><TD class="right_nowrap"><TT>()</TT>&nbsp;</TD>
   <TD>is a blank term, so it has no output.
-      It is most useful as an 'unseen killer' that strips strides that are not 'seen'. But it could conceivably be used to 'kill' any of the 'seen' terms.
-      For example, recall that <TT>(-..)(..)</TT> drops a stream's beginning stream element. In contrast, <TT>(AaBbBcCdDd)()(Ad-Dd)(=)</TT> drops only the beginning stride of a particular stream (a 2-3-2-3-telecine stream in this case).</TD></TR></TABLE>
+      It is most useful as an 'unseen killer' that strips strides that are not 'seen'.
+      But it could conceivably be used to 'kill' any of the 'seen' terms.
+      For example, recall that <TT>(1..)(..)</TT> drops a stream's beginning stream element.
+      In contrast, <TT>(AaBbBcCdDd)()(Ad-Dd)(=)</TT> drops only the beginning stride of a particular stream (a 2-3-2-3-telecine stream in this case).</TD></TR></TABLE>
 Nesting 'look'-'seen' notations can create extremely complex processes that are nonetheless fairly easy to read &mdash; without FFmpeg-style select filters or time- or frame-specific, scene change directives.<BR><BR>
 
 Example of 'look'-'seen' stream handling for 5-to-4-detelecine.
