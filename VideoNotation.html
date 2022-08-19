@@ -23,7 +23,7 @@ TT{background-color:#F0F0F0;padding:0 0.2em;white-space:nowrap}
 </HEAD>
 <BODY>
 
-<B>A Video Object Notation, by Mark Filipak, 2022-08-17.</B><BR>
+<B>A Video Object Notation, by Mark Filipak, 2022-08-19.</B><BR>
 Also available: A <A href="VideoNotation.StudioMedia.html">Studio Media Guide<A><BR><BR>
 
 Notations are read from left to right, beginning with a beginning stream and ending with an ending stream &mdash; see <A href="#Streams"><B>Streams</B></A>.<BR><BR>
@@ -374,7 +374,7 @@ Example: <TT>[.pictures(24,240)__(12)(1.fill(red)2.fill(blue))__48hps__(Aa-Dd)(A
         For example: <TT>(Ab)(Ab)(A^)(A^)</TT> [see note&nbsp;2] takes the 3-scanpair stream, <TT>AbCdEf</TT>, substitutes according to <TT>AbC^E^</TT>, and outputs <TT>AbCbEd</TT>.</TD></TR>
 <TR><TD class="right_nowrap"><TT>$</TT>&nbsp;</TD>
     <TD>(dollar) in the current stride is replaced by a copy of the matching stream element [see note&nbsp;1] from the beginning of the next stride.
-        For example: <TT>(Ab)($b)($b)(Ab)</TT> [see note&nbsp;2] takes the 3-scanpair stream, <TT>AbCdEf</TT>, substitutes according to <TT>$b$d$f</TT>, and outputs <TT>CbEdEf</TT>.</TD></TR>
+        For example: <TT>(Ab)($b)($b)(Ab)</TT> [see note&nbsp;2] takes the 3-scanpair stream, <TT>AbCdEf</TT>, substitutes according to <TT>$b$dEf</TT>, and outputs <TT>CbEdEf</TT>.</TD></TR>
 <TR><TD class="right_nowrap"><TT>..</TT>&nbsp;</TD>
     <TD>(2 dots) selects an entire stream &mdash; it does not form strides.
         If it precedes tokens, <TT>..</TT> returns all stream elements from the beginning of the stream to the 1st token-matching stream element.
@@ -399,8 +399,8 @@ The notation strictly distinguishes between images versus frames.
 To appreciate the difference consider this: <A href="#4-to-5-interpolation" class="commentary">4-to-5-interpolation</A> creates strides of interpolated pictures having durations 1/32,
 1/32, 1/24, 1/32, 1/32 seconds.
 When those pictures are forced into 1/30 second frames, they exhibit 27% judder @ 24 judders per second and 3+3+4+3+3 3+3+4+3+3 etc. cadence.
-A clear distinction between images and frames make such computations (and comparisons based on them) possible &mdash; compare judder percent, judders per second, and cadence with typical parameters such as "fast", "medium", "slow", "extra_slow", etc. found in typical video tools.
-To prepare the reader for such distinctions, some terms need to be introduced.</SPAN><BR><BR>
+A clear distinction between images and frames make such computations (and comparisons based on them) possible &mdash; compare judder percent, judders per second, and cadence with parameters such as "fast", "medium", "slow", "extra_slow", etc. found in typical video tools.
+To prepare readers for such distinctions, some terms need to be introduced.</SPAN><BR><BR>
 
 <!-- Terms -->
 
@@ -498,22 +498,22 @@ To prepare the reader for such distinctions, some terms need to be introduced.</
     <TD class="column_header">Seen elsewhere as</TD></TR>
 <TR><TD class="right_nowrap"><I><B>picture stream</B></I></TD>
     <TD></TD>
-    <TD>A stream of pictures &mdash; comb free, even when there's motion.</TD>
+    <TD>A pps stream of pictures &mdash; comb free, even when there's motion.</TD>
     <TD></TD>
     <TD></TD></TR>
 <TR><TD class="right_nowrap"><I><B>telecine stream</B></I></TD>
     <TD></TD>
-    <TD>A stream of mixed pictures and telepairs &mdash; a mix of comb free and motion combed.</TD>
+    <TD>A tps stream of mixed pictures and telepairs &mdash; a mix of comb free and motion combed.</TD>
     <TD></TD>
     <TD></TD></TR>
 <TR><TD class="right_nowrap"><I><B>scan stream</B></I></TD>
     <TD></TD>
-    <TD>A stream of scanpairs &mdash; all are motion combed.</TD>
+    <TD>An sps stream of scanpairs &mdash; all are motion combed.</TD>
     <TD></TD>
     <TD></TD></TR>
 <TR><TD class="right_nowrap"><I><B>halfpic stream</B></I></TD>
     <TD></TD>
-    <TD>A stream of halfpics.</TD>
+    <TD>An hps stream of halfpics.</TD>
     <TD></TD>
     <TD></TD></TR></TABLE><BR><BR>
 
@@ -601,20 +601,23 @@ The following introduction is presented at this point because familiarity with i
 
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD class="right_nowrap"><TT>(</TT><I><B>look</B></I><TT>)</TT>&nbsp;</TD>
-    <TD colspan=2>'watches' the input stream (as though watching a passing parade) and 'looks' for inner matches.
-        For example: 2-3-2-3-telecine (which has a <TT>AaBbBcCdDd</TT> stride) 'looks for' <TT>..1.1..2.2</TT> as inner matches.</TD></TR>
+    <TD>'watches' the input stream (as though watching a passing parade) and 'looks' for inner matches.
+        For example: 2-3-2-3-telecine (which has an <TT>AaBbBcCdDd</TT> stride) 'looks for' <TT>..1.1..2.2</TT> as inner matches.</TD></TR>
 <TR><TD><BR></TD></TR>
 <TR><TD class="right_nowrap">If <TT>(</TT><I><B>look</B></I><TT>)</TT>&nbsp;</TD>
     <TD><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
         <TR><TD style="width:2em"></TD>
-            <TD style="text-indent:-2em">'sees' an inner match, it passes the 'look' stride & stide-count number of input elements to <TT>(</TT><I><B>begseen</B></I><TT>)</TT> <TT>(</TT><I><B>seen</B></I><TT>)</TT> or <TT>(</TT><I><B>endseen</B></I><TT>)</TT>, increments the 'look' pointer by stide-count, and continues 'looking' until the input stream is exhausted,</TD></TR></TABLE></TD></TR>
-<TR><TD></TD>
-    <TD><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-        <TR><TD style="width:2em"></TD>
-            <TD style="text-indent:-2em">otherwise,
-                <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-                <TR><TD style="width:2em"></TD><TD style="text-indent:-2em">if <TT>(</TT><I><B>unseen</B></I><TT>)</TT> is present, <TT>(</TT><I><B>look</B></I><TT>)</TT> passes 1 <TT>pps</TT>/<TT>tps</TT>/<TT>sps</TT> input element (or 2 <TT>hps</TT> input elements) to <TT>(</TT><I><B>unseen</B></I><TT>)</TT>, increments the 'look' pointer by 1 (or by 2), and continues 'looking'.</TD></TR></TABLE>
-                otherwise, it passes the 1 (or 2) input elements to the right (i.e., to the remaining notation) and continues 'looking'.</TD></TR></TABLE></TD></TR>
+            <TD style="text-indent:-2em">'sees' an inner match, it passes the 'look' stride pattern & stide-count number of elements to <TT>(</TT><I><B>begseen</B></I><TT>)</TT> <TT>(</TT><I><B>seen</B></I><TT>)</TT> or <TT>(</TT><I><B>endseen</B></I><TT>)</TT>, increments the 'look' pointer by stide-count, and continues 'looking' until the input stream is exhausted,</TD></TR>
+        <TR><TD></TD></TR>
+        <TR><TD colspan=2>otherwise (inner match not 'seen'),</TD></TR>
+        <TR><TD colspan=2><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+                <TR><TD style="width:2em"></TD>
+                    <TD style="width:2em"></TD>
+                    <TD style="text-indent:-2em">if <TT>(</TT><I><B>unseen</B></I><TT>)</TT> is present, <TT>(</TT><I><B>look</B></I><TT>)</TT> passes just 1 <TT>pps</TT>/<TT>tps</TT>/<TT>sps</TT> (or 2 <TT>hps</TT>) input element(s) to <TT>(</TT><I><B>unseen</B></I><TT>)</TT>, increments the 'look' pointer by just 1 (or 2), and continues 'looking'.</TD></TR>
+                <TR><TD></TD>
+                    <TD colspan=2><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+                        <TR><TD style="width:2em"></TD>
+                            <TD style="text-indent:-2em">otherwise ('unseen' is not present), <TT>(</TT><I><B>look</B></I><TT>)</TT> passes just 1 <TT>pps</TT>/<TT>tps</TT>/<TT>sps</TT> (or 2 <TT>hps</TT>) input element(s) to the right (i.e., to the remaining notation), increments the 'look' pointer by just 1 (or 2), and continues 'looking'.</TD></TR></TABLE></TD></TR></TABLE></TD></TR></TABLE></TD></TR>
 <TR><TD><BR></TD></TR>
 <TR><TD colspan=2>
 <SPAN class="commentary">
