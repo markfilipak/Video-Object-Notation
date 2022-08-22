@@ -183,7 +183,7 @@ Any <I class="type">factor</I> is possible. <TT>1.001</TT> & <TT>0.96</TT> are m
 <B>Operators.</B><BR>
 <TT>__</TT> (2 underlines) means "evaluate here".
 It causes the left-hand notation to be evaluated and accumulates the resulting stream elements.
-It also marks a natural point to fork the right-hand notation as a separate thread.<BR>
+It also marks a natural point to fork follow-on notation as a separate thread.<BR>
 <TT>&</TT> (ampersand) between 2 tokens interpolates between the tokens' replacement stream elements and creates a new output stream element.
 For example, <TT>A&C</TT> creates <TT>B</TT>.<BR><BR><BR>
 
@@ -469,7 +469,7 @@ To prepare readers for such distinctions, some terms need to be introduced.</SPA
 <TR><TD class="right_nowrap"><I><B>dps</B></I></TD>
     <TD></TD>
     <TD>Decodes per second.
-        Denotes an ambiguous stream type that will be determined by follow on notation.</TD>
+        Denotes an ambiguous stream type that will be determined by follow-on notation.</TD>
     <TD></TD>
     <TD></TD></TR>
 
@@ -690,7 +690,7 @@ Details:
                     <TD colspan=2><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
                         <TR><TD style="width:2em"></TD>
                             <TD style="text-indent:-2em">otherwise (i.e., <TT>(</TT><I><B>unseen</B></I><TT>)</TT> is not present), then <TT>(</TT><I><B>look</B></I><TT>)</TT><BR>
-                                passes just one <TT>pps</TT>/<TT>tps</TT>/<TT>sps</TT> (or 2 <TT>hps</TT>) input element(s) to the right (i.e., to the remaining notation),<BR>
+                                passes just one <TT>pps</TT>/<TT>tps</TT>/<TT>sps</TT> (or 2 <TT>hps</TT>) input element(s) to the right (i.e., to follow-on notation),<BR>
                                 increments the 'look' pointer by just one (or 2),<BR>
                                 and continues 'looking'.</TD></TR></TABLE></TD></TR></TABLE></TD></TR></TABLE></TD></TR>
 <TR><TD><BR></TD></TR>
@@ -703,7 +703,7 @@ The stale elements are force-passed, unchanged, to the right (with an error noti
 <TR><TD class="right_nowrap"><TT>(</TT><I><B>seen</B></I><TT>)</TT>&nbsp;</TD>
     <TD>is passed the specified stride when <TT>(</TT><I><B>look</B></I><TT>)</TT> 'sees' it (i.e., when there's an inner match).
         <I><B>seen</B></I> can be a simple replacement stride, or it can be an entire notation of its own with embedded look-seens and/or any other notations.
-        The output of the <TT>(</TT><I><B>seen</B></I><TT>)</TT> term is passed to the right (to remaining notation) and the 'look' pointer is incremented by stride-count.<BR>
+        The output of the <TT>(</TT><I><B>seen</B></I><TT>)</TT> term is passed to the right (to follow-on notation) and the 'look' pointer is incremented by stride-count.<BR>
         Example: For 2-3-2-3-detelecine (which 'looks for' <TT>AaBbBcCdDd</TT> strides), set <TT>(</TT><I><B>seen</B></I><TT>)</TT> to <TT>(AaBbCcDd)</TT>.</TD></TR>
 <TR><TD class="right_nowrap"><TT>(</TT><I><B>begseen</B></I>&nbsp;</TD>
     <TD>operates identically as <TT>(</TT><I><B>seen</B></I><TT>)</TT> but only on the beginning matching stride (thereby handling scene changes for example).</TD></TR>
