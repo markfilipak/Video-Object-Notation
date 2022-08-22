@@ -176,7 +176,7 @@ Any <I class="type">factor</I> is possible. <TT>1.001</TT> & <TT>0.96</TT> are m
 
 <B>Strides</B> &mdash; also see <A href="#Look-seen"><B>Look-seen notation & scanner</B></A>.<BR>
 <TT>(</TT><B><I>look</I></B><TT>)</TT> &mdash; parentheses delimit 'look' strides.<BR>
-<TT>(</TT><B><I>begseen</I></B><TT>)</TT> <TT>(</TT><B><I>seen</I></B><TT>)</TT> <TT>(</TT><B><I>endseen</I></B><TT>)</TT> <TT>(</TT><B><I>unseen</I></B><TT>)</TT> &mdash; parentheses delimit the other terms in look-seen phrases.<BR><BR><BR>
+<TT>(</TT><B><I>begseen</I></B><TT>(</TT><B><I>seen</I></B><TT>)</TT><B><I>endseen</I></B><TT>)</TT> <TT>(</TT><B><I>unseen</I></B><TT>)</TT> &mdash; parentheses delimit the other terms in look-seen phrases.<BR><BR><BR>
 
 <!-- Operators -->
 
@@ -193,7 +193,7 @@ For example, <TT>A&C</TT> creates <TT>B</TT>.<BR><BR><BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD></TD><TD><TT>.</TT><B><I>method(params)</I></B> is a built-in function (such as a function that creates a stream).</TD></TR>
 <TR><TD><B><I>token</I></B></TD><TD><TT>.</TT><B><I>method(params)</I></B> is a method (such as a function that manipulates pixels) applied to a token's replacement stream element.<BR></TD></TR></TABLE>
-Example: <TT>[.pictures(24,240)__(12)(1.fill(red)2.fill(blue))__48hps__(Aa-Dd)(AaBbBcCdDd)=60hps__30tps]30fps</TT> creates 8 seconds of video that showcases telecine mechanics.<BR><BR><BR>
+Example: <TT>[.pictures(24,240)__(12)((1.fill(red)2.fill(blue)))__48hps__(Aa-Dd)((AaBbBcCdDd))=60hps__30tps]30fps</TT> creates 8 seconds of video that showcases telecine mechanics.<BR><BR><BR>
 
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 
@@ -377,16 +377,16 @@ Example: <TT>[.pictures(24,240)__(12)(1.fill(red)2.fill(blue))__48hps__(Aa-Dd)(A
 <TR><TD colspan=2><B>Tokens that cross stride boundaries:</B></TD></TR>
 <TR><TD class="right_nowrap"><TT>^</TT>&nbsp;</TD>
     <TD>(caret) in the current stride is replaced by a copy of the matching stream element [see note&nbsp;1] from the ending of the previous stride.
-        For example: <TT>(Ab)(Ab)(A^)(A^)</TT> [see note&nbsp;2] takes the 3-scanpair stream, <TT>Ab Cd Ef</TT>, substitutes according to <TT>Ab C^ E^</TT>, and outputs <TT>Ab Cb Ed</TT>.</TD></TR>
+        For example: <TT>(Ab)(Ab(A^)A^)</TT> [see note&nbsp;2] takes the 3-scanpair stream, <TT>Ab Cd Ef</TT>, substitutes according to <TT>Ab C^ E^</TT>, and outputs <TT>Ab Cb Ed</TT>.</TD></TR>
 <TR><TD class="right_nowrap"><TT>$</TT>&nbsp;</TD>
     <TD>(dollar) in the current stride is replaced by a copy of the matching stream element [see note&nbsp;1] from the beginning of the next stride.
-        For example: <TT>(Ab)($b)($b)(Ab)</TT> [see note&nbsp;2] takes the 3-scanpair stream, <TT>Ab Cd Ef</TT>, substitutes according to <TT>$b $d Ef</TT>, and outputs <TT>Cb Ed Ef</TT>.</TD></TR>
+        For example: <TT>(Ab)($b($b)Ab)</TT> [see note&nbsp;2] takes the 3-scanpair stream, <TT>Ab Cd Ef</TT>, substitutes according to <TT>$b $d Ef</TT>, and outputs <TT>Cb Ed Ef</TT>.</TD></TR>
 <TR><TD class="right_nowrap"><TT>..</TT>&nbsp;</TD>
     <TD>(2 dots) selects an entire stream &mdash; it does not form strides.
         If it precedes tokens, <TT>..</TT> returns all stream elements from the beginning of the stream to the 1st token-matching stream element.
-        For example: <TT>(..1-)(..11--)</TT> repeats a stream's final 2 stream elements.
+        For example: <TT>(..1-)((..11--))</TT> repeats a stream's final 2 stream elements.
         If it follows tokens, <TT>..</TT> returns all stream elements to the end of the stream.
-        For example: <TT>(1..)(..)</TT> drops a stream's 1st stream element and <TT>(12..)(..)</TT> drops a stream's 1st 2 stream element(s) but only if they differ.
+        For example: <TT>(1..)((..))</TT> drops a stream's 1st stream element and <TT>(12..)((..))</TT> drops a stream's 1st 2 stream element(s) but only if they differ.
         Note that <TT>..</TT> can be an empty stream.</TD></TR>
 <TR><TD colspan=2>
         <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
@@ -396,7 +396,7 @@ Example: <TT>[.pictures(24,240)__(12)(1.fill(red)2.fill(blue))__48hps__(Aa-Dd)(A
 <TR><TD colspan=2>
         <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
         <TR><TD>[note&nbsp;2]&nbsp;</TD>
-            <TD><TT>(Ab)(Ab)(A^)(A^)</TT> & <TT>(Ab)($b)($b)(Ab)</TT> denote <TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>endseen</B></I><TT>)</TT> terms &mdash; see <A href="#Look-seen"><B>Look-seen notation & scanner</B></A>.</TD></TR>
+            <TD><TT>(Ab)(Ab(A^)A^)</TT> & <TT>(Ab)($b($b)Ab)</TT> denote <TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>(</TT><I><B>seen</B></I><TT>)</TT><I><B>endseen</B></I><TT>)</TT> terms &mdash; see <A href="#Look-seen"><B>Look-seen notation & scanner</B></A>.</TD></TR>
         </TABLE></TD></TR></TABLE><BR><BR>
 
 
@@ -564,18 +564,18 @@ Basic picture stream processing as notation (in which the functions are implied)
 <B>An introduction to basic scan stream processing</B>, bob decombing.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-[25sps__50hps__(Ab)(AAbb)=100hps__50pps]50fps</PRE></TD></TR>
+[25sps__50hps__(Ab)((AAbb))=100hps__50pps]50fps</PRE></TD></TR>
 </TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-[30'sps__60'hps__(Ab)(AAbb)=120'hps__60'pps]60'fps</PRE></TD></TR></TABLE><BR><BR>
+[30'sps__60'hps__(Ab)((AAbb))=120'hps__60'pps]60'fps</PRE></TD></TR></TABLE><BR><BR>
 
 
 <!-- Look-seen notation & scanner -->
 
 <A name="Look-seen">
 <B>Look-seen notation & scanner.</B><BR>
-The terms in parentheses above, <TT>(Ab)(AAbb)</TT>, are look-seens.
+The terms in parentheses above, <TT>(Ab)((AAbb))</TT>, are look-seens.
 The following introduction is presented at this point because familiarity with it is needed for the sections that follow.<BR><BR>
 
 Look-seens are the most important of the notation's features.<BR><BR>
@@ -674,7 +674,7 @@ Details:
     <TD><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
         <TR><TD style="width:2em"></TD>
             <TD style="text-indent:-2em">'sees' an inner match, then <TT>(</TT><I><B>look</B></I><TT>)</TT><BR>
-                passes the 'look' token string (e.g., AaBbBcCdDd) & stride-count number of elements (e.g., 10) to <TT>(</TT><I><B>begseen</B></I><TT>)</TT>, <TT>(</TT><I><B>seen</B></I><TT>)</TT>, or <TT>(</TT><I><B>endseen</B></I><TT>)</TT>,<BR>
+                passes the 'look' token string (e.g., AaBbBcCdDd) & stride-count number of elements (e.g., 10) to <TT>(</TT><I><B>begseen</B></I><TT>(</TT><I><B>seen</B></I><TT>)</TT><I><B>endseen</B></I><TT>)</TT>,<BR>
                 increments the 'look' pointer by stride-count,<BR>
                 and continues 'looking' until the input stream is exhausted;</TD></TR>
         <TR><TD></TD></TR>
@@ -696,7 +696,7 @@ Details:
 <TR><TD><BR></TD></TR>
 <TR><TD colspan=2>
 <SPAN class="commentary">
-A notation interpreter-processor is unforgiving. It deals harshly with any stale input elements left in </SPAN><TT>(</TT><I><B>begseen</B></I><TT>)</TT>/<TT>(</TT><I><B>seen</B></I><TT>)</TT>/<TT>(</TT><I><B>endseen</B></I><TT>)</TT>/<TT>(</TT><I><B>unseen</B></I><TT>)</TT><SPAN class="commentary"> when the input stream is exhausted.
+A notation interpreter-processor is unforgiving. It deals harshly with any stale input elements left in </SPAN><TT>(</TT><I><B>begseen</B></I><TT>(</TT><I><B>seen</B></I><TT>)</TT><I><B>endseen</B></I><TT>)</TT><SPAN class="commentary"> or </SPAN><TT>(</TT><I><B>unseen</B></I><TT>)</TT><SPAN class="commentary"> when the input stream is exhausted.
 The stale elements are force-passed, unchanged, to the right (with an error notice).</SPAN></TD></TR>
 <TR><TD><BR></TD></TR>
 
@@ -742,10 +742,10 @@ Example of look-seen stream handling for 5-to-4-detelecine.
 <TR><TD><PRE>
 30'tps__60'hps__   ...assume a 30'tps stream, unweave/deinterlace to 60'hps stream
 (AaBbBcCdDd)       ...'look' for 2-3-2-3-telecine (i.e., 10-halfpic strides with ..1.1..2.2 inner matches) and,
-(Aa-Dd)            ...if 'seen', output AaBbCcDd & set 'look' pointer + 10 & repeat 'look' for more 2-3-2-3-telecine, but
+((Aa-Dd))          ...if 'seen', output AaBbCcDd & set 'look' pointer + 10 & repeat 'look' for more 2-3-2-3-telecine, but
 (                  ...if 'unseen',
   (AaAbBcCcDd)       ...'look' for 3-2-3-2-telecine (i.e., 10-halfpic strides with 1.1..2.2.. inner matches) and,
-  (Aa-Dd)            ...if 'seen', output AaBbCcDd & set 'look' pointer + 10 & repeat 'look' for more 3-2-3-2-telecine,
+  ((Aa-Dd))          ...if 'seen', output AaBbCcDd & set 'look' pointer + 10 & repeat 'look' for more 3-2-3-2-telecine,
                      ...else, output Aa & set 'look' pointer + 2 and
 )                  ...repeat the look-seen until the input stream is exhausted.
 =48'hps__24'pps</PRE></TD></TR></TABLE>
@@ -781,25 +781,23 @@ They illustrate how the notation concisely documents subtle differences that wou
 <B>lbs-decomb</B> &mdash; Preserves stride rate, avoids combing by interpolating, no bob, the beginning stride is half-bobbed.<BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-...             +-begin-stride----->+-more-strides----->  +-end-stride------->
-...    ________ (A_______)(b_______)(C_______)(d_______)..(Y_______)(z_______)  'look' for the next 2 scans with NO inner matches
-...   /      __ (A_______)(A&b_____)                                            'begseen', so (copy)(half-bob)
-...  /      /      ________________ (C_______)(b&d_____)                        'seen', so (copy)(interpolate)
-... /      /      /  ____________________________________ (Y_______)(x&z_____)  'endseen', so (copy)(interpolate)
-.../      /      /  /
-(Ab)(A A&b)(A ^&b)(=)</PRE></TD></TR></TABLE>
+...            +-begin-stride----->+-more-strides----->  +-end-stride------->
+...   ________ (A_______)(b_______)(C_______)(d_______)..(Y_______)(z_______)  'look' for the next 2 scans with NO inner matches
+...  /      __ (A_______)(A&b_____)                                            'begseen', so (copy)(half-bob)
+... /      /     _________________ (C_______)(b&d_____)..(Y_______)(x&z_____)  'seen', so (copy)(interpolate)
+.../      /     /
+(Ab)(A A&b(A ^&b))</PRE></TD></TR></TABLE>
 PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 30 halfpic interpolations per runtime second &mdash; Generations: 0.<BR><BR>
 
 <B>lse-decomb</B> &mdash; Preserves stride rate, avoids combing by interpolating, no bob, the end stride is half-bobbed.<BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
 ...             +-begin-stride----->+-more-strides----->  +-end-stride------->
-...    ________ (A_______)(b_______)(C_______)(d_______)..(Y_______)(z_______)  'look' for the next 2 scans with NO inner matches
-...   /  ______ (A&C_____)(b_______)                                            'begseen', so (interpolate)(copy)
-...  /  /      ____________________ (C&E_____)(d_______)                        'seen', so (interpolate)(copy)
-... /  /      /      ____________________________________ (Y&z_____)(z_______)  'endseen', so (half-bob)(copy)
-.../  /      /      /
-(Ab)(=)(A&$ b)(A&b b)</PRE></TD></TR></TABLE>
+...   _________ (A_______)(b_______)(C_______)(d_______)..(Y_______)(z_______)  'look' for the next 2 scans with NO inner matches
+...  /       __ (A&C_____)(b_______)(C&E_____)(d_______)                        'seen', so (interpolate)(copy)
+... /       /     _______________________________________ (Y&z_____)(z_______)  'endseen', so (half-bob)(copy)
+.../       /     /
+(Ab)((A&$ b)A&b b)</PRE></TD></TR></TABLE>
 PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 30 halfpic interpolations per runtime second &mdash; Generations: 0.<BR><BR>
 
 <B>lbse-decomb</B> &mdash; Doubles stride rate, avoids combing by interpolating, no bob, the beginning & end strides are half-bobbed.<BR>
@@ -808,10 +806,10 @@ PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smoot
 ...             +-begin-stride----->+-more-strides----->  +-end-stride------->
 ...    ________ (A_______)(b_______)(C_______)(d_______)..(Y_______)(z_______)  'look' for the next 2 scans with NO inner matches
 ...   /         (A__)(A&b)(A&C)(b__)                                            'begseen', so (copy)(half-bob)(interpolate)(copy)
-...  /            /            ____ (C__)(b&d)(C&E)(d__)                        'seen', so (copy)(interpolate)(interpolate)(copy)
-... /            /            /            ______________ (Y__)(x&z)(Y&z)(z__)  'endseen', so (copy)(interpolate)(half-bob)(copy)
-.../            /            /            /
-(Ab)(A A&b A&$ b)(A ^&b A&$ b)(A ^&b A&b b)</PRE></TD></TR></TABLE>
+...  /            /           _____ (C__)(b&d)(C&E)(d__)                        'seen', so (copy)(interpolate)(interpolate)(copy)
+... /            /           /           ________________ (Y__)(x&z)(Y&z)(z__)  'endseen', so (copy)(interpolate)(half-bob)(copy)
+.../            /           /           /
+(Ab)(A A&b A&$ b(A ^&b A&$ b)A ^&b A&b b)</PRE></TD></TR></TABLE>
 PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 60 halfpic interpolations per runtime second &mdash; Generations: 0.<BR><BR>
 
 <SPAN class="commentary">
@@ -827,28 +825,28 @@ Below are NTSC & PAL detelecine notations.</SPAN><BR><BR>
 <TR><TD><PRE>
 60hps__         ...(beginning with halfpics),
 (AaBbBcCdDd)    ...'look' for ..1.1..2.2 inner match &
-(Aa-Dd)         ...detelecine if 'seen',
+((Aa-Dd))       ...detelecine if 'seen',
 (               ... but if 'unseen',
   (AaAbBcCcDd)    ...'look' for 1.1..2.2.. inner match &
-  (Aa-Dd)         ...detelecine if 'seen'
+  ((Aa-Dd))       ...detelecine if 'seen'
 )</PRE></TD></TR></TABLE><BR>
 
 <B>50-to-48-detelecine.</B>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-50hps__                    ...(beginning with halfpics),
-(Aa-LlLm-WxXx)(Aa-Xx)      ...'look' for ......................1.1......................2.2  & detelecine if 'seen', but if 'unseen',
-((Aa-KkKl-VwWwXx)(Aa-Xx)    ...'look' for ....................1.1......................2.2..  & detelecine if 'seen', but if 'unseen',
- ((Aa-JjJk-UvVv-Xx)(Aa-Xx)   ...'look' for ..................1.1......................2.2....  & detelecine if 'seen', but if 'unseen',
-  ((Aa-IiIj-TuUu-Xx)(Aa-Xx)   ...'look' for ................1.1......................2.2......  & detelecine if 'seen', but if 'unseen',
-   ((Aa-HhHi-StTt-Xx)(Aa-Xx)   ...'look' for ..............1.1......................2.2........  & detelecine if 'seen', but if 'unseen',
-    ((Aa-GgGh-RsSs-Xx)(Aa-Xx)   ...'look' for ............1.1......................2.2..........  & detelecine if 'seen', but if 'unseen',
-     ((Aa-FfFg-QrRr-Xx)(Aa-Xx)   ...'look' for ..........1.1......................2.2............  & detelecine if 'seen', but if 'unseen',
-      ((Aa-EeEf-PqQq-Xx)(Aa-Xx)   ...'look' for ........1.1......................2.2..............  & detelecine if 'seen', but if 'unseen',
-       ((Aa-DdDe-OpPp-Xx)(Aa-Xx)   ...'look' for ......1.1......................2.2................  & detelecine if 'seen', but if 'unseen',
-        ((Aa-CcCd-NoOo-Xx)(Aa-Xx)   ...'look' for ....1.1......................2.2..................  & detelecine if 'seen', but if 'unseen',
-         ((AaBbBc-MnNn-Xx)(Aa-Xx)    ...'look' for ..1.1......................2.2....................  & detelecine if 'seen', but if 'unseen',
-          ((AaAb-LmMm-Xx)(Aa-Xx)      ...'look' for 1.1......................2.2......................  & detelecine if 'seen'
+50hps__                      ...(beginning with halfpics),
+(Aa-LlLm-WxXx)((Aa-Xx))      ...'look' for ......................1.1......................2.2  & detelecine if 'seen', but if 'unseen',
+((Aa-KkKl-VwWwXx)((Aa-Xx))    ...'look' for ....................1.1......................2.2..  & detelecine if 'seen', but if 'unseen',
+ ((Aa-JjJk-UvVv-Xx)((Aa-Xx))   ...'look' for ..................1.1......................2.2....  & detelecine if 'seen', but if 'unseen',
+  ((Aa-IiIj-TuUu-Xx)((Aa-Xx))   ...'look' for ................1.1......................2.2......  & detelecine if 'seen', but if 'unseen',
+   ((Aa-HhHi-StTt-Xx)((Aa-Xx))   ...'look' for ..............1.1......................2.2........  & detelecine if 'seen', but if 'unseen',
+    ((Aa-GgGh-RsSs-Xx)((Aa-Xx))   ...'look' for ............1.1......................2.2..........  & detelecine if 'seen', but if 'unseen',
+     ((Aa-FfFg-QrRr-Xx)((Aa-Xx))   ...'look' for ..........1.1......................2.2............  & detelecine if 'seen', but if 'unseen',
+      ((Aa-EeEf-PqQq-Xx)((Aa-Xx))   ...'look' for ........1.1......................2.2..............  & detelecine if 'seen', but if 'unseen',
+       ((Aa-DdDe-OpPp-Xx)((Aa-Xx))   ...'look' for ......1.1......................2.2................  & detelecine if 'seen', but if 'unseen',
+        ((Aa-CcCd-NoOo-Xx)((Aa-Xx))   ...'look' for ....1.1......................2.2..................  & detelecine if 'seen', but if 'unseen',
+         ((AaBbBc-MnNn-Xx)((Aa-Xx))    ...'look' for ..1.1......................2.2....................  & detelecine if 'seen', but if 'unseen',
+          ((AaAb-LmMm-Xx)((Aa-Xx))      ...'look' for 1.1......................2.2......................  & detelecine if 'seen'
 )))))))))))</PRE></TD></TR></TABLE>
 
 Note how the look-seens have been constructed to 'look for' the latest possible inner match, first.
@@ -876,13 +874,13 @@ They illustrate how the notation can make complex operations compact and easy to
 <B>2-3-2-3-telecine.</B>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-...                                          +-all-strides-------------------------->
-...              ___________________________ (A_______)(B_______)(C_______)(D_______)  top halfpics
-...             /___________________________ (a_______)(b_______)(c_______)(d_______)  bottom halfpics
-...            /                          __ (A_-20%)(B_________+60%)(C_-20%)(D_-20%)  top halfpics
-...           /                          /__ (a_-20%)(b_-20%)(c_-20%)(d_________+60%)  bottom halfpics
-...          /                          /
-[24pps__48hps__(Aa-Dd)(AaBbBcCdDd)=60hps__30tps~1.001up~]30'fps</PRE></TD></TR></TABLE>
+...                                    +-all-strides-------------------------->
+...              _____________________ (A_______)(B_______)(C_______)(D_______)  top halfpics
+...             /_____________________ (a_______)(b_______)(c_______)(d_______)  bottom halfpics
+...            /                    __ (A_-20%)(B_________+60%)(C_-20%)(D_-20%)  top halfpics
+...           /                    /__ (a_-20%)(b_-20%)(c_-20%)(d_________+60%)  bottom halfpics
+...          /                    /
+[24pps__48hps__(Aa-Dd)((AaBbBcCdDd))=60hps__30tps~1.001up~]30'fps</PRE></TD></TR></TABLE>
 PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%/2) [see note&nbsp;1] @ 6 judders per second &mdash; Cadence: 4+3+3+3+3 4+3+3+3+3 etc. (which is 2+1+1+2+2 2+1+1+2+2 etc. plus 2+2+2+1+1 2+2+2+1+1 etc. superimposed [see note&nbsp;2]) &mdash; Burden: None &mdash; Generations: 0.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;1]&nbsp;</TD>
@@ -903,43 +901,43 @@ PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%
 <B>4-to-5-interpolation:</B> A telecine alternative &mdash; turns strides of 4 pictures into strides of 5 via 2-pass interpolation.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-                                   ... +-all-strides------------------------------------------------------------------>  1/6 second
-[24pps__(A-D)                      ... (A___.____.____.___)(B___.____.____.___)(C___.____.____.___)(D___.____.____.___)
-...       _____________________________.         1    2              1                   1              2    1           generations
-...      /    _________________________.______________.              .                   .              .
-...     /    /    _____________________.______________.______________.                   .              .
-...    /    /    /     ________________.______________.______________.___________________.              .
-...   /    /    /     /    ____________.______________.______________.___________________.______________.
-...  /    /    /     /    /            .              .              .                   .              .
-(=)(A A..&B B.&.C C.&.D D&..$)     ... (A____________)(I1___________)(I2________________)(I3___________)(I4___________)  'seen'
-   (A A..&B B.&.C C.&.D D)=30pps   ... (A____________)(I1___________)(I2________________)(I3______)(D_________________)  'endseen'
-]30fps                             ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]  'seen' encode
-                                   ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3________+60%][D_________-20%]  'endseen' encode</PRE></TD></TR></TABLE>
+                                  ... +-all-strides------------------------------------------------------------------>  1/6 second
+[24pps__(A-D)                     ... (A___.____.____.___)(B___.____.____.___)(C___.____.____.___)(D___.____.____.___)
+...     ______________________________.         1    2              1                   1              2    1           generations
+...    /    __________________________.______________.              .                   .              .
+...   /    /    ______________________.______________.______________.                   .              .
+...  /    /    /     _________________.______________.______________.___________________.              .
+... /    /    /     /    _____________.______________.______________.___________________.______________.
+.../    /    /     /    /             .              .              .                   .              .
+((A A..&B B.&.C C.&.D D&..$       ... (A____________)(I1___________)(I2________________)(I3___________)(I4___________)  'seen'
+ (A A..&B B.&.C C.&.D D))=30pps   ... (A____________)(I1___________)(I2________________)(I3______)(D_________________)  'endseen'
+]30fps                            ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]  'seen' encode
+                                  ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3________+60%][D_________-20%]  'endseen' encode</PRE></TD></TR></TABLE>
 
 PTSs: Forced 30pps to 30'fps &mdash; Combing: None &mdash; Judder: 27% @ 6 judders per second &mdash; Cadence: 3+3+4+3+3 3+3+4+3+3 etc. &mdash; Burden: 36 picture interpolations per runtime second &mdash; Generations: 2-1-1-2.<BR><BR>
 
 <B>1-to-5-interpolation:</B> A telecine alternative &mdash; 4-pass interpolation &mdash; smooth video optimized for 60Hz & 120Hz TVs.<BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-                                   ... +-all-strides------------------------------------------------------------------>  1/24 second
-[24pps__(A)                        ... (A___.____.____.____.____.____.____.____.____.____.____.____.____.____.____.___)
-...       _____________________________.         3    4    2         3         1         3         2    4    3           generations
-...      /    _________________________.______________.              .                   .              .
-...     /    /  _______________________.______________.______________.                   .              .
-...    /    /  /   ____________________.______________.______________.___________________.              .
-...   /    /  /   /  __________________.______________.______________.___________________.______________.
-...  /    /  /   /  /                  .              .              .                   .              .
-(=)(A A..&..&...&..&..$)           ... (A____________)(I1___________)(I2________________)(I3___________)(I4___________)  'seen'
-   (AAAAA)                         ... (A____________)(A____________)(A_________________)(A____________)(A____________)  'endseen'
-]120fps                            ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]  'seen' encode</PRE></TD></TR></TABLE>
+                                  ... +-all-strides------------------------------------------------------------------>  1/24 second
+[24pps__(A)                       ... (A___.____.____.____.____.____.____.____.____.____.____.____.____.____.____.___)
+...     ______________________________.         3    4    2         3         1         3         2    4    3           generations
+...    /    __________________________.______________.              .                   .              .
+...   /    /  ________________________.______________.______________.                   .              .
+...  /    /  /   _____________________.______________.______________.___________________.              .
+... /    /  /   /  ___________________.______________.______________.___________________.______________.
+.../    /  /   /  /                   .              .              .                   .              .
+((A A..&..&...&..&..$)            ... (A____________)(I1___________)(I2________________)(I3___________)(I4___________)  'seen'
+AAAAA)                            ... (A____________)(A____________)(A_________________)(A____________)(A____________)  'endseen'
+]120fps                           ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]  'seen' encode</PRE></TD></TR></TABLE>
 PTSs: Unforced &mdash; Combing: None &mdash; Judder: 27% @ 24 judders per second [see note&nbsp;1] &mdash; Cadence: 3+3+4+3+3 3+3+4+3+3 etc. &mdash; Burden: 216 picture interpolations per runtime second &mdash; Generations: 4-3-3-4.<BR><BR>
 <A name="60Hz">
 1-to-5-interpolation on 120Hz & 60Hz TVs compared:
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-                                       (A____________)(I1___________)(I2________________)(I3___________)(I4___________)..  'seen'
-                                       [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]..  on 120Hz TV
-                                       [A________________________+6.7%][I2_______________________-8.5%][I4_____________..  on 60Hz TV</PRE></TD></TR></TABLE>
+                                      (A____________)(I1___________)(I2________________)(I3___________)(I4___________)..  'seen'
+                                      [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]..  on 120Hz TV
+                                      [A________________________+6.7%][I2_______________________-8.5%][I4_____________..  on 60Hz TV</PRE></TD></TR></TABLE>
 PTSs: Unforced &mdash; Combing: None &mdash; Judder: 15% @ 24 judders per second [see note&nbsp;1] &mdash; Cadence: 6+7+6+7+6 6+7+6+7+6 etc. &mdash; Burden: 216 picture interpolations per runtime second &mdash; Generations: 4-3-3-4.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;1]&nbsp;</TD>
@@ -952,37 +950,37 @@ What follows is a 3-step example of how to extend a basic notation to expand cov
 1, What's the difference between the following?
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-30'fps[30'dps__60'hps__                                   ...decode and unweave/deinterlace
-(AaBbBcCdDd)                                              ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
-(Aa-Dd)=48'hps__                                          ...if 2-3-2-3-telecine is 'seen', detelecine
-24'pps]24'fps                                             ...weave & encode</PRE></TD></TR></TABLE>
+30'fps[30'dps__60'hps__   ...decode and unweave/deinterlace
+(AaBbBcCdDd)              ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
+((Aa-Dd))=48'hps__        ...if 2-3-2-3-telecine is 'seen', detelecine
+24'pps]24'fps             ...weave & encode</PRE></TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-30'fps[30'dps__60'hps__                                   ...decode and unweave/deinterlace
-(AaBbBcCdDd)                                              ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
-(Aa-Dd)                                                   ...if 2-3-2-3-telecine is 'seen', detelecine<B style="color:#EA0000">
-(                                                         ...if 2-3-2-3-telecine is 'unseen',
-  (AaAbBcCcDd)                                              ...'look' for 3-2-3-2-telecine (10 halfpics, 1.1..2.2.. inner match)
-  (Aa-Dd)                                                   ...if 3-2-3-2-telecine is 'seen', detelecine
-)</B>=48'hps__24'pps]24'fps                                   ...weave & encode</PRE></TD></TR></TABLE>
+30'fps[30'dps__60'hps__   ...decode and unweave/deinterlace
+(AaBbBcCdDd)              ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
+((Aa-Dd))                 ...if 2-3-2-3-telecine is 'seen', detelecine<B style="color:#EA0000">
+(                         ...if 2-3-2-3-telecine is 'unseen',
+  (AaAbBcCcDd)              ...'look' for 3-2-3-2-telecine (10 halfpics, 1.1..2.2.. inner match)
+  ((Aa-Dd))                 ...if 3-2-3-2-telecine is 'seen', detelecine
+)</B>=48'hps__24'pps]24'fps   ...weave & encode</PRE></TD></TR></TABLE>
 The 1st handles 2-3-2-3-telecined streams, only.<BR>
 The 2nd handles both 2-3-2-3-telecined & <B style="color:#EA0000">3-2-3-2-telecined</B> streams.<BR><BR>
 
 2, What difference does the following make?
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-30'fps[30'dps__60'hps__                                   ...decode and unweave/deinterlace
-(AaBbBcCdDd)                                              ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
-(Aa-Dd<B style="color:#EA0000">=48'hps__24'pps</B>)                                    ...if 2-3-2-3-telecine is 'seen', detelecine & <B style="color:#EA0000">weave</B>
-(                                                         ...if 2-3-2-3-telecine is 'unseen',
-  (AaAbBcCcDd)                                              ...'look' for 3-2-3-2-telecine (10 halfpics, 1.1..2.2.. inner match)
-  (Aa-Dd<B style="color:#EA0000">=48'hps__24'pps</B>)                                    ...if 3-2-3-2-telecine is 'seen', detelecine & <B style="color:#EA0000">weave
-  (                                                         ...if 3-2-3-2-telecine is 'unseen',
-    (Ab)                                                      ...'look' for NTSC scanpairs (2 halfpics, no inner match),
-    (A A&b A&$ b)(A ^&b A&$ b)(A ^&b A&b b)=120'hps__60'pps   ...if an NTSC scanpair is 'seen', lbse-decomb & weave
-  )                                                         ...</B>
-)                                                         ...
-]24'fps                                                   ...encode</PRE></TD></TR></TABLE>
+30'fps[30'dps__60'hps__                                 ...decode and unweave/deinterlace
+(AaBbBcCdDd)                                            ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
+((Aa-Dd<B style="color:#EA0000">=48'hps__24'pps</B>))                                ...if 2-3-2-3-telecine is 'seen', detelecine & <B style="color:#EA0000">weave</B>
+(                                                       ...if 2-3-2-3-telecine is 'unseen',
+  (AaAbBcCcDd)                                            ...'look' for 3-2-3-2-telecine (10 halfpics, 1.1..2.2.. inner match)
+  ((Aa-Dd<B style="color:#EA0000">=48'hps__24'pps</B>))                                ...if 3-2-3-2-telecine is 'seen', detelecine & <B style="color:#EA0000">weave
+  (                                                       ...if 3-2-3-2-telecine is 'unseen',
+    (Ab)                                                    ...'look' for NTSC scanpairs (2 halfpics, no inner match),
+    (A A&b A&$ b(A ^&b A&$ b)A ^&b A&b b)=120'hps__60'pps   ...if an NTSC scanpair is 'seen', lbse-decomb & weave
+  )                                                       ...</B>
+)                                                       ...
+]24'fps                                                 ...encode</PRE></TD></TR></TABLE>
 Handles 2-3-2-3-telecined & 3-2-3-2-telecined & <B style="color:#EA0000">NTSC scan</B> streams.
 To provide for NTSC scanpairs, <B style="color:#EA0000">weave</B> has been moved/duplicated so that each stream will have its own weave term.<BR>
 Note that if the processing ended at this step, the detelecines would be encoded as <TT>24'pps]24'fps</TT> but the <B style="color:#EA0000">lbse-decombed NTSC scanpairs</B> would be encoded as <TT>60'pps]24'fps</TT>.
@@ -991,24 +989,24 @@ Since <TT>60'pps]24'fps</TT> would force slow motion (which is not what is inten
 3, What difference does the following make?
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-30'fps[30'dps__60'hps__                                     ...decode and unweave/deinterlace
-(AaBbBcCdDd)                                                ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
-(                                                           ...if 2-3-2-3-telecine is 'seen',
-  Aa-Dd=48'hps__24'pps<B style="color:#EA0000">__</B>                                      ...detelecine & weave<B style="color:#EA0000">
-  (A)(=)(A A..&..&...&..&..$)(AAAAA)=120'pps                  ...do 1-to-5-interpolation</B>
-)                                                           ...
-(                                                           ...if 2-3-2-3-telecine is 'unseen',
-  (AaAbBcCcDd)                                                ...'look' for 3-2-3-2-telecine (10 halfpics, 1.1..2.2.. inner match)
-  (                                                           ...if 3-2-3-2-telecine is 'seen',
-    Aa-Dd=48'hps__24'pps<B style="color:#EA0000">__</B>                                      ...detelecine & weave<B style="color:#EA0000">
-    (A)(=)(A A..&..&...&..&..$)(AAAAA)=120'pps                  ...do 1-to-5-interpolation</B>
-  )                                                           ...
-  (                                                           ...if 3-2-3-2-telecine is 'unseen',
-    (Ab)                                                        ...'look' for NTSC scanpairs (2 halfpics, no inner match),
-    (A A&b A&$ b)(A^& b A&$ b)(A ^&b A&b b)=120'hps__60'pps<B style="color:#EA0000">__</B>   ...if NTSC TV scanpair is 'seen', lbse-decomb & weave<B style="color:#EA0000">
-    (1)(11)=120'pps                                             ...double pictures</B>
-  )                                                           ...
-)                                                           ...
+30'fps[30'dps__60'hps__                                       ...decode and unweave/deinterlace
+(AaBbBcCdDd)                                                  ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
+((                                                            ...if 2-3-2-3-telecine is 'seen',
+  Aa-Dd=48'hps__24'pps<B style="color:#EA0000">__</B>                                        ...detelecine & weave<B style="color:#EA0000">
+  (A)((A A..&..&...&..&..$)AAAAA)=120'pps                       ...do 1-to-5-interpolation</B>
+))                                                            ...
+(                                                             ...if 2-3-2-3-telecine is 'unseen',
+  (AaAbBcCcDd)                                                  ...'look' for 3-2-3-2-telecine (10 halfpics, 1.1..2.2.. inner match)
+  ((                                                            ...if 3-2-3-2-telecine is 'seen',
+    Aa-Dd=48'hps__24'pps<B style="color:#EA0000">__</B>                                        ...detelecine & weave<B style="color:#EA0000">
+    (A)((A A..&..&...&..&..$)AAAAA)=120'pps                       ...do 1-to-5-interpolation</B>
+  ))                                                            ...
+  (                                                             ...if 3-2-3-2-telecine is 'unseen',
+    (Ab)                                                          ...'look' for NTSC scanpairs (2 halfpics, no inner match),
+    (A A&b A&$ b)((A^& b A&$ b))(A ^&b A&b b)=120'hps__60'pps<B style="color:#EA0000">__</B>   ...if NTSC TV scanpair is 'seen', lbse-decomb & weave<B style="color:#EA0000">
+    (1)((11))=120'pps                                             ...double pictures</B>
+  )                                                             ...
+)                                                             ...
 <B style="color:#EA0000">~1.001down~</B>]120fps                                          ...<B style="color:#EA0000">down-sample audio</B> & encode</PRE></TD></TR></TABLE>
 The prior notation ended with the cinema segments at 24'pps and the TV segments at 60'pps.
 The added notation <B style="color:#EA0000">converts all to 120'pps</B> and then encodes as 120fps with a needed <B style="color:#EA0000">audio down-sample</B>.<BR><BR><BR>
@@ -1026,13 +1024,13 @@ The video appears to be 30'fps, 2-3-2-3-telecined cinema that was subsequently c
 <SPAN class=bold>What notation characterizes the video?</SPAN>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-[24pps__48hps__(Aa-Dd)(AaBcCdDdDd)=60hps__30tps~1.001up~]30'fps</PRE></TD></TR></TABLE><BR>
+[24pps__48hps__(Aa-Dd)((AaBcCdDdDd))=60hps__30tps~1.001up~]30'fps</PRE></TD></TR></TABLE><BR>
 <SPAN class=bold>What notation will fix the video?</SPAN>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
 30'fps[30'tps__60'hps__<B style="color:#EA0000">
 (AaB c CdDdDd)          ...'look' for .....12121 inner matches &
-(AaB a&c BcCdDd)__      ...if 'seen', interpolate b = a&c and drop extra Dd</B>
+((AaB a&c BcCdDd))__    ...if 'seen', interpolate b = a&c and drop extra Dd</B>
 30'tps]30'fps</PRE></TD></TR></TABLE><BR>
 
 <SPAN class="commentary">
@@ -1041,12 +1039,12 @@ The video segment above is part of a "Making Of" documentary that includes two m
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
 30'fps[30'dps__60'hps__<B style="color:#EA0000">
-(AaB c CdDdDd)(AaB a&c BcCdDd)__</B>
-(AaBbBcCdDd)(Aa-Dd=48'hps__24'pps__(A)(=)(A A..&..&...&..&..$)(AAAAA)=120'pps)
+(AaB c CdDdDd)((AaB a&c BcCdDd))__</B>
+(AaBbBcCdDd)((Aa-Dd=48'hps__24'pps__(A)((A A..&..&...&..&..$)AAAAA)=120'pps))
 (
-  (AaAbBcCcDd)(Aa-Dd=48'hps__24'pps__(A)(=)(A A..&..&...&..&..$)(AAAAA)=120'pps)
+  (AaAbBcCcDd)((Aa-Dd=48'hps__24'pps__(A)((A A..&..&...&..&..$)AAAAA)=120'pps))
   (
-    (Ab)(A A&b A&$ b)(A^& b A&$ b)(A ^&b A&b b)=120'hps__60'pps__(1)(11)=120'pps
+    (Ab)(A A&b A&$ b(A^& b A&$ b)A ^&b A&b b)=120'hps__60'pps__(1)((11))=120'pps
   )
 )
 ~1.001down~]120fps</PRE></TD></TR></TABLE><BR><BR>
@@ -1063,7 +1061,7 @@ Extra credit.</SPAN><BR><BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
 24'fps[24'pps__
-(A-E)(=)(A A......&B B....&..C C...&...D D..&....E E&......$)(A A......&B B....&..C C...&...D D..&....E E)=28.8'pps__(1)(11)=57.6'pps
+(A-E)((A A......&B B....&..C C...&...D D..&....E E&......$)A A......&B B....&..C C...&...D D..&....E E)=28.8'pps__(1)((11))=57.6'pps
 ~1.001down~]57.6fps</PRE></TD></TR></TABLE>
 PTSs: Forced 57.6'pps to 57.6fps &mdash; Combing: ___ &mdash; Judder: ___% @ ___ judders per second &mdash; Cadence: ___+___+___+___+___+___ &mdash; Burden: ___ &mdash; Generations: ___.<BR><BR>
 
