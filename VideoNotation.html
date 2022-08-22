@@ -989,24 +989,24 @@ Since <TT>60'pps]24'fps</TT> would force slow motion (which is not what is inten
 3, What difference does the following make?
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-30'fps[30'dps__60'hps__                                       ...decode and unweave/deinterlace
-(AaBbBcCdDd)                                                  ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
-((                                                            ...if 2-3-2-3-telecine is 'seen',
-  Aa-Dd=48'hps__24'pps<B style="color:#EA0000">__</B>                                        ...detelecine & weave<B style="color:#EA0000">
-  (A)((A A..&..&...&..&..$)AAAAA)=120'pps                       ...do 1-to-5-interpolation</B>
-))                                                            ...
-(                                                             ...if 2-3-2-3-telecine is 'unseen',
-  (AaAbBcCcDd)                                                  ...'look' for 3-2-3-2-telecine (10 halfpics, 1.1..2.2.. inner match)
-  ((                                                            ...if 3-2-3-2-telecine is 'seen',
-    Aa-Dd=48'hps__24'pps<B style="color:#EA0000">__</B>                                        ...detelecine & weave<B style="color:#EA0000">
-    (A)((A A..&..&...&..&..$)AAAAA)=120'pps                       ...do 1-to-5-interpolation</B>
-  ))                                                            ...
-  (                                                             ...if 3-2-3-2-telecine is 'unseen',
-    (Ab)                                                          ...'look' for NTSC scanpairs (2 halfpics, no inner match),
-    (A A&b A&$ b)((A^& b A&$ b))(A ^&b A&b b)=120'hps__60'pps<B style="color:#EA0000">__</B>   ...if NTSC TV scanpair is 'seen', lbse-decomb & weave<B style="color:#EA0000">
-    (1)((11))=120'pps                                             ...double pictures</B>
-  )                                                             ...
-)                                                             ...
+30'fps[30'dps__60'hps__                                   ...decode and unweave/deinterlace
+(AaBbBcCdDd)                                              ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
+((                                                        ...if 2-3-2-3-telecine is 'seen',
+  Aa-Dd=48'hps__24'pps<B style="color:#EA0000">__</B>                                    ...detelecine & weave<B style="color:#EA0000">
+  (A)((A A..&..&...&..&..$)AAAAA)=120'pps                   ...do 1-to-5-interpolation</B>
+))                                                        ...
+(                                                         ...if 2-3-2-3-telecine is 'unseen',
+  (AaAbBcCcDd)                                              ...'look' for 3-2-3-2-telecine (10 halfpics, 1.1..2.2.. inner match)
+  ((                                                        ...if 3-2-3-2-telecine is 'seen',
+    Aa-Dd=48'hps__24'pps<B style="color:#EA0000">__</B>                                    ...detelecine & weave<B style="color:#EA0000">
+    (A)((A A..&..&...&..&..$)AAAAA)=120'pps                   ...do 1-to-5-interpolation</B>
+  ))                                                        ...
+  (                                                         ...if 3-2-3-2-telecine is 'unseen',
+    (Ab)                                                      ...'look' for NTSC scanpairs (2 halfpics, no inner match),
+    (A A&b A&$ b(A^& b A&$ b)A ^&b A&b b)=120'hps__60'pps<B style="color:#EA0000">__</B>   ...if NTSC TV scanpair is 'seen', lbse-decomb & weave<B style="color:#EA0000">
+    (1)((11))=120'pps                                         ...double pictures</B>
+  )                                                         ...
+)                                                         ...
 <B style="color:#EA0000">~1.001down~</B>]120fps                                          ...<B style="color:#EA0000">down-sample audio</B> & encode</PRE></TD></TR></TABLE>
 The prior notation ended with the cinema segments at 24'pps and the TV segments at 60'pps.
 The added notation <B style="color:#EA0000">converts all to 120'pps</B> and then encodes as 120fps with a needed <B style="color:#EA0000">audio down-sample</B>.<BR><BR><BR>
