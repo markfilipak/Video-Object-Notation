@@ -23,17 +23,23 @@ TT{background-color:#F0F0F0;padding:0 0.2em;white-space:nowrap}
 </HEAD>
 <BODY>
 
-<B>A Video Object Notation, by Mark Filipak, 2022-08-19.</B><BR>
+<B>A Video Object Notation, by Mark Filipak, 2022-08-22.</B><BR>
 Also available: A <A href="VideoNotation.StudioMedia.html">Studio Media Guide<A><BR><BR>
 
 Notations are read from left to right, beginning with a beginning stream and ending with an ending stream &mdash; see <A href="#Streams"><B>Streams</B></A>.<BR><BR>
 
-<TT><B>24'</B></TT> is a contraction of 24/1.001, <TT><B>30'</B></TT> is a contraction of 30/1.001, and so on.<BR><BR>
+<TT><B>24'</B></TT> is a contraction of 24/1.001, <TT><B>30'</B></TT> is a contraction of 30/1.001, and so on.<BR><BR><BR>
 
-<B>Stripped from notations:</B><BR>
-<TT>...</TT> (3 dots) and all that follows them to the end of line are stripped &mdash; they can serve as comments.<BR>
-Whitespace is stripped, so whitespace can be used to beautify notations.<BR>
-Strings of the form <TT>=</TT><I class="type">rate</I><TT>pps</TT>, <TT>=</TT><I class="type">rate</I><TT>tps</TT>, etc. are stripped &mdash; use them to improve readability.<BR><BR><BR>
+<B>Stripped from notations.</B><BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD style="white-space:nowrap">1,&nbsp;</TD>
+    <TD>Comments: <TT>...</TT> (3 dots) and all that follows them to the end-of-line are stripped.</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD style="white-space:nowrap">2,&nbsp;</TD>
+    <TD>Whitespace: Spaces and end-of-line codes are stripped, thereby allowing spaces and end-of-line codes to be freely used to format/beautify notations.</TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD style="white-space:nowrap">3,&nbsp;</TD>
+    <TD>Extra stream identifiers: Strings of the form <TT>=</TT><I class="type">rate</I><TT>pps</TT>, <TT>=</TT><I class="type">rate</I><TT>tps</TT>, etc. are stripped, so they can be freely used to enhance comprehension and resolve possible confusion.</TD></TR></TABLE><BR><BR>
 
 <B>Giving names to commonly encountered cinema sources</B> &mdash; they're not part of the notation but they're useful.<BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
@@ -75,7 +81,7 @@ Strings of the form <TT>=</TT><I class="type">rate</I><TT>pps</TT>, <TT>=</TT><I
 <TR><TD class="right_nowrap"><I class="type">rate</I><TT>fps[</TT></TD>
     <TD><I class="type">stream</I><TT>]</TT><I class="type">rate</I><TT>fps</TT> can be a remuxed stream or a transcoded stream.</TD></TR></TABLE><BR>
 
-Chains of transcodes, <I class="type">rate</I><TT>fps[</TT><I class="type">stream</I><TT>]</TT><I class="type">rate</I><TT>fps[</TT><I class="type">stream</I><TT>]</TT><I class="type">rate</I><TT>fps</TT> etc., are allowed without limit.<BR><BR>
+Chains of remuxes and transcodes, <I class="type">rate</I><TT>fps[</TT><I class="type">stream</I><TT>]</TT><I class="type">rate</I><TT>fps[</TT><I class="type">stream</I><TT>]</TT><I class="type">rate</I><TT>fps</TT> etc., are allowed without limit.<BR><BR>
 
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD class="right_nowrap"><TT>[</TD>
@@ -89,7 +95,7 @@ Chains of transcodes, <I class="type">rate</I><TT>fps[</TT><I class="type">strea
 <TR><TD></TD>
     <TD>following <I class="type">rate</I><TT>pps__</TT></TD>
     <TD></TD>
-    <TD> on (prior to) <I class="type">rate</I><TT>hps</TT>, else on <TT>]</TT> or <TT>~</TT>, else with (and including) the end of a 'look'-'seen'</TD></TR>
+    <TD> on (prior to) <I class="type">rate</I><TT>hps</TT>, else on <TT>]</TT> or <TT>~</TT>, else with (and including) the end of a look-seen</TD></TR>
 <TR><TD><BR></TD></TR>
 
 <TR><TD class="right_nowrap"><I class="type">rate</I><TT>fps[</TT></TD>
@@ -101,7 +107,7 @@ Chains of transcodes, <I class="type">rate</I><TT>fps[</TT><I class="type">strea
 <TR><TD></TD>
     <TD>following <I class="type">rate</I><TT>tps__</TT></TD>
     <TD></TD>
-    <TD> on <I class="type">rate</I><TT>hps</TT>, else on <TT>]</TT> or <TT>~</TT>, else with the end of a 'look'-'seen'</TD></TR>
+    <TD> on <I class="type">rate</I><TT>hps</TT>, else on <TT>]</TT> or <TT>~</TT>, else with the end of a look-seen</TD></TR>
 <TR><TD><BR></TD></TR>
 
 <TR><TD class="right_nowrap"><TT>[</TT></TD>
@@ -115,7 +121,7 @@ Chains of transcodes, <I class="type">rate</I><TT>fps[</TT><I class="type">strea
 <TR><TD></TD>
     <TD>following <I class="type">rate</I><TT>sps__</TT></TD>
     <TD></TD>
-    <TD> on <I class="type">rate</I><TT>hps</TT>, else on <TT>]</TT>, else with the end of a 'look'-'seen'</TD></TR>
+    <TD> on <I class="type">rate</I><TT>hps</TT>, else on <TT>]</TT>, else with the end of a look-seen</TD></TR>
 <TR><TD><BR></TD></TR>
 
 <TR><TD class="right_nowrap"><I class="type">rate</I><TT>fps[</TT></TD>
@@ -168,16 +174,16 @@ Any <I class="type">factor</I> is possible. <TT>1.001</TT> & <TT>0.96</TT> are m
 
 <!-- Strides -->
 
-<B>Strides</B> &mdash; also see <A href="#'Look'-'seen'"><B>'Look'-'seen' notation & scanner</B></A>.<BR>
+<B>Strides</B> &mdash; also see <A href="#Look-seen"><B>Look-seen notation & scanner</B></A>.<BR>
 <TT>(</TT><B><I>look</I></B><TT>)</TT> &mdash; parentheses delimit 'look' strides.<BR>
-<TT>(</TT><B><I>begseen</I></B><TT>)</TT> <TT>(</TT><B><I>seen</I></B><TT>)</TT> <TT>(</TT><B><I>endseen</I></B><TT>)</TT> <TT>(</TT><B><I>unseen</I></B><TT>)</TT> &mdash; parentheses delimit the other terms in 'look'-'seen' phrases.<BR><BR><BR>
+<TT>(</TT><B><I>begseen</I></B><TT>)</TT> <TT>(</TT><B><I>seen</I></B><TT>)</TT> <TT>(</TT><B><I>endseen</I></B><TT>)</TT> <TT>(</TT><B><I>unseen</I></B><TT>)</TT> &mdash; parentheses delimit the other terms in look-seen phrases.<BR><BR><BR>
 
 <!-- Operators -->
 
 <B>Operators.</B><BR>
 <TT>__</TT> (2 underlines) means "evaluate here".
-It causes the lefthand notation to be evaluated and accummulates the resulting stream elements.
-It also marks a natural point to fork the righthand notation as a separate thread.<BR>
+It causes the left-hand notation to be evaluated and accumulates the resulting stream elements.
+It also marks a natural point to fork the right-hand notation as a separate thread.<BR>
 <TT>&</TT> (ampersand) between 2 tokens interpolates between the tokens' replacement stream elements and creates a new output stream element.
 For example, <TT>A&C</TT> creates <TT>B</TT>.<BR><BR><BR>
 
@@ -272,7 +278,7 @@ Example: <TT>[.pictures(24,240)__(12)(1.fill(red)2.fill(blue))__48hps__(Aa-Dd)(A
             <TD><TT>a</TT> <TT>c</TT> <TT>e</TT> in <TT>aBcDeF</TT>.</TD></TR>
         </TABLE></TD></TR>
 
-<TR><TD colspan=2>The information above may be more accessable via the table below.</TD></TR>
+<TR><TD colspan=2>The information above may be more accessible via the table below.</TD></TR>
 <TR><TD>&nbsp;</TD>
     <TD><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
         <TR><TD colspan=3 class="column_header"><B>Tokens in notations</B></TD>
@@ -307,7 +313,7 @@ Example: <TT>[.pictures(24,240)__(12)(1.fill(red)2.fill(blue))__48hps__(Aa-Dd)(A
             <TD></TD>
             <TD><TT>AaAb</TT> = 4 consecutive halfpics</TD>
             <TD></TD>
-            <TD><TT>(A+a)(A+b)</TT> = 1 picture + 1 telepair decoded from <TT>[A+a][A+b]</TT></TD></TR>
+            <TD><TT>(A+a)(A+b)</TT> = one picture + one telepair decoded from <TT>[A+a][A+b]</TT></TD></TR>
         <TR><TD></TD>
             <TD></TD>
             <TD><TT>AA</TT> = top halfpics of <TT>AaAb</TT></TD>
@@ -390,7 +396,7 @@ Example: <TT>[.pictures(24,240)__(12)(1.fill(red)2.fill(blue))__48hps__(Aa-Dd)(A
 <TR><TD colspan=2>
         <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
         <TR><TD>[note&nbsp;2]&nbsp;</TD>
-            <TD><TT>(Ab)(Ab)(A^)(A^)</TT> & <TT>(Ab)($b)($b)(Ab)</TT> denote <TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>endseen</B></I><TT>)</TT> terms &mdash; see <A href="#'Look'-'seen'"><B>'Look'-'seen' notation & scanner</B></A>.</TD></TR>
+            <TD><TT>(Ab)(Ab)(A^)(A^)</TT> & <TT>(Ab)($b)($b)(Ab)</TT> denote <TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>endseen</B></I><TT>)</TT> terms &mdash; see <A href="#Look-seen"><B>Look-seen notation & scanner</B></A>.</TD></TR>
         </TABLE></TD></TR></TABLE><BR><BR>
 
 
@@ -412,7 +418,7 @@ To prepare readers for such distinctions, some terms need to be introduced.</SPA
     <TD class="column_header">Seen elsewhere as</TD></TR>
 <TR><TD class="right_nowrap"><I><B>pictures</B></I></TD>
     <TD></TD>
-    <TD>Image datasets, formed of lines of dots, in which all lines portray the same instant in time.
+    <TD>Image data sets, formed of lines of dots, in which all lines portray the same instant in time.
         Also, picture samples after scaling by SAR.
         Also, decombed telepairs and decombed scanpairs.</TD>
     <TD></TD>
@@ -425,7 +431,7 @@ To prepare readers for such distinctions, some terms need to be introduced.</SPA
     <TD><I>fps, Hz</I></TD></TR>
 <TR><TD class="right_nowrap"><I><B>telepairs</B></I></TD>
     <TD></TD>
-    <TD>Image datasets, formed of lines of dots, in which the odd numbered lines & the even numbered lines are a mix of 2 consecutive pictures and therefore separated in time by 1/tps seconds.
+    <TD>Image data sets, formed of lines of dots, in which the odd numbered lines & the even numbered lines are a mix of 2 consecutive pictures and therefore separated in time by 1/tps seconds.
         Also, telepair samples after scaling by SAR.
         Note that decombing a telepair produces a picture.</TD>
     <TD></TD>
@@ -438,7 +444,7 @@ To prepare readers for such distinctions, some terms need to be introduced.</SPA
     <TD><I>fps, Hz</I></TD></TR>
 <TR><TD class="right_nowrap"><I><B>scanpairs</B></I></TD>
     <TD></TD>
-    <TD>Image datasets, formed of lines of dots, in which the odd numbered lines & the even numbered lines are separated in time by (1/sps)/2 seconds.
+    <TD>Image data sets, formed of lines of dots, in which the odd numbered lines & the even numbered lines are separated in time by (1/sps)/2 seconds.
         Also, scanpair samples after scaling by SAR.
         Note that decombing a scanpair produces a picture.</TD>
     <TD></TD>
@@ -451,7 +457,7 @@ To prepare readers for such distinctions, some terms need to be introduced.</SPA
     <TD><I>fps, Hz</I></TD></TR>
 <TR><TD class="right_nowrap"><I><B>halfpic</B></I></TD>
     <TD></TD>
-    <TD>One of a pair of half-height, 2x aspect, image datasets unweaved from pictures or deinterlaced from telepairs or scanpairs.</TD>
+    <TD>One of a pair of half-height, 2x aspect, image data sets unweaved from pictures or deinterlaced from telepairs or scanpairs.</TD>
     <TD></TD>
     <TD><I>field, picture, progressive segment</I></TD></TR>
 <TR><TD class="right_nowrap"><I><B>hps</B></I></TD>
@@ -474,7 +480,7 @@ To prepare readers for such distinctions, some terms need to be introduced.</SPA
     <TD class="column_header">Seen elsewhere as</TD></TR>
 <TR><TD class="right_nowrap"><I><B>samples</B></I></TD>
     <TD></TD>
-    <TD>Image datasets, formed of rows of pixels, that have been cropped or matted to DAR and scaled by 1/SAR.
+    <TD>Image data sets, formed of rows of pixels, that have been cropped or matted to DAR and scaled by 1/SAR.
         Samples are what are subsequently encoded and stored in frames.</TD>
     <TD></TD>
     <TD rowspan=4><I>fields, frame pictures, frames, pictures, pixels</I></TD></TR>
@@ -565,91 +571,173 @@ Basic picture stream processing as notation (in which the functions are implied)
 [30'sps__60'hps__(Ab)(AAbb)=120'hps__60'pps]60'fps</PRE></TD></TR></TABLE><BR><BR>
 
 
-<!-- 'Look'-'seen' notation & scanner -->
+<!-- Look-seen notation & scanner -->
 
-<A name="'Look'-'seen'">
-<B>'Look'-'seen' notation & scanner.</B><BR>
-The terms in parentheses above, <TT>(Ab)(AAbb)</TT>, are 'look'-'seen's.
+<A name="Look-seen">
+<B>Look-seen notation & scanner.</B><BR>
+The terms in parentheses above, <TT>(Ab)(AAbb)</TT>, are look-seens.
 The following introduction is presented at this point because familiarity with it is needed for the sections that follow.<BR><BR>
 
-'Look'-'seen's are the most important of the notation's engines. Supported 'look'-'seen' notations are<BR>
-<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>seen</B></I><TT>)</TT></TD>
-    <TD>&nbsp;&nbsp;&nbsp;...2 terms</TD></TR>
-<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>unseen</B></I><TT>)</TT></TD>
-    <TD>&nbsp;&nbsp;&nbsp;...3 terms</TD></TR>
-<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>seen</B></I><TT>)()</TT></TD>
-    <TD>&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <TT>()</TT> is the 'unseen killer' that 'kills' all 'unseen' strides</TD></TR>
-<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>endseen</B></I><TT>)</TT></TD>
-    <TD>&nbsp;&nbsp;&nbsp;...4 terms</TD></TR>
-<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(=)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>endseen</B></I><TT>)</TT></TD>
-    <TD>&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <TT>(=)</TT> sets <TT>(</TT><I><B>begseen</B></I><TT>)</TT> to <TT>(</TT><I><B>seen</B></I><TT>)</TT></TD></TR>
-<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(=)</TT></TD>
-    <TD>&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <TT>(=)</TT> sets <TT>(</TT><I><B>endseen</B></I><TT>)</TT> to <TT>(</TT><I><B>seen</B></I><TT>)</TT></TD></TR>
-<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>endseen</B></I><TT>)(</TT><I><B>unseen</B></I><TT>)</TT></TD>
-    <TD>&nbsp;&nbsp;&nbsp;...5 terms</TD></TR>
-<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>endseen</B></I><TT>)()</TT></TD>
-    <TD>&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <TT>()</TT> is the 'unseen killer'</TD></TR>
-<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(=)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>endseen</B></I><TT>)(</TT><I><B>unseen</B></I><TT>)</TT></TD>
-    <TD>&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <TT>(=)</TT> sets <TT>(</TT><I><B>begseen</B></I><TT>)</TT> to <TT>(</TT><I><B>seen</B></I><TT>)</TT></TD></TR>
-<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(=)(</TT><I><B>seen</B></I><TT>)(</TT><I><B>endseen</B></I><TT>)()</TT></TD>
-    <TD>&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <TT>(=)</TT> sets <TT>(</TT><I><B>begseen</B></I><TT>)</TT> to <TT>(</TT><I><B>seen</B></I><TT>)</TT> &mdash; <TT>()</TT> is the 'unseen killer'</TD></TR>
-<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(=)(</TT><I><B>unseen</B></I><TT>)</TT></TD>
-    <TD>&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <TT>(=)</TT> sets <TT>(</TT><I><B>endseen</B></I><TT>)</TT> to <TT>(</TT><I><B>seen</B></I><TT>)</TT></TD></TR>
-<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>)(</TT><I><B>seen</B></I><TT>)(=)()</TT></TD>
-    <TD>&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <TT>(=)</TT> sets <TT>(</TT><I><B>endseen</B></I><TT>)</TT> to <TT>(</TT><I><B>seen</B></I><TT>)</TT> &mdash; <TT>()</TT> is the 'unseen killer'</TD></TR></TABLE><BR>
+Look-seens are the most important of the notation's features.<BR><BR>
 
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD class="right_nowrap"><TT>(</TT><I><B>look</B></I><TT>)</TT>&nbsp;</TD>
-    <TD>'watches' the input stream (as though watching a passing parade) and 'looks' for inner matches.
-        For example: 2-3-2-3-telecine (which has an <TT>AaBbBcCdDd</TT> stride) 'looks for' <TT>..1.1..2.2</TT> as inner matches.</TD></TR>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>(</TT><I><B>seen</B></I><TT>)</TT><I><B>endseen</B></I><TT>)(</TT><I><B>unseen</B></I><TT>)</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...</TD>
+    <TD>a maximal look-seen using labels in place of actual notations, and without beautification.<BR>
+        The lines below are beautified to make the differences easy to see.</TD></TR></TABLE>
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
+    <TD style="text-align:right"><TT>(</TT></TD>
+    <TD><TT>(</TT></TD>
+    <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
+    <TD><TT>)</TT></TD>
+    <TD><TT>)</TT></TD>
+    <TD></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...</TD>
+    <TD>'looks' and, if 'seen', applies the 'seen' notation, but if not 'seen', passes input elements to the right (to follow-on notation).</TD></TR>
+<TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
+    <TD style="text-align:right"><TT>(</TT></TD>
+    <TD><TT>(</TT></TD>
+    <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
+    <TD><TT>)</TT></TD>
+    <TD><TT>)</TT></TD>
+    <TD><TT>(</TT>&nbsp;<I><B>unseen</B></I>&nbsp;<TT>)</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...</TD>
+    <TD>if not 'seen', applies the 'unseen' notation.</TD></TR>
 <TR><TD><BR></TD></TR>
+<TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
+    <TD style="text-align:right"><TT>(</TT>&nbsp;<I><B>begseen</B></I>&nbsp;</TD>
+    <TD><TT>(</TT></TD>
+    <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
+    <TD><TT>)</TT></TD>
+    <TD><TT>)</TT></TD>
+    <TD></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...</TD>
+    <TD>'looks' and, if 'seen', applies the 'begseen' notation to the beginning stride (e.g., for scene change) and the 'seen' notation thereafter, but if not 'seen', passes input elements to the right (to follow-on notation).</TD></TR>
+<TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
+    <TD style="text-align:right"><TT>(</TT>&nbsp;<I><B>begseen</B></I>&nbsp;</TD>
+    <TD><TT>(</TT></TD>
+    <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
+    <TD><TT>)</TT></TD>
+    <TD><TT>)</TT></TD>
+    <TD><TT>(</TT>&nbsp;<I><B>unseen</B></I>&nbsp;<TT>)</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...</TD>
+    <TD>if not 'seen', applies the 'unseen' notation.</TD></TR>
+<TR><TD><BR></TD></TR>
+<TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
+    <TD style="text-align:right"><TT>(</TT></TD>
+    <TD><TT>(</TT></TD>
+    <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
+    <TD><TT>)</TT></TD>
+    <TD>&nbsp;<I><B>endseen</B></I>&nbsp;<TT>)</TT></TD>
+    <TD></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...</TD>
+    <TD>'looks' and, if 'seen', applies the 'seen' notation except for the ending stride which applies the 'endseen' notation (e.g., for scene change), but if not 'seen', passes input elements to the right (to follow-on notation).</TD></TR>
+<TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
+    <TD style="text-align:right"><TT>(</TT></TD>
+    <TD><TT>(</TT></TD>
+    <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
+    <TD><TT>)</TT></TD>
+    <TD>&nbsp;<I><B>endseen</B></I>&nbsp;<TT>)</TT></TD>
+    <TD><TT>(</TT>&nbsp;<I><B>unseen</B></I>&nbsp;<TT>)</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...</TD>
+    <TD>if not 'seen', applies the 'unseen' notation.</TD></TR>
+<TR><TD><BR></TD></TR>
+<TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
+    <TD style="text-align:right"><TT>(</TT>&nbsp;<I><B>begseen</B></I>&nbsp;</TD>
+    <TD><TT>(</TT></TD>
+    <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
+    <TD><TT>)</TT></TD>
+    <TD>&nbsp;<I><B>endseen</B></I>&nbsp;<TT>)</TT></TD>
+    <TD></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...</TD>
+    <TD>'looks' and, if 'seen', applies the 'begseen' notation to the beginning stride (e.g., for scene change) and the 'seen' notation thereafter except for the ending stride which applies the 'endseen' notation (e.g., for scene change), but if not 'seen', passes input elements to the right (to follow-on notation).</TD></TR>
+<TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
+    <TD style="text-align:right"><TT>(</TT>&nbsp;<I><B>begseen</B></I>&nbsp;</TD>
+    <TD><TT>(</TT></TD>
+    <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
+    <TD><TT>)</TT></TD>
+    <TD>&nbsp;<I><B>endseen</B></I>&nbsp;<TT>)</TT></TD>
+    <TD><TT>(</TT>&nbsp;<I><B>unseen</B></I>&nbsp;<TT>)</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...</TD>
+    <TD>if not 'seen', applies the 'unseen' notation.</TD></TR></TABLE><BR>
+
+Details:
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD class="right_nowrap"><TT>(</TT><I><B>look</B></I><TT>)</TT>&nbsp;</TD>
+    <TD>'watches' the input stream (as though watching a passing parade) and 'looks' for inner matches.<BR>
+        Example: For 2-3-2-3-detelecine, <TT>(AaBbBcCdDd)</TT> 'looks for' <TT>..1.1..2.2</TT> as inner matches.</TD></TR>
+<TR><TD><BR></TD></TR>
+
 <TR><TD class="right_nowrap">If <TT>(</TT><I><B>look</B></I><TT>)</TT>&nbsp;</TD>
     <TD><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
         <TR><TD style="width:2em"></TD>
-            <TD style="text-indent:-2em">'sees' an inner match, it passes the 'look' stride pattern & stide-count number of elements to <TT>(</TT><I><B>begseen</B></I><TT>)</TT> <TT>(</TT><I><B>seen</B></I><TT>)</TT> or <TT>(</TT><I><B>endseen</B></I><TT>)</TT>, increments the 'look' pointer by stide-count, and continues 'looking' until the input stream is exhausted,</TD></TR>
+            <TD style="text-indent:-2em">'sees' an inner match, then <TT>(</TT><I><B>look</B></I><TT>)</TT><BR>
+                passes the 'look' token string (e.g., AaBbBcCdDd) & stride-count number of elements (e.g., 10) to <TT>(</TT><I><B>begseen</B></I><TT>)</TT>, <TT>(</TT><I><B>seen</B></I><TT>)</TT>, or <TT>(</TT><I><B>endseen</B></I><TT>)</TT>,<BR>
+                increments the 'look' pointer by stride-count,<BR>
+                and continues 'looking' until the input stream is exhausted;</TD></TR>
         <TR><TD></TD></TR>
-        <TR><TD colspan=2>otherwise (inner match not 'seen'),</TD></TR>
+        <TR><TD colspan=2>otherwise (i.e., an inner match is not 'seen'),</TD></TR>
         <TR><TD colspan=2><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
                 <TR><TD style="width:2em"></TD>
                     <TD style="width:2em"></TD>
-                    <TD style="text-indent:-2em">if <TT>(</TT><I><B>unseen</B></I><TT>)</TT> is present, <TT>(</TT><I><B>look</B></I><TT>)</TT> passes just 1 <TT>pps</TT>/<TT>tps</TT>/<TT>sps</TT> (or 2 <TT>hps</TT>) input element(s) to <TT>(</TT><I><B>unseen</B></I><TT>)</TT>, increments the 'look' pointer by just 1 (or 2), and continues 'looking'.</TD></TR>
+                    <TD style="text-indent:-2em">if <TT>(</TT><I><B>unseen</B></I><TT>)</TT> is present, then <TT>(</TT><I><B>look</B></I><TT>)</TT><BR>
+                        passes just one <TT>pps</TT>/<TT>tps</TT>/<TT>sps</TT> (or 2 <TT>hps</TT>) input element(s) to <TT>(</TT><I><B>unseen</B></I><TT>)</TT>,<BR>
+                        increments the 'look' pointer by just one (or 2),<BR>
+                        and continues 'looking';</TD></TR>
                 <TR><TD></TD>
                     <TD colspan=2><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
                         <TR><TD style="width:2em"></TD>
-                            <TD style="text-indent:-2em">otherwise ('unseen' is not present), <TT>(</TT><I><B>look</B></I><TT>)</TT> passes just 1 <TT>pps</TT>/<TT>tps</TT>/<TT>sps</TT> (or 2 <TT>hps</TT>) input element(s) to the right (i.e., to the remaining notation), increments the 'look' pointer by just 1 (or 2), and continues 'looking'.</TD></TR></TABLE></TD></TR></TABLE></TD></TR></TABLE></TD></TR>
+                            <TD style="text-indent:-2em">otherwise (i.e., <TT>(</TT><I><B>unseen</B></I><TT>)</TT> is not present), then <TT>(</TT><I><B>look</B></I><TT>)</TT><BR>
+                                passes just one <TT>pps</TT>/<TT>tps</TT>/<TT>sps</TT> (or 2 <TT>hps</TT>) input element(s) to the right (i.e., to the remaining notation),<BR>
+                                increments the 'look' pointer by just one (or 2),<BR>
+                                and continues 'looking'.</TD></TR></TABLE></TD></TR></TABLE></TD></TR></TABLE></TD></TR>
 <TR><TD><BR></TD></TR>
 <TR><TD colspan=2>
 <SPAN class="commentary">
-A notation interpreter-processor is unforgiving. It deals harshly with any stale input elements left in </SPAN><TT>(</TT><I><B>begseen</B></I><TT>)</TT>/<TT>(</TT><I><B>seen</B></I><TT>)</TT>/<TT>(</TT><I><B>endseen</B></I><TT>)</TT>/<TT>(</TT><I><B>unseen</B></I><TT>)</TT><SPAN class="commentary"> when the input stream is exhasted.
+A notation interpreter-processor is unforgiving. It deals harshly with any stale input elements left in </SPAN><TT>(</TT><I><B>begseen</B></I><TT>)</TT>/<TT>(</TT><I><B>seen</B></I><TT>)</TT>/<TT>(</TT><I><B>endseen</B></I><TT>)</TT>/<TT>(</TT><I><B>unseen</B></I><TT>)</TT><SPAN class="commentary"> when the input stream is exhausted.
 The stale elements are force-passed, unchanged, to the right (with an error notice).</SPAN></TD></TR>
 <TR><TD><BR></TD></TR>
+
 <TR><TD class="right_nowrap"><TT>(</TT><I><B>seen</B></I><TT>)</TT>&nbsp;</TD>
     <TD>is passed the specified stride when <TT>(</TT><I><B>look</B></I><TT>)</TT> 'sees' it (i.e., when there's an inner match).
-        <I><B>seen</B></I> can be a simple replacement stride, or it can be an entire notation of its own with embedded 'look'-'seen's and/or any other notations.
-        The output of the <TT>(</TT><I><B>seen</B></I><TT>)</TT> term is passed to the right (to remaining notation) and the 'look' pointer is incremented by stide-count.</TD></TR>
-<TR><TD class="right_nowrap"><TT>(</TT><I><B>begseen</B></I><TT>)</TT>&nbsp;</TD>
-    <TD>operates indentically as <TT>(</TT><I><B>seen</B></I><TT>)</TT> but only on the begining matching stride (thereby handling scene changes for example).
-        To reduce clutter, <TT>(</TT><I><B>begseen</B></I><TT>)</TT> can be set to <TT>(=)</TT> when <I><B>begseen</B></I> and <I><B>seen</B></I> are the same.</TD></TR>
-<TR><TD class="right_nowrap"><TT>(</TT><I><B>endseen</B></I><TT>)</TT>&nbsp;</TD>
-    <TD>operates indentically as <TT>(</TT><I><B>begseen</B></I><TT>)</TT> but on the ending matching stride of course.
-        To reduce clutter, <TT>(</TT><I><B>endseen</B></I><TT>)</TT> can be set to <TT>(=)</TT> when <I><B>endseen</B></I> and <I><B>seen</B></I> are the same.</TD></TR>
-<TR><TD class="right_nowrap"><TT>(=)</TT>&nbsp;</TD>
-    <TD>can set either <I><B>begseen</B></I> or <I><B>endseen</B></I> to output the same sequence as <I><B>seen</B></I>.</TD></TR>
+        <I><B>seen</B></I> can be a simple replacement stride, or it can be an entire notation of its own with embedded look-seens and/or any other notations.
+        The output of the <TT>(</TT><I><B>seen</B></I><TT>)</TT> term is passed to the right (to remaining notation) and the 'look' pointer is incremented by stride-count.<BR>
+        Example: For 2-3-2-3-detelecine (which 'looks for' <TT>AaBbBcCdDd</TT> strides), set <TT>(</TT><I><B>seen</B></I><TT>)</TT> to <TT>(AaBbCcDd)</TT>.</TD></TR>
+<TR><TD class="right_nowrap"><TT>(</TT><I><B>begseen</B></I>&nbsp;</TD>
+    <TD>operates identically as <TT>(</TT><I><B>seen</B></I><TT>)</TT> but only on the beginning matching stride (thereby handling scene changes for example).</TD></TR>
+<TR><TD class="right_nowrap"><I><B>endseen</B></I><TT>)</TT>&nbsp;</TD>
+    <TD>operates identically as <TT>(</TT><I><B>begseen</B></I> but on the ending matching stride of course.</TD></TR>
 <TR><TD class="right_nowrap"><TT>(</TT><I><B>unseen</B></I><TT>)</TT>&nbsp;</TD>
-    <TD>accummulates input elements by 1 <TT>pps</TT>/<TT>tps</TT>/<TT>sps</TT> (or by 2 <TT>hps</TT>) element(s) at a time while 'look' continues to not 'see' an inner match.
-        If there's an 'unseen' discontinuity, meaning: If there's a stream break during the accumulation (i.e., if the 'look'-'seen' switches from 'unseen', to 'seen', and back to 'unseen'), then the 'look'-'seen' signals the discontinuity by tagging the new element(s) as a new stream.
-        When 'look' signals the discontinuity, 'unseen' responds by force-passing the current accumulated input elements, if any, and begin accummulating anew.
-        Of course, that does not interfere with any embedded 'look'-'seen's and their ability to 'see' their own inner matches and to stride and process the accumulated input element(s).</TD></TR>
-<TR><TD class="right_nowrap"><TT>()</TT>&nbsp;</TD>
-  <TD>is a blank term, so it has no output.
-      It is most useful as an 'unseen killer' that strips strides that are not 'seen'.
-      But it could conceivably be used to 'kill' any of the 'seen' terms.
-      For example, recall that <TT>(1..)(..)</TT> drops a stream's beginning stream element.
-      In contrast, <TT>(AaBbBcCdDd)()(Ad-Dd)(=)</TT> drops only the beginning stride of a particular stream (a 2-3-2-3-telecine stream in this case).</TD></TR></TABLE>
-Nesting 'look'-'seen' notations can create extremely complex processes that are nonetheless fairly easy to read &mdash; without FFmpeg-style select filters or time- or frame-specific, scene change directives.<BR><BR>
+    <TD>accumulates input elements by one <TT>pps</TT>/<TT>tps</TT>/<TT>sps</TT> (or by 2 <TT>hps</TT>) element(s) at a time while 'look' continues to not 'see' an inner match.
+        If there's an 'unseen' discontinuity, meaning: If there's a stream break during the accumulation (i.e., if the look-seen switches from 'unseen', to 'seen', and back to 'unseen'), then the look-seen signals the discontinuity by tagging the new element(s) as a new stream.
+        When 'look' signals the discontinuity, 'unseen' responds by force-passing the current accumulated input elements, if any, and begin accumulating anew.
+        Of course, that does not interfere with any embedded look-seens and their ability to 'see' their own inner matches and to stride and process the accumulated input element(s).</TD></TR></TABLE><BR>
 
-Example of 'look'-'seen' stream handling for 5-to-4-detelecine.
+Nesting look-seen notations can create extremely complex processes that are nonetheless fairly easy to read &mdash; without FFmpeg-style modulos or select filters or time- or frame-specific, scene change directives.<BR><BR>
+
+Example of look-seen stream handling for simple block filtering.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+(1)((1))   ...'look for' any single input element and, if 'seen', pass it to the right &ndash; a do-nothing look-seen</PRE></TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+(1)(())   ...'look for' any single input element and, if 'seen', pass nothing to the right &ndash; discards all streams</PRE></TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+(<I><B>look</B></I>)(( (1)(()) ))   ...filters out a particular stream (i.e., discards all 'seen' strides)</PRE></TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+(<I><B>look</B></I>)((<I><B>seen</B></I>))( (1)(()) )   ...filters out all other streams (i.e., discards all 'unseen' strides)</PRE></TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+(<I><B>look</B></I>)( (1)(()) (<I><B>seen</B></I>))   ...discards a particular stream's beginning stride</PRE></TD></TR></TABLE>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE>
+(<I><B>look</B></I>)((<I><B>seen</B></I>) (1)(()) )   ...discards a particular stream's ending stride</PRE></PRE></TD></TR></TABLE><BR>
+
+Example of look-seen stream handling for 5-to-4-detelecine.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
 30'tps__60'hps__   ...assume a 30'tps stream, unweave/deinterlace to 60'hps stream
@@ -659,10 +747,10 @@ Example of 'look'-'seen' stream handling for 5-to-4-detelecine.
   (AaAbBcCcDd)       ...'look' for 3-2-3-2-telecine (i.e., 10-halfpic strides with 1.1..2.2.. inner matches) and,
   (Aa-Dd)            ...if 'seen', output AaBbCcDd & set 'look' pointer + 10 & repeat 'look' for more 3-2-3-2-telecine,
                      ...else, output Aa & set 'look' pointer + 2 and
-)                  ...repeat the 'look'-'seen' until the input stream is exhausted.
+)                  ...repeat the look-seen until the input stream is exhausted.
 =48'hps__24'pps</PRE></TD></TR></TABLE>
 
-Below is a stride-by-stride, detail sequence illustrating how 'look'-'seen' works.
+Below is a stride-by-stride, detail sequence illustrating how look-seen works.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
 ____________input stream of 50 halfpics___________                               _______output stream of 42 halfpics_______
@@ -763,10 +851,10 @@ Below are NTSC & PAL detelecine notations.</SPAN><BR><BR>
           ((AaAb-LmMm-Xx)(Aa-Xx)      ...'look' for 1.1......................2.2......................  & detelecine if 'seen'
 )))))))))))</PRE></TD></TR></TABLE>
 
-Note how the 'look'-'seen's have been constructed to 'look for' the latest possible inner match, first.
+Note how the look-seens have been constructed to 'look for' the latest possible inner match, first.
 That usually produces the best and fastest results.<BR><BR>
-Also note that 50-to-48-detelecine contains 12 nested 'look'-'seen's.
-One of the best properties of nested 'look'-'seen's is that once a nesting level 'sees' an inner match, it continues 'looking' at the same level (without traversing the hierarchy) until the inner match fails.
+Also note that 50-to-48-detelecine contains 12 nested look-seens.
+One of the best properties of nested look-seens is that once a nesting level 'sees' an inner match, it continues 'looking' at the same level (without traversing the hierarchy) until the inner match fails.
 When the inner match fails, that nesting level's 'unseen' is executed.
 Within that 'unseen' term are found inner nesting levels.<BR><BR>
 Eventually, all inner levels go 'unseen'.
@@ -776,7 +864,7 @@ It then resumes 'looking for' 12, 50 halfpic inner matches in the remaining inpu
 
 <SPAN class="commentary">
 The preceding description doesn't apply to solely 50-to-48-detelecine.
-It applies to all nested 'look'-'seen's.
+It applies to all nested look-seens.
 Building an equivalent nested, back-&-forth, FFmpeg filter complex would be insanely difficult.
 In fact, building an equivalent FFmpeg filter complex is probably impossible.
 The proposed notation accomplishes it in just 302 characters:</SPAN><BR><BR><BR>
@@ -795,17 +883,21 @@ They illustrate how the notation can make complex operations compact and easy to
 ...           /                          /__ (a_-20%)(b_-20%)(c_-20%)(d_________+60%)  bottom halfpics
 ...          /                          /
 [24pps__48hps__(Aa-Dd)(AaBbBcCdDd)=60hps__30tps~1.001up~]30'fps</PRE></TD></TR></TABLE>
-PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%/2) [see note&nbsp;1] @ 6 judders per second &mdash; Cadence: 4+3+3+3+3 4+3+3+3+3 etc. [see note&nbsp;2] (which is 2+1+1+2+2 2+1+1+2+2 etc. plus 2+2+2+1+1 2+2+2+1+1 etc. superimposed) &mdash; Burden: None &mdash; Generations: 0.
+PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%/2) [see note&nbsp;1] @ 6 judders per second &mdash; Cadence: 4+3+3+3+3 4+3+3+3+3 etc. (which is 2+1+1+2+2 2+1+1+2+2 etc. plus 2+2+2+1+1 2+2+2+1+1 etc. superimposed [see note&nbsp;2]) &mdash; Burden: None &mdash; Generations: 0.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;1]&nbsp;</TD>
-    <TD>Judder is the worst case 'jump' at any frame-to-frame change.
-        For the <TT>(A_-20%)(B_________+60%)</TT> top halfpic change (where, for example, <TT>(B_________+60%)</TT> means it is 60% longer than <TT>(B_______)</TT>), the judder is 80%.
+    <TD>Judder is the worst case picture 'jump' at any frame-to-frame change.
+        For the <TT>(A_-20%)(B_________+60%)</TT> top halfpic change, <TT>(A_-20%)</TT> means that the action relative to <TT>(A_______)</TT> has been compressed by 20% and <TT>(B_________+60%)</TT> means that the action relative to <TT>(B_______)</TT> has been extended by 60%.
+        Putting <TT>(A_-20%)(B_________+60%)</TT> together at the output, the judder is 80%.
         Likewise, for bottom halfpics, <TT>(c_-20%)(d_________+60%)</TT> is 80% judder.</TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;2]&nbsp;</TD>
-    <TD>Cadence is the stride-to-stride smoothness.
+    <TD>Cadence, on the other hand, is smoothness across entire strides.
         To visualize it, imagine a clip showing a mouse running across a tiled floor.
-        4+3+3+3+3 4+3+3+3+3 etc. cadence, for example, means that during 10 uniform frame times, the mouse traverses 4 tiles + 3 tiles + 3 tiles + 3 tiles + 3 tiles + 4 tiles + 3 tiles + 3 tiles + 3 tiles + 3 tiles etc.</TD></TR></TABLE><BR>
+        In the top halfpic strides: 2+1+1+2+2 means that during 5 uniform frame times, the mouse traverses 2 tiles + one tile + one tile + 2 tiles + 2 tiles.
+        In the bottom halfpic strides: 2+2+2+1+1 means that during 5 uniform frame times, the mouse traverses 2 tiles + 2 tiles + 2 tiles + one tile + one tile.
+        Superimposing the top & bottom halfpics, the mouse traverses 2 tiles + 1.5 tiles + 1.5 tiles + 1.5 tiles + 1.5 tiles.
+        As integers, that's 4+3+3+3+3.</TD></TR></TABLE><BR>
 
 <A name="4-to-5-interpolation">
 <B>4-to-5-interpolation:</B> A telecine alternative &mdash; turns strides of 4 pictures into strides of 5 via 2-pass interpolation.
@@ -855,7 +947,7 @@ PTSs: Unforced &mdash; Combing: None &mdash; Judder: 15% @ 24 judders per second
 
 
 <SPAN class="commentary">
-What follows is a 3-step example of how to extend a basic notation to expand coverage from 1 stream to multiple streams.</SPAN><BR><BR>
+What follows is a 3-step example of how to extend a basic notation to expand coverage from one stream to multiple streams.</SPAN><BR><BR>
 
 1, What's the difference between the following?
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
@@ -928,13 +1020,14 @@ Below: The above is utilized while also fixing a bad telecine.</SPAN><BR><BR>
 <!-- A bad telecine -->
 
 <B>A bad telecine.</B><BR>
-<A href="'The%20Secret%20of%20SARAH%20SIDDONS',%20Lisa%20Orgolini%20interview,%20'ALL%20ABOUT%20EVE',%2000390.m2ts.jpg"><IMG src="'The%20Secret%20of%20SARAH%20SIDDONS',%20Lisa%20Orgolini%20interview,%20'ALL%20ABOUT%20EVE',%2000390.m2ts.jpg" onload="this.width/=2"></A><BR><BR>
+<A href="'The%20Secret%20of%20SARAH%20SIDDONS',%20Lisa%20Orgolini%20interview,%20'ALL%20ABOUT%20EVE',%2000390.m2ts.jpg"><IMG src="'The%20Secret%20of%20SARAH%20SIDDONS',%20Lisa%20Orgolini%20interview,%20'ALL%20ABOUT%20EVE',%2000390.m2ts.jpg" onload="this.width/=2"></A>
+The video appears to be 30'fps, 2-3-2-3-telecined cinema that was subsequently converted back to 24'fps by dropping frame <TT>[B+b]</TT>, then converted to 30'fps once again by repeating frame <TT>[D+d].<BR><BR>
 
-<SPAN class=bold>What notation characterizes the video?</SPAN><BR>
+<SPAN class=bold>What notation characterizes the video?</SPAN>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-[24pps__48hps__(Aa-Dd)(AaBcCdDdDd)=60hps__30tps~1.001up~]30'fps</PRE></TD></TR></TABLE>
-<SPAN class=bold>What notation will fix the video?</SPAN><BR>
+[24pps__48hps__(Aa-Dd)(AaBcCdDdDd)=60hps__30tps~1.001up~]30'fps</PRE></TD></TR></TABLE><BR>
+<SPAN class=bold>What notation will fix the video?</SPAN>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
 30'fps[30'tps__60'hps__<B style="color:#EA0000">
@@ -1061,6 +1154,6 @@ There are many more interesting (and perhaps superior) transcodes to be explored
 
 <SPAN class="commentary">
 Do you think the notation would make a good planning & documentation tool?<BR>
-Do you think that implementing a notation interpreter plus the needed primatives for actual transcoding would be worth the time & effort?</SPAN><BR>
+Do you think that implementing a notation interpreter plus the needed primitives for actual transcoding would be worth the time & effort?</SPAN><BR>
 
 </BODY></HTML>

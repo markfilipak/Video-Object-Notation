@@ -22,10 +22,18 @@ TT{background-color:#F0F0F0;padding:0 0.2em;white-space:nowrap}
 
 <B>A Video Object Notation, by Mark Filipak.</B><BR><BR>
 
+Synospis.<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The presentation introduces a notation that can model video streams to support planning (and optionally, implementation) of remuxing and transcoding tasks.<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stream modeling (and optionally, stream processing) is object oriented, element by element, not via filter functions.
+Stream editing is via primatives, each of limited scope.
+Pixel editing is via methods attached to element tokens.<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Streams are traversed by strides of elements.
+The various types of strides and their properties are each characteristic of the various commonly encountered types of video formats (e.g., the detelecine of telecined streams) or are specific to particular circumstances (e.g., the repair of flawed streams).<BR><BR>
+
 <SPAN class="commentary">
 For Users:<BR>
 When you write a notation you're specifying what you have and what you want, not what filters you think might work.<BR>
-No more guessing, you are in control.<BR><BR>
+No more guessing or trial and error, you are in control.<BR><BR>
 
 For Developers:<BR>
 Users directly create and manage streams, so you don't have to.<BR>
@@ -33,20 +41,26 @@ The required stream primitives are straightforward, easy to write, and easy to t
 When a primitive works, bug-free, it's done, forever!<BR>
 Since users don't select primitives and may not even know they exist, user documentation is not needed.<BR>
 No more modifying stream filters to accommodate new use cases.<BR>
-No more duplicating code snippets to extend use cases across stream filters.<BR>
-No more stream filters at all! &mdash; and pixel filters become methods, instead.</SPAN><BR><BR>
+No more duplicating code snippets to extend use cases across stream filters.</SPAN><BR><BR>
 
 Take this link: <A href="VideoNotation.html">To The Notation</A>.<BR><BR>
 
+Changes:
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD colspan=3>Changes:</TD></TR>
-<TR><TD>2022-08-13</TD><TD>&nbsp;</TD><TD>Rewritten to target a video-savvy audience, a single page, less explaining.<BR>
-                                          Added support for methods (e.g.,  pixel methods).</TD></TR>
-<TR><TD>2022-08-17</TD><TD>&nbsp;</TD><TD><B>'Look'-'seen' notation & scanner</B> simplified & expanded.<BR>
-                                          Numerous small corrections/clarifications.</TD></TR>
-<TR><TD>2022-08-19</TD><TD>&nbsp;</TD><TD><B>Tokens that cross stride boundaries: $</B>, corrected: <TT>$b$dEf</TT> was <TT>$b$d$f</TT>.<BR>
-                                          <B>'Look'-'seen' notation & scanner, If <TT>(</TT><I><B>look</B></I><TT>)</TT></B>, HTML revised.<BR>
-                                          <B>'Look'-'seen' notation & scanner, <TT>(</TT><I><B>unseen</B></I><TT>)</TT></B>, added coverage for discontinuous accummulation in embedded 'look'-'seen's.</TD></TR>
+<TR><TD style="vertical-align:top">2022-08-13&nbsp;</TD>
+    <TD>Rewritten to target a video-savvy audience, a single page, less explaining.<BR>
+        Added support for methods (e.g.,  pixel methods).</TD></TR>
+<TR><TD style="vertical-align:top">2022-08-17&nbsp;</TD>
+    <TD><B>Look-seen notation & scanner</B>: simplified & expanded.<BR>
+        Numerous small corrections/clarifications.</TD></TR>
+<TR><TD style="vertical-align:top">2022-08-19&nbsp;</TD>
+    <TD><B>Tokens that cross stride boundaries: $</B>: corrected.<BR>
+        <B>Look-seen notation & scanner, If <TT>(</TT><I><B>look</B></I><TT>)</TT></B>: HTML revised.<BR>
+        <B>Look-seen notation & scanner, <TT>(</TT><I><B>unseen</B></I><TT>)</TT></B>: Added coverage for discontinuous accumulations.</TD></TR>
+<TR><TD style="vertical-align:top">2022-08-22&nbsp;</TD>
+    <TD>Spelling corrections.<BR>
+        <B>Look-seen notation & scanner</B>: more details.<BR>
+        Globally changed 'look'-'seen' to look-seen.</TD></TR>
 </TABLE><BR>
 
 </BODY></HTML>
