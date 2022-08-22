@@ -588,20 +588,20 @@ Look-seens are the most important of the notation's features.<BR><BR>
 
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
-    <TD style="text-align:right"><TT>(</TT></TD>
+    <TD></TD>
     <TD><TT>(</TT></TD>
     <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
     <TD><TT>)</TT></TD>
-    <TD><TT>)</TT></TD>
+    <TD></TD>
     <TD></TD>
     <TD>&nbsp;&nbsp;&nbsp;...</TD>
     <TD>'looks' and, if 'seen', applies the 'seen' notation, but if not 'seen', passes input elements to the right (to follow-on notation).</TD></TR>
 <TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
-    <TD style="text-align:right"><TT>(</TT></TD>
+    <TD></TD>
     <TD><TT>(</TT></TD>
     <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
     <TD><TT>)</TT></TD>
-    <TD><TT>)</TT></TD>
+    <TD></TD>
     <TD><TT>(</TT>&nbsp;<I><B>unseen</B></I>&nbsp;<TT>)</TT></TD>
     <TD>&nbsp;&nbsp;&nbsp;...</TD>
     <TD>if not 'seen', applies the 'unseen' notation.</TD></TR>
@@ -720,32 +720,32 @@ Nesting look-seen notations can create extremely complex processes that are none
 Example of look-seen stream handling for simple block filtering.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-(1)((1))   ...'look for' any single input element and, if 'seen', pass it to the right &ndash; a do-nothing look-seen</PRE></TD></TR></TABLE>
+(1)(1)   ...'look for' any single input element and, if 'seen', pass it to the right &ndash; a do-nothing look-seen</PRE></TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-(1)(())   ...'look for' any single input element and, if 'seen', pass nothing to the right &ndash; discards all streams</PRE></TD></TR></TABLE>
+(1)()   ...'look for' any single input element and, if 'seen', pass nothing to the right &ndash; discards all streams</PRE></TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-(<I><B>look</B></I>)(( (1)(()) ))   ...filters out a particular stream (i.e., discards all 'seen' strides)</PRE></TD></TR></TABLE>
+(<I><B>look</B></I>)( (1)() )   ...filters out a particular stream (i.e., discards all 'seen' strides)</PRE></TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-(<I><B>look</B></I>)((<I><B>seen</B></I>))( (1)(()) )   ...filters out all other streams (i.e., discards all 'unseen' strides)</PRE></TD></TR></TABLE>
+(<I><B>look</B></I>)(<I><B>seen</B></I>)( (1)() )   ...filters out all other streams (i.e., discards all 'unseen' strides)</PRE></TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-(<I><B>look</B></I>)( (1)(()) (<I><B>seen</B></I>))   ...discards a particular stream's beginning stride</PRE></TD></TR></TABLE>
+(<I><B>look</B></I>)( (1)() (<I><B>seen</B></I>))   ...discards a particular stream's beginning stride</PRE></TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-(<I><B>look</B></I>)((<I><B>seen</B></I>) (1)(()) )   ...discards a particular stream's ending stride</PRE></PRE></TD></TR></TABLE><BR>
+(<I><B>look</B></I>)((<I><B>seen</B></I>) (1)() )   ...discards a particular stream's ending stride</PRE></PRE></TD></TR></TABLE><BR>
 
 Example of look-seen stream handling for 5-to-4-detelecine.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
 30'tps__60'hps__   ...assume a 30'tps stream, unweave/deinterlace to 60'hps stream
 (AaBbBcCdDd)       ...'look' for 2-3-2-3-telecine (i.e., 10-halfpic strides with ..1.1..2.2 inner matches) and,
-((Aa-Dd))          ...if 'seen', output AaBbCcDd & set 'look' pointer + 10 & repeat 'look' for more 2-3-2-3-telecine, but
+(Aa-Dd)            ...if 'seen', output AaBbCcDd & set 'look' pointer + 10 & repeat 'look' for more 2-3-2-3-telecine, but
 (                  ...if 'unseen',
   (AaAbBcCcDd)       ...'look' for 3-2-3-2-telecine (i.e., 10-halfpic strides with 1.1..2.2.. inner matches) and,
-  ((Aa-Dd))          ...if 'seen', output AaBbCcDd & set 'look' pointer + 10 & repeat 'look' for more 3-2-3-2-telecine,
+  (Aa-Dd)            ...if 'seen', output AaBbCcDd & set 'look' pointer + 10 & repeat 'look' for more 3-2-3-2-telecine,
                      ...else, output Aa & set 'look' pointer + 2 and
 )                  ...repeat the look-seen until the input stream is exhausted.
 =48'hps__24'pps</PRE></TD></TR></TABLE>
@@ -825,28 +825,28 @@ Below are NTSC & PAL detelecine notations.</SPAN><BR><BR>
 <TR><TD><PRE>
 60hps__         ...(beginning with halfpics),
 (AaBbBcCdDd)    ...'look' for ..1.1..2.2 inner match &
-((Aa-Dd))       ...detelecine if 'seen',
+(Aa-Dd)         ...detelecine if 'seen',
 (               ... but if 'unseen',
   (AaAbBcCcDd)    ...'look' for 1.1..2.2.. inner match &
-  ((Aa-Dd))       ...detelecine if 'seen'
+  (Aa-Dd)         ...detelecine if 'seen'
 )</PRE></TD></TR></TABLE><BR>
 
 <B>50-to-48-detelecine.</B>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-50hps__                      ...(beginning with halfpics),
-(Aa-LlLm-WxXx)((Aa-Xx))      ...'look' for ......................1.1......................2.2  & detelecine if 'seen', but if 'unseen',
-((Aa-KkKl-VwWwXx)((Aa-Xx))    ...'look' for ....................1.1......................2.2..  & detelecine if 'seen', but if 'unseen',
- ((Aa-JjJk-UvVv-Xx)((Aa-Xx))   ...'look' for ..................1.1......................2.2....  & detelecine if 'seen', but if 'unseen',
-  ((Aa-IiIj-TuUu-Xx)((Aa-Xx))   ...'look' for ................1.1......................2.2......  & detelecine if 'seen', but if 'unseen',
-   ((Aa-HhHi-StTt-Xx)((Aa-Xx))   ...'look' for ..............1.1......................2.2........  & detelecine if 'seen', but if 'unseen',
-    ((Aa-GgGh-RsSs-Xx)((Aa-Xx))   ...'look' for ............1.1......................2.2..........  & detelecine if 'seen', but if 'unseen',
-     ((Aa-FfFg-QrRr-Xx)((Aa-Xx))   ...'look' for ..........1.1......................2.2............  & detelecine if 'seen', but if 'unseen',
-      ((Aa-EeEf-PqQq-Xx)((Aa-Xx))   ...'look' for ........1.1......................2.2..............  & detelecine if 'seen', but if 'unseen',
-       ((Aa-DdDe-OpPp-Xx)((Aa-Xx))   ...'look' for ......1.1......................2.2................  & detelecine if 'seen', but if 'unseen',
-        ((Aa-CcCd-NoOo-Xx)((Aa-Xx))   ...'look' for ....1.1......................2.2..................  & detelecine if 'seen', but if 'unseen',
-         ((AaBbBc-MnNn-Xx)((Aa-Xx))    ...'look' for ..1.1......................2.2....................  & detelecine if 'seen', but if 'unseen',
-          ((AaAb-LmMm-Xx)((Aa-Xx))      ...'look' for 1.1......................2.2......................  & detelecine if 'seen'
+50hps__                    ...(beginning with halfpics),
+(Aa-LlLm-WxXx)(Aa-Xx)      ...'look' for ......................1.1......................2.2  & detelecine if 'seen', but if 'unseen',
+((Aa-KkKl-VwWwXx)(Aa-Xx)    ...'look' for ....................1.1......................2.2..  & detelecine if 'seen', but if 'unseen',
+ ((Aa-JjJk-UvVv-Xx)(Aa-Xx)   ...'look' for ..................1.1......................2.2....  & detelecine if 'seen', but if 'unseen',
+  ((Aa-IiIj-TuUu-Xx)(Aa-Xx)   ...'look' for ................1.1......................2.2......  & detelecine if 'seen', but if 'unseen',
+   ((Aa-HhHi-StTt-Xx)(Aa-Xx)   ...'look' for ..............1.1......................2.2........  & detelecine if 'seen', but if 'unseen',
+    ((Aa-GgGh-RsSs-Xx)(Aa-Xx)   ...'look' for ............1.1......................2.2..........  & detelecine if 'seen', but if 'unseen',
+     ((Aa-FfFg-QrRr-Xx)(Aa-Xx)   ...'look' for ..........1.1......................2.2............  & detelecine if 'seen', but if 'unseen',
+      ((Aa-EeEf-PqQq-Xx)(Aa-Xx)   ...'look' for ........1.1......................2.2..............  & detelecine if 'seen', but if 'unseen',
+       ((Aa-DdDe-OpPp-Xx)(Aa-Xx)   ...'look' for ......1.1......................2.2................  & detelecine if 'seen', but if 'unseen',
+        ((Aa-CcCd-NoOo-Xx)(Aa-Xx)   ...'look' for ....1.1......................2.2..................  & detelecine if 'seen', but if 'unseen',
+         ((AaBbBc-MnNn-Xx)(Aa-Xx)    ...'look' for ..1.1......................2.2....................  & detelecine if 'seen', but if 'unseen',
+          ((AaAb-LmMm-Xx)(Aa-Xx)      ...'look' for 1.1......................2.2......................  & detelecine if 'seen'
 )))))))))))</PRE></TD></TR></TABLE>
 
 Note how the look-seens have been constructed to 'look for' the latest possible inner match, first.
@@ -874,13 +874,13 @@ They illustrate how the notation can make complex operations compact and easy to
 <B>2-3-2-3-telecine.</B>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-...                                    +-all-strides-------------------------->
-...              _____________________ (A_______)(B_______)(C_______)(D_______)  top halfpics
-...             /_____________________ (a_______)(b_______)(c_______)(d_______)  bottom halfpics
-...            /                    __ (A_-20%)(B_________+60%)(C_-20%)(D_-20%)  top halfpics
-...           /                    /__ (a_-20%)(b_-20%)(c_-20%)(d_________+60%)  bottom halfpics
-...          /                    /
-[24pps__48hps__(Aa-Dd)((AaBbBcCdDd))=60hps__30tps~1.001up~]30'fps</PRE></TD></TR></TABLE>
+...                                   +-all-strides-------------------------->
+...              ____________________ (A_______)(B_______)(C_______)(D_______)  top halfpics
+...             /____________________ (a_______)(b_______)(c_______)(d_______)  bottom halfpics
+...            /                   __ (A_-20%)(B_________+60%)(C_-20%)(D_-20%)  top halfpics
+...           /                   /__ (a_-20%)(b_-20%)(c_-20%)(d_________+60%)  bottom halfpics
+...          /                   /
+[24pps__48hps__(Aa-Dd)(AaBbBcCdDd)=60hps__30tps~1.001up~]30'fps</PRE></TD></TR></TABLE>
 PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%/2) [see note&nbsp;1] @ 6 judders per second &mdash; Cadence: 4+3+3+3+3 4+3+3+3+3 etc. (which is 2+1+1+2+2 2+1+1+2+2 etc. plus 2+2+2+1+1 2+2+2+1+1 etc. superimposed [see note&nbsp;2]) &mdash; Burden: None &mdash; Generations: 0.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;1]&nbsp;</TD>
@@ -909,7 +909,7 @@ PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%
 ...  /    /    /     _________________.______________.______________.___________________.              .
 ... /    /    /     /    _____________.______________.______________.___________________.______________.
 .../    /    /     /    /             .              .              .                   .              .
-((A A..&B B.&.C C.&.D D&..$       ... (A____________)(I1___________)(I2________________)(I3___________)(I4___________)  'seen'
+ (A A..&B B.&.C C.&.D D&..$       ... (A____________)(I1___________)(I2________________)(I3___________)(I4___________)  'seen'
  (A A..&B B.&.C C.&.D D))=30pps   ... (A____________)(I1___________)(I2________________)(I3______)(D_________________)  'endseen'
 ]30fps                            ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]  'seen' encode
                                   ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3________+60%][D_________-20%]  'endseen' encode</PRE></TD></TR></TABLE>
@@ -952,16 +952,16 @@ What follows is a 3-step example of how to extend a basic notation to expand cov
 <TR><TD><PRE>
 30'fps[30'dps__60'hps__   ...decode and unweave/deinterlace
 (AaBbBcCdDd)              ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
-((Aa-Dd))=48'hps__        ...if 2-3-2-3-telecine is 'seen', detelecine
+(Aa-Dd)=48'hps__          ...if 2-3-2-3-telecine is 'seen', detelecine
 24'pps]24'fps             ...weave & encode</PRE></TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
 30'fps[30'dps__60'hps__   ...decode and unweave/deinterlace
 (AaBbBcCdDd)              ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
-((Aa-Dd))                 ...if 2-3-2-3-telecine is 'seen', detelecine<B style="color:#EA0000">
+(Aa-Dd)                   ...if 2-3-2-3-telecine is 'seen', detelecine<B style="color:#EA0000">
 (                         ...if 2-3-2-3-telecine is 'unseen',
   (AaAbBcCcDd)              ...'look' for 3-2-3-2-telecine (10 halfpics, 1.1..2.2.. inner match)
-  ((Aa-Dd))                 ...if 3-2-3-2-telecine is 'seen', detelecine
+  (Aa-Dd)                   ...if 3-2-3-2-telecine is 'seen', detelecine
 )</B>=48'hps__24'pps]24'fps   ...weave & encode</PRE></TD></TR></TABLE>
 The 1st handles 2-3-2-3-telecined streams, only.<BR>
 The 2nd handles both 2-3-2-3-telecined & <B style="color:#EA0000">3-2-3-2-telecined</B> streams.<BR><BR>
@@ -971,10 +971,10 @@ The 2nd handles both 2-3-2-3-telecined & <B style="color:#EA0000">3-2-3-2-teleci
 <TR><TD><PRE>
 30'fps[30'dps__60'hps__                                 ...decode and unweave/deinterlace
 (AaBbBcCdDd)                                            ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
-((Aa-Dd<B style="color:#EA0000">=48'hps__24'pps</B>))                                ...if 2-3-2-3-telecine is 'seen', detelecine & <B style="color:#EA0000">weave</B>
+(Aa-Dd<B style="color:#EA0000">=48'hps__24'pps</B>)                                  ...if 2-3-2-3-telecine is 'seen', detelecine & <B style="color:#EA0000">weave</B>
 (                                                       ...if 2-3-2-3-telecine is 'unseen',
   (AaAbBcCcDd)                                            ...'look' for 3-2-3-2-telecine (10 halfpics, 1.1..2.2.. inner match)
-  ((Aa-Dd<B style="color:#EA0000">=48'hps__24'pps</B>))                                ...if 3-2-3-2-telecine is 'seen', detelecine & <B style="color:#EA0000">weave
+  (Aa-Dd<B style="color:#EA0000">=48'hps__24'pps</B>)                                  ...if 3-2-3-2-telecine is 'seen', detelecine & <B style="color:#EA0000">weave
   (                                                       ...if 3-2-3-2-telecine is 'unseen',
     (Ab)                                                    ...'look' for NTSC scanpairs (2 halfpics, no inner match),
     (A A&b A&$ b(A ^&b A&$ b)A ^&b A&b b)=120'hps__60'pps   ...if an NTSC scanpair is 'seen', lbse-decomb & weave
@@ -991,20 +991,20 @@ Since <TT>60'pps]24'fps</TT> would force slow motion (which is not what is inten
 <TR><TD><PRE>
 30'fps[30'dps__60'hps__                                   ...decode and unweave/deinterlace
 (AaBbBcCdDd)                                              ...'look' for 2-3-2-3-telecine (10 halfpics, ..1.1..2.2 inner match)
-((                                                        ...if 2-3-2-3-telecine is 'seen',
+(                                                         ...if 2-3-2-3-telecine is 'seen',
   Aa-Dd=48'hps__24'pps<B style="color:#EA0000">__</B>                                    ...detelecine & weave<B style="color:#EA0000">
   (A)((A A..&..&...&..&..$)AAAAA)=120'pps                   ...do 1-to-5-interpolation</B>
-))                                                        ...
+)                                                         ...
 (                                                         ...if 2-3-2-3-telecine is 'unseen',
   (AaAbBcCcDd)                                              ...'look' for 3-2-3-2-telecine (10 halfpics, 1.1..2.2.. inner match)
-  ((                                                        ...if 3-2-3-2-telecine is 'seen',
+  (                                                         ...if 3-2-3-2-telecine is 'seen',
     Aa-Dd=48'hps__24'pps<B style="color:#EA0000">__</B>                                    ...detelecine & weave<B style="color:#EA0000">
     (A)((A A..&..&...&..&..$)AAAAA)=120'pps                   ...do 1-to-5-interpolation</B>
-  ))                                                        ...
+  )                                                         ...
   (                                                         ...if 3-2-3-2-telecine is 'unseen',
     (Ab)                                                      ...'look' for NTSC scanpairs (2 halfpics, no inner match),
     (A A&b A&$ b(A^& b A&$ b)A ^&b A&b b)=120'hps__60'pps<B style="color:#EA0000">__</B>   ...if NTSC TV scanpair is 'seen', lbse-decomb & weave<B style="color:#EA0000">
-    (1)((11))=120'pps                                         ...double pictures</B>
+    (1)(11)=120'pps                                           ...double pictures</B>
   )                                                         ...
 )                                                         ...
 <B style="color:#EA0000">~1.001down~</B>]120fps                                          ...<B style="color:#EA0000">down-sample audio</B> & encode</PRE></TD></TR></TABLE>
@@ -1024,13 +1024,13 @@ The video appears to be 30'fps, 2-3-2-3-telecined cinema that was subsequently c
 <SPAN class=bold>What notation characterizes the video?</SPAN>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-[24pps__48hps__(Aa-Dd)((AaBcCdDdDd))=60hps__30tps~1.001up~]30'fps</PRE></TD></TR></TABLE><BR>
+[24pps__48hps__(Aa-Dd)(AaBcCdDdDd)=60hps__30tps~1.001up~]30'fps</PRE></TD></TR></TABLE><BR>
 <SPAN class=bold>What notation will fix the video?</SPAN>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
 30'fps[30'tps__60'hps__<B style="color:#EA0000">
 (AaB c CdDdDd)          ...'look' for .....12121 inner matches &
-((AaB a&c BcCdDd))__    ...if 'seen', interpolate b = a&c and drop extra Dd</B>
+(AaB a&c BcCdDd)__      ...if 'seen', interpolate b = a&c and drop extra Dd</B>
 30'tps]30'fps</PRE></TD></TR></TABLE><BR>
 
 <SPAN class="commentary">
@@ -1039,10 +1039,10 @@ The video segment above is part of a "Making Of" documentary that includes two m
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
 30'fps[30'dps__60'hps__<B style="color:#EA0000">
-(AaB c CdDdDd)((AaB a&c BcCdDd))__</B>
-(AaBbBcCdDd)((Aa-Dd=48'hps__24'pps__(A)((A A..&..&...&..&..$)AAAAA)=120'pps))
+(AaB c CdDdDd)(AaB a&c BcCdDd)__</B>
+(AaBbBcCdDd)(Aa-Dd=48'hps__24'pps__(A)((A A..&..&...&..&..$)AAAAA)=120'pps)
 (
-  (AaAbBcCcDd)((Aa-Dd=48'hps__24'pps__(A)((A A..&..&...&..&..$)AAAAA)=120'pps))
+  (AaAbBcCcDd)(Aa-Dd=48'hps__24'pps__(A)((A A..&..&...&..&..$)AAAAA)=120'pps)
   (
     (Ab)(A A&b A&$ b(A^& b A&$ b)A ^&b A&b b)=120'hps__60'pps__(1)((11))=120'pps
   )
@@ -1061,7 +1061,7 @@ Extra credit.</SPAN><BR><BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
 24'fps[24'pps__
-(A-E)((A A......&B B....&..C C...&...D D..&....E E&......$)A A......&B B....&..C C...&...D D..&....E E)=28.8'pps__(1)((11))=57.6'pps
+(A-E)((A A......&B B....&..C C...&...D D..&....E E&......$)A A......&B B....&..C C...&...D D..&....E E)=28.8'pps__(1)(11)=57.6'pps
 ~1.001down~]57.6fps</PRE></TD></TR></TABLE>
 PTSs: Forced 57.6'pps to 57.6fps &mdash; Combing: ___ &mdash; Judder: ___% @ ___ judders per second &mdash; Cadence: ___+___+___+___+___+___ &mdash; Burden: ___ &mdash; Generations: ___.<BR><BR>
 
