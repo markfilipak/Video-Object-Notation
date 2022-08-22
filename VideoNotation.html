@@ -193,7 +193,7 @@ For example, <TT>A&C</TT> creates <TT>B</TT>.<BR><BR><BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD></TD><TD><TT>.</TT><B><I>method(params)</I></B> is a built-in function (such as a function that creates a stream).</TD></TR>
 <TR><TD><B><I>token</I></B></TD><TD><TT>.</TT><B><I>method(params)</I></B> is a method (such as a function that manipulates pixels) applied to a token's replacement stream element.<BR></TD></TR></TABLE>
-Example: <TT>[.pictures(24,240)__(12)((1.fill(red)2.fill(blue)))__48hps__(Aa-Dd)((AaBbBcCdDd))=60hps__30tps]30fps</TT> creates 8 seconds of video that showcases telecine mechanics.<BR><BR><BR>
+Example: <TT>[.pictures(24,240)__(12)(1.fill(red)2.fill(blue))__48hps__(Aa-Dd)(AaBbBcCdDd)=60hps__30tps]30fps</TT> creates 8 seconds of video that showcases telecine mechanics.<BR><BR><BR>
 
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 
@@ -384,9 +384,9 @@ Example: <TT>[.pictures(24,240)__(12)((1.fill(red)2.fill(blue)))__48hps__(Aa-Dd)
 <TR><TD class="right_nowrap"><TT>..</TT>&nbsp;</TD>
     <TD>(2 dots) selects an entire stream &mdash; it does not form strides.
         If it precedes tokens, <TT>..</TT> returns all stream elements from the beginning of the stream to the 1st token-matching stream element.
-        For example: <TT>(..1-)((..11--))</TT> repeats a stream's final 2 stream elements.
+        For example: <TT>(..1-)(..11--)</TT> repeats a stream's final 2 stream elements.
         If it follows tokens, <TT>..</TT> returns all stream elements to the end of the stream.
-        For example: <TT>(1..)((..))</TT> drops a stream's 1st stream element and <TT>(12..)((..))</TT> drops a stream's 1st 2 stream element(s) but only if they differ.
+        For example: <TT>(1..)(..)</TT> drops a stream's 1st stream element and <TT>(12..)(..)</TT> drops a stream's 1st 2 stream element(s) but only if they differ.
         Note that <TT>..</TT> can be an empty stream.</TD></TR>
 <TR><TD colspan=2>
         <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
@@ -564,18 +564,18 @@ Basic picture stream processing as notation (in which the functions are implied)
 <B>An introduction to basic scan stream processing</B>, bob decombing.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-[25sps__50hps__(Ab)((AAbb))=100hps__50pps]50fps</PRE></TD></TR>
+[25sps__50hps__(Ab)(AAbb)=100hps__50pps]50fps</PRE></TD></TR>
 </TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-[30'sps__60'hps__(Ab)((AAbb))=120'hps__60'pps]60'fps</PRE></TD></TR></TABLE><BR><BR>
+[30'sps__60'hps__(Ab)(AAbb)=120'hps__60'pps]60'fps</PRE></TD></TR></TABLE><BR><BR>
 
 
 <!-- Look-seen notation & scanner -->
 
 <A name="Look-seen">
 <B>Look-seen notation & scanner.</B><BR>
-The terms in parentheses above, <TT>(Ab)((AAbb))</TT>, are look-seens.
+The terms in parentheses above, <TT>(Ab)(AAbb)</TT>, are look-seens.
 The following introduction is presented at this point because familiarity with it is needed for the sections that follow.<BR><BR>
 
 Look-seens are the most important of the notation's features.<BR><BR>
@@ -1044,7 +1044,7 @@ The video segment above is part of a "Making Of" documentary that includes two m
 (
   (AaAbBcCcDd)(Aa-Dd=48'hps__24'pps__(A)((A A..&..&...&..&..$)AAAAA)=120'pps)
   (
-    (Ab)(A A&b A&$ b(A^& b A&$ b)A ^&b A&b b)=120'hps__60'pps__(1)((11))=120'pps
+    (Ab)(A A&b A&$ b(A^& b A&$ b)A ^&b A&b b)=120'hps__60'pps__(1)(11)=120'pps
   )
 )
 ~1.001down~]120fps</PRE></TD></TR></TABLE><BR><BR>
