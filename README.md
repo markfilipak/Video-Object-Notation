@@ -20,5 +20,5 @@ Changes:
         <B>Look-seen notation & scanner</B>: more details.<BR>
         Globally changed 'look'-'seen' to look-seen.</TD></TR>
 <TR><TD style="vertical-align:top">2022-08-23&nbsp;</TD>
-    <TD><SPAN style="font-family:serif;font-size:0.95em;font-style:italic">Extra Credit</SPAN>: simplified, clarified.</TD></TR>
+    <TD><I><B>Extra Credit</B></I>: simplified, clarified.</TD></TR>
 </TABLE><BR>
