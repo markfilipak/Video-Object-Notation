@@ -578,88 +578,94 @@ Basic picture stream processing as notation (in which the functions are implied)
 The terms in parentheses above, <TT>(Ab)(AAbb)</TT>, are look-seens.
 The following introduction is presented at this point because familiarity with it is needed for the sections that follow.<BR><BR>
 
-Look-seens are the most important of the notation's features.<BR><BR>
+Look-seens are the most important of the notation's features.<BR>
 
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>begseen</B></I><TT>(</TT><I><B>seen</B></I><TT>)</TT><I><B>endseen</B></I><TT>)(</TT><I><B>unseen</B></I><TT>)</TT></TD>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)</TT></TD>
+    <TD style="text-align:right"><TT>(</TT><I><B>begseen</B></I></TD>
+    <TD><TT>(</TT></TD>
+    <TD><I><B>seen</B></I></TD>
+    <TD><TT>)</TT></TD>
+    <TD><I><B>endseen</B></I><TT>)</TT></TD>
+    <TD><TT>(</TT><I><B>unseen</B></I><TT>)</TT></TD>
     <TD>&nbsp;&nbsp;&nbsp;...</TD>
-    <TD>a maximal look-seen using labels in place of actual notations, and without beautification.<BR>
-        The lines below are beautified to make the differences easy to see.</TD></TR></TABLE>
+    <TD>a fully populated look-seen using labels in place of actual notations, and without beautification.
+        The lines below are beautified to make the differences easy to see.</TD></TR></TABLE><BR>
 
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)</TT></TD>
     <TD></TD>
     <TD><TT>(</TT></TD>
-    <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
+    <TD><I><B>seen</B></I></TD>
     <TD><TT>)</TT></TD>
     <TD></TD>
     <TD></TD>
     <TD>&nbsp;&nbsp;&nbsp;...</TD>
     <TD>'looks' and, if 'seen', applies the 'seen' notation, but if not 'seen', passes input elements to the right (to follow-on notation).</TD></TR>
-<TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)</TT></TD>
     <TD></TD>
     <TD><TT>(</TT></TD>
-    <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
+    <TD><I><B>seen</B></I></TD>
     <TD><TT>)</TT></TD>
     <TD></TD>
-    <TD><TT>(</TT>&nbsp;<I><B>unseen</B></I>&nbsp;<TT>)</TT></TD>
+    <TD><TT>(</TT><I><B>unseen</B></I><TT>)</TT></TD>
     <TD>&nbsp;&nbsp;&nbsp;...</TD>
     <TD>if not 'seen', applies the 'unseen' notation.</TD></TR>
 <TR><TD><BR></TD></TR>
-<TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
-    <TD style="text-align:right"><TT>(</TT>&nbsp;<I><B>begseen</B></I>&nbsp;</TD>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)</TT></TD>
+    <TD style="text-align:right"><TT>(</TT><I><B>begseen</B></I></TD>
     <TD><TT>(</TT></TD>
-    <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
+    <TD><I><B>seen</B></I></TD>
     <TD><TT>)</TT></TD>
     <TD><TT>)</TT></TD>
     <TD></TD>
     <TD>&nbsp;&nbsp;&nbsp;...</TD>
-    <TD>'looks' and, if 'seen', applies the 'begseen' notation to the beginning stride (e.g., for scene change) and the 'seen' notation thereafter, but if not 'seen', passes input elements to the right (to follow-on notation).</TD></TR>
-<TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
-    <TD style="text-align:right"><TT>(</TT>&nbsp;<I><B>begseen</B></I>&nbsp;</TD>
+    <TD>If 'seen', applies the 'begseen' notation to the beginning stride (e.g., for scene change), etc.</TD></TR>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)</TT></TD>
+    <TD style="text-align:right"><TT>(</TT><I><B>begseen</B></I></TD>
     <TD><TT>(</TT></TD>
-    <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
+    <TD><I><B>seen</B></I></TD>
     <TD><TT>)</TT></TD>
     <TD><TT>)</TT></TD>
-    <TD><TT>(</TT>&nbsp;<I><B>unseen</B></I>&nbsp;<TT>)</TT></TD>
+    <TD><TT>(</TT><I><B>unseen</B></I><TT>)</TT></TD>
     <TD>&nbsp;&nbsp;&nbsp;...</TD>
     <TD>if not 'seen', applies the 'unseen' notation.</TD></TR>
 <TR><TD><BR></TD></TR>
-<TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)</TT></TD>
     <TD style="text-align:right"><TT>(</TT></TD>
     <TD><TT>(</TT></TD>
-    <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
+    <TD><I><B>seen</B></I></TD>
     <TD><TT>)</TT></TD>
-    <TD>&nbsp;<I><B>endseen</B></I>&nbsp;<TT>)</TT></TD>
+    <TD><I><B>endseen</B></I><TT>)</TT></TD>
     <TD></TD>
     <TD>&nbsp;&nbsp;&nbsp;...</TD>
-    <TD>'looks' and, if 'seen', applies the 'seen' notation except for the ending stride which applies the 'endseen' notation (e.g., for scene change), but if not 'seen', passes input elements to the right (to follow-on notation).</TD></TR>
-<TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
+    <TD>If 'seen', applies the 'endseen' notation to the ending stride (e.g., for scene change), etc.</TD></TR>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)</TT></TD>
     <TD style="text-align:right"><TT>(</TT></TD>
     <TD><TT>(</TT></TD>
-    <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
+    <TD><I><B>seen</B></I></TD>
     <TD><TT>)</TT></TD>
-    <TD>&nbsp;<I><B>endseen</B></I>&nbsp;<TT>)</TT></TD>
-    <TD><TT>(</TT>&nbsp;<I><B>unseen</B></I>&nbsp;<TT>)</TT></TD>
+    <TD><I><B>endseen</B></I><TT>)</TT></TD>
+    <TD><TT>(</TT><I><B>unseen</B></I><TT>)</TT></TD>
     <TD>&nbsp;&nbsp;&nbsp;...</TD>
     <TD>if not 'seen', applies the 'unseen' notation.</TD></TR>
 <TR><TD><BR></TD></TR>
-<TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
-    <TD style="text-align:right"><TT>(</TT>&nbsp;<I><B>begseen</B></I>&nbsp;</TD>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)</TT></TD>
+    <TD style="text-align:right"><TT>(</TT><I><B>begseen</B></I></TD>
     <TD><TT>(</TT></TD>
-    <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
+    <TD><I><B>seen</B></I></TD>
     <TD><TT>)</TT></TD>
-    <TD>&nbsp;<I><B>endseen</B></I>&nbsp;<TT>)</TT></TD>
+    <TD><I><B>endseen</B></I><TT>)</TT></TD>
     <TD></TD>
     <TD>&nbsp;&nbsp;&nbsp;...</TD>
-    <TD>'looks' and, if 'seen', applies the 'begseen' notation to the beginning stride (e.g., for scene change) and the 'seen' notation thereafter except for the ending stride which applies the 'endseen' notation (e.g., for scene change), but if not 'seen', passes input elements to the right (to follow-on notation).</TD></TR>
-<TR><TD><TT>(</TT>&nbsp;<I><B>look</B></I>&nbsp;<TT>)</TT></TD>
-    <TD style="text-align:right"><TT>(</TT>&nbsp;<I><B>begseen</B></I>&nbsp;</TD>
+    <TD>If 'seen', applies the 'begseen' and 'endseen' notations, etc.</TD></TR>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)</TT></TD>
+    <TD style="text-align:right"><TT>(</TT><I><B>begseen</B></I></TD>
     <TD><TT>(</TT></TD>
-    <TD>&nbsp;<I><B>seen</B></I>&nbsp;</TD>
+    <TD><I><B>seen</B></I></TD>
     <TD><TT>)</TT></TD>
-    <TD>&nbsp;<I><B>endseen</B></I>&nbsp;<TT>)</TT></TD>
-    <TD><TT>(</TT>&nbsp;<I><B>unseen</B></I>&nbsp;<TT>)</TT></TD>
+    <TD><I><B>endseen</B></I><TT>)</TT></TD>
+    <TD><TT>(</TT><I><B>unseen</B></I><TT>)</TT></TD>
     <TD>&nbsp;&nbsp;&nbsp;...</TD>
     <TD>if not 'seen', applies the 'unseen' notation.</TD></TR></TABLE><BR>
 
@@ -909,8 +915,8 @@ PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%
 ...  /    /    /     _________________.______________.______________.___________________.              .
 ... /    /    /     /    _____________.______________.______________.___________________.______________.
 .../    /    /     /    /             .              .              .                   .              .
- (A A..&B B.&.C C.&.D D&..$       ... (A____________)(I1___________)(I2________________)(I3___________)(I4___________)  'seen'
- (A A..&B B.&.C C.&.D D))=30pps   ... (A____________)(I1___________)(I2________________)(I3______)(D_________________)  'endseen'
+((A A..&B B.&.C C.&.D D&..$)      ... (A____________)(I1___________)(I2________________)(I3___________)(I4___________)  'seen'
+  A A..&B B.&.C C.&.D D)=30pps    ... (A____________)(I1___________)(I2________________)(I3______)(D_________________)  'endseen'
 ]30fps                            ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]  'seen' encode
                                   ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3________+60%][D_________-20%]  'endseen' encode</PRE></TD></TR></TABLE>
 
@@ -928,7 +934,7 @@ PTSs: Forced 30pps to 30'fps &mdash; Combing: None &mdash; Judder: 27% @ 6 judde
 ... /    /  /   /  ___________________.______________.______________.___________________.______________.
 .../    /  /   /  /                   .              .              .                   .              .
 ((A A..&..&...&..&..$)            ... (A____________)(I1___________)(I2________________)(I3___________)(I4___________)  'seen'
-AAAAA)                            ... (A____________)(A____________)(A_________________)(A____________)(A____________)  'endseen'
+  AAAAA)                          ... (A____________)(A____________)(A_________________)(A____________)(A____________)  'endseen'
 ]120fps                           ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]  'seen' encode</PRE></TD></TR></TABLE>
 PTSs: Unforced &mdash; Combing: None &mdash; Judder: 27% @ 24 judders per second [see note&nbsp;1] &mdash; Cadence: 3+3+4+3+3 3+3+4+3+3 etc. &mdash; Burden: 216 picture interpolations per runtime second &mdash; Generations: 4-3-3-4.<BR><BR>
 <A name="60Hz">
