@@ -877,6 +877,7 @@ The proposed notation accomplishes it in just 302 characters:</SPAN><BR><BR><BR>
 Below is standard 2-3-2-3 telecine followed by 2 smooth video, telecine alternatives.
 They illustrate how the notation can make complex operations compact and easy to understand.</SPAN><BR><BR>
 
+<A name="2-3-2-3-telecine">
 <B>2-3-2-3-telecine.</B>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
@@ -887,7 +888,7 @@ They illustrate how the notation can make complex operations compact and easy to
 ...           /                   /__ (a_-20%)(b_-20%)(c_-20%)(d_________+60%)  bottom halfpics
 ...          /                   /
 [24pps__48hps__(Aa-Dd)(AaBbBcCdDd)=60hps__30tps~1.001up~]30'fps</PRE></TD></TR></TABLE>
-PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%/2) [see note&nbsp;1] @ 6 judders per second &mdash; Cadence: 4+3+3+3+3 4+3+3+3+3 etc. (which is 2+1+1+2+2 2+1+1+2+2 etc. plus 2+2+2+1+1 2+2+2+1+1 etc. superimposed [see note&nbsp;2]) &mdash; Burden: None &mdash; Generations: 0.
+PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%/2) [see note&nbsp;1] @ 6 judders per second &mdash; Cadence: 4+3+3+3+3 (which is 2+1+1+2+2 plus 2+2+2+1+1 superimposed [see note&nbsp;2]) &mdash; Burden: None &mdash; Generations: 0.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;1]&nbsp;</TD>
     <TD>Judder is the worst case picture 'jump' at any frame-to-frame change.
@@ -920,8 +921,9 @@ PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%
 ]30fps                            ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]  'seen' encode
                                   ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3________+60%][D_________-20%]  'endseen' encode</PRE></TD></TR></TABLE>
 
-PTSs: Forced 30pps to 30'fps &mdash; Combing: None &mdash; Judder: 27% @ 6 judders per second &mdash; Cadence: 3+3+4+3+3 3+3+4+3+3 etc. &mdash; Burden: 36 picture interpolations per runtime second &mdash; Generations: 2-1-1-2.<BR><BR>
+PTSs: Forced 30pps to 30'fps &mdash; Combing: None &mdash; Judder: 27% @ 6 judders per second &mdash; Cadence: 3+3+4+3+3 &mdash; Burden: 36 picture interpolations per runtime second &mdash; Generations: 2-1-1-2.<BR><BR>
 
+<A name="1-to-5-interpolation">
 <B>1-to-5-interpolation:</B> A telecine alternative &mdash; 4-pass interpolation &mdash; smooth video optimized for 60Hz & 120Hz TVs.<BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
@@ -936,7 +938,7 @@ PTSs: Forced 30pps to 30'fps &mdash; Combing: None &mdash; Judder: 27% @ 6 judde
 ((A A..&..&...&..&..$)            ... (A____________)(I1___________)(I2________________)(I3___________)(I4___________)  'seen'
   AAAAA)                          ... (A____________)(A____________)(A_________________)(A____________)(A____________)  'endseen'
 ]120fps                           ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]  'seen' encode</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: None &mdash; Judder: 27% @ 24 judders per second [see note&nbsp;1] &mdash; Cadence: 3+3+4+3+3 3+3+4+3+3 etc. &mdash; Burden: 216 picture interpolations per runtime second &mdash; Generations: 4-3-3-4.<BR><BR>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: 27% @ 24 judders per second [see note&nbsp;1] &mdash; Cadence: 3+3+4+3+3 &mdash; Burden: 216 picture interpolations per runtime second &mdash; Generations: 4-3-3-4.<BR><BR>
 <A name="60Hz">
 1-to-5-interpolation on 120Hz & 60Hz TVs compared:
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
@@ -944,7 +946,7 @@ PTSs: Unforced &mdash; Combing: None &mdash; Judder: 27% @ 24 judders per second
                                       (A____________)(I1___________)(I2________________)(I3___________)(I4___________)..  'seen'
                                       [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]..  on 120Hz TV
                                       [A________________________+6.7%][I2_______________________-8.5%][I4_____________..  on 60Hz TV</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: None &mdash; Judder: 15% @ 24 judders per second [see note&nbsp;1] &mdash; Cadence: 6+7+6+7+6 6+7+6+7+6 etc. &mdash; Burden: 216 picture interpolations per runtime second &mdash; Generations: 4-3-3-4.
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: 15% @ 24 judders per second [see note&nbsp;1] &mdash; Cadence: 6+7+6+7+6 &mdash; Burden: 216 picture interpolations per runtime second &mdash; Generations: 4-3-3-4.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;1]&nbsp;</TD>
     <TD>Judder rates above 17 judders per second are generally considered judder-free.</TD></TR></TABLE><BR><BR>
@@ -1062,20 +1064,25 @@ The notation will avoid that by enabling you to positively account for every fra
 
 
 <SPAN class="commentary">
-Extra credit.</SPAN><BR><BR>
-60Hz TVs that have variable rate screens will sync to and play 57.6fps just fine.
+Extra credit.</SPAN><BR>
+Recall that:<BR>
+<A href="#2-3-2-3-telecine">24'pps to 30'fps via 2-3-2-3-telecine</A> has 40% judder @ 6 judders per second &mdash; awful but people think it's unavoidable.<BR>
+<A href="#4-to-5-interpolation">24'pps to 30'fps via 4-to-5-interpolation</A> has 27% judder @ 6 judders per second &mdash; better, but not great.<BR>
+<A href="#1-to-5-interpolation">24'pps to 120'fps via 1-to-5-interpolation</A> has 15% judder @ 24 judders per second when viewed on a 60Hz TV &mdash; astounding but a very time consuming transcode.<BR>
+What about 24'pps to 57.6'fps via 5-to-6 interpolation & doubling, instead?<BR>
+<SPAN class="commentary">
+That 60Hz TVs having variable rate screens will sync to and play 57.6'fps just fine presents an opportunity for improvement.</SPAN>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-24'fps[24'pps__
-(A-E)((A A......&B B....&..C C...&...D D..&....E E&......$)A A......&B B....&..C C...&...D D..&....E E)=28.8'pps__(1)(11)=57.6'pps
-~1.001down~]57.6fps</PRE></TD></TR></TABLE>
-PTSs: Forced 57.6'pps to 57.6fps &mdash; Combing: ___ &mdash; Judder: ___% @ ___ judders per second &mdash; Cadence: ___+___+___+___+___+___ &mdash; Burden: ___ &mdash; Generations: ___.<BR><BR>
+24'fps[24'pps__(A-E)
+( ( A A......&B B....&..C C...&...D D..&....E E&......$ ) A A......&B B....&..C C...&...D D..&....E E )=28.8'pps__(1)(11)]57.6'fps</PRE></TD></TR></TABLE>
+PTSs: Unforced &mdash; Combing: ___ &mdash; Judder: ___% @ ___ judders per second &mdash; Cadence: ___+___+___+___+___+___ &mdash; Burden: ___ &mdash; Generations: ___-___-___-___-___.<BR><BR>
 
 <SPAN class="commentary">
-Can you fill the blanks and compare them with this: <A href="#60Hz">1-to-5-interpolation to 120fps when viewed on a 60Hz TV</A>?</SPAN><BR><BR>
+Can you fill in the blanks?</SPAN><BR><BR>
 
-<A href="#hint" onclick="javascript:document.getElementById('hint').style.display='block'">See a hint</A>.<BR>
 <A name="hint">
+<A href="#hint" onclick="javascript:document.getElementById('hint').style.display='block'">See a hint</A>.<BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 id="hint" style="display:none">
 <TR><TD><PRE>
 +-all-strides---------------------------------------------------------------------------------------------------------->  5/24 second
@@ -1086,9 +1093,8 @@ Can you fill the blanks and compare them with this: <A href="#60Hz">1-to-5-inter
 [A_______][A_______][I1______][I1______][I2______][I2______][I3______][I3______][I4______][I4______][I5______][I5______]  57.6'fps
 (A_________________)(I1________________)(I2________________)(I3________________)(I4________________)(I5________________)  28.8'pps pictures</PRE></TD></TR></TABLE><BR>
 
-
-<A href="#solve" onclick="javascript:document.getElementById('solve').style.display='block'">See the solution</A>.<BR>
 <A name="solve">
+<A href="#solve" onclick="javascript:document.getElementById('solve').style.display='block'">See the solution</A>.<BR>
 <DIV id="solve" style="display:none">
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
@@ -1099,59 +1105,80 @@ Can you fill the blanks and compare them with this: <A href="#60Hz">1-to-5-inter
 (A__________________)(I1______________)(I2_________________)(I3_________________)(I4______________)(I5_________________)  interp pictures
 [A_______][A_______][I1______][I1______][I2______][I2______][I3______][I3______][I4______][I4______][I5______][I5______]  57.6'fps
 (A____________-4.8%)(I1__________+11.1%)(I2___________-4.8%)(I3___________-4.8%)(I4__________+11.1%)(I5___________-4.8%)  28.8'pps pictures</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: None &mdash; Judder: 16% @ 9.6 judders per second &mdash; Cadence: 7+6+7+7+6+7 7+6+7+7+6+7 etc. &mdash; Burden: 62.4 picture interpolations per runtime second &mdash; Generations: 3-3-1-3-3.<BR><BR>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: 16% @ 9.6 judders per second &mdash; Cadence: 7+6+7+7+6+7 &mdash; Burden: 62.4 picture interpolations per runtime second &mdash; Generations: 3-3-1-3-3.<BR><BR>
 
 <SPAN class="commentary">
-Compare the numbers above to the numbers below (from 1-to-5-interpolation viewed on a 60Hz TV, rescaled).</SPAN><BR><BR>
+The following table compares the approaches. The numbers speak for themselves.</SPAN><BR>
 
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD><PRE>
-+---------------------------------------------------------------------------------------------------------------------->  5/24 second
-[A__+6.7%][__-8.5%][___+6.7%][__-8.5%][___+6.7%][C__-8.5%][__+6.7%][___-8.5%][__+6.7%][___-8.5%][E__+6.7%][__-8.5%][____  120fps on 60Hz TV</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: None &mdash; Judder: 15% @ 24 judders per second &mdash; Cadence: 6+7+6+7+6 6+7+6+7+6 etc. &mdash; Burden: 216 picture interpolations per runtime second &mdash; Generations: 4-3-3-4.<BR><BR>
-
-<SPAN class="commentary">
-The following table compares the two approaches. The numbers speak for themselves.</SPAN><BR>
-
-<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD class="column_header center_nowrap">frame rate</TD>
+<TR><TD></TD>
+    <TD class="column_header center_nowrap">Combing</TD>
     <TD>&nbsp;&nbsp;</TD>
     <TD class="column_header center_nowrap">Judder</TD>
     <TD>&nbsp;&nbsp;</TD>
-    <TD class="column_header center_nowrap">Judders per second</TD>
+    <TD class="column_header center_nowrap">Judders<BR>per second</TD>
     <TD>&nbsp;&nbsp;</TD>
     <TD class="column_header center_nowrap">Cadence</TD>
     <TD>&nbsp;&nbsp;</TD>
-    <TD class="column_header center_nowrap">Picture interpolations per runtime second</TD>
+    <TD class="column_header center_nowrap">Picture interpolations<BR>per runtime second</TD>
     <TD>&nbsp;&nbsp;</TD>
     <TD class="column_header center_nowrap">Generations</TD></TR>
-<TR><TD class="center_nowrap">57.6'fps</TD>
+<TR><TD><A href="#2-3-2-3-telecine">24'pps to 30'pps via 2-3-2-3-telecine</A></TD>
+    <TD class="center_nowrap">40%</TD>
     <TD></TD>
-    <TD class="center_nowrap">16%</TD>
+    <TD class="center_nowrap">40%</TD>
     <TD></TD>
-    <TD class="center_nowrap">9.6</TD>
+    <TD class="center_nowrap">6</TD>
     <TD></TD>
-    <TD class="center_nowrap">7+6+7+7+6+7 7+6+7+7+6+7 etc.</TD>
+    <TD class="center_nowrap">4+3+3+3+3</TD>
     <TD></TD>
-    <TD class="center_nowrap">62.4</TD>
+    <TD class="center_nowrap">none</TD>
     <TD></TD>
-    <TD class="center_nowrap">3-3-1-3-3</TD></TR>
-<TR><TD class="center_nowrap">60fps</TD>
+    <TD class="center_nowrap">0-0-0-0</TD></TR>
+<TR><TD><A href="#4-to-5-interpolation">24'pps to 30'pps via 4-to-5-interpolation</A></TD>
+    <TD class="center_nowrap">none</TD>
+    <TD></TD>
+    <TD class="center_nowrap">27%</TD>
+    <TD></TD>
+    <TD class="center_nowrap">6</TD>
+    <TD></TD>
+    <TD class="center_nowrap">3+3+4+3+3</TD>
+    <TD></TD>
+    <TD class="center_nowrap">36</TD>
+    <TD></TD>
+    <TD class="center_nowrap">2-1-1-2</TD></TR>
+<TR><TD><A href="#1-to-5-interpolation">24'pps to 120'pps via 1-to-5-interpolation</A></TD>
+    <TD class="center_nowrap">none</TD>
     <TD></TD>
     <TD class="center_nowrap">15%</TD>
     <TD></TD>
     <TD class="center_nowrap">24</TD>
     <TD></TD>
-    <TD class="center_nowrap">6+7+6+7+6 6+7+6+7+6 etc.</TD>
+    <TD class="center_nowrap">6+7+6+7+6</TD>
     <TD></TD>
     <TD class="center_nowrap">216</TD>
     <TD></TD>
-    <TD class="center_nowrap">4-3-3-4</TD></TR></TABLE>
+    <TD class="center_nowrap">4-3-3-4</TD></TR>
+<TR><TD>24'pps to 28.8'pps via 5-to-6 interpolation</TD>
+    <TD class="center_nowrap">none</TD>
+    <TD></TD>
+    <TD class="center_nowrap">16%</TD>
+    <TD></TD>
+    <TD class="center_nowrap">9.6</TD>
+    <TD></TD>
+    <TD class="center_nowrap">7+6+7+7+6+7</TD>
+    <TD></TD>
+    <TD class="center_nowrap">62.4</TD>
+    <TD></TD>
+    <TD class="center_nowrap">3-3-1-3-3</TD></TR></TABLE>
 
-<SPAN class="commentary">Tradeoffs:
+<SPAN class="commentary">
+Tradeoffs:<BR>
 What impact does </SPAN>Judders per second<SPAN class="commentary"> have?
 How about </SPAN>Picture interpolations per runtime second<SPAN class="commentary">?
-How about </SPAN>Generations<SPAN class="commentary">?</SPAN></DIV><BR><BR>
+How about </SPAN>Generations<SPAN class="commentary">?<BR>
+Can you visualize the effects of the tradoffs? Do the numbers help?<BR>
+Compare the findings above with the function (filter) names & parameter values used by FFmepg, AVsynth, and VapourSynth.</SPAN></DIV><BR>
 
 <SPAN class="commentary">
 There are many more interesting (and perhaps superior) transcodes to be explored for various stored and/or streamed applications.</SPAN><BR><BR>
