@@ -5,6 +5,8 @@ Link to live page: https://markfilipak.github.io/Video-Object-Notation/
 
 Changes:
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD style="vertical-align:top">2022-08-25&nbsp;</TD>
+    <TD><B>Audio Conversions</B>: enhanced, now clearly remux.</TD></TR>
 <TR><TD style="vertical-align:top">2022-08-23&nbsp;</TD>
     <TD><I><B>Extra Credit</B></I>: simplified, clarified.</TD></TR>
 <TR><TD style="vertical-align:top">2022-08-22&nbsp;</TD>
