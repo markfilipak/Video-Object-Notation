@@ -41,36 +41,6 @@ Notations are read from left to right, beginning with a beginning stream and end
 <TR><TD style="white-space:nowrap">3,&nbsp;</TD>
     <TD>Extra stream identifiers: Strings of the form <TT>=</TT><I class="type">rate</I><TT>pps</TT>, <TT>=</TT><I class="type">rate</I><TT>tps</TT>, etc. are stripped, so they can be freely used to enhance comprehension and resolve possible confusion.</TD></TR></TABLE><BR><BR>
 
-<B>Giving names to commonly encountered cinema sources</B> &mdash; they're not part of the notation but they're useful.<BR>
-<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD class="right_nowrap"><B>cinema</B>&nbsp;</TD>
-    <TD>is 24pps (pictures per second) as shot with cinema cameras and as shown in cinemas.</TD></TR>
-<TR><TD class="right_nowrap"><B>cine-slow</B>&nbsp;</TD>
-    <TD>is cinema that has been forced to 24'fps.
-        The forcing stretches each runtime hour to 1:00:03.6.
-        To retain audio sync with the forced video, 48kHz cinema audio has been up-sampled to 48.048kHz in advance.
-        When the up-sampled audio is played back at 48kHz during 24'fps play, tonality becomes 2 cents flat &mdash; very little, but apparently enough to make musicians unhappy.</TD></TR>
-<TR><TD class="right_nowrap"><B>NTSC-soft</B>&nbsp;</TD>
-    <TD>is identical to cine-slow but adds metadata that requests players to perform 4-to-5 telecine (to 30'fps).</TD></TR>
-<TR><TD class="right_nowrap"><B>PAL-fast</B>&nbsp;</TD>
-    <TD>(aka PAL speed-up) is cinema that has been forced to 25fps.
-        The forcing shrinks each runtime hour to 57:36.
-        To retain audio sync with the forced video, 48kHz cinema audio has been down-sampled to 46.080kHz in advance.
-        When the down-sampled audio is played back at 48kHz during 25fps play, tonality becomes 71 cents sharp &mdash; almost from C to C# and easily discerned.</TD></TR>
-<TR><TD class="right_nowrap"><B>PAL-soft</B>&nbsp;</TD>
-    <TD>is unforced cinema but with metadata that requests players to perform 24-to-25 telecine (to 25fps).
-        Since it is unforced, runtime and audio are true-to-cinema.
-        Whether PAL-soft videos actually exist is unknown.</TD></TR>
-<TR><TD class="right_nowrap"><B>PAL-hard</B>&nbsp;</TD>
-    <TD>(aka Euro telecine) is unforced cinema that has been 24-to-25 telecined to 25fps.
-        Since it is unforced, runtime and audio are true-to-cinema.
-        Whether PAL-hard videos actually exist is unknown.</TD></TR>
-<TR><TD class="right_nowrap"><B>NTSC-hard</B>&nbsp;</TD>
-    <TD>is cinema that has been 4-to-5 telecined to 30tps, then forced to 30'fps.
-        The forcing stretches each runtime hour to 1:00:03.6.
-        To retain audio sync with the forced video, 48kHz cinema audio has been up-sampled to 48.048kHz in advance.
-        When the up-sampled audio is played back at 48kHz during 30'fps play, tonality becomes 2 cents flat.</TD></TR></TABLE><BR><BR>
-
 <!-- Streams -->
 
 <A name="Streams">
@@ -171,6 +141,54 @@ Compare a 1kHz tone:
 after <TT>24fps[~0.96down~]25fps</TT> remux:
 <AUDIO controls style="width:10em;height:1.5em"><SOURCE src="1000Hz.PAL-fast.mp3" type="audio/mpeg"></AUDIO>.</DIV><BR>
 Any <I class="type">factor</I> is possible. <TT>1.001</TT> & <TT>0.96</TT> are merely the most common factors.<BR><BR><BR>
+
+<B>Giving names to commonly found media sources</B> &mdash; they're not part of the notation but they're useful.<BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD class="right_nowrap"><B>cinema</B>&nbsp;</TD>
+    <TD>is 24pps (pictures per second) as shot with cinema cameras and as shown in cinemas.<BR>
+        Notation, as pictures: <TT>24pps</TT>, as frames: <TT>[24pps]24fps</TT>.</TD></TR>
+<TR><TD class="right_nowrap"><B>cine-slow</B>&nbsp;</TD>
+    <TD>is cinema that has been forced to 24'fps.
+        The forcing stretches each runtime hour to 1:00:03.6.
+        To retain audio sync with the forced video, 48kHz cinema audio has been up-sampled to 48.048kHz in advance.
+        When the up-sampled audio is played back at 48kHz during 24'fps play, tonality becomes 2 cents flat &mdash; very little, but apparently enough to make musicians unhappy.<BR>
+        Notation: <TT>[24pps~1.001up~]24'fps</TT> or <TT>24fps[~1.001up~]24'fps</TT>.</TD></TR>
+<TR><TD class="right_nowrap"><B>NTSC-soft</B>&nbsp;</TD>
+    <TD>is cine-slow with transport metadata that requests players to perform 4-to-5 telecine (to 30'fps).<BR>
+        Notation: <TT>[24pps~1.001up~]24'fps</TT> or <TT>24fps[~1.001up~]24'fps</TT> &mdash; same as cine-slow.</TD></TR>
+<TR><TD class="right_nowrap"><B>PAL-fast</B>&nbsp;</TD>
+    <TD>(aka PAL speed-up) is cinema that has been forced to 25fps.
+        The forcing shrinks each runtime hour to 57:36.
+        To retain audio sync with the forced video, 48kHz cinema audio has been down-sampled to 46.080kHz in advance.
+        When the down-sampled audio is played back at 48kHz during 25fps play, tonality becomes 71 cents sharp &mdash; almost from C to C# and easily discerned.<BR>
+        Notation: <TT>[24pps~0.96down~]25fps</TT>.</TD></TR>
+<TR><TD class="right_nowrap"><B>PAL-soft</B>&nbsp;</TD>
+    <TD>is unforced cinema with transport metadata that requests players to perform 24-to-25 telecine (to 25fps).
+        Since it is unforced, runtime and audio are true-to-cinema.
+        Whether PAL-soft videos actually exist is unknown.<BR>
+        Notation: <TT>[24pps]24fps</TT>.</TD></TR>
+<TR><TD class="right_nowrap"><B>PAL-hard</B>&nbsp;</TD>
+    <TD>(aka Euro telecine) is unforced cinema that has been 24-to-25 telecined — 40 milliseconds halfpic-to-halfpic in the telepairs — to make 25fps.
+        Since it is unforced, runtime and audio are true-to-cinema.
+        Whether PAL-hard videos actually exist is unknown.<BR>
+        Notation: <TT>[24pps__48hps__(Aa-Xx)(Aa-LlLm-WxXx)=50hps__50pps]25fps</TT>.</TD></TR>
+<TR><TD class="right_nowrap"><B>NTSC-hard</B>&nbsp;</TD>
+    <TD>is unforced cinema that has been 4-to-5 telecined — 33.3[3..] milliseconds halfpic-to-halfpic in the telepairs — to make 30tps, then forced to 30'fps.
+        The forcing stretches each runtime hour to 1:00:03.6.
+        To retain audio sync with the forced video, 48kHz cinema audio has been up-sampled to 48.048kHz in advance.
+        When the up-sampled audio is played back at 48kHz during 30'fps play, tonality becomes 2 cents flat.<BR>
+        Notation from pictures: <TT>[24pps__48hps__(Aa-Dd)(AaBbBcCdDd)=60hps__30pps~1.001up~]30'fps</TT> or <TT>[24pps__48hps__(Aa-Dd)(AaAbBcCcDd)=60hps__30pps~1.001up~]30'fps</TT>.<BR>
+        Or NTSC-hard is cine-slow that has been transcoded to 30'fps via 4-to-5 telecine.<BR>
+        Notation from frames: <TT>24'fps[24'pps__48'hps__(Aa-Dd)(AaBbBcCdDd)=60'hps__30'pps]30'fps</TT> or <TT>24'fps[24'pps__48'hps__(Aa-Dd)(AaAbBcCcDd)=60'hps__30'pps]30'fps</TT>.
+<TR><TD class="right_nowrap"><B>PAL-scan</B>&nbsp;</TD>
+    <TD>is unforced PAL TV that has been field-interlaced &mdash; 20 milliseconds scan-to-scan &mdash; to make 25fps.
+        Since it is unforced, runtime and audio are true-to-television.<BR>
+        Notation: <TT>50fps[50hps__25sps]25fps</TT>.
+<TR><TD class="right_nowrap"><B>NTSC-scan</B>&nbsp;</TD>
+    <TD>is unforced NTSC TV that has been field-interlaced &mdash; 16.683[3..] milliseconds scan-to-scan &mdash; to make 30'fps.
+        Since it is unforced, runtime and audio are true-to-television.<BR>
+        Notation: <TT>60'fps[60'hps__30'sps]30'fps</TT>.
+        </TD></TR></TABLE><BR><BR>
 
 <!-- Strides -->
 
