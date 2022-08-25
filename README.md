@@ -6,7 +6,9 @@ Link to live page: https://markfilipak.github.io/Video-Object-Notation/
 Changes:
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD style="vertical-align:top">2022-08-25&nbsp;</TD>
-    <TD><B>Audio Conversions</B>: enhanced, now clearly remux.</TD></TR>
+    <TD><B>Audio Conversions</B>: enhanced, now clearly remux.<BR>
+        "<B>Giving names to commonly encountered cinema sources</B>" renamed "<B>Giving names to commonly found media sources</B>".<BR>
+        <B>Giving names to commonly found media sources</B>: Moved, PAL-scan & NTSC-scan added.</TD></TR>
 <TR><TD style="vertical-align:top">2022-08-23&nbsp;</TD>
     <TD><I><B>Extra Credit</B></I>: simplified, clarified.</TD></TR>
 <TR><TD style="vertical-align:top">2022-08-22&nbsp;</TD>
