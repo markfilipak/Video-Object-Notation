@@ -23,7 +23,7 @@ TT{background-color:#F0F0F0;padding:0 0.2em;white-space:nowrap}
 </HEAD>
 <BODY>
 
-<B>A Video Object Notation, by Mark Filipak, 2022-08-22.</B><BR>
+<B>A Video Object Notation, by Mark Filipak, 2022-08-25.</B><BR>
 Also available: A <A href="VideoNotation.StudioMedia.html">Studio Media Guide<A><BR><BR>
 
 Notations are read from left to right, beginning with a beginning stream and ending with an ending stream &mdash; see <A href="#Streams"><B>Streams</B></A>.<BR><BR>
@@ -156,9 +156,9 @@ Audio up- down-sampling is generally needed to synchronize audio to video change
 Typical: <TT>~1.001up~</TT> up-samples 48kHz audio to 48.048kHz.<BR>
 Typical: <TT>~0.96up~</TT> up-samples 46.08kHz audio back to 48kHz.</BLOCKQUOTE>
 <DIV>
-Compare a <TT>[24pps]24fps</TT> 1kHz tone,
+Compare a 1kHz tone:
 <AUDIO controls style="width:10em;height:1.5em"><SOURCE src="1000Hz.mp3" type="audio/mpeg"></AUDIO>,
-to <TT>[24pps~1.001up~]24'fps</TT>,
+after <TT>24fps[~1.001up~]24'fps</TT> remux:
 <AUDIO controls style="width:10em;height:1.5em"><SOURCE src="1000Hz.cine-slow.mp3" type="audio/mpeg"></AUDIO>.
 Try quickly clicking both!</DIV><BR>
 <TT>~</TT><I class="type">factor</I><TT>down~</TT> means down-sample audio by <I class="type">factor</I>.
@@ -166,9 +166,9 @@ Try quickly clicking both!</DIV><BR>
 Typical: <TT>~1.001down~</TT> down-samples 48.048kHz audio back to 48kHz.<BR>
 Typical: <TT>~0.96down~</TT> down-samples 48kHz audio to 46.08kHz.</BLOCKQUOTE>
 <DIV>
-Compare a <TT>[24pps]24fps</TT> 1kHz tone,
+Compare a 1kHz tone:
 <AUDIO controls style="width:10em;height:1.5em"><SOURCE src="1000Hz.mp3" type="audio/mpeg"></AUDIO>,
-to <TT>[24pps~0.96down~]25fps</TT>,
+after <TT>24fps[~0.96down~]25fps</TT> remux:
 <AUDIO controls style="width:10em;height:1.5em"><SOURCE src="1000Hz.PAL-fast.mp3" type="audio/mpeg"></AUDIO>.</DIV><BR>
 Any <I class="type">factor</I> is possible. <TT>1.001</TT> & <TT>0.96</TT> are merely the most common factors.<BR><BR><BR>
 
