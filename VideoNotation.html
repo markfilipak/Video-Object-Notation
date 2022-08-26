@@ -855,10 +855,10 @@ Below are NTSC & PAL detelecine notations.</SPAN><BR><BR>
   (Aa-Dd)         ...detelecine if 'seen'
 )</PRE></TD></TR></TABLE><BR>
 
-<B>50-to-48-detelecine.</B>
+<B>25-to-24-detelecine.</B>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-50hps__                    ...(beginning with halfpics),
+25tps__50hps__             ...unweave
 (Aa-LlLm-WxXx)(Aa-Xx)      ...'look' for ......................1.1......................2.2  & detelecine if 'seen', but if 'unseen',
 ((Aa-KkKl-VwWwXx)(Aa-Xx)    ...'look' for ....................1.1......................2.2..  & detelecine if 'seen', but if 'unseen',
  ((Aa-JjJk-UvVv-Xx)(Aa-Xx)   ...'look' for ..................1.1......................2.2....  & detelecine if 'seen', but if 'unseen',
@@ -871,21 +871,21 @@ Below are NTSC & PAL detelecine notations.</SPAN><BR><BR>
         ((Aa-CcCd-NoOo-Xx)(Aa-Xx)   ...'look' for ....1.1......................2.2..................  & detelecine if 'seen', but if 'unseen',
          ((AaBbBc-MnNn-Xx)(Aa-Xx)    ...'look' for ..1.1......................2.2....................  & detelecine if 'seen', but if 'unseen',
           ((AaAb-LmMm-Xx)(Aa-Xx)      ...'look' for 1.1......................2.2......................  & detelecine if 'seen'
-)))))))))))</PRE></TD></TR></TABLE>
+)))))))))))=48hps__24pps   ...weave</PRE></TD></TR></TABLE>
 
 Note how the look-seens have been constructed to 'look for' the latest possible inner match, first.
 That usually produces the best and fastest results.<BR><BR>
-Also note that 50-to-48-detelecine contains 12 nested look-seens.
+Also note that 25-to-24-detelecine contains 12 nested look-seens.
 One of the best properties of nested look-seens is that once a nesting level 'sees' an inner match, it continues 'looking' at the same level (without traversing the hierarchy) until the inner match fails.
 When the inner match fails, that nesting level's 'unseen' is executed.
 Within that 'unseen' term are found inner nesting levels.<BR><BR>
 Eventually, all inner levels go 'unseen'.
-At that time, the hierarchy is traversed once more from the beginning 'looking for' the current 50 halfpics against the inner matches. If all levels go 'unseen', then 50-to-48-detelecine finishes with status: 'all-unseen'.<BR><BR>
-When 50-to-48-detelecine finishes with 'all-unseen', it abandons the current 50 halfpics and passes just the first 2 halfpics to the output and increments the 'look' pointer by 2 instead of by 50.
+At that time, the hierarchy is traversed once more from the beginning 'looking for' the current 50 halfpics against the inner matches. If all levels go 'unseen', then 25-to-24-detelecine finishes with status: 'all-unseen'.<BR><BR>
+When 25-to-24-detelecine finishes with 'all-unseen', it abandons the current 50 halfpics and passes just the first 2 halfpics to the output and increments the 'look' pointer by 2 instead of by 50.
 It then resumes 'looking for' 12, 50 halfpic inner matches in the remaining input stream until the input stream is exhausted.<BR><BR>
 
 <SPAN class="commentary">
-The preceding description doesn't apply to solely 50-to-48-detelecine.
+The preceding description doesn't apply to solely 25-to-24-detelecine.
 It applies to all nested look-seens.
 Building an equivalent nested, back-&-forth, FFmpeg filter complex would be insanely difficult.
 In fact, building an equivalent FFmpeg filter complex is probably impossible.
