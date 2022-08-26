@@ -23,7 +23,7 @@ TT{background-color:#F0F0F0;padding:0 0.2em;white-space:nowrap}
 </HEAD>
 <BODY>
 
-<B>A Video Object Notation, by Mark Filipak, 2022-08-25.</B><BR>
+<B>A Video Object Notation, by Mark Filipak, 2022-08-26.</B><BR>
 Also available: A <A href="VideoNotation.StudioMedia.html">Studio Media Guide<A><BR><BR>
 
 Notations are read from left to right, beginning with a beginning stream and ending with an ending stream &mdash; see <A href="#Streams"><B>Streams</B></A>.<BR><BR>
@@ -811,7 +811,7 @@ They illustrate how the notation concisely documents subtle differences that wou
 ... /      /     _________________ (C_______)(b&d_____)..(Y_______)(x&z_____)  'seen', so (copy)(interpolate)
 .../      /     /
 (Ab)(A A&b(A ^&b))</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 30 halfpic interpolations per runtime second &mdash; Generations: 0.<BR><BR>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 30 halfpic interpolations per runtime second &mdash; Generations: 0-1.<BR><BR>
 
 <B>lse-decomb</B> &mdash; Preserves stride rate, avoids combing by interpolating, no bob, the end stride is half-bobbed.<BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
@@ -822,7 +822,7 @@ PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smoot
 ... /       /     _______________________________________ (Y&z_____)(z_______)  'endseen', so (half-bob)(copy)
 .../       /     /
 (Ab)((A&$ b)A&b b)</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 30 halfpic interpolations per runtime second &mdash; Generations: 0.<BR><BR>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 30 halfpic interpolations per runtime second &mdash; Generations: 1-0.<BR><BR>
 
 <B>lbse-decomb</B> &mdash; Doubles stride rate, avoids combing by interpolating, no bob, the beginning & end strides are half-bobbed.<BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
@@ -834,7 +834,7 @@ PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smoot
 ... /            /           /           ________________ (Y__)(x&z)(Y&z)(z__)  'endseen', so (copy)(interpolate)(half-bob)(copy)
 .../            /           /           /
 (Ab)(A A&b A&$ b(A ^&b A&$ b)A ^&b A&b b)</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 60 halfpic interpolations per runtime second &mdash; Generations: 0.<BR><BR>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 60 halfpic interpolations per runtime second &mdash; Generations: 0-1-1-0.<BR><BR>
 
 <SPAN class="commentary">
 Above: What if FFmpeg functions were so simple?
@@ -906,7 +906,7 @@ They illustrate how the notation can make complex operations compact and easy to
 ...           /                   /__ (a_-20%)(b_-20%)(c_-20%)(d_________+60%)  bottom halfpics
 ...          /                   /
 [24pps__48hps__(Aa-Dd)(AaBbBcCdDd)=60hps__30tps~1.001up~]30'fps</PRE></TD></TR></TABLE>
-PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%/2) [see note&nbsp;1] @ 6 judders per second &mdash; Cadence: 4+3+3+3+3 (which is 2+1+1+2+2 plus 2+2+2+1+1 superimposed [see note&nbsp;2]) &mdash; Burden: None &mdash; Generations: 0.
+PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%/2) [see note&nbsp;1] @ 6 judders per second &mdash; Cadence: 4+3+3+3+3 (which is 2+1+1+2+2 plus 2+2+2+1+1 superimposed [see note&nbsp;2]) &mdash; Burden: None &mdash; Generations: 0-0-0-0.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;1]&nbsp;</TD>
     <TD>Judder is the worst case picture 'jump' at any frame-to-frame change.
@@ -939,7 +939,7 @@ PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%
 ]30fps                            ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]  'seen' encode
                                   ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3________+60%][D_________-20%]  'endseen' encode</PRE></TD></TR></TABLE>
 
-PTSs: Forced 30pps to 30'fps &mdash; Combing: None &mdash; Judder: 27% @ 6 judders per second &mdash; Cadence: 3+3+4+3+3 &mdash; Burden: 36 picture interpolations per runtime second &mdash; Generations: 2-1-1-2.<BR><BR>
+PTSs: Forced 30pps to 30'fps &mdash; Combing: None &mdash; Judder: 27% @ 6 judders per second &mdash; Cadence: 3+3+4+3+3 &mdash; Burden: 36 picture interpolations per runtime second &mdash; Generations: 0-2-1-1-2.<BR><BR>
 
 <A name="1-to-5-interpolation">
 <B>1-to-5-interpolation:</B> A telecine alternative &mdash; 4-pass interpolation &mdash; smooth video optimized for 60Hz & 120Hz TVs.<BR>
@@ -956,7 +956,7 @@ PTSs: Forced 30pps to 30'fps &mdash; Combing: None &mdash; Judder: 27% @ 6 judde
 ((A A..&..&...&..&..$)            ... (A____________)(I1___________)(I2________________)(I3___________)(I4___________)  'seen'
   AAAAA)                          ... (A____________)(A____________)(A_________________)(A____________)(A____________)  'endseen'
 ]120fps                           ... [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]  'seen' encode</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: None &mdash; Judder: 27% @ 24 judders per second [see note&nbsp;1] &mdash; Cadence: 3+3+4+3+3 &mdash; Burden: 216 picture interpolations per runtime second &mdash; Generations: 4-3-3-4.<BR><BR>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: 27% @ 24 judders per second [see note&nbsp;1] &mdash; Cadence: 3+3+4+3+3 &mdash; Burden: 216 picture interpolations per runtime second &mdash; Generations: 0-4-3-3-4.<BR><BR>
 <A name="60Hz">
 1-to-5-interpolation on 120Hz & 60Hz TVs compared:
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
@@ -964,7 +964,7 @@ PTSs: Unforced &mdash; Combing: None &mdash; Judder: 27% @ 24 judders per second
                                       (A____________)(I1___________)(I2________________)(I3___________)(I4___________)..  'seen'
                                       [A________+6.7%][I1_______+6.7%][I2________-20%][I3_______+6.7%][I4_______+6.7%]..  on 120Hz TV
                                       [A________________________+6.7%][I2_______________________-8.5%][I4_____________..  on 60Hz TV</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: None &mdash; Judder: 15% @ 24 judders per second [see note&nbsp;1] &mdash; Cadence: 6+7+6+7+6 &mdash; Burden: 216 picture interpolations per runtime second &mdash; Generations: 4-3-3-4.
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: 15% @ 24 judders per second [see note&nbsp;1] &mdash; Cadence: 6+7+6+7+6 &mdash; Burden: 216 picture interpolations per runtime second &mdash; Generations: 0-4-3-3-4.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;1]&nbsp;</TD>
     <TD>Judder rates above 17 judders per second are generally considered judder-free.</TD></TR></TABLE><BR><BR>
@@ -1094,7 +1094,7 @@ That 60Hz TVs having variable rate screens will sync to and play 57.6'fps just f
 <TR><TD><PRE>
 24'fps[24'pps__(A-E)
 ( ( A A......&B B....&..C C...&...D D..&....E E&......$ ) A A......&B B....&..C C...&...D D..&....E E )=28.8'pps__(1)(11)]57.6'fps</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: ___ &mdash; Judder: ___% @ ___ judders per second &mdash; Cadence: ___+___+___+___+___+___ &mdash; Burden: ___ &mdash; Generations: ___-___-___-___-___.<BR><BR>
+PTSs: Unforced &mdash; Combing: ___ &mdash; Judder: ___% @ ___ judders per second &mdash; Cadence: ___+___+___+___+___+___ &mdash; Burden: ___ &mdash; Generations: ___-___-___-___-___-___.<BR><BR>
 
 <SPAN class="commentary">
 Can you fill in the blanks?</SPAN><BR><BR>
@@ -1123,7 +1123,7 @@ Can you fill in the blanks?</SPAN><BR><BR>
 (A__________________)(I1______________)(I2_________________)(I3_________________)(I4______________)(I5_________________)  interp pictures
 [A_______][A_______][I1______][I1______][I2______][I2______][I3______][I3______][I4______][I4______][I5______][I5______]  57.6'fps
 (A____________-4.8%)(I1__________+11.1%)(I2___________-4.8%)(I3___________-4.8%)(I4__________+11.1%)(I5___________-4.8%)  28.8'pps pictures</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: None &mdash; Judder: 16% @ 9.6 judders per second &mdash; Cadence: 7+6+7+7+6+7 &mdash; Burden: 62.4 picture interpolations per runtime second &mdash; Generations: 3-3-1-3-3.<BR><BR>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: 16% @ 9.6 judders per second &mdash; Cadence: 7+6+7+7+6+7 &mdash; Burden: 62.4 picture interpolations per runtime second &mdash; Generations: 0-3-3-1-3-3.<BR><BR>
 
 <SPAN class="commentary">
 The following table compares the approaches. The numbers speak for themselves.</SPAN><BR>
@@ -1152,7 +1152,7 @@ The following table compares the approaches. The numbers speak for themselves.</
     <TD></TD>
     <TD class="center_nowrap">none</TD>
     <TD></TD>
-    <TD class="center_nowrap">0-0-0-0</TD></TR>
+    <TD class="center_nowrap">0-0-0-0-0</TD></TR>
 <TR><TD><A href="#4-to-5-interpolation">24'pps to 30'pps via 4-to-5-interpolation</A></TD>
     <TD class="center_nowrap">none</TD>
     <TD></TD>
@@ -1164,7 +1164,7 @@ The following table compares the approaches. The numbers speak for themselves.</
     <TD></TD>
     <TD class="center_nowrap">36</TD>
     <TD></TD>
-    <TD class="center_nowrap">2-1-1-2</TD></TR>
+    <TD class="center_nowrap">0-2-1-1-2</TD></TR>
 <TR><TD><A href="#1-to-5-interpolation">24'pps to 120'pps via 1-to-5-interpolation</A></TD>
     <TD class="center_nowrap">none</TD>
     <TD></TD>
@@ -1176,7 +1176,7 @@ The following table compares the approaches. The numbers speak for themselves.</
     <TD></TD>
     <TD class="center_nowrap">216</TD>
     <TD></TD>
-    <TD class="center_nowrap">4-3-3-4</TD></TR>
+    <TD class="center_nowrap">0-4-3-3-4</TD></TR>
 <TR><TD>24'pps to 28.8'pps via 5-to-6 interpolation</TD>
     <TD class="center_nowrap">none</TD>
     <TD></TD>
@@ -1188,7 +1188,7 @@ The following table compares the approaches. The numbers speak for themselves.</
     <TD></TD>
     <TD class="center_nowrap">62.4</TD>
     <TD></TD>
-    <TD class="center_nowrap">3-3-1-3-3</TD></TR></TABLE>
+    <TD class="center_nowrap">0-3-3-1-3-3</TD></TR></TABLE>
 
 <SPAN class="commentary">
 Tradeoffs:<BR>
