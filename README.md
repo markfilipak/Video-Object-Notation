@@ -6,7 +6,8 @@ Link to live page: https://markfilipak.github.io/Video-Object-Notation/
 Changes:
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD style="vertical-align:top">2022-08-26&nbsp;</TD>
-    <TD>Globally added to generations: 1st elements of strides (oops).</TD></TR>
+    <TD>Globally added to generations: 1st elements of strides (oops).<BR>
+        "<B>25-to-24-detelecine</B>" was "<B>50-to-48-detelecine</B>".</TD></TR>
 <TR><TD style="vertical-align:top">2022-08-25&nbsp;</TD>
     <TD><B>Audio Conversions</B>: enhanced, now clearly remux.<BR>
         "<B>Giving names to commonly encountered cinema sources</B>" renamed "<B>Giving names to commonly found media sources</B>".<BR>
