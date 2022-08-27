@@ -811,7 +811,7 @@ They illustrate how the notation concisely documents subtle differences that wou
 ... /      /     _________________ (C_______)(b&d_____)..(Y_______)(x&z_____)  'seen', so (copy)(interpolate)
 .../      /     /
 (Ab)(A A&b(A ^&b))</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 30 halfpic interpolations per runtime second &mdash; Generations: 0-1.<BR><BR>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 30 halfpic interpolations per runtime second &mdash; Generations: (0+1).<BR><BR>
 
 <B>lse-decomb</B> &mdash; Preserves stride rate, avoids combing by interpolating, no bob, the end stride is half-bobbed.<BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
@@ -822,7 +822,7 @@ PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smoot
 ... /       /     _______________________________________ (Y&z_____)(z_______)  'endseen', so (half-bob)(copy)
 .../       /     /
 (Ab)((A&$ b)A&b b)</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 30 halfpic interpolations per runtime second &mdash; Generations: 1-0.<BR><BR>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 30 halfpic interpolations per runtime second &mdash; Generations: (1+0).<BR><BR>
 
 <B>lbse-decomb</B> &mdash; Doubles stride rate, avoids combing by interpolating, no bob, the beginning & end strides are half-bobbed.<BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
@@ -834,7 +834,7 @@ PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smoot
 ... /            /           /           ________________ (Y__)(x&z)(Y&z)(z__)  'endseen', so (copy)(interpolate)(half-bob)(copy)
 .../            /           /           /
 (Ab)(A A&b A&$ b(A ^&b A&$ b)A ^&b A&b b)</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 60 halfpic interpolations per runtime second &mdash; Generations: 0-1-1-0.<BR><BR>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 60 halfpic interpolations per runtime second &mdash; Generations: (0+1)-(1+0).<BR><BR>
 
 <SPAN class="commentary">
 Above: What if FFmpeg functions were so simple?
