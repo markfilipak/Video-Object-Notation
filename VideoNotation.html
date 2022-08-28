@@ -23,7 +23,7 @@ TT{background-color:#F0F0F0;padding:0 0.2em;white-space:nowrap}
 </HEAD>
 <BODY>
 
-<B>A Video Object Notation, by Mark Filipak, 2022-08-27.</B><BR>
+<B>A Video Object Notation, by Mark Filipak, 2022-08-28.</B><BR>
 Also available: A <A href="VideoNotation.StudioMedia.html">Studio Media Guide<A><BR><BR>
 
 Notations are read from left to right, beginning with a beginning stream and ending with an ending stream &mdash; see <A href="#Streams"><B>Streams</B></A>.<BR><BR>
@@ -743,23 +743,23 @@ Nesting look-seen notations can create extremely complex processes that are none
 
 Example of look-seen stream handling for simple block filtering.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD><PRE>
-(1)(1)   ...'look for' any single input element and, if 'seen', pass it to the right &ndash; a do-nothing look-seen</PRE></TD></TR></TABLE>
+<TR><TD><TT>(1)(1)</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...'look for' any single input element and, if 'seen', pass it to the right &ndash; a do-nothing look-seen</TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD><PRE>
-(1)()   ...'look for' any single input element and, if 'seen', pass nothing to the right &ndash; discards all streams</PRE></TD></TR></TABLE>
+<TR><TD><TT>(1)()</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...'look for' any single input element and, if 'seen', pass nothing to the right &ndash; discards all streams</TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD><PRE>
-(<I><B>look</B></I>)( (1)() )   ...filters out a particular stream (i.e., discards all 'seen' strides)</PRE></TD></TR></TABLE>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)((1)())</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...filters out a particular stream (i.e., discards all 'seen' strides)</TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD><PRE>
-(<I><B>look</B></I>)(<I><B>seen</B></I>)( (1)() )   ...filters out all other streams (i.e., discards all 'unseen' strides)</PRE></TD></TR></TABLE>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)(</TT><I><B>seen</B></I><TT>)((1)())</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...filters out all other streams (i.e., discards all 'unseen' strides)</TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD><PRE>
-(<I><B>look</B></I>)( (1)() (<I><B>seen</B></I>))   ...discards a particular stream's beginning stride</PRE></TD></TR></TABLE>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)((1)()(</TT><I><B>seen</B></I><TT>))</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...discards a particular stream's beginning stride</TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD><PRE>
-(<I><B>look</B></I>)((<I><B>seen</B></I>) (1)() )   ...discards a particular stream's ending stride</PRE></PRE></TD></TR></TABLE><BR>
+<TR><TD><TT>(</TT><I><B>look</B></I><TT>)((</TT><I><B>seen</B></I><TT>)(1)())</TT></TD>
+    <TD>&nbsp;&nbsp;&nbsp;...discards a particular stream's ending stride</TD></TR></TABLE><BR>
 
 Example of look-seen stream handling for 5-to-4-detelecine.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
