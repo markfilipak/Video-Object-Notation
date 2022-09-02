@@ -23,7 +23,7 @@ TT{background-color:#F0F0F0;padding:0 0.2em;white-space:nowrap}
 </HEAD>
 <BODY>
 
-<B>Studio Media Guide, by Mark Filipak, 2022-08-23.</B><BR><BR>
+<B>Studio Media Guide, by Mark Filipak, 2022-09-01.</B><BR><BR>
 
 <SPAN class="bold">Looking at only studio Blu-rays & DVDs, how many video species are there and how can they be positively and reliably identified?</SPAN><BR>
 Use FFprobe <SPAN style="white-space:nowrap">(https://ffmpeg.org/download.html)</SPAN> &mdash; installation is not required &mdash; pull FFprobe out of it and run it.<BR>
@@ -333,65 +333,6 @@ Either "DAR/SAR" or "(pixels per row)/(rows per frame)" are preferred.<BR>
 <TR><TD>[note&nbsp;1]&nbsp;</TD>
     <TD>To see the match in the H.262 specification, refer to the equation in section 6.3.3, "Sequence header", and substitute 1/SAR for H.262's upside-down SAR, and substitute 1/DAR for H.262's upside-down DAR.</TD></TR></TABLE><BR><BR>
 
-<B>Cinema media reference.</B> Studio Blu-rays & DVDs never contain cinema but, instead, contain one of the following:
-<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD><PRE>
-                             __________MPV Shift+I displays___________  _______________________FFprobe reports_____________________
-16:9 cine-slow [see note 1]  FPS 23.976 (specified) 23.976 (estimated)  1920x1080 [SAR 1:1 DAR 16:9], 23.98 fps, 23.98 tbr, 90k tbn
- 4:3 cine-slow [see note 1]  FPS 23.976 (specified) 23.976 (estimated)  1920x1080 [SAR 1:1 DAR 4:3], 23.98 fps, 23.98 tbr, 90k tbn
-16:9 NTSC-soft [see note 2]  FPS 29.970 (specified) 23.976 (estimated)   720x480 [SAR 32:27 DAR 16:9], 29.97 fps, 59.94 tbr, 90k tbn
- 4:3 NTSC-soft [see note 2]  FPS 29.970 (specified) 23.976 (estimated)   720x480 [SAR 8:9 DAR 4:3], 29.97 fps, 59.94 tbr, 90k tbn
-16:9  PAL-fast [see note 3]  FPS 25.000 (specified) 25.000 (estimated)   720x576 [SAR 64:45 DAR 16:9], 25 fps, 25 tbr, 90k tbn
- 4:3  PAL-fast [see note 3]  FPS 25.000 (specified) 25.000 (estimated)   720x576 [SAR 16:15 DAR 4:3], 25 fps, 25 tbr, 90k tbn
-16:9  PAL-soft [see note 4]          -unknown (no specimens)-                              -unknown (no specimens)-
- 4:3  PAL-soft [see note 4]          -unknown (no specimens)-                              -unknown (no specimens)-
-16:9  PAL-hard [see note 5]          -unknown (no specimens)-                              -unknown (no specimens)-
- 4:3  PAL-hard [see note 5]          -unknown (no specimens)-                              -unknown (no specimens)-
-16:9 NTSC-hard [see note 6]  FPS 29.970 (specified) 29.970 (estimated)   720x480 [SAR 32:27 DAR 16:9], 29.97 fps, 29.97 tbr, 90k tbn
- 4:3 NTSC-hard [see note 6]  FPS 29.970 (specified) 29.970 (estimated)   720x480 [SAR 8:9 DAR 4:3], 29.97 fps, 29.97 tbr, 90k tbn</TD></TR></TABLE>
-<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD>[note&nbsp;1]&nbsp;</TD>
-    <TD>Cine-slow is cinema forced from 3750 PTS ticks per second to 3753.75.
-        The forcing stretches each runtime hour to 1:00:03.6.
-        To retain audio sync with the forced video, 48kHz cinema audio has been up-sampled to 48.048kHz in advance.
-        When the up-sampled audio is forced back to 48kHz during 24'fps play, tonality becomes 2 cents flat [see note&nbsp;7].</TD></TR></TABLE>
-<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD>[note&nbsp;2]&nbsp;</TD>
-    <TD>NTSC-soft is cinema forced from 3750 PTS ticks per second to 3753.75 and with metadata that requests player telecine to 3003 PTS ticks per second.
-        Runtime and audio are identical to cine-slow.</TD></TR></TABLE>
-<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD>[note&nbsp;3]&nbsp;</TD>
-    <TD>PAL-fast is cinema forced from 3750 PTS ticks per second to 3600.
-        The forcing shrinks each runtime hour to 57:36.
-        To retain audio sync with the forced video, 48kHz cinema audio has been down-sampled to 46.080kHz in advance.
-        When the down-sampled audio is forced back to 48kHz during 25fps play, tonality becomes 71 cents sharp [see note&nbsp;8].</TD></TR></TABLE>
-<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD>[note&nbsp;4]&nbsp;</TD>
-    <TD>PAL-soft is unforced cinema but with metadata that requests player telecine to 3600 PTS ticks per second.
-        Since it is unforced, runtime and audio are cinema-true.
-        Whether PAL-soft videos actually exist is unknown.</TD></TR></TABLE>
-<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD>[note&nbsp;5]&nbsp;</TD>
-    <TD>PAL-hard is unforced cinema telecined to 3600 ticks per second.
-        Since it is unforced, runtime and audio are cinema-true.
-        Whether PAL-hard videos actually exist is unknown.</TD></TR></TABLE>
-<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD>[note&nbsp;6]&nbsp;</TD>
-    <TD>NTSC-hard is cinema telecined to 3000 PTS ticks per second, then forced to 3003.
-        The forcing stretches each runtime hour to 1:00:03.6.
-        To retain audio sync with the forced video, 48kHz cinema audio has been up-sampled to 48.048kHz in advance.
-        When the up-sampled audio is forced back to 48kHz during 30'fps play, tonality becomes 2 cents flat [see note&nbsp;7].</TD></TR></TABLE>
-<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD>[note&nbsp;7]&nbsp;</TD>
-    <TD>No players play at 24pps (i.e., unforced) because the included audio has already been upsampled.
-        Unforcing the video with upsampled audio would produce unsynchronized audio.
-        Players could downsample the upsampled audio but that is time consuming, so they don't bother playing at 24pps.</TD></TR></TABLE>
-<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD>[note&nbsp;8]&nbsp;</TD>
-    <TD>No players play at 24pps (i.e., unforced) because the included audio has already been downsampled.
-        Unforcing the video with downsampled audio would produce unsynchronized audio.
-        Players could upsample the downsampled audio but that is time consuming, so they don't bother playing at 24pps.</TD></TR></TABLE><BR>
-
 <B>Summary of media v. cinema runtimes</B>.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
@@ -441,12 +382,12 @@ Panavision Super 70 2.19   1.912 x 0.870  in  48.56 x 22.10 mm                 I
             Todd-AO 2.20                      48.60 x 22.00 mm                 ASA standard &mdash; [see R&M]
 Super Technirama 70 2.20                      48.60 x 22.00 mm                 ASA standard &mdash; [see C&H] p.29
         CinemaScope 2.34                      21.31 x 18.16 mm  2x anamorph    ASA standard &mdash; [see R&M]
-     SuperScope 235 2.35   0.715 x 0.608  in  18.16 x 15.45 mm  2x anamorph                 &mdash; [see see note&nbsp;2]
+     SuperScope 235 2.35   0.715 x 0.608  in  18.16 x 15.45 mm  2x anamorph                 &mdash; [see note&nbsp;2]
                     2.30                      21.00 x 18.20 mm                 DIN standard &mdash; ARRI ground glass K2.44420.C
                     2.35                      23.50 x 10.00 mm                 DIN standard &mdash; ARRI ground glass K2.44420.F
         CinemaScope 2.39   0.838 x 0.700  in                    2x anamorph   ANSI standard &mdash; [see SMPTE&nbsp;80] p.843
       Panavision 35 2.39   0.825 x 0.690  in  20.96 x 17.53 mm  2x anamorph                 &mdash; [see Pytlak&nbsp;2]
-         Technirama 2.41   1.421 x 0.881  in  36.11 x 22.38 mm  1.5x anamorph 35mm 'lazy-8' &mdash; [see see note&nbsp;3]
+         Technirama 2.41   1.421 x 0.881  in  36.11 x 22.38 mm  1.5x anamorph 35mm 'lazy-8' &mdash; [see note&nbsp;3]
         CinemaScope 2.55   0.912 x 0.715  in  23.16 x 18.16 mm  2x anamorph    ASA standard &mdash; [see SMPTE&nbsp;64] p.688, [see R&M]
 </PRE></TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>

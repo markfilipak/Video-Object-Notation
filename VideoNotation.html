@@ -23,8 +23,10 @@ TT{background-color:#F0F0F0;padding:0 0.2em;white-space:nowrap}
 </HEAD>
 <BODY>
 
-<B>A Video Object Notation, by Mark Filipak, 2022-08-28.</B><BR>
-Also available: A <A href="VideoNotation.StudioMedia.html">Studio Media Guide<A><BR><BR>
+<B>A Video Object Notation, by Mark Filipak, 2022-09-01.</B><BR>
+Also available:<BR>
+<A href="VideoNotation.Oddities.html">Oddities<A><BR>
+<A href="VideoNotation.StudioMedia.html">A Studio Media Guide<A><BR><BR>
 
 Notations are read from left to right, beginning with a beginning stream and ending with an ending stream &mdash; see <A href="#Streams"><B>Streams</B></A>.<BR><BR>
 
@@ -145,50 +147,57 @@ Any <I class="type">factor</I> is possible. <TT>1.001</TT> & <TT>0.96</TT> are m
 <B>Giving names to commonly found media sources</B> &mdash; they're not part of the notation but they're useful.<BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD class="right_nowrap"><B>cinema</B>&nbsp;</TD>
-    <TD>is 24pps (pictures per second) as shot with cinema cameras and as shown in cinemas.<BR>
-        Notation, as pictures: <TT>24pps</TT>, as frames: <TT>[24pps]24fps</TT>.</TD></TR>
+    <TD>is 24pps (pictures per second) as shot with cinema cameras and as shown in cinemas (<I>'progressive_frame' = 1</I>, <I>'frame_rate_code' = 0010</I>).
+        Notation, as pictures: <TT>24pps</TT>, or as frames: <TT>[24pps]24fps</TT>.</TD></TR>
 <TR><TD class="right_nowrap"><B>cine-slow</B>&nbsp;</TD>
-    <TD>is cinema that has been forced to 24'fps.
-        The forcing stretches each run-time hour to 1:00:03.6.
+    <TD>is cinema pictures (<I>'progressive_frame' = 1</I>) that has been forced to 24'fps (<I>'frame_rate_code' = 0001</I>).
+        The forcing stretches each run-time hour by 3.6 seconds.
         To retain audio sync with the forced video, 48kHz cinema audio has been up-sampled to 48.048kHz in advance.
-        When the up-sampled audio is played back at 48kHz during 24'fps play, tonality becomes 2 cents flat &mdash; very little, but apparently enough to make musicians unhappy.<BR>
-        Notation: <TT>[24pps~1.001up~]24'fps</TT> or <TT>24fps[~1.001up~]24'fps</TT>.</TD></TR>
+        As a result, when played back, tonality is 2 cents flat &mdash; very little, but apparently enough to make musicians unhappy.
+        Notation: <TT>[24pps~1.001up~]24'fps</TT>.</TD></TR>
 <TR><TD class="right_nowrap"><B>NTSC-soft</B>&nbsp;</TD>
-    <TD>is cine-slow with transport metadata that requests players to perform 4-to-5 telecine (to 30'fps).<BR>
-        Notation: <TT>[24pps~1.001up~]24'fps</TT> or <TT>24fps[~1.001up~]24'fps</TT> &mdash; same as cine-slow.</TD></TR>
+    <TD>is cine-slow (<I>'progressive_frame' = 1</I>, <I>'frame_rate_code' = 0001</I>) that requests players to perform 2-3-2-3 telecine (<I>'top_field_first','repeat_first_field' = 1,0 1,1 0,0 0,1 etc.</I>).
+        Notation: <TT>[24pps~1.001up~]24'fps</TT> &mdash; the same as cine-slow.</TD></TR>
 <TR><TD class="right_nowrap"><B>PAL-fast</B>&nbsp;</TD>
-    <TD>(aka PAL speed-up) is cinema that has been forced to 25fps.
-        The forcing shrinks each run-time hour to 57:36.
+    <TD>(aka PAL speed-up) is cinema that has been unweaved (<I>'progressive_frame' = 0</I>) and forced to 25fps (<I>'frame_rate_code' = 0011</I>).
+        The forcing shrinks each run-time hour by 2 minutes 24 seconds.
         To retain audio sync with the forced video, 48kHz cinema audio has been down-sampled to 46.080kHz in advance.
-        When the down-sampled audio is played back at 48kHz during 25fps play, tonality becomes 71 cents sharp &mdash; almost from C to C# and easily discerned.<BR>
-        Notation: <TT>[24pps~0.96down~]25fps</TT>.</TD></TR>
+        As a result, when played back, tonality is 71 cents sharp &mdash; almost from C to C# and easily discerned.
+        Notation: <TT>[24pps__24sps~0.96down~]25fps</TT>.</TD></TR>
 <TR><TD class="right_nowrap"><B>PAL-soft</B>&nbsp;</TD>
-    <TD>is unforced cinema with transport metadata that requests players to perform 24-to-25 telecine (to 25fps).
-        Since it is unforced, run-time and audio are true-to-cinema.
-        Whether PAL-soft videos actually exist is unknown.<BR>
-        Notation: <TT>[24pps]24fps</TT>.</TD></TR>
+    <TD>is unforced cinema (<I>'progressive_frame' = 1</I>, <I>'frame_rate_code' = 0010</I>) that requests players to perform Euro telecine.
+        Since it is unforced, run-time and audio are true-to-life.
+        Notation: <TT>[24pps]24fps</TT>.
+        Whether PAL-soft videos actually exist is unknown.</TD></TR>
 <TR><TD class="right_nowrap"><B>PAL-hard</B>&nbsp;</TD>
-    <TD>(aka Euro telecine) is unforced cinema that has been 24-to-25 telecined — 40 milliseconds halfpic-to-halfpic in the telepairs — to make 25fps.
-        Since it is unforced, run-time and audio are true-to-cinema.
-        Whether PAL-hard videos actually exist is unknown.<BR>
-        Notation: <TT>[24pps__48hps__(Aa-Xx)(Aa-LlLm-WxXx)=50hps__50pps]25fps</TT>.</TD></TR>
+    <TD>is unforced cinema that has been unweaved (<I>'progressive_frame' = 0</I>, <I>'frame_rate_code' = 0011</I>) and Euro telecined.
+        Since it is unforced, run-time and audio are true-to-life.
+        Notation: <TT>[24pps__48hps__(Aa-Xx)(Aa-LlLm-WxXx)=50hps__50tps]25fps</TT>.
+        Whether PAL-hard videos actually exist is unknown.</TD></TR>
 <TR><TD class="right_nowrap"><B>NTSC-hard</B>&nbsp;</TD>
-    <TD>is unforced cinema that has been 4-to-5 telecined — 33.3[3..] milliseconds halfpic-to-halfpic in the telepairs — to make 30tps, then forced to 30'fps.
-        The forcing stretches each run-time hour to 1:00:03.6.
+    <TD>is cinema that has been unweaved (<I>'progressive_frame' = 0</I>), 2-3-2-3 telecined, and forced to 30'fps (<I>'frame_rate_code' = 0100</I>).
+        The forcing stretches each run-time hour by 3.6 seconds.
         To retain audio sync with the forced video, 48kHz cinema audio has been up-sampled to 48.048kHz in advance.
-        When the up-sampled audio is played back at 48kHz during 30'fps play, tonality becomes 2 cents flat.<BR>
-        Notation from pictures: <TT>[24pps__48hps__(Aa-Dd)(AaBbBcCdDd)=60hps__30pps~1.001up~]30'fps</TT> or <TT>[24pps__48hps__(Aa-Dd)(AaAbBcCcDd)=60hps__30pps~1.001up~]30'fps</TT>.<BR>
-        Or NTSC-hard is cine-slow that has been transcoded to 30'fps via 4-to-5 telecine.<BR>
-        Notation from frames: <TT>24'fps[24'pps__48'hps__(Aa-Dd)(AaBbBcCdDd)=60'hps__30'pps]30'fps</TT> or <TT>24'fps[24'pps__48'hps__(Aa-Dd)(AaAbBcCcDd)=60'hps__30'pps]30'fps</TT>.
+        As a result, when played back, tonality is 2 cents flat.
+        Notation: Usually <TT>[24pps__48hps__(Aa-Dd)(AaBbBcCdDd)=60hps__30tps~1.001up~]30'fps</TT>.</TD></TR>
 <TR><TD class="right_nowrap"><B>PAL-scan</B>&nbsp;</TD>
-    <TD>is unforced PAL TV that has been field-interlaced &mdash; 20 milliseconds scan-to-scan &mdash; to make 25fps.
-        Since it is unforced, run-time and audio are true-to-television.<BR>
-        Notation: <TT>50fps[50hps__25sps]25fps</TT>.
+    <TD>is unforced PAL scanpairs (<I>'progressive_frame' = 0</I>) at 25fps (<I>'frame_rate_code' = 0011</I>, usually <I>'top_field_first' = 0</I>).
+        It is derived from PAL TV at 50fps (<I>'frame_rate_code' = 0110</I>) but TV does not appear in media streams.
+        Since it is unforced, run-time and audio are true-to-life.
+        Notation: <TT>[50hps__25sps]25fps</TT>.</TD></TR>
 <TR><TD class="right_nowrap"><B>NTSC-scan</B>&nbsp;</TD>
-    <TD>is unforced NTSC TV that has been field-interlaced &mdash; 16.683[3..] milliseconds scan-to-scan &mdash; to make 30'fps.
-        Since it is unforced, run-time and audio are true-to-television.<BR>
-        Notation: <TT>60'fps[60'hps__30'sps]30'fps</TT>.
-        </TD></TR></TABLE><BR><BR>
+    <TD>is unforced NTSC scanpairs (<I>'progressive_frame' = 0</I>) at 30'fps (<I>'frame_rate_code' = 0100</I>, usually <I>'top_field_first' = 1</I>).
+        It is derived from NTSC.
+        Since it is unforced, run-time and audio are true-to-life.
+        Notation: <TT>[60'hps__30'sps]30'fps</TT>.</TD></TR>
+<TR><TD class="right_nowrap"><B>PAL</B>&nbsp;</TD>
+    <TD>is unforced, non-interlaced (<I>'progressive_frame' = 0</I>) halfpic-per-frame at 50fps (<I>'frame_rate_code' = 0110</I>, usually <I>'top_field_first' = ?</I>).
+        Since it is unforced, run-time and audio are true-to-life.
+        Notation: <TT>[50hps]50fps</TT>.</TD></TR>
+<TR><TD class="right_nowrap"><B>NTSC</B>&nbsp;</TD>
+    <TD>is unforced, non-interlaced (<I>'progressive_frame' = 0</I>) halfpic-per-frame at 60'fps (<I>'frame_rate_code' = 0111</I>, usually <I>'top_field_first' = 1</I>).
+        Since it is unforced, run-time and audio are true-to-life.
+        Notation: <TT>[60'hps]60'fps</TT>.</TD></TR></TABLE><BR><BR>
 
 <!-- Strides -->
 
@@ -418,14 +427,6 @@ Example: <TT>[.pictures(24,240)__(12)(1.fill(red)2.fill(blue))__48hps__(Aa-Dd)(A
         </TABLE></TD></TR></TABLE><BR><BR>
 
 
-<SPAN class="commentary">
-The notation strictly distinguishes between images versus frames.
-To appreciate the difference consider this: <A href="#4-to-5-interpolation" class="commentary">4-to-5-interpolation</A> creates strides of interpolated pictures having durations 1/32,
-1/32, 1/24, 1/32, 1/32 seconds.
-When those pictures are forced into 1/30 second frames, they exhibit 27% judder @ 24 judders per second and 3+3+4+3+3 cadence.
-A clear distinction between images and frames make such computations (and comparisons based on them) possible &mdash; compare judder percent, judders per second, and cadence with parameters such as "fast", "medium", "slow", "extra_slow", etc. found in typical video tools.
-To prepare readers for such distinctions, some terms need to be introduced.</SPAN><BR><BR>
-
 <!-- Terms -->
 
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
@@ -582,11 +583,11 @@ Basic picture stream processing as notation (in which the functions are implied)
 <B>An introduction to basic scan stream processing</B>, bob decombing.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-[25sps__50hps__(Ab)(AAbb)=100hps__50pps]50fps</PRE></TD></TR>
+25sps__50hps__(Ab)(AAbb)=100hps__50pps</PRE></TD></TR>
 </TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-[30'sps__60'hps__(Ab)(AAbb)=120'hps__60'pps]60'fps</PRE></TD></TR></TABLE><BR><BR>
+30'sps__60'hps__(Ab)(AAbb)=120'hps__60'pps</PRE></TD></TR></TABLE><BR><BR>
 
 
 <!-- Look-seen notation & scanner -->
@@ -802,7 +803,7 @@ AbCdEfGgHhHiIjJjKkLlLmMnNnOoOpPqQqRrSsStTuUuVvWxYz                              
 Below are 3 bob alternatives.
 They illustrate how the notation concisely documents subtle differences that would be difficult to describe in words.</SPAN><BR><BR>
 
-<B>lbs-decomb</B> &mdash; Preserves stride rate, avoids combing by interpolating, no bob, the beginning stride is half-bobbed.<BR>
+<B>LBS-decomb</B> &mdash; Preserves stride rate, avoids combing by interpolating, no bob, the beginning stride is half-bobbed.<BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
 ...            +-begin-stride----->+-more-strides----->  +-end-stride------->
@@ -813,7 +814,7 @@ They illustrate how the notation concisely documents subtle differences that wou
 (Ab)(A A&b(A ^&b))</PRE></TD></TR></TABLE>
 PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 30 halfpic interpolations per run-time second &mdash; Generations: (0+1).<BR><BR>
 
-<B>lse-decomb</B> &mdash; Preserves stride rate, avoids combing by interpolating, no bob, the end stride is half-bobbed.<BR>
+<B>LSE-decomb</B> &mdash; Preserves stride rate, avoids combing by interpolating, no bob, the end stride is half-bobbed.<BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
 ...             +-begin-stride----->+-more-strides----->  +-end-stride------->
@@ -824,7 +825,7 @@ PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smoot
 (Ab)((A&$ b)A&b b)</PRE></TD></TR></TABLE>
 PTSs: Unforced &mdash; Combing: None &mdash; Judder: None &mdash; Cadence: Smooth &mdash; Burden: 30 halfpic interpolations per run-time second &mdash; Generations: (1+0).<BR><BR>
 
-<B>lbse-decomb</B> &mdash; Doubles stride rate, avoids combing by interpolating, no bob, the beginning & end strides are half-bobbed.<BR>
+<B>LBSE-decomb</B> &mdash; Doubles stride rate, avoids combing by interpolating, no bob, the beginning & end strides are half-bobbed.<BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
 ...             +-begin-stride----->+-more-strides----->  +-end-stride------->
@@ -899,17 +900,17 @@ They illustrate how the notation can make complex operations compact and easy to
 <B>2-3-2-3-telecine.</B>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-...                                   +-all-strides-------------------------->  1/6 second
+... Scale: (1/240) sec/char           +-all-strides-------------------------->  1/6 second
 ...              ____________________ (A_______)(B_______)(C_______)(D_______)  top halfpics
 ...             /____________________ (a_______)(b_______)(c_______)(d_______)  bottom halfpics
 ...            /                   __ (A_-20%)(B_________+60%)(C_-20%)(D_-20%)  top halfpics
 ...           /                   /__ (a_-20%)(b_-20%)(c_-20%)(d_________+60%)  bottom halfpics
 ...          /                   /
 [24pps__48hps__(Aa-Dd)(AaBbBcCdDd)=60hps__30tps~1.001up~]30'fps</PRE></TD></TR></TABLE>
-PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%/2) [see note&nbsp;1] @ 6 judders per second [see note&nbsp;2] &mdash; Cadence: 4+3+3+3+3 [see note&nbsp;3] &mdash; Burden: None &mdash; Generations: 0-0-0-0-0.
+PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%/2) [see note&nbsp;1] @ 6 judders-per-second [see note&nbsp;2] &mdash; Cadence: 4+3+3+3+3 [see note&nbsp;3] &mdash; Burden: None &mdash; Generations: 0-0-0-0-0.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;1]&nbsp;</TD>
-    <TD>Judder is the worst case 'jump' or 'halt' at any picture-to-picture or frame-to-frame change.<BR>
+    <TD>Judder is the worst case 'jump' or 'pause' at a picture-to-picture or frame-to-frame change.<BR>
         For top halfpics,<BR>
         <TT>(A_______)</TT>, 10 characters, to <TT>(A_-20%)</TT>, 8 characters, is -2/10.<BR>
         <TT>(B_______)</TT>, 10 characters, to <TT>(B_________+60%)</TT>, 16 characters, is +6/10.<BR>
@@ -920,7 +921,7 @@ PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%
         Bottom halfpic change: <TT>(c_-20%)(d_________+60%)</TT>, is 80%.</TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;2]&nbsp;</TD>
-    <TD>One judder per 1/6 second = 1/(1/6) judders per second.</TD></TR></TABLE>
+    <TD>One judder per 1/6 second = 1/(1/6) judders-per-second.</TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;3]&nbsp;</TD>
     <TD>Cadence is smoothness across entire strides.
@@ -933,7 +934,7 @@ PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%
 <B>4-to-5-interpolation:</B> A telecine alternative &mdash; turns strides of 4 pictures into strides of 5 via 2-pass interpolation.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-                                  ... +-all-strides------------------------------------------------------------------>  1/6 second
+... Scale: (1/480) sec/char           +-all-strides------------------------------------------------------------------>  1/6 second
 [24pps__(A-D)                     ... (A___.____.____.___)(B___.____.____.___)(C___.____.____.___)(D___.____.____.___)
 ...     ______________________________.         1    2              1                   1              2    1           generations
 ...    /    __________________________.______________.              .                   .              .
@@ -945,7 +946,7 @@ PTSs: Forced 30tps to 30'fps &mdash; Combing: 40% &mdash; Judder: 40% (i.e., 80%
   A A..&B B.&.C C.&.D D)=30pps    ... (A____________)(I1___________)(I2________________)(I3______)(D_________________)  'endseen'
 ]30fps                            ... [A__________+7%][I1_________+7%][I2________-20%][I3_________+7%][I4_________+7%]  'seen' encode
                                   ... [A__________+7%][I1_________+7%][I2________-20%][I3________+60%][D_________-20%]  'endseen' encode</PRE></TD></TR></TABLE>
-PTSs: Forced 30pps to 30'fps &mdash; Combing: None &mdash; Judder: 27% [see note&nbsp;1] @ 6 judders per second [see note&nbsp;2] &mdash; Cadence: 3+3+4+3+3 [see note&nbsp;3] &mdash; Burden: 36 picture interpolations per run-time second [see note&nbsp;4] &mdash; Generations: 0-2-1-1-2.
+PTSs: Forced 30pps to 30'fps &mdash; Combing: None &mdash; Judder: 27% [see note&nbsp;1] @ 6 judders-per-second [see note&nbsp;2] &mdash; Cadence: 3+3+4+3+3 [see note&nbsp;3] &mdash; Burden: 36 picture interpolations per run-time second [see note&nbsp;4] &mdash; Generations: 0-2-1-1-2.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;1]&nbsp;</TD>
     <TD><TT>(I1___________)</TT>, 15 characters, to <TT>[I1_________+7%]</TT>, 16 characters, is +1/15.
@@ -953,7 +954,7 @@ PTSs: Forced 30pps to 30'fps &mdash; Combing: None &mdash; Judder: 27% [see note
         Picture change: <TT>[I1_________+7%][I2________-20%]</TT>, is 27%.</TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;2]&nbsp;</TD>
-    <TD>One judder per 1/6 second = 1/(1/6) judders per second.</TD></TR></TABLE>
+    <TD>One judder per 1/6 second = 1/(1/6) judders-per-second.</TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;3]&nbsp;</TD>
     <TD>During 5 uniform frame times, the mouse appears to traverse 15+15+20+15+15 tiles (reduces to 3+3+4+3+3).</TD></TR></TABLE>
@@ -961,11 +962,17 @@ PTSs: Forced 30pps to 30'fps &mdash; Combing: None &mdash; Judder: 27% [see note
 <TR><TD>[note&nbsp;4]&nbsp;</TD>
     <TD>Interpolations = 0+2+1+1+2 per 1/6 run-time second = 6/(1/6).</TD></TR></TABLE><BR>
 
+<SPAN class="commentary">
+The notation strictly distinguishes between images versus frames.
+To appreciate the difference consider this: 4-to-5-interpolation creates strides of interpolated pictures having durations 1/32, 1/32, 1/24, 1/32, 1/32 seconds.
+When those pictures are forced into 1/30 second frames, they exhibit 27% judder @ 6 judders-per-second and 3+3+4+3+3 cadence.
+A clear distinction between images and frames make such computations (and comparisons based on them) possible.</SPAN><BR><BR>
+
 <A name="1-to-5-interpolation">
 <B>1-to-5-interpolation:</B> A telecine alternative &mdash; 4-pass interpolation &mdash; smooth video optimized for 60Hz & 120Hz TVs.<BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
-                                  ... +-all-strides------------------------------------------------------------------>  1/24 second
+... Scale: (1/1920) sec/char          +-all-strides------------------------------------------------------------------>  1/24 second
 [24pps__(A)                       ... (A___.____.____.____.____.____.____.____.____.____.____.____.____.____.____.___)
 ...     ______________________________.         3    4    2         3         1         3         2    4    3           generations
 ...    /    __________________________.______________.              .                   .              .
@@ -976,7 +983,7 @@ PTSs: Forced 30pps to 30'fps &mdash; Combing: None &mdash; Judder: 27% [see note
 ((A A..&..&...&..&..$)            ... (A____________)(I1___________)(I2________________)(I3___________)(I4___________)  'seen'
   AAAAA)                          ... (A____________)(A____________)(A_________________)(A____________)(A____________)  'endseen'
 ]120fps                           ... [A__________+7%][I1_________+7%][I2________-20%][I3_________+7%][I4_________+7%]  'seen' encode</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: None &mdash; Judder: 27% @ 24 judders per second [see note&nbsp;1] &mdash; Cadence: 3+3+4+3+3 &mdash; Burden: 216 picture interpolations per run-time second &mdash; Generations: 0-4-3-3-4.<BR><BR>
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: 27% @ 24 judders-per-second [see note&nbsp;1] &mdash; Cadence: 3+3+4+3+3 &mdash; Burden: 216 picture interpolations per run-time second &mdash; Generations: 0-4-3-3-4.<BR><BR>
 <A name="60Hz">
 1-to-5-interpolation on 120Hz & 60Hz TVs compared:
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
@@ -984,10 +991,10 @@ PTSs: Unforced &mdash; Combing: None &mdash; Judder: 27% @ 24 judders per second
                                       (A____________)(I1___________)(I2________________)(I3___________)(I4___________)..  'seen'
                                       [A__________+7%][I1_________+7%][I2________-20%][I3_________+7%][I4_________+7%]..  on 120Hz TV
                                       [A__________________________+7%][I2_______________________-8.5%][I4_____________..  on 60Hz TV</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: None &mdash; Judder: 15% @ 24 judders per second [see note&nbsp;1] &mdash; Cadence: 6+7+6+7+6 &mdash; Burden: 216 picture interpolations per run-time second &mdash; Generations: 0-4-3-3-4.
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: 15% @ 24 judders-per-second [see note&nbsp;1] &mdash; Cadence: 6+7+6+7+6 &mdash; Burden: 216 picture interpolations per run-time second &mdash; Generations: 0-4-3-3-4.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;1]&nbsp;</TD>
-    <TD>Judder rates above 17 judders per second are generally considered judder-free.</TD></TR></TABLE><BR><BR>
+    <TD>Judder rates above 17 judders-per-second are generally considered judder-free.</TD></TR></TABLE><BR><BR>
 
 
 <SPAN class="commentary">
@@ -1023,13 +1030,13 @@ The 2nd handles both 2-3-2-3-telecined & <B style="color:#EA0000">3-2-3-2-teleci
   (Aa-Dd<B style="color:#EA0000">=48'hps__24'pps</B>)                                  ...if 3-2-3-2-telecine is 'seen', detelecine & <B style="color:#EA0000">weave
   (                                                       ...if 3-2-3-2-telecine is 'unseen',
     (Ab)                                                    ...'look' for NTSC scanpairs (2 halfpics, no inner match),
-    (A A&b A&$ b(A ^&b A&$ b)A ^&b A&b b)=120'hps__60'pps   ...if an NTSC scanpair is 'seen', lbse-decomb & weave
+    (A A&b A&$ b(A ^&b A&$ b)A ^&b A&b b)=120'hps__60'pps   ...if an NTSC scanpair is 'seen', LBSE-decomb & weave
   )                                                       ...</B>
 )                                                       ...
 ]24'fps                                                 ...encode</PRE></TD></TR></TABLE>
 Handles 2-3-2-3-telecined & 3-2-3-2-telecined & <B style="color:#EA0000">NTSC scan</B> streams.
 To provide for NTSC scanpairs, <B style="color:#EA0000">weave</B> has been moved/duplicated so that each stream will have its own weave term.<BR>
-Note that if the processing ended at this step, the detelecines would be encoded as <TT>24'pps]24'fps</TT> but the <B style="color:#EA0000">lbse-decombed NTSC scanpairs</B> would be encoded as <TT>60'pps]24'fps</TT>.
+Note that if the processing ended at this step, the detelecines would be encoded as <TT>24'pps]24'fps</TT> but the <B style="color:#EA0000">LBSE-decombed NTSC scanpairs</B> would be encoded as <TT>60'pps]24'fps</TT>.
 Since <TT>60'pps]24'fps</TT> would force slow motion (which is not what is intended), a common encoding must be found that can accommodate both 24'pps and 60'pps.<BR><BR>
 
 3, What difference does the following make?
@@ -1049,7 +1056,7 @@ Since <TT>60'pps]24'fps</TT> would force slow motion (which is not what is inten
   )                                                         ...
   (                                                         ...if 3-2-3-2-telecine is 'unseen',
     (Ab)                                                      ...'look' for NTSC scanpairs (2 halfpics, no inner match),
-    (A A&b A&$ b(A^& b A&$ b)A ^&b A&b b)=120'hps__60'pps<B style="color:#EA0000">__</B>   ...if NTSC TV scanpair is 'seen', lbse-decomb & weave<B style="color:#EA0000">
+    (A A&b A&$ b(A^& b A&$ b)A ^&b A&b b)=120'hps__60'pps<B style="color:#EA0000">__</B>   ...if NTSC TV scanpair is 'seen', LBSE-decomb & weave<B style="color:#EA0000">
     (1)(11)=120'pps                                           ...double pictures</B>
   )                                                         ...
 )                                                         ...
@@ -1104,9 +1111,9 @@ The notation will avoid that by enabling you to positively account for every fra
 <SPAN class="commentary">
 Extra credit.</SPAN><BR>
 Recall that:<BR>
-<A href="#2-3-2-3-telecine">24'pps to 30'fps via 2-3-2-3-telecine</A> has 40% judder @ 6 judders per second &mdash; awful but people think it's unavoidable.<BR>
-<A href="#4-to-5-interpolation">24'pps to 30'fps via 4-to-5-interpolation</A> has 27% judder @ 6 judders per second &mdash; better, but not great.<BR>
-<A href="#1-to-5-interpolation">24'pps to 120'fps via 1-to-5-interpolation</A> has 15% judder @ 24 judders per second when viewed on a 60Hz TV &mdash; terrific but a time consuming transcode.<BR>
+<A href="#2-3-2-3-telecine">24'pps to 30'fps via 2-3-2-3-telecine</A> has 40% judder @ 6 judders-per-second &mdash; awful but people think it's unavoidable.<BR>
+<A href="#4-to-5-interpolation">24'pps to 30'fps via 4-to-5-interpolation</A> has 27% judder @ 6 judders-per-second &mdash; better, but not great.<BR>
+<A href="#1-to-5-interpolation">24'pps to 120'fps via 1-to-5-interpolation</A> has 15% judder @ 24 judders-per-second when viewed on a 60Hz TV &mdash; terrific but a time consuming transcode.<BR>
 What about 24'pps to 57.6'fps via 5-to-6 interpolation & doubling, instead?<BR>
 <SPAN class="commentary">
 That 60Hz TVs having variable rate screens will sync to and play 57.6'fps just fine presents an opportunity for improvement.</SPAN>
@@ -1114,7 +1121,7 @@ That 60Hz TVs having variable rate screens will sync to and play 57.6'fps just f
 <TR><TD><PRE>
 24'fps[24'pps__(A-E)
 ( ( A A......&B B....&..C C...&...D D..&....E E&......$ ) A A......&B B....&..C C...&...D D..&....E E )=28.8'pps__(1)(11)]57.6'fps</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: ___ &mdash; Judder: ___% @ ___ judders per second &mdash; Cadence: ___+___+___+___+___+___ &mdash; Burden: ___ &mdash; Generations: ___-___-___-___-___-___.<BR><BR>
+PTSs: Unforced &mdash; Combing: ___ &mdash; Judder: ___% @ ___ judders-per-second &mdash; Cadence: ___+___+___+___+___+___ &mdash; Burden: ___ &mdash; Generations: ___-___-___-___-___-___.<BR><BR>
 
 <SPAN class="commentary">
 Can you fill in the blanks?</SPAN><BR><BR>
@@ -1123,6 +1130,7 @@ Can you fill in the blanks?</SPAN><BR><BR>
 <A href="#hint" onclick="javascript:document.getElementById('hint').style.display='block'">See a hint</A>.<BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 id="hint" style="display:none">
 <TR><TD><PRE>
+Scale: (1/576) sec/char
 +-all-strides---------------------------------------------------------------------------------------------------------->  5/24 second
 (A_.__.__.__.__.__.__._)(B_.__.__.__.__.__.__._)(C_.__.__.__.__.__.__._)(D_.__.__.__.__.__.__._)(E_.__.__.__.__.__.__._)  24'pps
                      .                 .                    .                    .                 .                      generations
@@ -1136,14 +1144,15 @@ Can you fill in the blanks?</SPAN><BR><BR>
 <DIV id="solve" style="display:none">
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><PRE>
+Scale: (1/576) sec/char
 +-all-strides---------------------------------------------------------------------------------------------------------->  5/24 second
-(A_.__.__.__.__.__.__._)(B_.__.__.__.__.__.__._)(C_.__.__.__.__.__.__._)(D_.__.__.__.__.__.__._)(E_.__.__.__.__.__.__._)  24'pps
+(A_.__.__.__.__.__.__._)(B_.__.__.__.__.__.__._)(C_.__.__.__.__.__.__._)(D_.__.__.__.__.__.__._)(E_.__.__.__.__.__.__._)
             1     2  3              1  3  2                 1                 2  3  1              3  2     1             generations
                      .                 .                    .                    .                 .
 (A__________________)(I1______________)(I2_________________)(I3_________________)(I4______________)(I5_________________)  interpolations
 [A_______][A_______][I1______][I1______][I2______][I2______][I3______][I3______][I4______][I4______][I5______][I5______]  57.6'fps
 (A______________-5%)(I1____________+11%)(I2_____________-5%)(I3_____________-5%)(I4____________+11%)(I5_____________-5%)  28.8'pps pictures</PRE></TD></TR></TABLE>
-PTSs: Unforced &mdash; Combing: None &mdash; Judder: 16% [see note&nbsp;1] @ 9.6 judders per second [see note&nbsp;2] &mdash; Cadence: 7+6+7+7+6+7 [see note&nbsp;3] &mdash; Burden: 62.4 picture interpolations per run-time second [see note&nbsp;4] &mdash; Generations: 0-3-3-1-3-3.
+PTSs: Unforced &mdash; Combing: None &mdash; Judder: 16% [see note&nbsp;1] @ 9.6 judders-per-second [see note&nbsp;2] &mdash; Cadence: 7+6+7+7+6+7 [see note&nbsp;3] &mdash; Burden: 62.4 picture interpolations per run-time second [see note&nbsp;4] &mdash; Generations: 0-3-3-1-3-3.
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;1]&nbsp;</TD>
     <TD><TT>(A__________________)</TT>, 21 characters, to <TT>(A______________-5%)</TT>, 20 characters, is -1/21.
@@ -1151,13 +1160,13 @@ PTSs: Unforced &mdash; Combing: None &mdash; Judder: 16% [see note&nbsp;1] @ 9.6
         Picture change: <TT>(A______________-5%)(I1____________+11%)</TT>, is 16%.</TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;2]&nbsp;</TD>
-    <TD>2 judders per 5/24 second = 2/(5/24).</TD></TR></TABLE>
+    <TD>2 judders per 5/24 second = 2/(5/24) judders-per-second.</TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;3]&nbsp;</TD>
     <TD>During 6 uniform frame times, the mouse appears to traverse 21+18+21+21+18+21 tiles (reduces to 7+6+7+7+6+7).</TD></TR></TABLE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD>[note&nbsp;4]&nbsp;</TD>
-    <TD>Interpolations = 0+3+3+1+3+3 per 5/24 run-time second = 13/(5/24).</TD></TR></TABLE><BR>
+    <TD>Interpolations = 0+3+3+1+3+3 per 5/24 run-time second = 13/(5/24) interpolations per run-time second.</TD></TR></TABLE><BR>
 
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 <TR><TD><SPAN class="commentary">This table compares the approaches. The numbers speak for themselves.</SPAN></TD>
@@ -1223,11 +1232,11 @@ PTSs: Unforced &mdash; Combing: None &mdash; Judder: 16% [see note&nbsp;1] @ 9.6
 
 <SPAN class="commentary">
 Tradeoffs:<BR>
-What impact does </SPAN>Judders per second<SPAN class="commentary"> have?
+What impact does </SPAN>judders-per-second<SPAN class="commentary"> have?
 How about </SPAN>Interpolations per run-time second<SPAN class="commentary">?
 How about </SPAN>Generations<SPAN class="commentary">?<BR>
 Can you visualize the effects of the tradoffs? Do the numbers help?<BR>
-Compare the precision above to the function (filter) & parameter names used by FFmepg, AVsynth, and VapourSynth.</SPAN></DIV><BR>
+Compare the precision above to the filter & parameter names employed by FFmepg, AVsynth, and VapourSynth.</SPAN></DIV><BR>
 
 <SPAN class="commentary">
 There are many more interesting (and perhaps superior) transcodes to be explored for various stored and/or streamed applications.</SPAN><BR><BR>
