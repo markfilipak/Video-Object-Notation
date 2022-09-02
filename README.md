@@ -5,10 +5,14 @@ Link to live page: https://markfilipak.github.io/Video-Object-Notation/
 
 Changes:
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD>2022-09-01&nbsp;</TD>
+    <TD><B>Giving names to commonly found media sources</B>: Add MPEG flags.<BR>
+        <B>Image Terms</B>: Moved.<BR>
+        VideoNotation.Oddities.html added.</TD></TR>
 <TR><TD>2022-08-28&nbsp;</TD>
     <TD><B>Example of look-seen stream handling for simple block filtering</B>, format, not content.</TD></TR>
 <TR><TD>2022-08-27&nbsp;</TD>
-    <TD><B><I><B>Extra Credit</B></I></B>, notes.<BR>
+    <TD><B><I>Extra Credit</I></B>, notes.<BR>
         <B>2-3-2-3-telecine</B>, notes.<BR>
         <B>4-to-5-interpolation</B>, notes.</TD></TR>
 <TR><TD>2022-08-26&nbsp;</TD>
