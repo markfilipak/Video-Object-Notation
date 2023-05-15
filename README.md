@@ -40,4 +40,4 @@ Changes:
     <TD>Rewritten to target a video-savvy audience.<BR>
         Added support for methods (e.g., pixel methods).</TD></TR></TABLE><BR>
 
-M A R K F I L I P A K . C O N T A C T   ( A T )   G M A I L . C O M
+M A R K F I L I P A K . C O N T A C T + N O T A T I O N @ G M A I L . C O M

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META http-equiv="content-type" content="text/html; charset=utf-8">
+<META http-equiv="content-language" content="en">
+<META http-equiv="cache-control" content="no-cache">
+<META http-equiv="expires" content="Thu, 01 Jan 1970 00:00:00 GMT">
+<META http-equiv="pragma" content="no-cache">
+<META http-equiv="content-style-type" content="text/css">
+<LINK href="VideoNotation.css" rel="stylesheet" type="text/css">
+<META http-equiv="content-script-type" content="text/javascript">
+<SCRIPT src="VideoNotation.js"></SCRIPT>
+
+<TITLE>Digital Cameras & Film Scanners</TITLE>
+</HEAD>
+<BODY>
+
+<B class="big">Digital Cameras & Film Scanners</B><BR>
+
+<BR>
+Key: <B class="yellow">&nbsp;&nbsp;&nbsp;</B>&nbsp;new terms (not in notations)
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="box"><TR><TD>
+</TD></TR><TR><TD>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="nowrap">
+<TR><TD class="box0010" colspan=5>GENERAL CAPTURE-to-PICTURE-to-DISPLAY transforms (for CAPTURES-per-PICTURE = PICTURES-per-DISPLAY = 1 of course)</TD></TR>
+<TR><TD>&nbsp;CAPTURE (square samples)<BR>&nbsp;SAMPLES x RASTERS &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD class="papaya bold">&nbsp;TRANSFORM<BR>&nbsp;SAMPLES to PIXELS &mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD>&nbsp;PICTURE<BR>&nbsp;PIXELS x ROWS &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD class="papaya bold">&nbsp;TRANSFORM<BR>&nbsp;PIXELS to DOTS &mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD>&nbsp;DISPLAY (square dots)<BR>&nbsp;DOTS x LINES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR><TD class="box1011"><B class="yellow">spr</B>: <B class="yellow"><I>samples&minus;per&minus;raster</I></B><BR><B class="yellow">rpc</B>: <B class="yellow"><I>rasters&minus;per&minus;capture</I></B> </TD>
+    <TD class="box1011 papaya bold"><B class="yellow">pps</B>: <B class="yellow"><I>pixels&minus;per&minus;sample</I></B><BR><B class="yellow">rpr</B>: <B class="yellow"><I>rows&minus;per&minus;raster</I></B></TD>
+    <TD class="box1011"><B class="yellow">ppr</B>: <B class="yellow"><I>pixels&minus;per&minus;row</I></B><BR><B class="yellow">rpp</B>: <B class="yellow"><I>rows&minus;per&minus;picture</I></B></TD>
+    <TD class="box1011 papaya bold"><B class="yellow">dpp</B>: <B class="yellow"><I>dots&minus;per&minus;pixel</I></B><BR><B class="yellow">lpr</B>: <B class="yellow"><I>lines&minus;per&minus;row</I></B></TD>
+    <TD class="box1111"><B class="yellow">dpl</B>: <B class="yellow"><I>dots&minus;per&minus;line</I></B><BR><B class="yellow">lpd</B>: <B class="yellow"><I>lines&minus;per&minus;display</I></B></TD></TR>
+<TR><TD class="right"><BR><BR>define <B class="yellow">CAR</B> = |spr|/|rpc|&nbsp;</TD>
+    <TD class="right papaya bold">pps = |ppr|/|spr|&nbsp;<BR>rpr = |rpp|/|rpc|&nbsp;<BR>define <B class="yellow">SPX</B> = pps/rpr&nbsp;</TD>
+    <TD></TD>
+    <TD class="right papaya bold">dpp = |dpl|/|ppr|&nbsp;<BR>lpr = |lpd|/|rpp|&nbsp;<BR>define <B class="yellow">PDX</B> = dpp/lpr&nbsp;</TD>
+    <TD class="right"><BR><BR>DAR = |dpl|/|lpd|&nbsp;</TD></TR>
+<TR><TD></TD>
+    <TD class="papaya bold">&nbsp;</TD>
+    <TD></TD>
+    <TD class="papaya bold">&nbsp;</TD>
+    <TD></TD></TR>
+<TR><TD></TD>
+    <TD class="papaya bold">&nbsp;FILM SCANNER &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD>&nbsp;PICTURE &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD class="papaya bold">&nbsp;PIXELS to DOTS &mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD>&nbsp;DISPLAY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR><TD></TD>
+    <TD class="box1011 papaya bold">&Delta;p: <I>pixel-to-pixel</I><BR>&Delta;r: <I>row-to-row</I></TD>
+    <TD class="box1011">ppr: <I>pixels&minus;per&minus;row</I><BR>rpp: <I>rows&minus;per&minus;picture</I></TD>
+    <TD class="box1011 papaya bold">dpp: <I>dots&minus;per&minus;pixel</I><BR>lpr: <I>lines&minus;per&minus;row</I></TD>
+    <TD class="box1111">dpl: <I>dots&minus;per&minus;line</I><BR>lpd: <I>lines&minus;per&minus;display</I></TD></TR>
+<TR><TD></TD>
+    <TD class="right papaya bold">define SAR = &Delta;p/&Delta;r&nbsp;</TD></TR>
+<TR><TD></TD>
+    <TD>&nbsp;</TD>
+    <TD></TD>
+    <TD>&nbsp;</TD>
+    <TD></TD></TR>
+<TR><TD colspan=5>SPECIAL CASE: if CAR = DAR, then define SAR = SPX &nbsp;<&mdash; this is true for all known media</TD></TR>
+<TR><TD class="right">for 16:9 'PAL' DVD,<BR>for 4:3 'PAL' DVD,</TD>
+    <TD class="papaya bold">&nbsp;SAR = 45/64 [see note 1]<BR>&nbsp;SAR = 15/16 [see note 1]</TD>
+    <TD></TD>
+    <TD class="right papaya bold">if SAR &lt; 1,<BR>[see note 1]</TD>
+    <TD>&nbsp;|dpl| = |ppr|/(SAR)<BR>&nbsp;|lpd| = |rpp|</TD></TR>
+<TR><TD class="right">for 16:9 'NTSC' DVD,<BR>for 4:3 'NTSC' DVD,</TD>
+    <TD class="papaya bold">&nbsp;SAR = 27/32 [see note 1]<BR>&nbsp;SAR = &nbsp;9/8 &nbsp;[see note 1]</TD>
+    <TD></TD>
+    <TD class="right papaya bold">otherwise,<BR>[see note 1]</TD>
+    <TD class="left">&nbsp;|dpl| = |ppr|<BR>&nbsp;|lpd| = |rpp|/(SAR)</TD></TR>
+<TR><TD colspan=99 class="wrap" style="max-width:1em"><P>[note 1] Be careful! Most people invert SAR.
+For example, for 16:9 'PAL' DVD, they will claim SAR = 64/45, then use it to convert 720 PIXELS to 1024 DOTS.
+The calculation is correct, but 64/45 is actually 1/(SAR).</P></TD></TR>
+</TABLE></TD></TR></TABLE>
+
+<BR>
+<P>DIGITAL CAMERA: Suppose an ARRI Alexa XT shoots a 16:9 'PAL' video.</P>
+<P>1712&nbsp;x&nbsp;1101 is the number of RG+GB (2&minus;by&minus;2 square) photo sites in the Alexa's Bayer sensor array.</P>
+<P>2242&nbsp;x&nbsp;1441 is the number of RGB-equivalent sample points synthesized from the photo sites.</P>
+<P>2240&nbsp;x&nbsp;1260 sample points is the largest (i.e., highest resolution) 16:9 capture area.</P>
+<P>&nbsp;720&nbsp;x&nbsp;576&nbsp; samples is the target 16:9 'PAL' picture.</P>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="box"><TR><TD>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="nowrap">
+<TR><TD>&nbsp;ARRI ALEXA XT &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD class="papaya bold">&nbsp;SAMPLES to PIXELS &mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD>&nbsp;PICTURE &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD class="papaya bold">&nbsp;PIXELS to DOTS &mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD>&nbsp;DISPLAY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR><TD class="box1011">2240 spr<BR>1260 rpc</TD>
+    <TD class="box1011 papaya bold">720/2240 pps<BR>576/1260 rpr</TD>
+    <TD class="box1011">720 ppr<BR>576 rpp</TD>
+    <TD class="box1011 papaya bold">1024/720 = 64/45 dpp<BR>1 lpr</TD>
+    <TD class="box1111">1024 dpl<BR>576 lpd</TD></TR>
+<TR><TD class="right">CAR = 2240/1260 = 16/9&nbsp;</TD>
+    <TD class="papaya bold right">SAR = 45/64&nbsp;</TD>
+    <TD></TD>
+    <TD></TD>
+    <TD class="right">DAR = 1024/576 = 16/9&nbsp;</TD></TR>
+</TABLE></TD></TR></TABLE>
+
+<BR>
+<P>FILM SCANNER: If samples are made by film scanning, SAR is calculated from &Delta;p & &Delta;r.</P>
+<P>Example:</P>
+<P>scan plan:&nbsp;21.31&nbsp;x&nbsp;18.16&nbsp;mm is the CinemaScope 2.34 aspect, 35mm projection film frame.</P>
+<P>scan plan:&nbsp;&nbsp;1024&nbsp;x&nbsp;576 is the target 16:9 'PAL' display.</P>
+<P>scan plan:&nbsp;&nbsp;1024&nbsp;x&nbsp;437 is the display area for 2.34 aspect.</P>
+<P>scan plan:&nbsp;&nbsp;&nbsp;720&nbsp;x&nbsp;437 is the picture area for 2.34 aspect.</P>
+<P>scan plan:&nbsp;&nbsp;1440&nbsp;x&nbsp;874 is the Nyquist samples.</P>
+<P>scan set&minus;up:&nbsp;&Delta;p =&nbsp;(21.31&nbsp;mm&minus;per&minus;row)/(1440&nbsp;pixels&minus;per&minus;row) =&nbsp;14.7&nbsp;&micro;m&minus;per&minus;pixel.</P>
+<P>scan set&minus;up:&nbsp;&Delta;r =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(18.16&nbsp;mm)/(874&nbsp;rows)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp;20.7&nbsp;&micro;m&minus;per&minus;row.</P>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="box"><TR><TD>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="nowrap">
+<TR><TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+    <TD class="papaya bold">&nbsp;FILM SCANNER &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD>&nbsp;PICTURE &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD class="papaya bold">&nbsp;PIXELS to DOTS &mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD>&nbsp;DISPLAY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR><TD></TD>
+    <TD class="box1011 papaya bold">&Delta;p = 14.7 &micro;m<BR>&Delta;r = 20.7 &micro;m</TD>
+    <TD class="box1011">720 ppr<BR>576 (matted) rpp</TD>
+    <TD class="box1011 papaya bold">1024/720 = 64/45 dpp<BR>1 lpr</TD>
+    <TD class="box1111">1024 dpl<BR>576 lpd</TD></TR>
+<TR><TD></TD>
+    <TD colspan=2><B class="papaya bold">&nbsp;SAR = 14.7/20.7 = 49/69 [see note 2]</B></TD>
+    <TD></TD>
+    <TD class="right">DAR = 1024/576 = 16/9&nbsp;</TD></TR>
+</TABLE></TD></TR></TABLE>
+<BR>
+[note 2]
+<BLOCKQUOTE>
+<BLOCKQUOTE>
+<P>1, If displayed at 69/49, a 720 x 437 picture would produce a true-aspect, 1013 x 437 display image, but unfortunately, 49/69 SAR is not allowed by MPEG.</P>
+<P>2, On the other hand, if displayed using the required 64/45 for 16:9 'PAL' DVDs, a 720 x 437 picture would instead produce a display image that's stretched by 11 dots (to 1024 x 437).</P>
+</BLOCKQUOTE>
+<P>Thus, this 16:9 'PAL' DVD could be mastered,</P>
+<BLOCKQUOTE>
+<P>1, with 11 dots of left-right matte added to the display image, or</P>
+<P>2, as a slightly stretched display image with no left-right matte.</P>
+</BLOCKQUOTE>
+Though option 2's slight stretching (1%) would be unnoticeable, most shot-on-film DVD authors take option 1.
+However, there's a problem with option 1.
+In order to add 11 dots of matte to the display, 8 pixels of matte must be added to the pictures.
+But since the pictures are already 720 ppr, those 8 pixels can't simply be added because 728 ppr is not allowed for DVDs.
+So, the 8 pixels have to be figured into the scan plan from the beginning by reducing 1440 x 874 Nyquist to 1424 x 864 Nyquist for example.
+But the reduction to 1424 Nyquist will change the 49/69 SAR to a different aspect with different rounding.
+When rescanned at the new aspect, the result will be closer but still not correct.
+Often, the 8 pixels are simply cropped from the pictures.
+</BLOCKQUOTE>
+
+<BR></BODY></HTML>

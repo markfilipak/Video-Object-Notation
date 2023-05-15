@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META http-equiv="content-type" content="text/html; charset=utf-8">
+<META http-equiv="content-language" content="en">
+<META http-equiv="cache-control" content="no-cache">
+<META http-equiv="expires" content="Thu, 01 Jan 1970 00:00:00 GMT">
+<META http-equiv="pragma" content="no-cache">
+<META http-equiv="content-style-type" content="text/css">
+<LINK href="VideoNotation.css" rel="stylesheet" type="text/css">
+<META http-equiv="content-script-type" content="text/javascript">
+<SCRIPT src="VideoNotation.js"></SCRIPT>
+
+<TITLE>Synopsis</TITLE>
+</HEAD>
+<BODY>
+
+<B class="big">Synopsis</B><BR>
+This presentation's audience is experienced video engineers and coders.<BR>
+
+<BR>
+Notations are lines of English text used to model video streams.
+They are always read from left to right.
+They represent time that always flows from left to right and is always continuous.
+Thus, to the left is upstream and to the right is downstream.<BR>
+<P>&nbsp;&bullet;&nbsp;The notation is object-oriented. Streams & frames & fields & image elements are all objects.</P>
+<P>&nbsp;&bullet;&nbsp;Streams are represented by names. Image elements are represented by tokens.</P>
+<P>&nbsp;&bullet;&nbsp;Object editing is done via the object's properties & methods.</P>
+<P>&nbsp;&bullet;&nbsp;Each type of object has its own method defaults.</P>
+<P>&nbsp;&bullet;&nbsp;Pixel editing is done via the image element's properties & methods.</P>
+<P>&nbsp;&bullet;&nbsp;Twelve standard streams are identified by their physical characteristics and are given unique names.</P>
+<P>&nbsp;&bullet;&nbsp;Streams are traversed via strides of tokens that are characteristic of each stream type.</P>
+<P>&nbsp;&bullet;&nbsp;Video editing & transcoding are presented via textual descriptions & <B class="wheat">notations</B> & o'scope-style <B class="purple">diagrams</B>.</P>
+<P>&nbsp;&bullet;&nbsp;Several new video editing and transcoding techniques are introduced.</P>
+
+<BR>
+Though the stream & element types & their physical properties are detailed in further sections, some readers may find the tables below sufficient.
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="top nowrap">
+<TR><TD style="width:0.5ex"></TD><TD style="width:0.5ex"></TD><TD style="width:0.5ex"></TD><TD style="width:0.5ex">&nbsp;</TD><TD style="width:0.5ex"></TD><TD style="width:0.5ex">&nbsp;</TD><TD style="width:0.5ex"></TD><TD style="width:0.5ex">&nbsp;</TD><TD></TD></TR>
+<TR><TD colspan=99><PRE class="white">
+  Key: <B class="yellow">new terms</B> not part of notations     <B class="aqua">stream names</B> used in notations
+       <B class="wheat">notations</B>                           <B class="purple">diagrams</B></PRE></TD></TR>
+<TR><TD colspan=99><HR></TD></TR>
+<TR><TD colspan=99 class="wrap"><P><B class="yellow">PAL-scan</B> is a 50<B class="aqua">sps</B> stream that has been field encoded and framed at 25<B class="aqua">sfps</B>.</P></TD></TR>
+<TR><TD colspan=99 class="wrap"><P><B class="yellow">NTSC-scan</B> is a 60'1.001<B class="aqua">sps</B> stream that has been field encoded and framed at 30'1.001<B class="aqua">sfps</B>.</P></TD></TR>
+<TR><TD colspan=99 class="wrap"><P><B class="yellow">Cinema</B> is a raw stream from a cinema camera or film scanner at 24<B class="aqua">pps</B>.</P></TD></TR>
+<TR><TD colspan=99 class="wrap"><P><B class="yellow">Cine-slow</B> is cinema that has been frame encoded and forced to 24'1.001<B class="aqua">pfps</B>.</P></TD></TR>
+<TR><TD colspan=99 class="wrap"><P><B class="yellow">'PAL'-fast</B> is cinema that has been unweaved, field encoded, framed, and forced to 25<B class="aqua">ftfps</B>.</P></TD></TR>
+<TR><TD colspan=99 class="wrap"><P><B class="yellow">'NTSC'-soft</B> is cinema that has been unweaved, field encoded, framed, forced to 24'1.001<B class="aqua">stfps</B>, and tagged for 8-to-10 telecine.</P></TD></TR>
+<TR><TD colspan=99 class="wrap"><P><B class="yellow">'NTSC'-hard</B> is cinema that has been unweaved, 8-to-10 telecined, field encoded, framed, and forced to 30'1.001<B class="aqua">htfps</B>.</P></TD></TR>
+
+<TR><TD colspan=99><HR></TD></TR>
+<TR><TD colspan=99 class="wrap"><I>'PAL'-soft & 'PAL'-hard may exist but have not been seen in the wild.</I></TD></TR>
+<TR><TD colspan=99 class="wrap"><P><B class="yellow">'PAL'-soft</B> is cinema that has been unweaved, field encoded, framed at 24<B class="aqua">stfps</B>, and tagged for 48-to-50 telecine.</P></TD></TR>
+<TR><TD colspan=99 class="wrap"><P><B class="yellow">'PAL'-hard</B> is cinema that has been unweaved, 48-to-50 telecined, field encoded, and framed at 25<B class="aqua">htfps</B>.</P></TD></TR>
+
+<TR><TD colspan=99><HR></TD></TR>
+
+<TR><TD><B class="white">scans</B></TD><TD></TD>
+    <TD class="right"><B class="aqua">sps</B></TD><TD></TD>
+    <TD colspan=99 class="wrap"><P><&mdash; SAR-scaled captures at <B class="aqua"><I>scans&minus;per&minus;second</I></B> rate.</P></TD></TR>
+<TR><TD colspan=99 class="wrap">
+        <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">(A)(b)</B> is 2 scans with 'top' scan first, <B class="purple">(a)(B)</B> is 2 scans with 'bottom' scan first.</P></TD></TR>
+
+<TR><TD><B class="yellow">scanframes</B></TD><TD></TD>
+    <TD class="right"><B class="aqua">sfps</B></TD><TD></TD>
+    <TD colspan=99 class="wrap"><P><&mdash; scan frames, e.g. PAL-scan & NTSC-scan TV shows & some documentaries on DVDs & older blu-rays; 2 field-encoded scans per frame at <B class="aqua"><I>scanframes&minus;per&minus;second</I></B> rate.</P></TD></TR>
+<TR><TD colspan=99 class="wrap">
+        <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">[A+b][C+d]</B> are 2 scanframes with 'top' field first, <B class="purple">[a+B][c+D]</B> are 2 scanframes with 'bottom' field first.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sfps[sps</B> decodes a downstream sps stream, e.g. <B class="purple">(a)(b)(c)(d)..</B>, from upstream scanframes, e.g. <B class="purple">[a+b][c+d]..</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sps]sfps</B> encodes a downstream sfps stream, e.g. <B class="purple">[a+b][c+d]..</B>, from upstream scans, e.g. <B class="purple">(a)(b)(c)(d)..</B>; drops final orphan, if any.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sps(ab)(((ab))a+a)]sfps</B> same as previous except repeats final orphan, if any.</P></TD></TR>
+<TR><TD colspan=99 class="wrap">
+        <PRE class="white">
+        <B class="wheat">sps</B>                // <B class="purple">(a___)(b___)(c___)(d___)..(y___)</B> checked for orphan
+        <B class="wheat">(ab)(((ab))a+a)</B>    // <B class="purple">(a___)(b___)(c___)(d___)..(y___)(y___)</B> detected, repeated
+        <B class="wheat">]sfps</B>              // <B class="purple">[a+b_______][c+d_______]..[y+y_______]</B> encoded</PRE></TD></TR>
+<TR><TD colspan=99><P>&nbsp;&bullet;&nbsp;<B class="wheat">sps(a)(aa)]sfps</B> is bob decomb.</P>
+        <PRE class="white">
+        <B class="wheat">sps</B>                // <B class="purple">(A___)(b___)(C___)(d___)..(z___)</B> orphans don't matter
+        <B class="wheat">(a)(aa)</B>            // <B class="purple">(A)(A)(b)(b)(C)(C)(d)(d)..(z)(z)</B> images & rate doubled
+        <B class="wheat">]sfps</B>              // <B class="purple">[A+A_][b+b_][C+C_][d+d_]..[z+z_]</B> encoded</PRE></TD></TR>
+<TR><TD colspan=99><P>&nbsp;&bullet;&nbsp;<B class="wheat">&="interpolate"sps(ab)((a&$b)a&bb)]sfps</B> is SME decomb.</P>
+        <PRE class="white">
+        <B class="wheat">&="interpolate"</B>    // operator loaded
+        <B class="wheat">sps(ab)(((ab))a+a)</B> // <B class="purple">(a___)(b___)(c___)(d___)..(y___)(z___)</B> checked for orphan
+        <B class="wheat">(ab)((a&$b)a&bb)</B>   // <B class="purple">(A&C_)(b___)(C&E_)(d___)..(Y&z_)(z___)</B> interpolated
+        <B class="wheat">]sfps</B>              // <B class="purple">[B+b_______][D+d_______]..[Y&z+z_____]</B> encoded</PRE></TD></TR>
+
+<TR><TD colspan=99><HR></TD></TR>
+
+<TR><TD><B class="white">pictures</B></TD><TD></TD>
+    <TD class="right"><B class="aqua">pps</B></TD><TD></TD>
+    <TD colspan=99 class="wrap"><P><&mdash; SAR-scaled captures at <B class="aqua"><I>pictures&minus;per&minus;second</I></B> rate.</P></TD></TR>
+<TR><TD colspan=99 class="wrap">
+        <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">(Aa__)(Bb__)</B> are 2 pictures.</P></TD></TR>
+
+<TR><TD><B class="yellow">picframes</B></TD><TD></TD>
+    <TD class="right"><B class="aqua">pfps</B></TD><TD></TD>
+    <TD colspan=99 class="wrap"><P><&mdash; picture frames, e.g. cine-slow blu-ray movies; frame-encoded pictures (aka progressive) at <B class="aqua"><I>picframes&minus;per&minus;second</I></B> rate.</P></TD></TR>
+<TR><TD colspan=99 class="wrap">
+        <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">[Aa__][Bb__]</B> are 2 picframes.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">pfps[pps</B> decodes a downstream pps stream, e.g. <B class="purple">(Aa__)(Bb__)..</B>, from upstream picframes, e.g. <B class="purple">[Aa__][Bb__]..</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">pps]pfps</B> encodes a downstream pfps stream, e.g. <B class="purple">[Aa__][Bb__]..</B>, from upstream pictures, e.g. <B class="purple">(Aa__)(Bb__)..</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">24pps<WBR>.fromfile("source")<WBR>.a.fromfile("audiosource")<WBR>.s.fromfile("subtitlesource")<WBR>]<WBR>24'1.001pfps<WBR>.tofile("target")</B> creates a cine-slow video. Since they are attached prior to encoding, audio & subs are automatically resampled by |24'1.001 pfps|/|24 pps| = 1000/1001 during encoding.</P></TD></TR>
+
+<TR><TD><B class="yellow">halfpics</B></TD><TD></TD>
+    <TD class="right"><B class="aqua">hpps</B></TD><TD></TD>
+    <TD colspan=99 class="wrap"><P><&mdash; half-pictures at <B class="aqua"><I>halfpics&minus;per&minus;second</I></B> rate.</P></TD></TR>
+<TR><TD colspan=99 class="wrap">
+        <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">(A)(a)(B)(b)</B> are 4 halfpics unweaved from 2 pictures, <B class="purple">(Aa__)(Bb__)</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">hpps__pps</B> weaves downstream pictures, e.g. <B class="purple">(Aa__)(Bb__)..</B>, from upstream halfpics, e.g. <B class="purple">(A)(a)(B)(b)..</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">pps__hpps</B> unweaves downstream halfpics, e.g. <B class="purple">(A)(a)(B)(b)..</B>, from upstream pictures, e.g. <B class="purple">(Aa__)(Bb__)..</B>.</P></TD></TR>
+
+<TR><TD colspan=99><HR></TD></TR>
+<TR><TD>
+
+<B class="yellow">ftframes</B></TD><TD></TD>
+    <TD class="right"><B class="aqua">ftfps</B></TD><TD></TD>
+    <TD colspan=99 class="wrap"><P><&mdash; field telecined frames, e.g. 'PAL'-fast DVD movies; progressive, concurrent halfpic pairs field-encoded & framed at <B class="aqua"><I>ftframes&minus;per&minus;second</I></B> rate.</P>
+    <P>&nbsp;&bullet;&nbsp;all fields tagged 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0;</P></TD></TR>
+<TR><TD colspan=99 class="wrap">
+        <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">[A+a_][B+b_]</B> are 2 ftframes.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">ftfps[hpps</B>: decodes a downstream hpps stream, e.g. <B class="purple">(A)(a)(B)(b)..</B>, from upstream ftframes, e.g. <B class="purple">[A+a_][B+b_]..</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">hpps]ftfps</B>: encodes a downstream ftframe stream, e.g. <B class="purple">[A+a_][B+b_]..</B>, from upstream halfpics, e.g. <B class="purple">(A)(a)(B)(b)..</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">24pps<WBR>.fromfile("source")<WBR>hpps<WBR>]<WBR>25ftfps<WBR><WBR>.a.fromfile("audiosource")<WBR>.s.fromfile("subtitlesource").tofile("target")</B> creates a 'PAL'-fast video. Since they are attached to 25ftfps, audio & subs are presumed to already match 25ftfps.</P></TD></TR>
+
+<TR><TD><B class="yellow">stframes</B></TD><TD></TD>
+    <TD class="right"><B class="aqua">stfps</B></TD><TD></TD>
+    <TD colspan=99 class="wrap"><P><&mdash; soft telecined frames, e.g. 'PAL'-soft & 'NTSC'-soft DVD movies; progressive, but fields; the following frames at <B class="aqua"><I>stframes&minus;per&minus;second</I></B> rate:</P></TD></TR>
+<TR><TD></TD><TD></TD>
+    <TD></TD><TD></TD>
+    <TD class="right">11 ('PAL') or 1 ('NTSC') <B class="white">ftframes</B></TD></TR>
+<TR><TD></TD><TD></TD>
+    <TD class="right"></TD><TD></TD>
+    <TD class="right">plus 1 <B class="white">ftframes</B></TD><TD></TD>
+    <TD colspan=99 class="wrap">but tagged  'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=1.</TD></TR>
+<TR><TD></TD><TD></TD>
+    <TD class="right"></TD><TD></TD>
+    <TD class="right">plus 11 ('PAL') or 1 ('NTSC') <B class="white">ftframes</B></TD><TD></TD>
+    <TD colspan=99 class="wrap">but tagged  'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=0.</TD></TR>
+<TR><TD></TD><TD></TD>
+    <TD class="right"></TD><TD></TD>
+    <TD class="right">plus 1 <B class="white">ftframes</B></TD><TD></TD>
+    <TD colspan=99 class="wrap">but tagged  'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=1.</TD></TR>
+<TR><TD></TD><TD></TD>
+    <TD class="right"></TD><TD></TD></TD></TR>
+<TR><TD colspan=99 class="wrap">
+        <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">[A+a_][B+b_]</B> are 2 stframes.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">stfps__ftfps</B> mux-converts to ftframes by setting all frames to 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">hpps]stfps</B> encodes a downstream stframe stream, e.g. <B class="purple">[A+a_][B+b_]..</B>, from upstream halfpics, e.g. <B class="purple">(A)(a)(B)(b)..</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">24pps<WBR>.fromfile("source")<WBR>hpps<WBR>]<WBR>24'1.001stfps<WBR>.tofile("target")</B> creates an 'NTSC'-soft video.</P></TD></TR>
+<TR><TD colspan=99 class="wrap"><P><I>Note: Some DVD movies that are outwardly stfps appear to have some sections, usually coinciding with particular scenes, that have stretches of hard telecined frames 'underneath' the soft telecine.
+The sections have oddly spaced combed pairs sometimes separated by 5 uncombed frames, sometimes by 7, sometimes by 9, etc.
+For such situations, consider adding this notation fragment:</I> <B class="wheat">&="blend"<WBR>(ab)(ab.iscombed?a&bb:ab)</B>, <I>somewhere downstream from the source decoding.</I>
+<I>The notation fragment half-blends the combed frames but retains a pleasing sharpness without softening the entire movie.</I></P></TD></TR>
+
+<TR><TD><B class="yellow">htframes</B></TD><TD></TD>
+    <TD class="right"><B class="aqua">htfps</B></TD><TD></TD>
+    <TD colspan=99 class="wrap"><P><&mdash; hard telecined frames, e.g. 'PAL'-hard & 'NTSC'-hard DVD movies; the following frames at <B class="aqua"><I>htframes&minus;per&minus;second</I></B> rate:</P></TD></TR>
+<TR><TD></TD><TD></TD>
+    <TD></TD><TD></TD>
+    <TD class="right">13 ('PAL') or 3 ('NTSC') &nbsp; &nbsp; <B class="white">ftframes</B></TD></TR>
+<TR><TD></TD><TD></TD>
+    <TD class="right"></TD><TD></TD>
+    <TD class="right">plus 12 ('PAL') or 2 ('NTSC') <B class="yellow">htcombframes</B></TD><TD></TD>
+    <TD colspan=99 class="wrap"><P><&mdash; like ftframes but containing nonconcurrent halfpic pairs.</P></TD></TR>
+<TR><TD></TD><TD></TD>
+    <TD class="right"></TD><TD></TD></TD></TR>
+<TR><TD colspan=99 class="wrap">
+        <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">[A+a_][B+b_][B+c_][C+d_][D+d_]</B> are 5 'NTSC' htframes with 2-3-2-3 pull-down. Frames 3 & 4 are htcombframes.
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">hpps]htfps</B> encodes a downstream htframe stream, e.g. <B class="purple">[A+a_][B+b_]..</B>, from upstream halfpics, e.g. <B class="purple">(A)(a)(B)(b)..</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">24pps<WBR>.fromfile("source")<WBR>hpps<WBR>(Aa-Dd)(AaBbBcCdDd)<WBR>]<WBR>30'1.001htfps<WBR>.tofile("target")</B> creates an 'NTSC'-hard video.</P></TD></TR>
+
+<TR><TD colspan=99><HR></TD></TR>
+<TR><TD colspan=99 class="wrap"><I>In addition to pictures, scanpics & htpics are the streams that drive displays (after 1/(SAR)-scaling of course).</I></TD></TR>
+
+<TR><TD><B class="yellow">scanpics</B></TD><TD></TD>
+    <TD class="right"><B class="aqua">spps</B></TD><TD></TD>
+    <TD colspan=99 class="wrap"><P><&mdash; scan (pseudo) pictures; scans interlaced at <B class="aqua"><I>scanpics&minus;per&minus;second</I></B> rate.</P></TD></TR>
+<TR><TD colspan=99 class="wrap">
+        <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">(Ab__)(Cd__)</B> are 2 scanpics.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sfps<WBR>.fromfile("source")<WBR>[<WBR>sps<WBR>_<WBR>spps<WBR>.play</B> plays without decombing.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sfps<WBR>.fromfile("source")<WBR>[<WBR>sps<WBR>(a)(aa)<WBR>pps<WBR>.play</B> plays with bob decombing.</P></TD></TR>
+
+<TR><TD><B class="yellow">htpics</B></TD><TD></TD>
+    <TD class="right"><B class="aqua">htpps</B></TD><TD></TD>
+    <TD colspan=99 class="wrap"><P><&mdash; hard telecined (pseudo) pictures; the following images at <B class="aqua"><I>htpics&minus;per&minus;second</I></B> rate:</P></TD></TR>
+<TR><TD></TD><TD></TD>
+    <TD></TD><TD></TD>
+    <TD class="right">13 ('PAL') or 3 ('NTSC') <B class="white">pictures</B> &nbsp;</TD><TD></TD>
+    <TD colspan=99 class="wrap"><P><&mdash; halfpics decoded from ftframe fields, then interlaced.</P></TD></TR>
+<TR><TD></TD><TD></TD>
+    <TD class="right"></TD><TD></TD>
+    <TD class="right">plus 12 ('PAL') or 2 ('NTSC') <B class="yellow">combedpics</B></TD><TD></TD>
+    <TD colspan=99 class="wrap"><P><&mdash; halfpics decoded from combedframe fields, then interlaced.</P></TD></TR>
+<TR><TD></TD><TD></TD>
+    <TD></TD><TD></TD></TD></TR>
+<TR><TD colspan=99 class="wrap">
+        <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">(Aa__)(Bb__)(Bc__)(Cd__)(Dd__)</B> is a stride of 5 'NTSC' htpics with 2-3-2-3 pull-down.</P></TD></TR>
+
+<TR><TD colspan=99><HR></TD></TR>
+<TR><TD colspan=99 class="wrap"><I>Spframes & htpframes are not recommended due to combing effects, but both have been seen in the wild.
+        Both are usually non-commercial or poorly mastered media.</I></TD></TR>
+
+<TR><TD><B class="yellow">spframes</B></TD><TD></TD>
+    <TD class="right"><B class="aqua">spfps</B></TD><TD></TD>
+    <TD colspan=99 class="wrap"><P><&mdash; scan (pseudo) picture frames; scanpics frame-encoded at <B class="aqua"><I>spframes&minus;per&minus;second</I></B> rate.</P></TD></TR>
+<TR><TD colspan=99 class="wrap">
+        <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">[ab__][cd__]</B> are 2 spframes.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sps]sfps</B> encodes a downstream scanframe stream, e.g. <B class="purple">[ab__][cd__]..</B>, from upstream scans, e.g. <B class="purple">(a)(b)(c)(d)..</B>; drops final orphan, if any.</P></TD></TR>
+
+<TR><TD><B class="yellow">htpframes</B></TD><TD></TD>
+    <TD class="right"><B class="aqua">htpfps</B></TD><TD></TD>
+    <TD colspan=99 class="wrap"><P><&mdash; hard telecined (pseudo) picture frames; htpics frame-encoded at <B class="aqua"><I>htpframes&minus;per&minus;second</I></B> rate.</P></TD></TR>
+<TR><TD colspan=99 class="wrap">
+        <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">[Aa__][Bb__][Bc__][Cd__][Dd__]</B> is a stride of 5 'NTSC' htpframes with 2-3-2-3 pull-down.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">htpps]htpfps</B> encodes a downstream htpframe stream, e.g. <B class="purple">[Aa__][Bb__][Bc__][Cd__][Dd__]</B>, from upstream htpics, e.g. <B class="purple">(Aa__)(Bb__)(Bc__)(Cd__)(Dd__)</B>.</P></TD></TR>
+
+<TR><TD colspan=99><HR></TD></TR>
+</TABLE>
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="nowrap">
+<TR><TD><B class="white">CAPTURE</B></TD>
+    <TD>&nbsp;<B class="white">SAMPLES&nbsp;x</B> <B class="yellow">RASTERS</B></TD>
+    <TD></TD>
+    <TD>&nbsp;<B class="yellow">spr</B></TD>
+    <TD>&nbsp;<B class="yellow">rpc</B></TD>
+    <TD>&nbsp;<&mdash;&nbsp;<B class="yellow"><I>samples&minus;per&minus;raster</I></B> <B class="yellow"><I>rasters&minus;per&minus;capture</I></B></TD></TR>
+<TR><TD>&nbsp;&nbsp;<B class="yellow">CAR</B></TD>
+    <TD>&nbsp;&nbsp;&nbsp;<B class="yellow">CAPTURE&nbsp;ASPECT&nbsp;RATIO</B></TD>
+    <TD colspan=99>&nbsp;=&nbsp;|spr|/|rpc|</TD></TR>
+<TR><TD>&nbsp;&nbsp;<B class="yellow">SPX</B></TD>
+    <TD>&nbsp;&nbsp;&nbsp;<B class="yellow">SAMPLE&minus;PIXEL&nbsp;TRANSFORM</B></TD>
+    <TD>&nbsp;=&nbsp;|pps|/|rpr|</TD>
+    <TD>&nbsp;<B class="yellow">pps</B></TD>
+    <TD>&nbsp;<B class="yellow">rpr</B></TD>
+    <TD>&nbsp;<&mdash;&nbsp;<B class="yellow"><I>pixels&minus;per&minus;sample</I></B>&nbsp; <B class="yellow"><I>rows&minus;per&minus;raster</I></B></TD>
+    <TD></TD></TR>
+<TR><TD>&nbsp;&nbsp;<B class="white">SAR</B></TD>
+    <TD>&nbsp;&nbsp;&nbsp;<B class="white">SAMPLE&nbsp;ASPECT&nbsp;RATIO</B></TD>
+    <TD>&nbsp;=&nbsp;|pps|/|rpr|</TD>
+    <TD colspan=99>&nbsp;<&mdash; note: if CAR = DAR, then SAR = SPX</TD></TR>
+<TR><TD><B class="white">PICTURE</B></TD>
+    <TD>&nbsp;<B class="white">PIXELS&nbsp;x</B> <B class="yellow">ROWS</B></TD>
+    <TD></TD>
+    <TD>&nbsp;<B class="yellow">ppr</B></TD>
+    <TD>&nbsp;<B class="yellow">rpp</B></TD>
+    <TD>&nbsp;<&mdash;&nbsp;<B class="yellow"><I>pixels&minus;per&minus;row</I></B>&nbsp;&nbsp;&nbsp;&nbsp; <B class="yellow"><I>rows&minus;per&minus;picture</I></B></TD></TR>
+<TR><TD>&nbsp;&nbsp;<B class="yellow">PAR</B></TD>
+    <TD>&nbsp;&nbsp;&nbsp;<B class="yellow">CAPTURE&nbsp;ASPECT&nbsp;RATIO</B></TD>
+    <TD colspan=99>&nbsp;=&nbsp;|ppr|/|rpp|</TD></TR>
+<TR><TD>&nbsp;&nbsp;<B class="yellow">PDX</B></TD>
+    <TD>&nbsp;&nbsp;&nbsp;<B class="yellow">PIXEL&minus;DOT&nbsp;TRANSFORM</B></TD>
+    <TD>&nbsp;=&nbsp;|dpp|/|lpr|</TD>
+    <TD>&nbsp;<B class="yellow">dpp</B></TD>
+    <TD>&nbsp;<B class="yellow">lpr</B></TD>
+    <TD>&nbsp;<&mdash;&nbsp;<B class="yellow"><I>dots&minus;per&minus;pixel</I></B>&nbsp;&nbsp;&nbsp;&nbsp; <B class="yellow"><I>lines&minus;per&minus;row</I></B></TD></TR>
+<TR><TD><B class="yellow">DISPLAY</B></TD>
+    <TD>&nbsp;<B class="yellow">DOTS</B><B class="white">x&nbsp;LINES</B></TD>
+    <TD></TD>
+    <TD>&nbsp;<B class="yellow">dpl</B></TD>
+    <TD>&nbsp;<B class="yellow">lpd</B></TD>
+    <TD>&nbsp;<&mdash;&nbsp;<B class="yellow"><I>dots&minus;per&minus;line</I></B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <B class="yellow"><I>lines&minus;per&minus;display</I></B></TD></TR>
+<TR><TD>&nbsp;&nbsp;<B class="white">DAR</B></TD>
+    <TD>&nbsp;&nbsp;&nbsp;<B class="white">DISPLAY&nbsp;ASPECT&nbsp;RATIO</B></TD>
+    <TD colspan=99>&nbsp;=&nbsp;|dpl|/|lpd|</TD></TR>
+</TABLE>
+
+<BR></BODY></HTML>

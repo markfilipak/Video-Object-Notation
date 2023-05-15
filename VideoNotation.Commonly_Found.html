@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META http-equiv="content-type" content="text/html; charset=utf-8">
+<META http-equiv="content-language" content="en">
+<META http-equiv="cache-control" content="no-cache">
+<META http-equiv="expires" content="Thu, 01 Jan 1970 00:00:00 GMT">
+<META http-equiv="pragma" content="no-cache">
+<META http-equiv="content-style-type" content="text/css">
+<LINK href="VideoNotation.css" rel="stylesheet" type="text/css">
+<META http-equiv="content-script-type" content="text/javascript">
+<SCRIPT src="VideoNotation.js"></SCRIPT>
+
+<TITLE>A Video Notation, Commonly Found</TITLE>
+</HEAD>
+<BODY>
+
+<B class="big">Commonly Found Videos</B><BR>
+
+<BR>
+<B class="yellow">PAL-scan</B>. field encoded PAL TV scanpairs.<BR>
+<B class="wheat">50sps]25sfps</B>
+<P>&nbsp;&bullet;&nbsp;Audio: video is unforced, so telecast duration is retained and audio sync is preserved.</P>
+
+<BR>
+<B class="yellow">NTSC-scan</B>. field encoded NTSC TV scanpairs.<BR>
+<B class="wheat">60'1.001sps]30'1.001sfps</B>
+<P>&nbsp;&bullet;&nbsp;Audio: video is unforced, so telecast duration is retained and audio sync is preserved.</P>
+
+<BR>
+<B class="yellow">Cine-slow</B>. Cinema that has been frame encoded (aka "progressive") & forced to 24'1.001pfps.<BR>
+<B class="wheat">24pps]24'1.001pfps.a.resample("1.001")</B>
+<P>&nbsp;&bullet;&nbsp;Due to 24pps-to-24'1.001pfps forcing, each cinema hour is stretched by 3.6 seconds.</P>
+<P>&nbsp;&bullet;&nbsp;Audio: To retain audio sync, 48kHz cinema audio is resampled to 48.048kHz (i.e., (48kHz)x(1.001)) in advance.
+As a result, when played at 48kHz, tonality becomes 2 cents flat (very little but apparently enough to make some musicians unhappy).</P>
+
+<BR>
+<B class="yellow">'PAL'-fast</B> (aka "PAL speed-up"). Cinema that has been unweaved & field encoded & forced to 25ftfps.<BR>
+<B class="wheat">24pps_hpps]25ftfps.a.resample("24/25")</B><BR>
+<P>&nbsp;&bullet;&nbsp;Due to 24pps-to-25tfps forcing, each cinema hour shrinks by 2 minutes 24 seconds.</P>
+<P>&nbsp;&bullet;&nbsp;Audio: To retain audio sync, 48kHz cinema audio us resampled to 46.080kHz in advance.
+As a result, when played at 48kHz, tonality becomes 71 cents sharp (almost 3/4 of the way from C to C# for example and easily discerned).</P>
+
+<BR>
+<B class="yellow">'PAL'-soft</B>. Cinema that has been unweaved & field encoded & tagged for 48-to-50 telecine.
+<PRE class="white">
+<B class="wheat">24pps_hpps]24stfps</B>
+<B class="wheat">(A..X)</B>
+      <B class="wheat">(A..KL.tff("1").rff("1")M..W(1)(1.tff("0").rff("0")X.tff("0").rff("1"))</B></PRE>
+<P>&nbsp;&bullet;&nbsp;Audio: video is unforced, so cinema duration is retained and audio sync is preserved.</P>
+<P>&nbsp;&bullet;&nbsp;'PAL'-soft is speculative. Whether 'PAL'-soft videos actually exist is unknown.</P>
+
+<BR>
+<B class="yellow">'NTSC'-soft</B>. Cinema that has been unweaved & field encoded & forced to 24'1.001stfps & tagged for 8-to-10 telecine.
+<PRE class="white">
+<B class="wheat">24pps_hpps]24'1.001stfps.a.resample("1.001")</B>
+<B class="wheat">(ABCD)</B>
+      <B class="wheat">(AB.tff("1").rff("1")C.tff("0").rff("0")D.tff("0").rff("1"))</B></PRE>
+<P>&nbsp;&bullet;&nbsp;Due to 24pps-to-24'1.001stfps forcing, each cinema hour is stretched by 3.6 seconds.</P>
+<P>&nbsp;&bullet;&nbsp;Audio: To retain audio sync, 48kHz cinema audio is resampled to 48.048kHz in advance.
+As a result, when played at 48kHz, tonality becomes 2 cents flat.</P>
+
+<BR>
+<B class="yellow">'PAL'-hard</B>. Cinema that has been 48-to-50 telecined to 25htfps.
+<PRE class="white">
+<B class="wheat">24pps_hpps
+(Aa..Xx)</B>
+        <B class="wheat">(Aa..LlLm..WxXx)</B>
+<B class="wheat">]25htfps</B></PRE>
+<P>&nbsp;&bullet;&nbsp;Audio: video is unforced, so cinema duration is retained and audio sync is preserved.</P>
+<P>&nbsp;&bullet;&nbsp;'PAL'-hard is speculative. Whether 'PAL'-hard videos actually exist is unknown.</P>
+
+<BR>
+<B class="yellow">'NTSC'-hard</B>. Cinema that has been 8-to-10 telecined to 30htfps & forced to 30'1.001htfps.
+<PRE class="white">
+<B class="wheat">24pps_hpps
+(Aa..Dd)</B>
+        <B class="wheat">(AaBbBcCdDd)</B>
+<B class="wheat">]30'1.001htfps.a.resample("1.001")</B></PRE>
+<P>&nbsp;&bullet;&nbsp;Due to 30htfps-to-30'1.001htfps forcing, each cinema hour is stretched by 3.6 seconds.</P>
+<P>&nbsp;&bullet;&nbsp;Audio: To retain audio sync, 48kHz cinema audio is resampled to 48.048kHz in advance.
+As a result, when played at 48kHz, tonality becomes 2 cents flat.</P>
+
+<BR><BR>
+<B>Notations to recreate the original camera shots.</B><BR>
+
+<BR>
+<P><B class="yellow">PAL-scan</B>:
+<B class="wheat">25sfps</B> is already the original camera shots.</P>
+
+<P><B class="yellow">NTSC-scan</B>:
+<B class="wheat">30'1.001sfps</B> is already the original camera shots.</P>
+
+<P><B class="yellow">Cine-slow</B>: <B class="wheat">24'1.001pfps_24pfps.a.resample("1/1.001")</B></P>
+
+<P><B class="yellow">'PAL'-fast</B>: <B class="wheat">25ftfps[hpps_pps]24pfps.a.resample("25/24")</B></P>
+
+<P><B class="yellow">'PAL'-soft</B>: <B class="wheat">24stfps[hpps_pps]24pfps(A)(A.tff("1").rff("0"))</B></P>
+
+<P><B class="yellow">'NTSC'-soft</B>: <B class="wheat">24'1.001stfps[hpps_pps]24pfps(A)(A.tff("1").rff("0")).a.resample("1/1.001")</B></P>
+
+<P><B class="yellow">'PAL'-hard</B>: <B class="wheat">25htfps[hpps(Aa..LlLm..WxXx)(((Aa..Xx))(Aa..KkKl..VwWwXx)(((Aa..Xx))(Aa..JjJk..UvVv..Xx)(((Aa..Xx))(Aa..IiIj..TuUuWwXx)(((Aa..Xx))(Aa..HhHi..StTt..Xx)(((Aa..Xx))(Aa..GgGh..RsSs..Xx)(((Aa..Xx))(Aa..FfFg..QrRr..Xx)(((Aa..Xx))(Aa..EeEf..PqQq..Xx)(((Aa..Xx))(Aa..DdDe..OpPp..Xx)(((Aa..Xx))(AaBbCcCd..NoOo..Xx)(((Aa..Xx))(AaBbBc..MnNn..Xx)(((Aa..Xx))(AaAb..LmMm..Xx)(Aa..Xx))))))))))))pps]24pfps</B></P>
+
+<P><B class="yellow">'NTSC'-hard</B>: <B class="wheat">30'1.001htfps[hpps(AaBbBcCdDd)(((Aa..Dd))(AaAbBcCcDd)(Aa..Dd))pps]24pfps.a.resample("1/1.001")</B></P>
+
+<BR><BR></BODY></HTML>

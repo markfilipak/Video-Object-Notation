@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META http-equiv="content-type" content="text/html; charset=utf-8">
+<META http-equiv="content-language" content="en">
+<META http-equiv="cache-control" content="no-cache">
+<META http-equiv="expires" content="Thu, 01 Jan 1970 00:00:00 GMT">
+<META http-equiv="pragma" content="no-cache">
+<META http-equiv="content-style-type" content="text/css">
+<LINK href="VideoNotation.css" rel="stylesheet" type="text/css">
+<META http-equiv="content-script-type" content="text/javascript">
+<SCRIPT src="VideoNotation.js"></SCRIPT>
+
+<TITLE>A Video Notation, stride-match</TITLE>
+</HEAD>
+<BODY>
+
+<B class="big">Stride-Match</B><BR>
+
+<BR>
+&nbsp;Parsing:
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD><PRE class="white">
+<B>&nbsp;&nbsp;()()
+&nbsp;()(())
+()((()))</B></PRE></TD><TD class="box0100"></TD><TD>&nbsp;</TD>
+    <TD><PRE class="white" style="padding:0;margin:0">
+<B><B class="wheat">(</B><I>stride</I><B class="wheat">)</B>     <B class="wheat">(</B><I>match</I><B class="wheat">)</B>
+<B class="wheat">(</B><I>stride</I><B class="wheat">)</B>    <B class="wheat">((</B><I>match</I><B class="wheat">))</B>
+<B class="wheat">(</B><I>stride</I><B class="wheat">)</B>   <B class="wheat">(((</B><I>match</I><B class="wheat">)))</B>
+<B class="wheat">(</B><I>stride</I><B class="wheat">)</B> <B class="wheat">(</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">))</B>
+<B class="wheat">(</B><I>stride</I><B class="wheat">)((</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">)))</B>
+<B class="wheat">(</B><I>stride</I><B class="wheat">)</B>    <B class="wheat">((</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">)</B>
+<B class="wheat">(</B><I>stride</I><B class="wheat">)</B>   <B class="wheat">(((</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">))</B>
+<B class="wheat">(</B><I>stride</I><B class="wheat">)</B> <B class="wheat">(</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">)</B>
+<B class="wheat">(</B><I>stride</I><B class="wheat">)((</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">))</B>
+<B class="wheat">(</B><I>stride</I><B class="wheat">)</B>   <B class="wheat">(((</B><I>match</I><B class="wheat">))</B><I>miss</I><B class="wheat">)</B>
+<B class="wheat">(</B><I>stride</I><B class="wheat">)((</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">))</B><I>miss</I><B class="wheat">)</B>
+<B class="wheat">(</B><I>stride</I><B class="wheat">)</B>   <B class="wheat">(((</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">)</B><I>miss</I><B class="wheat">)</B>
+<B class="wheat">(</B><I>stride</I><B class="wheat">)((</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">)</B><I>miss</I><B class="wheat">)</B></B></PRE></TD><TD class="box0100"></TD><TD>&nbsp;</TD>
+    <TD><P>Spaces are ignored.</P>
+        <P><B><I>stride</I></B> can only be tokens.</P>
+        <P>Token repetition, if any, in <B><I>stride</I></B> implies the search pattern.</P>
+        <P>Tokens in <B><I>new match end miss</I></B> specify token replacements or reordering.</P>
+        <P><B><I>new end miss</I></B> are optional.</P>
+        <P><B><I>new match end miss</I></B> can contain any notation, including nested stride-matches.</P></TD></TR>
+</TABLE>
+
+<BR>
+<I>Stride-matches can do extremely complicated things. They can be difficult to write, but the notation supports liberal formatting/beautification and that can help.</I><BR>
+
+<BR>
+<A name="stride-match"></A>
+<B class="underline super">Stride-Match</B>
+
+<P>1, Strides are input streams, represented as tokens, cut into uniform spans of elements.</P>
+<P>2, The stride's elements are paired to tokens on a 1-to-1 basis.</P>
+<P>3, Elements are assigned to the matching tokens in <B class="wheat">((</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">)</B><I>miss</I><B class="wheat">)</B> and the notations in them are run.</P>
+<P>4, This process loops for all input strides until the input stream is exhausted.</P>
+<P>5, Any leftover 'stale' elements are force-passed unchanged.</P>
+<BR>
+Example, reverse 'NTSC' telecine, 2-3-2-3 pull-down: <B class="wheat">(AaBbBcCdDd)(AaBbCcDd)</B>.<BR>
+<BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+
+<TR><TD><B class="wheat nowrap">(<B class="white"><I>stride</I></B>)((<B class="white"><I>new</I></B>(<B class="white"><I>match</I></B>)<B class="white"><I>end</I></B>)<B class="white"><I>miss</I></B>)</B>&nbsp;</TD>
+    <TD>This is a fully populated stride-match using labels in place of actual notations.</TD></TR>
+<TR><TD><BR></TD></TR>
+
+<TR><TD><B><B class="wheat">(</B><I>stride</I><B class="wheat">)</B> &nbsp; &nbsp; <B class="wheat">(</B><I>match</I><B class="wheat">)</B></B></TD>
+    <TD>Input elements are buffered until stride number of elements have been accumulated.
+        <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+        <TR><TD>&nbsp;&bullet;&nbsp;</TD><TD>If the buffer's content matches the pattern found in <I>stride</I>, the buffer is down-streamed to the <I>match</I> notation, the input pointer is increased by the length of <I>stride</I>, and processing loops back to scan for more input.</TD></TR>
+        <TR><TD>&nbsp;&bullet;&nbsp;</TD><TD>If not matched, <I>match</I> is skipped and a minimum number of elements: 1 for pictures or 2 for scans & halfpics, are down-streamed to follow-on notation and the scanner pointer is incremented by 1 or 2 before looping back.</TD></TR>
+        </TABLE>
+        The <I>match</I> notation can contain any valid notation including embedded stride-matches.</TD></TR>
+<TR><TD><BR></TD></TR>
+
+<TR><TD><B><B class="wheat">(</B><I>stride</I><B class="wheat">)((</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">))</B></B></TD>
+    <TD>If the first match of a new stream, the input stride is down-streamed to the <I>new</I> notation (e.g., for scene change). Thereafter, matching strides are down-streamed to the <I>match</I> notation. If an end match, the input stride is down-streamed to the <I>end</I> notation. The <I>new</I> & <I>end</I> notations can contain any valid notations including embedded stride-matches.</TD></TR>
+<TR><TD><BR></TD></TR>
+
+<TR><TD><B><B class="wheat">(</B><I>stride</I><B class="wheat">)((</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">)</B><I>miss</I><B class="wheat">)</B></B></TD>
+    <TD>If not matched, a minimum number of elements: 1 for pictures or 2 for scans & halfpics, are down-streamed to the <I>miss</I> notation. The <I>miss</I> notation can contain any valid notation including embedded stride-matches.</TD></TR>
+<TR><TD><BR></TD></TR>
+</TABLE>
+
+<BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD class="nowrap center"><B><I>stride</I></B>&nbsp;</TD><TD>Each stride-match builds a purpose-built scanner that accumulates input elements: scans pictures or halfpics, as they are received and monitors the accumulation looking for patterns. For example, strides for reverse 2-3-2-3 pull-down are <B class="wheat">(Aa<B class="red">B</B>b<B class="red">B</B>cC<B class="red">d</B>D<B class="red">d</B>)</B>.
+The scanner consequentially looks in the accumulator for 10 halfpics that have a "..<B class="red">1</B>.<B class="red">1</B>..<B class="red">2</B>.<B class="red">2</B>" pattern.
+  <PRE class="white">
+<B>  If <I>stride</I> <B class="red">finds</B> a "..1.1..2.2" pattern,           If <I>stride</I> <B class="red">does not find</B> the pattern,
+  it signals "AaBbBcCdDd" &                         it signals "" &
+     down-streams all 10 halfpics &                    down-streams only the first 2 halfpics &
+     increments the scanner by 10 &                    increments the scanner by 2 &
+     resumes accumulating (i.e., it loops).            resumes accumulating (i.e., it loops).</B>
+<SPAN class="wrap">If the input stream ends short of a full stride, <b><B class="wheat">((</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">)</B><I>miss</I><B class="wheat">)</B></B> is entirely skipped & the 'stale' halfpics are force-passed unchanged to follow-on notation.</SPAN></PRE></TD></TR>
+<TR><TD><BR></TD></TR>
+<TR><TD class="nowrap center"><B><I>new</I></B>&nbsp;</TD><TD>is optional. It operates identically as <I>match</I> but only on the first matching stride of a new stream (thereby handling scene changes for example).</TD></TR>
+<TR><TD><BR></TD></TR>
+<TR><TD class="nowrap center"><B><I>match</I></B>&nbsp;</TD><TD>is required.
+    <PRE class="white">
+<B>If signal="", then <I>match</I> merely down-streams whatever <I>stride</I> is passed to it.
+If signal="<B class="red">AaBb</B>B<B class="red">cCdD</B>d" for example, then
+  &bullet; Halfpic <B class="red">1</B> is assigned to output <B class="red">A</B>               &bullet; Halfpic <B class="red">6</B> is assigned to output <B class="red">c</B>
+  &bullet;         <B class="red">2</B>                       <B class="red">a</B>               &bullet;         <B class="red">7</B>                       <B class="red">C</B>
+  &bullet;         <B class="red">3</B>                       <B class="red">B</B>               &bullet;         <B class="red">8</B>                       <B class="red">d</B>
+  &bullet;         <B class="red">4</B>                       <B class="red">b</B>               &bullet;         <B class="red">9</B>                       <B class="red">D</B>
+  &bullet;         <B>5</B> is ignored (<B>B</B> already assigned)       &bullet;        <B>10</B> is ignored (<B class="red">d</B> already assigned)</B></PRE>
+Thusly, <B><I>stride</I> = <B class="red">AaBb</B>B<B class="red">cCdD</B>d</B> is output as <B><I>match</I> = <B class="red">AaBbCcDd</B></B>.<BR>
+Using this scheme, elements can be rearranged and/or dropped and/or repeated without limit.</TD></TR>
+<TR><TD><BR></TD></TR>
+<TR><TD class="nowrap center"><B><I>end</I></B>&nbsp;</TD><TD>is optional. It operates identically as <I>new</I> but on the ending matching stride of course.</TD></TR>
+<TR><TD><BR></TD></TR>
+<TR><TD class="nowrap center"><B><I>miss</I></B>&nbsp;</TD><TD>is optional. It accumulates input elements down-streamed to it while the <I>stride</I> continues to not be matched and it uses that input in whatever notation it contains. <I>miss</I> has the following important properties:
+  <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+  <TR><TD>&nbsp;&bullet;&nbsp;</TD><TD>If there's a stream break during the accumulation: if the stride-match switches from <I>miss</I> to <I>match</I> or from <I>match</I> to <I>miss</I>, then the stride-match signals the discontinuity by tagging the new elements as a new stream. When <I>match</I> signals the discontinuity, <I>miss</I> responds by force-passing the current accumulated input elements, if any, and by accumulating anew.</TD></TR>
+  <TR><TD>&nbsp;&bullet;&nbsp;</TD><TD>When <I>stride</I> exhausts its input stream and consequently has nothing to down-stream, <I>miss</I> is automatically skipped. So, when it's invoked, <I>miss</I> will always receive at least one element and need not defend against (or otherwise consider) null input.</TD></TR>
+  <TR><TD>&nbsp;&bullet;&nbsp;</TD><TD>Any 'stale' elements left in <I>miss</I> when the input stream is exhausted are force-passed unchanged.</TD></TR>
+  </TABLE></TD></TR>
+</TABLE>
+
+<BR>
+Examples of stride-match for simple block filtering.
+<PRE class="white">
+<B><B class="wheat">(1)(1)</B>                   // a 1-to-1 stride-match down-streams all streams &mdash; a do-nothing stride-match
+<B class="wheat nowrap">(1)()</B>                    // a 1-to-nothing stride-match discards all streams
+<B class="wheat nowrap">(<B class="white"><I>stride</I></B>)((1)())</B>          // discards all matching strides &mdash; <I>match</I> does the discarding
+<B class="wheat nowrap">(<B class="white"><I>stride</I></B>)(((<B class="white"><I>match</I></B>))(1)())</B> // discards all non-matching strides &mdash; <I>miss</I> does the discarding
+<B class="wheat nowrap">(<B class="white"><I>stride</I></B>)((1)()(<B class="white"><I>match</I></B>))</B>   // discards only a matching stream's beginning stride &mdash; <I>new</I> does the discarding
+<B class="wheat nowrap">(<B class="white"><I>stride</I></B>)((<B class="white"><I>match</I></B>)(1)())</B>   // discards only a matching stream's ending stride &mdash; <I>end</I> does the discarding</B></PRE>
+
+<BR>
+<B class="big">Decombing Examples:</B><BR>
+<B class="underline">Scan Blend</B> (similar to yadif)
+<PRE class="white">
+<B><B class="wheat nowrap">&="blend"</B>                   // <B class="purple nowrap">+-new stride------->+-more strides-----> &nbsp;+-end stride-------></B>
+<B class="wheat nowrap">sfps.fromfile("source")[sps</B> // <B class="purple nowrap">(A+b_______________)(C+d_______________)..(Y+z_______________)</B>
+<B class="wheat nowrap">(ab)</B>                        // <B class="purple nowrap">(A_______)(b_______)(C_______)(d_______)..(Y_______)(z_______)</B>
+    <B class="wheat nowrap">(a&ba&b)</B>                // <B class="purple nowrap">(A&b_____)(A&b_____)(C&d_____)(C&d_____)..(Y&z_____)(Y&z_____)</B> blend
+<B class="wheat nowrap">pps]pfps.tofile("target")</B>   // <B class="purple nowrap">[A&bA&b____________][C&dC&d____________]..[Y&zY&z____________]</B> weave, encode</B></PRE>
+PTSs:&nbsp;Unforced
+&mdash;&nbsp;Judder:&nbsp;None
+&mdash;&nbsp;Cadence:&nbsp;None
+&mdash;&nbsp;Burden:&nbsp;1&nbsp;halfpic&nbsp;blend&nbsp;per&nbsp;1/(sps)&nbsp;seconds
+&mdash;&nbsp;Generations:&nbsp;0<BR>
+
+<BR>
+<PRE class="white">
+<B><B class="white"><B class="underline super">Bob Decomb</B>                  // <B class="purple nowrap">+-new stride------->+-more strides-----> &nbsp;+-end stride-------></B>
+<B class="wheat nowrap">sfps.fromfile("source")[sps</B> // <B class="purple nowrap">(A+b_______________)(C+d_______________)..(Y+z_______________)</B>
+<B class="wheat nowrap">(ab)</B>                        // <B class="purple nowrap">(A_______)(b_______)(C_______)(d_______)..(Y_______)(z_______)</B>
+    <B class="wheat nowrap">(aabb)</B>                  // <B class="purple nowrap">(A__)(A__)(b__)(b__)(C__)(C__)(d__)(d__)..(Y__)(Y__)(z__)(z__)</B> double
+<B class="wheat nowrap">pps]pfps.tofile("target")</B>   // <B class="purple nowrap">[AA______][bb______][CC______][dd______]..[YY______][zz______]</B> weave, encode</B></PRE>
+PTSs:&nbsp;Unforced
+&mdash;&nbsp;Judder:&nbsp;None
+&mdash;&nbsp;Cadence:&nbsp;None
+&mdash;&nbsp;Burden:&nbsp;None
+&mdash;&nbsp;Generations:&nbsp;0
+&mdash;&nbsp;One&nbsp;line&nbsp;up-down&nbsp;'bob'&nbsp;cycle&nbsp;at&nbsp;1/(sps)&nbsp;rate<BR>
+
+<BR>
+<B class="underline">Bob Decomb With Blend</B>
+<PRE class="white">
+<B><B class="wheat nowrap">&="blend"</B>                   // <B class="purple nowrap">+-new stride------->+-more strides-----> &nbsp;+-end stride-------></B>
+<B class="wheat nowrap">sfps.fromfile("source")[sps</B> // <B class="purple nowrap">(A+b_______________)(C+d_______________)..(Y+z_______________)</B>
+<B class="wheat nowrap">(ab)</B>                        // <B class="purple nowrap">(A_______)(b_______)(C_______)(d_______)..(Y_______)(z_______)</B>
+    <B class="wheat nowrap">(aa&ba&bb)</B>              // <B class="purple nowrap">(A__)(A&b)(A&b)(b__)(C__)(C&d)(C&d)(d__)..(Y__)(Y&z)(Y&z)(z__)</B> blend
+<B class="wheat nowrap">pps]pfps.tofile("target")</B>   // <B class="purple nowrap">[AA&b____][A&bb____][CC&d____][C&dd____]..[YY&z____][Y&zz____]</B> weave, encode</B></PRE>
+PTSs:&nbsp;Unforced
+&mdash;&nbsp;Judder:&nbsp;None
+&mdash;&nbsp;Cadence:&nbsp;None
+&mdash;&nbsp;Burden:&nbsp;1&nbsp;halfpic&nbsp;blend&nbsp;per&nbsp;1/(sps)&nbsp;seconds
+&mdash;&nbsp;Generations:&nbsp;0<BR>
+
+<BR>
+<B class="underline">SNM Decomb</B>
+<PRE class="white">
+<B><B class="wheat nowrap">&="interpolate"</B>             // <B class="purple nowrap">+-new stride------->+-more strides-----> &nbsp;+-end stride-------></B>
+<B class="wheat nowrap">sfps.fromfile("source")[sps</B> // <B class="purple nowrap">(A+b_______________)(C+d_______________)..(Y+z_______________)</B>
+<B class="wheat nowrap">(ab)</B>                        // <B class="purple nowrap">(A_______)(b_______)(C_______)(d_______)..(Y_______)(z_______)</B>
+    <B class="wheat nowrap">(aa&b</B>                   // <B class="purple nowrap">(A_______)(a&b_____)</B>                                           half-bob
+         <B class="wheat nowrap">(a^&b))</B>            //                     <B class="purple nowrap">(C_______)(b&d_____)..(Y_______)(x&z_____)</B> interpolate
+<B class="wheat nowrap">pps]pfps.tofile("target")</B>   // <B class="purple nowrap">[AA&b______________][Cc________________]..[Yy________________]</B> weave, encode</B></PRE>
+PTSs:&nbsp;Unforced
+&mdash;&nbsp;Judder:&nbsp;None
+&mdash;&nbsp;Cadence:&nbsp;None
+&mdash;&nbsp;Burden:&nbsp;1&nbsp;halfpic&nbsp;interpolation&nbsp;per&nbsp;1/(sps)&nbsp;seconds
+&mdash;&nbsp;Generations:&nbsp;0+1<BR>
+
+<BR>
+<B class="underline">SME Decomb</B>
+<PRE class="white">
+<B><B class="wheat nowrap">&="interpolate"</B>             // <B class="purple nowrap">+-new stride------->+-more strides-----> &nbsp;+-end stride-------></B>
+<B class="wheat nowrap">sfps.fromfile("source")[sps</B> // <B class="purple nowrap">(A+b_______________)(C+d_______________)..(Y+z_______________)</B>
+<B class="wheat nowrap">(ab)</B>                        // <B class="purple nowrap">(A_______)(b_______)(C_______)(d_______)..(Y_______)(z_______)</B>
+    <B class="wheat nowrap">((a&$b)</B>                 // <B class="purple nowrap">(A&c_____)(b_______)(C&e_____)(d_______)..</B>                     interpolate
+           <B class="wheat nowrap">a&bb)</B>            //                                         <B class="purple nowrap">..(Y&z_____)(z_______)</B> half-bob
+<B class="wheat nowrap">pps]pfps.tofile("target")</B>   // <B class="purple nowrap">[Bb________________][Dd________________]..[Y&zz______________]</B> weave, encode</B></PRE>
+PTSs:&nbsp;Unforced
+&mdash;&nbsp;Judder:&nbsp;None
+&mdash;&nbsp;Cadence:&nbsp;None
+&mdash;&nbsp;Burden:&nbsp;1&nbsp;halfpic&nbsp;interpolation&nbsp;per&nbsp;1/(sps)&nbsp;seconds
+&mdash;&nbsp;Generations:&nbsp;1+0<BR>
+
+<BR>
+<B class="underline super">SNME Decomb</B>
+<PRE class="white">
+<B><B class="wheat nowrap">&="interpolate"</B>                  // <B class="purple nowrap">+-new stride------->+-more strides----->&nbsp;&nbsp;+-end stride-------></B>
+<B class="wheat nowrap">sfps.fromfile("source")[sps</B>      // <B class="purple nowrap">(A+b_______________)(C+d_______________)..(Y+z_______________)</B>
+<B class="wheat nowrap">(ab)</B>                             // <B class="purple nowrap">(A_______)(b_______)(C_______)(d_______)..(Y_______)(z_______)</B>
+    <B class="wheat nowrap">(aa&ba&$b</B>                    // <B class="purple nowrap">(A__)(A&b)(A&C)(b__)</B>                                           half-bob + interpolate
+             <B class="wheat nowrap">(a^&ba&$b)</B>          //                     <B class="purple nowrap">(C__)(b&d)(C&E)(d__)..</B>                     interpolate + interpolate
+                       <B class="wheat nowrap">a^&ba&bb)</B> //                                         <B class="purple nowrap">..(Y__)(x&z)(Y&z)(z__)</B> interpolate + half-bob
+<B class="wheat nowrap">pps]pfps.tofile("target")</B>        // <B class="purple nowrap">[AA&b____][Bb______][Cc______][Dd______]..[Yy______][Y&zz____]</B> weave, encode</B></PRE>
+PTSs:&nbsp;Unforced
+&mdash;&nbsp;Judder:&nbsp;None
+&mdash;&nbsp;Cadence:&nbsp;None
+&mdash;&nbsp;Burden:&nbsp;2&nbsp;halfpic&nbsp;interpolations&nbsp;per&nbsp;1/(sps)&nbsp;seconds
+&mdash;&nbsp;Generations:&nbsp;0+1+1+0<BR>
+
+<BR>
+</BODY></HTML>
