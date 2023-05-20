@@ -28,18 +28,23 @@
 <P>&nbsp;&bullet;&nbsp;Audio: video is unforced, so telecast duration is retained and audio sync is preserved.</P>
 
 <BR>
+<B class="yellow">Cinema</B>. <B class="wheat">24pps</B>.<BR>
+
+<BR>
 <B class="yellow">Cine-slow</B>. Cinema that has been frame encoded (aka "progressive") & forced to 24'1.001pfps.<BR>
 <B class="wheat">24pps]24'1.001pfps.a.resample("1.001")</B>
 <P>&nbsp;&bullet;&nbsp;Due to 24pps-to-24'1.001pfps forcing, each cinema hour is stretched by 3.6 seconds.</P>
-<P>&nbsp;&bullet;&nbsp;Audio: To retain audio sync, 48kHz cinema audio is resampled to 48.048kHz (i.e., (48kHz)x(1.001)) in advance.
-As a result, when played at 48kHz, tonality becomes 2 cents flat (very little but apparently enough to make some musicians unhappy).</P>
+<P>&nbsp;&bullet;&nbsp;Audio: Stretched video means slower dialog.
+Slower dialog means more audio samples.
+More audio samples means audio resampled by 1.001, to 48.048kHz, so when played at 48kHz, it is slightly slower (and also 2 cents flat, very little but apparently enough to make some musicians unhappy).</P>
 
 <BR>
 <B class="yellow">'PAL'-fast</B> (aka "PAL speed-up"). Cinema that has been unweaved & field encoded & forced to 25ftfps.<BR>
 <B class="wheat">24pps_hpps]25ftfps.a.resample("24/25")</B><BR>
 <P>&nbsp;&bullet;&nbsp;Due to 24pps-to-25tfps forcing, each cinema hour shrinks by 2 minutes 24 seconds.</P>
-<P>&nbsp;&bullet;&nbsp;Audio: To retain audio sync, 48kHz cinema audio us resampled to 46.080kHz in advance.
-As a result, when played at 48kHz, tonality becomes 71 cents sharp (almost 3/4 of the way from C to C# for example and easily discerned).</P>
+<P>&nbsp;&bullet;&nbsp;Audio: Shrunken video means faster dialog.
+Faster dialog means fewer audio samples.
+Fewer audio samples means audio resampled by 24/25, to 46.080kHz, so when played at 48kHz, it is a little more than 4% faster (and also 71 cents sharp, almost 3/4 of the way from C to C# for example and easily discerned).</P>
 
 <BR>
 <B class="yellow">'PAL'-soft</B>. Cinema that has been unweaved & field encoded & tagged for 48-to-50 telecine.

@@ -16,7 +16,28 @@
 <BODY>
 
 <B class="big">Synopsis</B><BR>
-This presentation's audience is experienced video engineers and coders.<BR>
+The presentation's audience is experienced video engineers and coders.<BR>
+
+<BR>
+The notation can model video streams to support planning (and optionally, implementation) of remuxing and transcoding tasks.<BR>
+Stream modeling (and optionally, stream processing) is object oriented, element by element, not via filter functions.<BR>
+Stream editing is via primatives, each of limited scope. Pixel editing is via methods attached to element tokens.<BR>
+Streams are traversed by strides of elements.<BR>
+The various types of strides and their properties are each characteristic of the various video formats.<BR>
+
+<BR>
+Advantages for Users:<BR>
+When you write a notation you're specifying what you have and what you want, not what filters you think might work.<BR>
+No more guessing or trial and error. You are in control.<BR>
+
+<BR>
+Advantages for Developers:<BR>
+Users directly create and manage streams, so you don't have to.<BR>
+The required stream primitives are straightforward, easy to write, and easy to test.<BR>
+When a primitive works, bug-free, it's done, forever.<BR>
+Since users don't select primitives and may not even know they exist, user documentation is not needed.<BR>
+No more modifying stream filters to accommodate new use cases.<BR>
+No more duplicating code snippets to extend use cases across various disparate stream filters.<BR>
 
 <BR>
 Notations are lines of English text used to model video streams.
@@ -218,54 +239,6 @@ For such situations, consider adding this notation fragment:</I> <B class="wheat
         <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">[Aa__][Bb__][Bc__][Cd__][Dd__]</B> is a stride of 5 'NTSC' htpframes with 2-3-2-3 pull-down.</P>
         <P>&nbsp;&bullet;&nbsp;<B class="wheat">htpps]htpfps</B> encodes a downstream htpframe stream, e.g. <B class="purple">[Aa__][Bb__][Bc__][Cd__][Dd__]</B>, from upstream htpics, e.g. <B class="purple">(Aa__)(Bb__)(Bc__)(Cd__)(Dd__)</B>.</P></TD></TR>
 
-<TR><TD colspan=99><HR></TD></TR>
-</TABLE>
-
-<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="nowrap">
-<TR><TD><B class="white">CAPTURE</B></TD>
-    <TD>&nbsp;<B class="white">SAMPLES&nbsp;x</B> <B class="yellow">RASTERS</B></TD>
-    <TD></TD>
-    <TD>&nbsp;<B class="yellow">spr</B></TD>
-    <TD>&nbsp;<B class="yellow">rpc</B></TD>
-    <TD>&nbsp;<&mdash;&nbsp;<B class="yellow"><I>samples&minus;per&minus;raster</I></B> <B class="yellow"><I>rasters&minus;per&minus;capture</I></B></TD></TR>
-<TR><TD>&nbsp;&nbsp;<B class="yellow">CAR</B></TD>
-    <TD>&nbsp;&nbsp;&nbsp;<B class="yellow">CAPTURE&nbsp;ASPECT&nbsp;RATIO</B></TD>
-    <TD colspan=99>&nbsp;=&nbsp;|spr|/|rpc|</TD></TR>
-<TR><TD>&nbsp;&nbsp;<B class="yellow">SPX</B></TD>
-    <TD>&nbsp;&nbsp;&nbsp;<B class="yellow">SAMPLE&minus;PIXEL&nbsp;TRANSFORM</B></TD>
-    <TD>&nbsp;=&nbsp;|pps|/|rpr|</TD>
-    <TD>&nbsp;<B class="yellow">pps</B></TD>
-    <TD>&nbsp;<B class="yellow">rpr</B></TD>
-    <TD>&nbsp;<&mdash;&nbsp;<B class="yellow"><I>pixels&minus;per&minus;sample</I></B>&nbsp; <B class="yellow"><I>rows&minus;per&minus;raster</I></B></TD>
-    <TD></TD></TR>
-<TR><TD>&nbsp;&nbsp;<B class="white">SAR</B></TD>
-    <TD>&nbsp;&nbsp;&nbsp;<B class="white">SAMPLE&nbsp;ASPECT&nbsp;RATIO</B></TD>
-    <TD>&nbsp;=&nbsp;|pps|/|rpr|</TD>
-    <TD colspan=99>&nbsp;<&mdash; note: if CAR = DAR, then SAR = SPX</TD></TR>
-<TR><TD><B class="white">PICTURE</B></TD>
-    <TD>&nbsp;<B class="white">PIXELS&nbsp;x</B> <B class="yellow">ROWS</B></TD>
-    <TD></TD>
-    <TD>&nbsp;<B class="yellow">ppr</B></TD>
-    <TD>&nbsp;<B class="yellow">rpp</B></TD>
-    <TD>&nbsp;<&mdash;&nbsp;<B class="yellow"><I>pixels&minus;per&minus;row</I></B>&nbsp;&nbsp;&nbsp;&nbsp; <B class="yellow"><I>rows&minus;per&minus;picture</I></B></TD></TR>
-<TR><TD>&nbsp;&nbsp;<B class="yellow">PAR</B></TD>
-    <TD>&nbsp;&nbsp;&nbsp;<B class="yellow">CAPTURE&nbsp;ASPECT&nbsp;RATIO</B></TD>
-    <TD colspan=99>&nbsp;=&nbsp;|ppr|/|rpp|</TD></TR>
-<TR><TD>&nbsp;&nbsp;<B class="yellow">PDX</B></TD>
-    <TD>&nbsp;&nbsp;&nbsp;<B class="yellow">PIXEL&minus;DOT&nbsp;TRANSFORM</B></TD>
-    <TD>&nbsp;=&nbsp;|dpp|/|lpr|</TD>
-    <TD>&nbsp;<B class="yellow">dpp</B></TD>
-    <TD>&nbsp;<B class="yellow">lpr</B></TD>
-    <TD>&nbsp;<&mdash;&nbsp;<B class="yellow"><I>dots&minus;per&minus;pixel</I></B>&nbsp;&nbsp;&nbsp;&nbsp; <B class="yellow"><I>lines&minus;per&minus;row</I></B></TD></TR>
-<TR><TD><B class="yellow">DISPLAY</B></TD>
-    <TD>&nbsp;<B class="yellow">DOTS</B><B class="white">x&nbsp;LINES</B></TD>
-    <TD></TD>
-    <TD>&nbsp;<B class="yellow">dpl</B></TD>
-    <TD>&nbsp;<B class="yellow">lpd</B></TD>
-    <TD>&nbsp;<&mdash;&nbsp;<B class="yellow"><I>dots&minus;per&minus;line</I></B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <B class="yellow"><I>lines&minus;per&minus;display</I></B></TD></TR>
-<TR><TD>&nbsp;&nbsp;<B class="white">DAR</B></TD>
-    <TD>&nbsp;&nbsp;&nbsp;<B class="white">DISPLAY&nbsp;ASPECT&nbsp;RATIO</B></TD>
-    <TD colspan=99>&nbsp;=&nbsp;|dpl|/|lpd|</TD></TR>
 </TABLE>
 
 <BR></BODY></HTML>

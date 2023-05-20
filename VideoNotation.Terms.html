@@ -122,8 +122,8 @@ Consequently, they are given unique names: "ftframes" versus "combedtframes".
                        <I>M A S T E R I N G</I>                    <I>P L A Y I N G</I>
                <I class="bottom">scans (fields)</I>
    <I class="box">raw scans</I>__<B class="aqua">sps</B>______________________<B class="aqua">sfps</B>__<I class="box">media</I>___<B class="aqua">sfps</B>___<B class="aqua">sps</B>________<B class="aqua">spps</B>__<I class="box">screen</I>
- <I style="color:transparent">raw scans</I>        \ <I class="bottom">(interlace)</I>
- <I style="color:transparent">raw scans</I>         \__<B class="aqua">spps</B>______________<B class="aqua">spfps</B>__<I class="box">media</I> <I>(non-commercial or poorly mastered media)</I>
+ <I style="color:transparent">raw scans</I>       \ <I class="bottom">(interlace)</I>
+ <I style="color:transparent">raw scans</I>        \__<B class="aqua">spps</B>______________<B class="aqua">spfps</B>__<I class="box">media</I> <I>(non-commercial or poorly mastered media)</I>
                <I class="bottom">pictures (frames, not fields)</I>
 <I class="box">raw captures</I>__<B class="aqua">pps</B>______________________<B class="aqua">pfps</B>__<I class="box">media</I>___<B class="aqua">pfps</B>_______________<B class="aqua">pps</B>__<I class="box">screen</I>
                <I class="bottom">field telecines (no pull down)</I>
@@ -132,8 +132,8 @@ Consequently, they are given unique names: "ftframes" versus "combedtframes".
 <I class="box">raw captures</I>__<B class="aqua">pps</B>__<B class="aqua">hpps</B>_______________<B class="aqua">stfps</B>__<I class="box">media</I>__<B class="aqua">stfps</B>__<B class="aqua">hpps</B>__<B class="aqua">hpps</B>__<B class="aqua">tpps</B>__<I class="box">screen</I>
                <I class="bottom">hard telecines (pull down)</I>
 <I class="box">raw captures</I>__<B class="aqua">pps</B>__<B class="aqua">hpps</B>__<B class="aqua">hpps</B>_________<B class="aqua">htfps</B>__<I class="box">media</I>__<B class="aqua">htfps</B>__<B class="aqua">hpps</B>________<B class="aqua">tpps</B>__<I class="box">screen</I>
- <I style="color:transparent">raw captures</I>                 \ <I class="bottom">(interlace)</I>
- <I style="color:transparent">raw captures</I>                  \__<B class="aqua">tpps</B>__<B class="aqua">tpfps</B>__<I class="box">media</I> <I>(non-commercial or poorly mastered media)</I></B></PRE></TD></TR>
+ <I style="color:transparent">raw captures</I>                \ <I class="bottom">(interlace)</I>
+ <I style="color:transparent">raw captures</I>                 \__<B class="aqua">tpps</B>__<B class="aqua">tpfps</B>__<I class="box">media</I> <I>(non-commercial or poorly mastered media)</I></B></PRE></TD></TR>
 
 <TR><TD colspan=2><PRE class="white">
 <B> <I class="bottom">___ the rates to the left appear in notations</I>
@@ -173,8 +173,8 @@ PAL-scans & NTSC-scans are streams of field-encoded scans that are found on Blu-
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <PRE class="white"> <I class="box">raw scans</I></B> &mdash;> (DAR)x2 &mdash;> SAR &mdash;> <B class="aqua">sps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">sfps</B> &mdash;> <I class="box">media</I>
-                                    \
-                                    <I>interlace</I> &mdash;> <B class="aqua">spps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">spfps</B> &mdash;> <I class="box">media</I></PRE>
+                                   \
+                                   <I>interlace</I> &mdash;> <B class="aqua">spps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">spfps</B> &mdash;> <I class="box">media</I></PRE>
   <B class="aqua">sps</B>: scans per second. Cropped or matted & SAR-scaled raw scans.
   <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, half height, no combed lines, no cadence or judder.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: Set in the camera. Usually either PAL (50sps) or NTSC (60'1.001sps).</P>
@@ -207,7 +207,7 @@ PAL-scans & NTSC-scans are streams of field-encoded scans that are found on Blu-
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: spps.</P>
   <P>&nbsp;&bullet;&nbsp;Default&nbsp;MPEG&nbsp;tagging: 'progressive_frame'=1, 'top_field_first'=0, 'repeat_first_field'=0.</P>
   <HR>
-  <B class="yellow">scan</B>:
+  <B>scan</B>:
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <P>field&nbsp;of&nbsp;view: Full.</P>
@@ -259,8 +259,8 @@ PAL-scans & NTSC-scans are streams of field-encoded scans that are found on Blu-
 
   <PRE class="white">
  <I class="box">raw scans</I></B> &mdash;> (DAR)x2 &mdash;> SAR &mdash;> <B class="aqua">sps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">sfps</B> &mdash;> <I class="box">media</I>
-                                    \
-                                    <I>interlace</I> &mdash;> <B class="aqua">spps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">spfps</B> &mdash;> <I class="box">media</I></PRE>
+                                   \
+                                   <I>interlace</I> &mdash;> <B class="aqua">spps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">spfps</B> &mdash;> <I class="box">media</I></PRE>
   <B class="underline super">Scan Decoding</B>
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
@@ -287,7 +287,7 @@ PAL-scans & NTSC-scans are streams of field-encoded scans that are found on Blu-
     <P><B>tbscanframe</B> ('top'-'bottom' scan frame): A consecutive pair of field-encoded scans in which the 'top' scan comes first.</P>
     <P><B>btscanframe</B> ('bottom'-'top' scan frame): A consecutive pair of field-encoded scans in which the 'bottom' scan comes first.</P>
   </BLOCKQUOTE>
-  <B class="yellow">scan</B>:
+  <B>scan</B>:
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <P>field&nbsp;of&nbsp;view: Full.</P>
@@ -351,7 +351,7 @@ Cine-slow are streams of frame-encoded pictures (often called "progressive") tha
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: pps.</P>
   <P>&nbsp;&bullet;&nbsp;Default&nbsp;MPEG&nbsp;tagging: 'progressive_frame'=1, 'top_field_first'=0, 'repeat_first_field'=0.</P>
   <HR>
-  <B class="yellow">picture</B>:
+  <B>picture</B>:
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <P>field&nbsp;of&nbsp;view: Full.</P>
@@ -425,7 +425,7 @@ For field telecine, field tags are not configured for pull down during either ma
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (hpps)/2.</P>
   <P>&nbsp;&bullet;&nbsp;Default&nbsp;MPEG&nbsp;tagging: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0.</P>
   <HR>
-  <B class="yellow">picture</B>:
+  <B>picture</B>:
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <P>field&nbsp;of&nbsp;view: Full.</P>
@@ -487,7 +487,7 @@ For field telecine, field tags are not configured for pull down during either ma
 
   <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set unweaved from a picture, consisting of either the odd numbered or even numbered picture lines.</P>
   <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, half height, no combed lines.</P>
-  <B class="yellow">picture</B>:
+  <B>picture</B>:
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <P>field&nbsp;of&nbsp;view: Full.</P>
@@ -531,7 +531,7 @@ For soft telecine, as for field telecine, halfpics are mastered as fields but un
     <P>&nbsp;&bullet;&nbsp;t0r1frames: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=1.</P>
   </BLOCKQUOTE>
   <HR>
-  <B class="yellow">picture</B>:
+  <B>picture</B>:
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <P>field&nbsp;of&nbsp;view: Full.</P>
@@ -719,7 +719,7 @@ NTSC                   t1r1frame       t0r0frame
   <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, half height, no combed lines.</P>
   <P><B class="yellow">telepics</B> (telecine pictures): A stream of mixed pictures & combedtelepics.</P>
   <BLOCKQUOTE>
-    <B class="yellow">picture</B>:
+    <B>picture</B>:
 
     <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
     <P>field&nbsp;of&nbsp;view: Full.</P>
@@ -770,8 +770,8 @@ For hard telecine, as for field & soft telecines, halfpics are mastered as field
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <PRE class="white"> <I class="box">raw captures</I> &mdash;> DAR &mdash;> SAR &mdash;> <B class="aqua">pps</B> &mdash;> <I>unweave</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>pull-down</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">htfps</B> &mdash;> <I class="box">media</I>
-                                                                           \
-                                                                           <I>interlace</I> &mdash;> <B class="aqua">tpps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">tpfps</B> &mdash;> <I class="box">media</I></PRE>
+                                                                          \
+                                                                          <I>interlace</I> &mdash;> <B class="aqua">tpps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">tpfps</B> &mdash;> <I class="box">media</I></PRE>
   <B class="aqua">pps</B>: pictures per second. Cropped or matted & SAR-scaled raw captures.
   <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, full height, no combed lines, no cadence, no judder.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: Set in the camera. For cinema, usually 24pps.</P>
@@ -801,7 +801,7 @@ For hard telecine, as for field & soft telecines, halfpics are mastered as field
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: tpps.</P>
   <P>&nbsp;&bullet;&nbsp;Default&nbsp;MPEG&nbsp;tagging: 'progressive_frame'=1, 'top_field_first'=0, 'repeat_first_field'=0.</P>
   <HR>
-  <B class="yellow">picture</B>:
+  <B>picture</B>:
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <P>field&nbsp;of&nbsp;view: Full.</P>
@@ -836,7 +836,7 @@ For hard telecine, as for field & soft telecines, halfpics are mastered as field
   </BLOCKQUOTE>
   <P><B class="yellow">telepics</B> (telecine pictures): A stream of mixed pictures & combedtelepics.</P>
   <BLOCKQUOTE>
-    <B class="yellow">picture</B>:
+    <B>picture</B>:
 
     <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
     <P>field&nbsp;of&nbsp;view: Full.</P>
@@ -869,8 +869,8 @@ For hard telecine, as for field & soft telecines, halfpics are mastered as field
 
   <PRE class="white">
  <I class="box">raw captures</I> &mdash;> DAR &mdash;> SAR &mdash;> <B class="aqua">pps</B> &mdash;> <I>unweave</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>pull-down</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">htfps</B> &mdash;> <I class="box">media</I>
-                                                                           \
-                                                                           <I>interlace</I> &mdash;> <B class="aqua">tpps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">tpfps</B> &mdash;> <I class="box">media</I></PRE>
+                                                                          \
+                                                                          <I>interlace</I> &mdash;> <B class="aqua">tpps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">tpfps</B> &mdash;> <I class="box">media</I></PRE>
   <B class="underline super">Hard Telecine Decoding</B>
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
@@ -908,7 +908,7 @@ For hard telecine, as for field & soft telecines, halfpics are mastered as field
   <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, half height, no combed lines.</P>
   <P><B class="yellow">telepics</B> (telecine pictures): A stream of mixed pictures & combedtelepics.</P>
   <BLOCKQUOTE>
-    <B class="yellow">picture</B>:
+    <B>picture</B>:
 
     <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
     <P>field&nbsp;of&nbsp;view: Full.</P>
