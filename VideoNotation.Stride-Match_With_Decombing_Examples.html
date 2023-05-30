@@ -25,25 +25,25 @@
 &nbsp;()(())
 ()((()))</B></PRE></TD><TD class="box0100"></TD><TD>&nbsp;</TD>
     <TD><PRE class="white" style="padding:0;margin:0">
-<B><B class="wheat">(</B><I>stride</I><B class="wheat">)</B>     <B class="wheat">(</B><I>match</I><B class="wheat">)</B>
-<B class="wheat">(</B><I>stride</I><B class="wheat">)</B>    <B class="wheat">((</B><I>match</I><B class="wheat">))</B>
-<B class="wheat">(</B><I>stride</I><B class="wheat">)</B>   <B class="wheat">(((</B><I>match</I><B class="wheat">)))</B>
-<B class="wheat">(</B><I>stride</I><B class="wheat">)</B> <B class="wheat">(</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">))</B>
-<B class="wheat">(</B><I>stride</I><B class="wheat">)((</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">)))</B>
-<B class="wheat">(</B><I>stride</I><B class="wheat">)</B>    <B class="wheat">((</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">)</B>
-<B class="wheat">(</B><I>stride</I><B class="wheat">)</B>   <B class="wheat">(((</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">))</B>
-<B class="wheat">(</B><I>stride</I><B class="wheat">)</B> <B class="wheat">(</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">)</B>
-<B class="wheat">(</B><I>stride</I><B class="wheat">)((</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">))</B>
-<B class="wheat">(</B><I>stride</I><B class="wheat">)</B>   <B class="wheat">(((</B><I>match</I><B class="wheat">))</B><I>miss</I><B class="wheat">)</B>
-<B class="wheat">(</B><I>stride</I><B class="wheat">)((</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">))</B><I>miss</I><B class="wheat">)</B>
-<B class="wheat">(</B><I>stride</I><B class="wheat">)</B>   <B class="wheat">(((</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">)</B><I>miss</I><B class="wheat">)</B>
-<B class="wheat">(</B><I>stride</I><B class="wheat">)((</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">)</B><I>miss</I><B class="wheat">)</B></B></PRE></TD><TD class="box0100"></TD><TD>&nbsp;</TD>
+<B><B class="wheat">(<I class="green">stride</I>)</B>     <B class="wheat">(<I class="green">match</I>)</B>
+<B class="wheat">(<I class="green">stride</I>)</B>    <B class="wheat">((<I class="green">match</I>))</B>
+<B class="wheat">(<I class="green">stride</I>)</B>   <B class="wheat">(((<I class="green">match</I>)))</B>
+<B class="wheat">(<I class="green">stride</I>)</B> <B class="wheat">(<I class="green">new</I>(<I class="green">match</I>))</B>
+<B class="wheat">(<I class="green">stride</I>)((<I class="green">new</I>(<I class="green">match</I>)))</B>
+<B class="wheat">(<I class="green">stride</I>)</B>    <B class="wheat">((<I class="green">match</I>)<I class="green">end</I>)</B>
+<B class="wheat">(<I class="green">stride</I>)</B>   <B class="wheat">(((<I class="green">match</I>)<I class="green">end</I>))</B>
+<B class="wheat">(<I class="green">stride</I>)</B> <B class="wheat">(<I class="green">new</I>(<I class="green">match</I>)<I class="green">end</I>)</B>
+<B class="wheat">(<I class="green">stride</I>)((<I class="green">new</I>(<I class="green">match</I>)<I class="green">end</I>))</B>
+<B class="wheat">(<I class="green">stride</I>)</B>   <B class="wheat">(((<I class="green">match</I>))<I class="green">miss</I>)</B>
+<B class="wheat">(<I class="green">stride</I>)((<I class="green">new</I>(<I class="green">match</I>))<I class="green">miss</I>)</B>
+<B class="wheat">(<I class="green">stride</I>)</B>   <B class="wheat">(((<I class="green">match</I>)<I class="green">end</I>)<I class="green">miss</I>)</B>
+<B class="wheat">(<I class="green">stride</I>)((<I class="green">new</I>(<I class="green">match</I>)<I class="green">end</I>)<I class="green">miss</I>)</B></PRE></TD><TD class="box0100"></TD><TD>&nbsp;</TD>
     <TD><P>Spaces are ignored.</P>
-        <P><B><I>stride</I></B> can only be tokens.</P>
-        <P>Token repetition, if any, in <B><I>stride</I></B> implies the search pattern.</P>
-        <P>Tokens in <B><I>new match end miss</I></B> specify token replacements or reordering.</P>
-        <P><B><I>new end miss</I></B> are optional.</P>
-        <P><B><I>new match end miss</I></B> can contain any notation, including nested stride-matches.</P></TD></TR>
+        <P><B><I class="green">stride</I></B> can only be tokens.</P>
+        <P>Token repetition, if any, in <B><I class="green">stride</I></B> implies the search pattern.</P>
+        <P>Tokens in <B><I class="green">new match end miss</I></B> specify token replacements or reordering.</P>
+        <P><B><I class="green">new end miss</I></B> are optional.</P>
+        <P><B><I class="green">new match end miss</I></B> can contain any notation, including nested stride-matches.</P></TD></TR>
 </TABLE>
 
 <BR>
@@ -55,7 +55,7 @@
 
 <P>1, Strides are input streams, represented as tokens, cut into uniform spans of elements.</P>
 <P>2, The stride's elements are paired to tokens on a 1-to-1 basis.</P>
-<P>3, Elements are assigned to the matching tokens in <B class="wheat">((</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">)</B><I>miss</I><B class="wheat">)</B> and the notations in them are run.</P>
+<P>3, Elements are assigned to the matching tokens in <B class="wheat">((<I class="green">new</I>(<I class="green">match</I>)<I class="green">end</I>)<I class="green">miss</I>)</B> and the notations in them are run.</P>
 <P>4, This process loops for all input strides until the input stream is exhausted.</P>
 <P>5, Any leftover 'stale' elements are force-passed unchanged.</P>
 <BR>
@@ -63,61 +63,61 @@ Example, reverse 'NTSC' telecine, 2-3-2-3 pull-down: <B class="wheat">(AaBbBcCdD
 <BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
 
-<TR><TD><B class="wheat nowrap">(<B class="white"><I>stride</I></B>)((<B class="white"><I>new</I></B>(<B class="white"><I>match</I></B>)<B class="white"><I>end</I></B>)<B class="white"><I>miss</I></B>)</B>&nbsp;</TD>
+<TR><TD><B class="wheat nowrap">(<I class="green">stride</I>)((<I class="green">new</I>(<I class="green">match</I>)<I class="green">end</I>)<I class="green">miss</I>)</B>&nbsp;</TD>
     <TD>This is a fully populated stride-match using labels in place of actual notations.</TD></TR>
 <TR><TD><BR></TD></TR>
 
-<TR><TD><B><B class="wheat">(</B><I>stride</I><B class="wheat">)</B> &nbsp; &nbsp; <B class="wheat">(</B><I>match</I><B class="wheat">)</B></B></TD>
+<TR><TD><B class="wheat">(<I class="green">stride</I>)</B> &nbsp; &nbsp; <B class="wheat">(<I class="green">match</I>)</B></TD>
     <TD>Input elements are buffered until stride number of elements have been accumulated.
         <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-        <TR><TD>&nbsp;&bullet;&nbsp;</TD><TD>If the buffer's content matches the pattern found in <I>stride</I>, the buffer is down-streamed to the <I>match</I> notation, the input pointer is increased by the length of <I>stride</I>, and processing loops back to scan for more input.</TD></TR>
-        <TR><TD>&nbsp;&bullet;&nbsp;</TD><TD>If not matched, <I>match</I> is skipped and a minimum number of elements: 1 for pictures or 2 for scans & halfpics, are down-streamed to follow-on notation and the scanner pointer is incremented by 1 or 2 before looping back.</TD></TR>
+        <TR><TD>&nbsp;&bullet;&nbsp;</TD><TD>If the buffer's content matches the pattern found in <I class="green">stride</I>, the buffer is down-streamed to the <I class="green">match</I> notation, the input pointer is increased by the length of <I class="green">stride</I>, and processing loops back to scan for more input.</TD></TR>
+        <TR><TD>&nbsp;&bullet;&nbsp;</TD><TD>If not matched, <I class="green">match</I> is skipped and a minimum number of elements: 1 for pictures or 2 for scans & halfpics, are down-streamed to follow-on notation and the scanner pointer is incremented by 1 or 2 before looping back.</TD></TR>
         </TABLE>
-        The <I>match</I> notation can contain any valid notation including embedded stride-matches.</TD></TR>
+        The <I class="green">match</I> notation can contain any valid notation including embedded stride-matches.</TD></TR>
 <TR><TD><BR></TD></TR>
 
-<TR><TD><B><B class="wheat">(</B><I>stride</I><B class="wheat">)((</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">))</B></B></TD>
-    <TD>If the first match of a new stream, the input stride is down-streamed to the <I>new</I> notation (e.g., for scene change). Thereafter, matching strides are down-streamed to the <I>match</I> notation. If an end match, the input stride is down-streamed to the <I>end</I> notation. The <I>new</I> & <I>end</I> notations can contain any valid notations including embedded stride-matches.</TD></TR>
+<TR><TD><B class="wheat">(<I class="green">stride</I>)((<I class="green">new</I>(<I class="green">match</I>)<I class="green">end</I>))</B></TD>
+    <TD>If the first match of a new stream, the input stride is down-streamed to the <I class="green">new</I> notation (e.g., for scene change). Thereafter, matching strides are down-streamed to the <I class="green">match</I> notation. If an end match, the input stride is down-streamed to the <I class="green">end</I> notation. The <I class="green">new</I> & <I class="green">end</I> notations can contain any valid notations including embedded stride-matches.</TD></TR>
 <TR><TD><BR></TD></TR>
 
-<TR><TD><B><B class="wheat">(</B><I>stride</I><B class="wheat">)((</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">)</B><I>miss</I><B class="wheat">)</B></B></TD>
-    <TD>If not matched, a minimum number of elements: 1 for pictures or 2 for scans & halfpics, are down-streamed to the <I>miss</I> notation. The <I>miss</I> notation can contain any valid notation including embedded stride-matches.</TD></TR>
+<TR><TD><B class="wheat">(<I class="green">stride</I>)((<I class="green">new</I>(<I class="green">match</I>)<I class="green">end</I>)<I class="green">miss</I>)</B></TD>
+    <TD>If not matched, a minimum number of elements: 1 for pictures or 2 for scans & halfpics, are down-streamed to the <I class="green">miss</I> notation. The <I class="green">miss</I> notation can contain any valid notation including embedded stride-matches.</TD></TR>
 <TR><TD><BR></TD></TR>
 </TABLE>
 
 <BR>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD class="nowrap center"><B><I>stride</I></B>&nbsp;</TD><TD>Each stride-match builds a purpose-built scanner that accumulates input elements: scans pictures or halfpics, as they are received and monitors the accumulation looking for patterns. For example, strides for reverse 2-3-2-3 pull-down are <B class="wheat">(Aa<B class="red">B</B>b<B class="red">B</B>cC<B class="red">d</B>D<B class="red">d</B>)</B>.
-The scanner consequentially looks in the accumulator for 10 halfpics that have a "..<B class="red">1</B>.<B class="red">1</B>..<B class="red">2</B>.<B class="red">2</B>" pattern.
+<TR><TD class="nowrap center"><B><I class="green">stride</I></B>&nbsp;</TD><TD>Each stride-match builds a purpose-built scanner that accumulates input elements: scans pictures or halfpics, as they are received and monitors the accumulation looking for patterns. For example, strides for reverse 2-3-2-3 pull-down are <B class="wheat">(Aa<B class="green">B</B>b<B class="green">B</B>cC<B class="green">d</B>D<B class="green">d</B>)</B>.
+The scanner consequentially looks in the accumulator for 10 halfpics that have a "..<B class="green">1</B>.<B class="green">1</B>..<B class="green">2</B>.<B class="green">2</B>" pattern.
   <PRE class="white">
-<B>  If <I>stride</I> <B class="red">finds</B> a "..1.1..2.2" pattern,           If <I>stride</I> <B class="red">does not find</B> the pattern,
+<B>  If <I class="green">stride</I> <B class="red">finds</B> a "..1.1..2.2" pattern,           If <I class="green">stride</I> <B class="red">does not find</B> the pattern,
   it signals "AaBbBcCdDd" &                         it signals "" &
      down-streams all 10 halfpics &                    down-streams only the first 2 halfpics &
      increments the scanner by 10 &                    increments the scanner by 2 &
      resumes accumulating (i.e., it loops).            resumes accumulating (i.e., it loops).</B>
-<SPAN class="wrap">If the input stream ends short of a full stride, <b><B class="wheat">((</B><I>new</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end</I><B class="wheat">)</B><I>miss</I><B class="wheat">)</B></B> is entirely skipped & the 'stale' halfpics are force-passed unchanged to follow-on notation.</SPAN></PRE></TD></TR>
+<SPAN class="wrap">If the input stream ends short of a full stride, <B class="wheat">((<I class="green">new</I>(<I class="green">match</I>)<I class="green">end</I>)<I class="green">miss</I>)</B> is entirely skipped & the 'stale' halfpics are force-passed, unchanged, to follow-on notation.</SPAN></PRE></TD></TR>
 <TR><TD><BR></TD></TR>
-<TR><TD class="nowrap center"><B><I>new</I></B>&nbsp;</TD><TD>is optional. It operates identically as <I>match</I> but only on the first matching stride of a new stream (thereby handling scene changes for example).</TD></TR>
+<TR><TD class="nowrap center"><B><I class="green">new</I></B>&nbsp;</TD><TD>is optional. It operates identically as <I class="green">match</I> but only on the first matching stride of a new stream (thereby handling scene changes for example).</TD></TR>
 <TR><TD><BR></TD></TR>
-<TR><TD class="nowrap center"><B><I>match</I></B>&nbsp;</TD><TD>is required.
+<TR><TD class="nowrap center"><B><I class="green">match</I></B>&nbsp;</TD><TD>is required.
     <PRE class="white">
-<B>If signal="", then <I>match</I> merely down-streams whatever <I>stride</I> is passed to it.
+<B>If signal="", then <I class="green">match</I> merely down-streams whatever <I class="green">stride</I> is passed to it.
 If signal="<B class="red">AaBb</B>B<B class="red">cCdD</B>d" for example, then
   &bullet; Halfpic <B class="red">1</B> is assigned to output <B class="red">A</B>               &bullet; Halfpic <B class="red">6</B> is assigned to output <B class="red">c</B>
   &bullet;         <B class="red">2</B>                       <B class="red">a</B>               &bullet;         <B class="red">7</B>                       <B class="red">C</B>
   &bullet;         <B class="red">3</B>                       <B class="red">B</B>               &bullet;         <B class="red">8</B>                       <B class="red">d</B>
   &bullet;         <B class="red">4</B>                       <B class="red">b</B>               &bullet;         <B class="red">9</B>                       <B class="red">D</B>
-  &bullet;         <B>5</B> is ignored (<B>B</B> already assigned)       &bullet;        <B>10</B> is ignored (<B class="red">d</B> already assigned)</B></PRE>
-Thusly, <B><I>stride</I> = <B class="red">AaBb</B>B<B class="red">cCdD</B>d</B> is output as <B><I>match</I> = <B class="red">AaBbCcDd</B></B>.<BR>
+  &bullet;         5 is ignored (B already assigned)       &bullet;        10 is ignored (d already assigned)</B></PRE>
+Thusly, <B><I class="green">stride</I> = <B class="red">AaBb</B>B<B class="red">cCdD</B>d</B> is output as <B><I class="green">match</I> = <B class="red">AaBbCcDd</B></B>.<BR>
 Using this scheme, elements can be rearranged and/or dropped and/or repeated without limit.</TD></TR>
 <TR><TD><BR></TD></TR>
-<TR><TD class="nowrap center"><B><I>end</I></B>&nbsp;</TD><TD>is optional. It operates identically as <I>new</I> but on the ending matching stride of course.</TD></TR>
+<TR><TD class="nowrap center"><B><I class="green">end</I></B>&nbsp;</TD><TD>is optional. It operates identically as <I class="green">new</I> but on the ending matching stride of course.</TD></TR>
 <TR><TD><BR></TD></TR>
-<TR><TD class="nowrap center"><B><I>miss</I></B>&nbsp;</TD><TD>is optional. It accumulates input elements down-streamed to it while the <I>stride</I> continues to not be matched and it uses that input in whatever notation it contains. <I>miss</I> has the following important properties:
+<TR><TD class="nowrap center"><B><I class="green">miss</I></B>&nbsp;</TD><TD>is optional. It accumulates input elements down-streamed to it while the <I class="green">stride</I> continues to not be matched and it uses that input in whatever notation it contains. <I class="green">miss</I> has the following important properties:
   <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-  <TR><TD>&nbsp;&bullet;&nbsp;</TD><TD>If there's a stream break during the accumulation: if the stride-match switches from <I>miss</I> to <I>match</I> or from <I>match</I> to <I>miss</I>, then the stride-match signals the discontinuity by tagging the new elements as a new stream. When <I>match</I> signals the discontinuity, <I>miss</I> responds by force-passing the current accumulated input elements, if any, and by accumulating anew.</TD></TR>
-  <TR><TD>&nbsp;&bullet;&nbsp;</TD><TD>When <I>stride</I> exhausts its input stream and consequently has nothing to down-stream, <I>miss</I> is automatically skipped. So, when it's invoked, <I>miss</I> will always receive at least one element and need not defend against (or otherwise consider) null input.</TD></TR>
-  <TR><TD>&nbsp;&bullet;&nbsp;</TD><TD>Any 'stale' elements left in <I>miss</I> when the input stream is exhausted are force-passed unchanged.</TD></TR>
+  <TR><TD>&nbsp;&bullet;&nbsp;</TD><TD>If there's a stream break during the accumulation: if the stride-match switches from <I class="green">miss</I> to <I class="green">match</I> or from <I class="green">match</I> to <I class="green">miss</I>, then the stride-match signals the discontinuity by tagging the new elements as a new stream. When <I class="green">match</I> signals the discontinuity, <I class="green">miss</I> responds by force-passing the current accumulated input elements, if any, and by accumulating anew.</TD></TR>
+  <TR><TD>&nbsp;&bullet;&nbsp;</TD><TD>When <I class="green">stride</I> exhausts its input stream and consequently has nothing to down-stream, <I class="green">miss</I> is automatically skipped. So, when it's invoked, <I class="green">miss</I> will always receive at least one element and need not defend against (or otherwise consider) null input.</TD></TR>
+  <TR><TD>&nbsp;&bullet;&nbsp;</TD><TD>Any 'stale' elements left in <I class="green">miss</I> when the input stream is exhausted are force-passed unchanged.</TD></TR>
   </TABLE></TD></TR>
 </TABLE>
 
@@ -126,10 +126,10 @@ Examples of stride-match for simple block filtering.
 <PRE class="white">
 <B><B class="wheat">(1)(1)</B>                   // a 1-to-1 stride-match down-streams all streams &mdash; a do-nothing stride-match
 <B class="wheat nowrap">(1)()</B>                    // a 1-to-nothing stride-match discards all streams
-<B class="wheat nowrap">(<B class="white"><I>stride</I></B>)((1)())</B>          // discards all matching strides &mdash; <I>match</I> does the discarding
-<B class="wheat nowrap">(<B class="white"><I>stride</I></B>)(((<B class="white"><I>match</I></B>))(1)())</B> // discards all non-matching strides &mdash; <I>miss</I> does the discarding
-<B class="wheat nowrap">(<B class="white"><I>stride</I></B>)((1)()(<B class="white"><I>match</I></B>))</B>   // discards only a matching stream's beginning stride &mdash; <I>new</I> does the discarding
-<B class="wheat nowrap">(<B class="white"><I>stride</I></B>)((<B class="white"><I>match</I></B>)(1)())</B>   // discards only a matching stream's ending stride &mdash; <I>end</I> does the discarding</B></PRE>
+<B class="wheat nowrap">(<I class="green">stride</I>)((1)())</B>          // discards all matching strides &mdash; <I class="green">match</I> does the discarding
+<B class="wheat nowrap">(<I class="green">stride</I>)(((<I class="green">match</I>))(1)())</B> // discards all non-matching strides &mdash; <I class="green">miss</I> does the discarding
+<B class="wheat nowrap">(<I class="green">stride</I>)((1)()(<I class="green">match</I>))</B>   // discards only a matching stream's beginning stride &mdash; <I class="green">new</I> does the discarding
+<B class="wheat nowrap">(<I class="green">stride</I>)((<I class="green">match</I>)(1)())</B>   // discards only a matching stream's ending stride &mdash; <I class="green">end</I> does the discarding</B></PRE>
 
 <BR>
 <B class="big">Decombing Examples:</B><BR>

@@ -18,23 +18,23 @@
 <B class="big">Digital Cameras & Film Scanners</B><BR>
 
 <BR>
-Key: <B class="yellow">&nbsp;&nbsp;&nbsp;</B>&nbsp;new terms (not in notations)
+Key: <B class="yellow">new terms</B> (not in notations)
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="box"><TR><TD>
 </TD></TR><TR><TD>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="nowrap">
 <TR><TD class="box0010" colspan=5>GENERAL CAPTURE-to-PICTURE-to-DISPLAY transforms (for CAPTURES-per-PICTURE = PICTURES-per-DISPLAY = 1 of course)</TD></TR>
-<TR><TD>&nbsp;CAPTURE (square samples)<BR>&nbsp;SAMPLES x RASTERS &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+<TR><TD>&nbsp;CAPTURE (square samples)<BR>&nbsp;SAMPLES x TRACKS &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
     <TD class="papaya bold">&nbsp;TRANSFORM<BR>&nbsp;SAMPLES to PIXELS &mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
-    <TD>&nbsp;PICTURE<BR>&nbsp;PIXELS x ROWS &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD>&nbsp;PICTURE<BR>&nbsp;PIXELS x ROWS &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
     <TD class="papaya bold">&nbsp;TRANSFORM<BR>&nbsp;PIXELS to DOTS &mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
-    <TD>&nbsp;DISPLAY (square dots)<BR>&nbsp;DOTS x LINES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
-<TR><TD class="box1011"><B class="yellow">spr</B>: <B class="yellow"><I>samples&minus;per&minus;raster</I></B><BR><B class="yellow">rpc</B>: <B class="yellow"><I>rasters&minus;per&minus;capture</I></B> </TD>
-    <TD class="box1011 papaya bold"><B class="yellow">pps</B>: <B class="yellow"><I>pixels&minus;per&minus;sample</I></B><BR><B class="yellow">rpr</B>: <B class="yellow"><I>rows&minus;per&minus;raster</I></B></TD>
+    <TD>&nbsp;DISPLAY (square dots)<BR>&nbsp;DOTS x LINES</TD></TR>
+<TR><TD class="box1011"><B class="yellow">spt</B>: <B class="yellow"><I>samples&minus;per&minus;track</I></B><BR><B class="yellow">tpc</B>: <B class="yellow"><I>tracks&minus;per&minus;capture</I></B> </TD>
+    <TD class="box1011 papaya bold"><B class="yellow">pps</B>: <B class="yellow"><I>pixels&minus;per&minus;sample</I></B><BR><B class="yellow">rpt</B>: <B class="yellow"><I>rows&minus;per&minus;track</I></B></TD>
     <TD class="box1011"><B class="yellow">ppr</B>: <B class="yellow"><I>pixels&minus;per&minus;row</I></B><BR><B class="yellow">rpp</B>: <B class="yellow"><I>rows&minus;per&minus;picture</I></B></TD>
     <TD class="box1011 papaya bold"><B class="yellow">dpp</B>: <B class="yellow"><I>dots&minus;per&minus;pixel</I></B><BR><B class="yellow">lpr</B>: <B class="yellow"><I>lines&minus;per&minus;row</I></B></TD>
     <TD class="box1111"><B class="yellow">dpl</B>: <B class="yellow"><I>dots&minus;per&minus;line</I></B><BR><B class="yellow">lpd</B>: <B class="yellow"><I>lines&minus;per&minus;display</I></B></TD></TR>
-<TR><TD class="right"><BR><BR>define <B class="yellow">CAR</B> = |spr|/|rpc|&nbsp;</TD>
-    <TD class="right papaya bold">pps = |ppr|/|spr|&nbsp;<BR>rpr = |rpp|/|rpc|&nbsp;<BR>define <B class="yellow">SPX</B> = pps/rpr&nbsp;</TD>
+<TR><TD class="right"><BR><BR>define <B class="yellow">CAR</B> = |spt|/|tpc|&nbsp;</TD>
+    <TD class="right papaya bold">pps = |ppr|/|spt|&nbsp;<BR>rpt = |rpp|/|tpc|&nbsp;<BR>define <B class="yellow">SPX</B> = pps/rpt&nbsp;</TD>
     <TD></TD>
     <TD class="right papaya bold">dpp = |dpl|/|ppr|&nbsp;<BR>lpr = |lpd|/|rpp|&nbsp;<BR>define <B class="yellow">PDX</B> = dpp/lpr&nbsp;</TD>
     <TD class="right"><BR><BR>DAR = |dpl|/|lpd|&nbsp;</TD></TR>
@@ -45,35 +45,28 @@ Key: <B class="yellow">&nbsp;&nbsp;&nbsp;</B>&nbsp;new terms (not in notations)
     <TD></TD></TR>
 <TR><TD></TD>
     <TD class="papaya bold">&nbsp;FILM SCANNER &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
-    <TD>&nbsp;PICTURE &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD>&nbsp;PICTURE &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
     <TD class="papaya bold">&nbsp;PIXELS to DOTS &mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
-    <TD>&nbsp;DISPLAY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+    <TD>&nbsp;DISPLAY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
 <TR><TD></TD>
-    <TD class="box1011 papaya bold">&Delta;p: <I>pixel-to-pixel</I><BR>&Delta;r: <I>row-to-row</I></TD>
+    <TD class="box1011 papaya bold">&Delta;p: <I>pixel-to-pixel span</I><BR>&Delta;r: <I>row-to-row span</I></TD>
     <TD class="box1011">ppr: <I>pixels&minus;per&minus;row</I><BR>rpp: <I>rows&minus;per&minus;picture</I></TD>
     <TD class="box1011 papaya bold">dpp: <I>dots&minus;per&minus;pixel</I><BR>lpr: <I>lines&minus;per&minus;row</I></TD>
     <TD class="box1111">dpl: <I>dots&minus;per&minus;line</I><BR>lpd: <I>lines&minus;per&minus;display</I></TD></TR>
 <TR><TD></TD>
-    <TD class="right papaya bold">define SAR = &Delta;p/&Delta;r&nbsp;</TD></TR>
+    <TD class="right papaya bold">define SPX = &Delta;p/&Delta;r&nbsp;</TD></TR>
 <TR><TD></TD>
     <TD>&nbsp;</TD>
     <TD></TD>
     <TD>&nbsp;</TD>
     <TD></TD></TR>
-<TR><TD colspan=5>SPECIAL CASE: if CAR = DAR, then define SAR = SPX &nbsp;<&mdash; this is true for all known media</TD></TR>
-<TR><TD class="right">for 16:9 'PAL' DVD,<BR>for 4:3 'PAL' DVD,</TD>
-    <TD class="papaya bold">&nbsp;SAR = 45/64 [see note 1]<BR>&nbsp;SAR = 15/16 [see note 1]</TD>
-    <TD></TD>
-    <TD class="right papaya bold">if SAR &lt; 1,<BR>[see note 1]</TD>
-    <TD>&nbsp;|dpl| = |ppr|/(SAR)<BR>&nbsp;|lpd| = |rpp|</TD></TR>
-<TR><TD class="right">for 16:9 'NTSC' DVD,<BR>for 4:3 'NTSC' DVD,</TD>
-    <TD class="papaya bold">&nbsp;SAR = 27/32 [see note 1]<BR>&nbsp;SAR = &nbsp;9/8 &nbsp;[see note 1]</TD>
-    <TD></TD>
-    <TD class="right papaya bold">otherwise,<BR>[see note 1]</TD>
-    <TD class="left">&nbsp;|dpl| = |ppr|<BR>&nbsp;|lpd| = |rpp|/(SAR)</TD></TR>
-<TR><TD colspan=99 class="wrap" style="max-width:1em"><P>[note 1] Be careful! Most people invert SAR.
-For example, for 16:9 'PAL' DVD, they will claim SAR = 64/45, then use it to convert 720 PIXELS to 1024 DOTS.
-The calculation is correct, but 64/45 is actually 1/(SAR).</P></TD></TR>
+<TR><TD colspan=3>SPECIAL CASE: if CAR = DAR (which is true for all known media),</TD>
+    <TD class="right bold">then SAR = 1/(SPX)</TD></TR>
+<TR>    <TD></TD>
+<TD class="right">for 16:9 'PAL' DVD,<BR>for 4:3 'PAL' DVD,<BR>for 16:9 'NTSC' DVD,<BR>for 4:3 'NTSC' DVD,</TD>
+    <TD class="bold">&nbsp;SAR = 64/45<BR>&nbsp;SAR = 16/15<BR>&nbsp;SAR = 32/27<BR>&nbsp;SAR = &nbsp;8/9</TD>
+    <TD class="right bold">if SAR &gt; 1,<BR><BR>otherwise,</TD>
+    <TD>&nbsp;|dpl| = |ppr|x(SAR)<BR>&nbsp;|lpd| = |rpp|<BR>&nbsp;|dpl| = |ppr|<BR>&nbsp;|lpd| = |rpp|/(SAR)</TD></TR>
 </TABLE></TD></TR></TABLE>
 
 <BR>
@@ -84,13 +77,13 @@ The calculation is correct, but 64/45 is actually 1/(SAR).</P></TD></TR>
 <P>&nbsp;720&nbsp;x&nbsp;576&nbsp; samples is the target 16:9 'PAL' picture.</P>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="box"><TR><TD>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="nowrap">
-<TR><TD>&nbsp;ARRI ALEXA XT &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+<TR><TD>&nbsp;ARRI ALEXA XT &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
     <TD class="papaya bold">&nbsp;SAMPLES to PIXELS &mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
-    <TD>&nbsp;PICTURE &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD>&nbsp;PICTURE &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
     <TD class="papaya bold">&nbsp;PIXELS to DOTS &mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
-    <TD>&nbsp;DISPLAY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
-<TR><TD class="box1011">2240 spr<BR>1260 rpc</TD>
-    <TD class="box1011 papaya bold">720/2240 pps<BR>576/1260 rpr</TD>
+    <TD>&nbsp;DISPLAY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR><TD class="box1011">2240 spt<BR>1260 tpc</TD>
+    <TD class="box1011 papaya bold">720/2240 pps<BR>576/1260 rpt</TD>
     <TD class="box1011">720 ppr<BR>576 rpp</TD>
     <TD class="box1011 papaya bold">1024/720 = 64/45 dpp<BR>1 lpr</TD>
     <TD class="box1111">1024 dpl<BR>576 lpd</TD></TR>
@@ -113,11 +106,11 @@ The calculation is correct, but 64/45 is actually 1/(SAR).</P></TD></TR>
 <P>scan set&minus;up:&nbsp;&Delta;r =&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(18.16&nbsp;mm)/(874&nbsp;rows)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp;20.7&nbsp;&micro;m&minus;per&minus;row.</P>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="box"><TR><TD>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="nowrap">
-<TR><TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+<TR><TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
     <TD class="papaya bold">&nbsp;FILM SCANNER &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
-    <TD>&nbsp;PICTURE &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
+    <TD>&nbsp;PICTURE &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
     <TD class="papaya bold">&nbsp;PIXELS to DOTS &mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
-    <TD>&nbsp;DISPLAY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+    <TD>&nbsp;DISPLAY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
 <TR><TD></TD>
     <TD class="box1011 papaya bold">&Delta;p = 14.7 &micro;m<BR>&Delta;r = 20.7 &micro;m</TD>
     <TD class="box1011">720 ppr<BR>576 (matted) rpp</TD>

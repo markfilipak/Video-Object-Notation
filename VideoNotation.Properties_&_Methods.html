@@ -101,7 +101,7 @@ Unsuccessfully setting a property does nothing and returns an error.<BR>
 <!-- Frame Methods -->
 <P>Decoder Object:</P>
 <P><B class="wheat">.<I>decoder_name</I></B> (w) change decoder, use defaults</P>
-<P><B class="wheat">.<I>decoder_name</I>(<I>settings</I>)</B> (w) change decoder</P>
+<P><B class="wheat">.<I>decoder_name</I>("<I>settings</I>")</B> (w) change decoder</P>
 <P>Encoder Object:</P>
 <P><B class="wheat">.<I>encoder_name</I></B> (w) change encoder, use defauts</P>
 <P><B class="wheat">.<I>encoder_name</I>("<I>settings</I>")</B> (w) change encoder</P>
@@ -114,27 +114,31 @@ Unsuccessfully setting a property does nothing and returns an error.<BR>
 <TR><TD>
 
 <!-- Picture (or Scan) Properties -->
-<P><B class="wheat">.bpp</B> (r) gets image's bits per pixel</P>
-<P><B class="wheat">.encoder</B> (r) gets this encoder's name</P>
 <P><B class="wheat">.bpp</B> (r) gets bits per pixel</P>
+<P><B class="wheat">.bpp</B> (r) gets image's bits per pixel</P>
+<P><B class="wheat">.colormatrix</B> (r) gets encoder's colormatrix's name</P>
+<P><B class="wheat">.encoder</B> (r) gets this encoder's name</P>
 <P><B class="wheat">.ppr</B> (r) gets pixels per row</P>
-<P><B class="wheat">.rpp</B> (r) gets rows per picture</P>
+<P><B class="wheat">.protocol</B> (r) gets encoder's protocol's name</P>
 <P><B class="wheat">.ps</B> (r) gets pictures (or scans) per sec</P>
 <P><B class="wheat">.ps</B> (w) forces ps, no conversion</P>
+<P><B class="wheat">.rpp</B> (r) gets rows per picture</P>
 
 </TD><TD></TD><TD>
 
 <!-- Picture (or Scan) Methods -->
 <P>Picture/Scan Methods:</P>
 <P><B class="wheat">.bpp</B> (w) converts to new bpp</P>
-<P><B class="wheat">.matte_rgb("<I>r</I>""<I>g</I>""<I>b</I>")</B> (w)</P>
-<P><B class="wheat">.matte_spx("<I>pps/rpr</I>")</B> (w) new samples-to-pixel proportions, centered</P>
-<P><B class="wheat">.matte("<I>left</I>""<I>top</I>""<I>right</I>""<I>bottom</I>")</B> (w)</P>
-<P><B class="wheat">.cropto_spx("<I>pps/rpr</I>")</B> (w) new samples-to-pixel proportions, centered</P>
+<P><B class="wheat">.<I>colormatrix_name</I></B> (w) sets encoder's colormatrix</P>
 <P><B class="wheat">.cropoff("<I>offleft</I>""<I>offtop</I>""<I>offright</I>""<I>offbottom</I>")</B> (w)</P>
 <P><B class="wheat">.cropto("<I>w</I>""<I>h</I>")</B> (w) centered</P>
-<P><B class="wheat">.ppx("<I>ppr/rpp</I>")</B> (w) transform (rescale)</P>
+<P><B class="wheat">.cropto_spx("<I>pps/rpr</I>")</B> (w) new samples-to-pixel proportions, centered</P>
 <P><B class="wheat">.fromfile("<I>filespec</I>")</B> (w)</P>
+<P><B class="wheat">.matte("<I>left</I>""<I>top</I>""<I>right</I>""<I>bottom</I>")</B> (w)</P>
+<P><B class="wheat">.matte_rgb("<I>r</I>""<I>g</I>""<I>b</I>")</B> (w)</P>
+<P><B class="wheat">.matte_spx("<I>pps/rpr</I>")</B> (w) new samples-to-pixel proportions, centered</P>
+<P><B class="wheat">.ppx("<I>ppr/rpp</I>")</B> (w) transform (rescale)</P>
+<P><B class="wheat">.<I>protocol_name</I></B> (w) sets encoder's protocol</P>
 <P><B class="wheat">.push</B> (w) copies this image to ips.fifo</P>
 <P><B class="wheat">.tofile("<I>filespec</I>")</B> (w)</P>
 

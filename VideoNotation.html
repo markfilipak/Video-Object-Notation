@@ -39,25 +39,27 @@ Mark Filipak, May 19 2023.</B><BR>
 <P>1,&nbsp;Comments: <B class="wheat">//</B> (2 backslashes) & all text following them to the end-of-line are stripped.</P>
 <P>2,&nbsp;Whitespace: All spaces & end-of-line codes are stripped. So, spaces & line breaks can be freely used to format notations.</P>
 <P>3,&nbsp;Supplementary stream rate identifiers:
-<B class="wheat">=</B><I>rate</I><B class="wheat">ftfps</B>
-<B class="wheat">=</B><I>rate</I><B class="wheat">hpps</B>
-<B class="wheat">=</B><I>rate</I><B class="wheat">htfps</B>
-<B class="wheat">=</B><I>rate</I><B class="wheat">pfps</B>
-<B class="wheat">=</B><I>rate</I><B class="wheat">pps</B>
-<B class="wheat">=</B><I>rate</I><B class="wheat">sfps</B>
-<B class="wheat">=</B><I>rate</I><B class="wheat">spfps</B>
-<B class="wheat">=</B><I>rate</I><B class="wheat">spps</B>
-<B class="wheat">=</B><I>rate</I><B class="wheat">sps</B>
-<B class="wheat">=</B><I>rate</I><B class="wheat">stfps</B>
-<B class="wheat">=</B><I>rate</I><B class="wheat">tpfps</B>
-<B class="wheat">=</B><I>rate</I><B class="wheat">tpps</B>, are stripped. They can be freely used anywhere to enhance comprehension.</P>
+<B class="wheat">=<I class="green">rate</I>ftfps</B>
+<B class="wheat">=<I class="green">rate</I>hpps</B>
+<B class="wheat">=<I class="green">rate</I>htfps</B>
+<B class="wheat">=<I class="green">rate</I>pfps</B>
+<B class="wheat">=<I class="green">rate</I>pps</B>
+<B class="wheat">=<I class="green">rate</I>sfps</B>
+<B class="wheat">=<I class="green">rate</I>spfps</B>
+<B class="wheat">=<I class="green">rate</I>spps</B>
+<B class="wheat">=<I class="green">rate</I>sps</B>
+<B class="wheat">=<I class="green">rate</I>stfps</B>
+<B class="wheat">=<I class="green">rate</I>tpfps</B>
+<B class="wheat">=<I class="green">rate</I>tpps</B>, are stripped. They can be freely used anywhere to enhance comprehension.</P>
 <BR>
 <B class="underline super">Errors</B>.<BR>
-<P><B class="wheat">? <B class="white"><I>YYYY-MM-DD</B> <B class="white">hhmmss</B> <B class="white">line#</B> <B class="white">good-text</I></B> Bad text: </B><B class="white"><I>bad-text</I></B></P>
-<P>&nbsp;&bullet;&nbsp;There is no error indicator other than '<B class="wheat">?</B>'. There is no use of '<B class="wheat">?</B>' as a 'printed' character other than as an error indicator. And '<B class="wheat">?</B>' is always the first character of an error line.</P>
-<P>&nbsp;&bullet;&nbsp;<B class="white"><I>YYYY-MM-DD hhmmss</I></B> is the wall clock time of the error.</P>
-<P>&nbsp;&bullet;&nbsp;<B class="white"><I>good-text</I></B> is the full text of <B class="white"><I>line#</I></B> that preceded the error.</P>
-<P>&nbsp;&bullet;&nbsp;<B class="white"><I>bad-text</I></B> is the property or method that provoked the error.</P>
+<P><B>? <I class="green">YYYY-MM-DD hhmmss line# good_text</I> Bad text: <I class="green">bad_text</I></B></P>
+<P>&nbsp;&bullet;&nbsp;There is no error indicator other than '?'.
+  There is no use of '?' as a 'printed' character other than as an error indicator.
+  And '?' is always the first character of an error line.</P>
+<P>&nbsp;&bullet;&nbsp;<B><I class="green">YYYY-MM-DD hhmmss</I></B> is the wall clock time of the error.</P>
+<P>&nbsp;&bullet;&nbsp;<B><I class="green">good-text</I></B> is the full text of <B><I class="green">line#</I></B> that preceded the error.</P>
+<P>&nbsp;&bullet;&nbsp;<B><I class="green">bad-text</I></B> is the property or method that provoked the error.</P>
 <P>&nbsp;&bullet;&nbsp;Any remaining notation is clipped off.</P>
 
 <BR>
@@ -79,10 +81,10 @@ Abbreviations make true rates useable in file names (which has been found to be 
 <IFRAME src="VideoNotation.Terms.html" onmouseover=iframe_size(this)></IFRAME>
 <!-- end show-hide iframe --><BR></TD></TR></TABLE>
 
-<B class="underline super">Tokens & Strides</B>
+<B class="underline super">Stream Tokens & Strides</B>
 
 <!-- begin show-hide iframe --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box" style="background-color:wheat"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;margin-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A><A style="cursor:pointer" onclick="iframe_open(this);" class="anchor-open"><IMG src="VideoNotation.anchor_open.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="iframe_open(this);" class="anchor-open"><IMG src="VideoNotation.anchor_open.png"></A><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE>
-<IFRAME src="VideoNotation.Tokens_&_Strides.html" onmouseover=iframe_size(this)></IFRAME>
+<IFRAME src="VideoNotation.Stream_Tokens_&_Strides.html" onmouseover=iframe_size(this)></IFRAME>
 <!-- end show-hide iframe --><BR></TD></TR></TABLE>
 
 <B class="underline super">Stride-Match With Decombing Examples</B>
@@ -90,6 +92,38 @@ Abbreviations make true rates useable in file names (which has been found to be 
 <!-- begin show-hide iframe --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box" style="background-color:wheat"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;margin-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A><A style="cursor:pointer" onclick="iframe_open(this);" class="anchor-open"><IMG src="VideoNotation.anchor_open.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="iframe_open(this);" class="anchor-open"><IMG src="VideoNotation.anchor_open.png"></A><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE>
 <IFRAME src="VideoNotation.Stride-Match_With_Decombing_Examples.html" onmouseover=iframe_size(this)></IFRAME>
 <!-- end show-hide iframe --><BR></TD></TR></TABLE>
+
+<B class="underline super">System Tokens & Operators</B>
+
+<!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD class="center"><B class="wheat">_</B>&nbsp;</TD>
+    <TD>Underline is used to separate notational elements that might otherwise be confusing, for example, <B class="wheat">pps_hpps</B>.</TD>
+<TR><TD class="center"><B class="wheat">$</B>&nbsp;</TD>
+    <TD>Dollar sign by itself is the current stream. It is rarely needed.</TD></TR>
+<TR><TD class="center"><B class="wheat">$</B>&nbsp;</TD>
+    <TD>Dollar sign followed by a name is a temporary variable. For example, <B class="wheat">$<I class="green">name</I>="<I class="green">notation</I>"</B>.</TD></TR>
+<TR><TD class="center"><B class="wheat">&</B>&nbsp;</TD>
+    <TD>Ampersand is an overload operator.
+        It must be declared before use.
+        For example, <B class="wheat">&="blend"A&B</B> blends pictures 'A' and 'B'.
+        <B class="wheat">&="interpolate"A&C</B> creates a new picture that conceptually is 'B'.</TD></TR>
+<TR><TD class="center"><B class="wheat">#</B>&nbsp;</TD>
+    <TD>Number sign &mdash;&nbsp;think: a <I>number</I> of times &mdash;&nbsp;identifies a looper. Example: <B class="wheat">(5#<I class="green">notation</I>)</B>, runs <I class="green">notation</I> 5 times.</TD></TR>
+<TR><TD class="center"><B class="wheat">?</B>&nbsp;<B class="wheat">:</B>&nbsp;</TD>
+    <TD>From 'C':
+        <B class="wheat">(<I class="green">test</I>?<I class="green">notation_if_true</I>:<I class="green">notation_if_false</I>)</B>,
+        <B class="wheat">(<I class="green">test</I>?<I class="green">notation_if_true</I>:)</B>,
+        <B class="wheat">(<I class="green">test</I>?:<I class="green">notation_if_false</I>)</B>.
+        Also accepted: <B class="wheat">(<I class="green">test</I>?<I class="green">notation_if_true</I>)</B>.</TD></TR>
+<TR><TD class="center"><B class="wheat">..</B>&nbsp;</TD>
+    <TD><P>Two dots denotes a stride-match expansion. For example:</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">A..Z</B> is equivalent to <B class="wheat">ABCDEFGHIJKLMNOPQRSTUVWXYZ</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">Aa..Zz</B> is equivalent to <B class="wheat">AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">Ab..Yz</B> is equivalent to <B class="wheat">AbCdEfGhIjKlMnOpQrStUvWxYz</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">Aa..LlLm..WxXx</B> is equivalent to <B class="wheat">AaBbCcDdEeFfGgHhIiJjKkLlLmMnNoOpPqQrRsStTuUvVwWxXx</B>.</P></TD></TR>
+</TABLE>
+<!-- end show-hide box --></TD></TR></TABLE>
 
 <B class="underline super">Properties & Methods</B> I'm working on this.<BR>
 
@@ -105,55 +139,15 @@ Abbreviations make true rates useable in file names (which has been found to be 
 <BR></TD></TR></TABLE>
 -->
 
-<B class="underline super">Operators</B> I'm working on this.<BR>
-
-<!-- begin show-hide box -->
-
-<!--
-<A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
-
-<!-- -->
-
-<!--
-<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD class="center"><B class="wheat">_</B>&nbsp;</TD>                <TD><P>Underline is used to separate notational elements that might otherwise be confusing, for example, 'pps_hpps'.</P></TD>
-<TR><TD class="center"><B class="wheat">$</B>&nbsp;</TD>                <TD><P>Dollar sign by itself is the current stream. It is rarely needed.</P></TD></TR>
-<TR><TD class="center"><B class="wheat">$</B>&nbsp;</TD>                <TD><P>Dollar sign is the first character of the names of temporary variables and system objects. It's use avoids mistaking names for token strings. Example: "$stream", is the name of a system object; "stream" is a string of tokens.</P></TD></TR>
-<TR><TD class="center"><B class="wheat">&</B>&nbsp;</TD>                <TD><P>Ampersand interpolates between elements and creates a new element. Example: <B class="wheat">A&C</B>, creates a new element called <B class="wheat">A&C</B> that conceptually is <B class="wheat">B</B>.</P></TD></TR>
-<TR><TD class="center"><B class="wheat">#</B>&nbsp;</TD>                <TD><P>Number sign &mdash;&nbsp;think: a <I>number</I> of times &mdash;&nbsp;identifies a looper. Example: <B class="wheat">(5#</B><I>something</I><B class="wheat">)</B>, does <I>something</I> 5 times.</P></TD></TR>
-<TR><TD class="center"><B class="wheat">?</B>&nbsp;<B class="wheat">:</B>&nbsp;</TD><TD><P>This is from 'C'. <B class="wheat">(</B><I>test</I><B class="wheat">?</B><I>true</I><B class="wheat">:</B><I>false</I><B class="wheat">)</B>.</P></TD></TR>
-<TR><TD class="center"><B class="wheat">..</B>&nbsp;</TD>               <TD><P>Two dots denotes a stream element selection expansion as follows:</P>
-  <P>&nbsp;&bullet;&nbsp;<I>first-token</I><B class="wheat">..</B><I>end-token</I></P>
-  <BLOCKQUOTE>
-  <P>selects the 'next' element, equivalent to <I>first-token</I>, plus a 'last' element, equivalent to <I>end-token</I>, plus all the intervening elements implied by the ordered a-n sequence between the tokens.</P><P>Unrealistic example: <B class="wheat">A..Dz..v</B> selects the 'next' element plus the 8 that follow it and associates them with the tokens <B class="wheat">A</B> <B class="wheat">B</B> <B class="wheat">C</B> <B class="wheat">D</B> <B class="wheat">z</B> <B class="wheat">y</B> <B class="wheat">x</B> <B class="wheat">w</B> <B class="wheat">v</B>.</P><P>Realistic example: The stride-match <B class="wheat">(AaBbBcCdDd)(Aa..Dd)</B> selects the 'next' 10 elements, then reorders them while dropping 2 of them.</P>
-  </BLOCKQUOTE>
-  <P>&nbsp;&bullet;&nbsp;<I>token</I><B class="wheat">..</B><I>not-a-token</I>
-  <BLOCKQUOTE>
-  <P>selects the 'next' element, equivalent to <I>token</I>, plus every subsequent element to the end of the stream.</P>
-  </BLOCKQUOTE>
-  <P>&nbsp;&bullet;&nbsp;<I>not-a-token</I><B class="wheat">..</B><I>not-a-token</I>
-  <BLOCKQUOTE>
-  <P>selects the entire stream.</P>
-  </BLOCKQUOTE>
-  Note that in any of the above expressions, if the selection is void, no selection results and no error is provoked.
-</TABLE>
--->
-
-<!-- end show-hide box -->
-
-<!--
-</TD></TR></TABLE>
--->
-
 <B class="underline super">Audio & Subtitle Streams</B>
 
 <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
-<P><B class="wheat">$.a<B class="white"><I>n</I></B>.</B><B class="white"><I>property_or_method</I></B> is notation that focuses on audio stream 0 1 2...</P>
-<P><B class="wheat">$.a</B><B class="white"><I>n</I></B> returns <B class="wheat">?</B> if <B class="wheat">fps.a</B><B class="white"><I>n</I></B> does not exist.</P>
-<P><B class="wheat">$.a.</B><B class="white"><I>property_or_method</I></B> operates on all audio streams &mdash;&nbsp;this is usually what you want.</P>
-<P><B class="wheat">$.s<B class="white"><I>n</I></B>.</B><B class="white"><I>property_or_method</I></B> is notation that focuses on audio stream 0 1 2...</P>
-<P><B class="wheat">$.s</B><B class="white"><I>n</I></B> returns <B class="wheat">?</B> if <B class="wheat">fps.s</B><B class="white"><I>n</I></B> does not exist.</P>
-<P><B class="wheat">$.s.</B><B class="white"><I>property_or_method</I></B> operates on all audio streams &mdash;&nbsp;this is usually what you want.</P>
+<P><B class="wheat">.a.<I class="green">property_or_method</I></B> operates on all audio streams &mdash;&nbsp;this is usually what you want.</P>
+<P><B class="wheat">.a<I class="green">n</I>.<I class="green">property_or_method</I></B> is notation that focuses on audio stream 0 1 2...</P>
+<P><B class="wheat">.s<I class="green">n</I></B> returns '?' if audio stream <B><I class="green">n</I></B> does not exist.</P>
+<P><B class="wheat">.s.<I class="green">property_or_method</I></B> operates on all audio streams &mdash;&nbsp;this is usually what you want.</P>
+<P><B class="wheat">.s<I class="green">n</I>.<I class="green">property_or_method</I></B> is notation that focuses on subtitle stream 0 1 2...</P>
+<P><B class="wheat">.s<I class="green">n</I></B> returns '?' if subtitle stream <B><I class="green">n</I></B> does not exist.</P>
 <BR>
 <B class="underline super">Audio synchronization.</B><BR>
 Audio resampling is generally needed to synchronize audio to forced frame rate changes. It can be done by remuxing, e.g., <B class="wheat">24'1.001fps_24fps.a.resample("1.001")</B>, without requiring video transcoding.<BR>
@@ -166,7 +160,7 @@ Example: When mastering cinema to cine-slow, running time stretches by 1001/1000
 <TR><TD class="right">to <B class="wheat">24pps]24'1.001fps.a.resample("1.001")</B> <AUDIO controls style="width:10em;height:1.5em;margin-bottom:0.4em"><SOURCE src="1000Hz.cine-slow.mp3" type="audio/mpeg"></AUDIO></TD></TR>
 </TABLE>(Can't hear the difference? Try quickly clicking both.)
 </BLOCKQUOTE>
-When remuxing back to cinema, <B class="wheat">24'1.001fps_24fps.a.resample("1/1.001")</B> reverses the above.
+When remuxing back to cinema, <B class="wheat">24'1.001fps_24fps.a.resample("'1.001")</B> reverses the above.
 </BLOCKQUOTE>
 <BR>
 <BLOCKQUOTE>
@@ -174,16 +168,17 @@ Example: When mastering cinema to PAL-fast, running time shrinks by 24/25. Resam
 <BLOCKQUOTE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="box nowrap">
 <TR><TD class="right">Compare <B class="wheat">24pps</B> <AUDIO controls style="width:10em;height:1.5em;margin-bottom:0.4em"><SOURCE src="1000Hz.mp3" type="audio/mpeg"></AUDIO></TD></TR>
-<TR><TD class="right">&nbsp; &nbsp; &nbsp;to <B class="wheat">24pps]25fps.a.resample("1/0.96")</B> <AUDIO controls style="width:10em;height:1.5em;margin-bottom:0.4em"><SOURCE src="1000Hz.PAL-fast.mp3" type="audio/mpeg"></AUDIO></TD></TR>
+<TR><TD class="right">&nbsp; &nbsp; &nbsp; to <B class="wheat">24pps]25fps.a.resample("'0.96")</B> <AUDIO controls style="width:10em;height:1.5em;margin-bottom:0.4em"><SOURCE src="1000Hz.PAL-fast.mp3" type="audio/mpeg"></AUDIO></TD></TR>
 </TABLE>
 </BLOCKQUOTE>
 When remuxing back to cinema, <B class="wheat">25fps_24fps.a.resample("0.96")</B> reverses the above.
 </BLOCKQUOTE>
 <BR>
-Any <I>factor</I> is possible. <B class="wheat">1.001</B> & <B class="wheat">0.96</B> & <B class="wheat">1/1.001</B> & <B class="wheat">1/0.96</B> are just the most common factors.<BR>
+Any <I>factor</I> is possible.
+<B class="wheat">1.001</B> (or <B class="wheat">1001/1000</B>) & <B class="wheat">'1.001</B> (or <B class="wheat">1/1.001</B> or <B class="wheat">1000/1001</B>) & <B class="wheat">'0.96</B> (or <B class="wheat">1/0.96</B> or <B class="wheat">25/24</B>) & <B class="wheat">0.96</B> (or <B class="wheat">24/25</B>) are just the most common factors.<BR>
 <BR>
 <B class="underline super">Subtitle synchronization.</B><BR>
-<B class="wheat">fps.s.resample(</B><I>factor</I><B class="wheat">)</B> essentially works similarly for subtitltes.<BR>
+<B class="wheat">fps.s.resample(<I class="green">factor</I><B class="wheat">)</B> essentially works similarly for subtitltes.<BR>
 <BR>
 <!-- end show-hide box --></TD></TR></TABLE>
 
@@ -427,15 +422,15 @@ PTSs: Forced by 1/1.001
 <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
 <PRE class="white">
 <B><B class="wheat">24pps</B> //  1/480 sec-per-char +-all-strides------------------------------------------------------------------>
-<B class="wheat">(A..D)</B>                    // <B class="purple">(A___.____.____.___)(B___.____.____.___)(C___.____.____.___)(D___.____.____.___)</B> stride: ....
-//      _____________________&         1    2              1                   1              2    1          <I>generations</I>
-//     /   __________________.______________&              .                   .              .
-//    /   /   _______________.______________.______________&                   .              .
-//   /   /   /    ___________.______________.______________.___________________&              .
-//  /   /   /    /   ________.______________.______________.___________________.______________&
+<B class="wheat">(A..D)</B>                    // <B class="purple">(A___'____'____'___)(B___'____'____'___)(C___'____'____'___)(D___'____'____'___)</B> stride: ....
+//      _____________________&         1    2              1                   1              2    1          generations
+//     /   __________________.____'____'____&
+//    /   /   _______________.______________._________'____&    '
+//   /   /   /    ___________.______________.______________.______________'____&    '
+//  /   /   /    /   ________.______________.______________.___________________.______________&    '    '
 // /   /   /    /   /        .              .              .                   .              .
-<B class="wheat">((AA..&BB.&.CC.&.DD&..$)</B>  // <B class="purple">(A____________)(I1___________)(I2________________)(I3___________)(I4___________)</B> match
-  <B class="wheat">AA..&BB.&.CC.&.DD)</B>      // <B class="purple">(A____________)(I1___________)(I2________________)(I3______)(D_________________)</B> end match
+<B class="wheat">((AA''&BB'&'CC'&'DD&''$)</B>  // <B class="purple">(A____________)(I1___________)(I2________________)(I3___________)(I4___________)</B> match
+  <B class="wheat">AA''&BB'&'CC'&'DD)</B>      // <B class="purple">(A____________)(I1___________)(I2________________)(I3______)(D_________________)</B> end match
 <B class="wheat">=30pps]30'1.001pfps</B>       // <B class="purple">[pic0_______+7%][pic1_______+7%][pic2______-20%][pic3_______+7%][pic4_______+7%]</B> encode</B></PRE>
 PTSs: Forced by 1/1.001
 &mdash;&nbsp;Combing: None
@@ -472,17 +467,17 @@ But forcing the pictures into 1/30 second frames produces 27% judder @ 6 judders
 
 <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
 <PRE class="white">
-<B>//    (1/1920)sec&minus;per&minus;char +-all-strides------------------------------------------------------------------> 1/24 second
-<B class="wheat">24pps(A)</B>                // <B class="purple">(A___.____.____.____.____.____.____.____.____.____.____.____.____.____.____.___)</B>
+<B>//    (1/1920)sec&minus;per&minus;char +-all-strides------------------------------------------------------------------> stride: .
+<B class="wheat">24pps(A)</B>                // <B class="purple">(A___'____'____'____'____'____'____'____'____'____'____'____'____'____'____'___)</B>
 //      ___________________&         3    4    2         3         1         3         2    4    3          generations
-//     /   ________________.______________&              .                   .              .
-//    /   /  ______________.______________.______________&                   .              .
-//   /   /  /   ___________.______________.______________.___________________&              .
-//  /   /  /   /  _________.______________.______________.___________________.______________&
+//     /   ________________.____'____'____&
+//    /   /  ______________.______________.____'____'____&
+//   /   /  /   ___________.______________.______________.____'____'____'____&
+//  /   /  /   /  _________.______________.______________.___________________.____'____'____&
 // /   /  /   /  /         .              .              .                   .              .
-<B class="wheat">((AA..&..&...&..&..$)</B>   // <B class="purple">(A____________)(I1___________)(I2________________)(I3___________)(I4___________)</B> stride
-  <B class="wheat">AAAAA)</B>                // <B class="purple">(A_____________)(A_____________)(A_____________)(A_____________)(A_____________)</B> ending stride
-<B class="wheat">]120fps</B>                 // <B class="purple">[pic0_______+7%][pic1_______+7%][pic2______-20%][pic3_______+7%][pic4_______+7%]</B> match encode</B></PRE>
+<B class="wheat">((AA''&''&'''&''&''$)</B>   // <B class="purple">(A____________)(I1___________)(I2________________)(I3___________)(I4___________)</B> match
+  <B class="wheat">AAAAA)</B>                // <B class="purple">(A_____________)(A_____________)(A_____________)(A_____________)(A_____________)</B> ending match
+<B class="wheat">]120fps</B>                 // <B class="purple">[pic0_______+7%][pic1_______+7%][pic2______-20%][pic3_______+7%][pic4_______+7%]</B> encode</B></PRE>
 PTSs: Unforced
 &mdash;&nbsp;Combing: None
 &mdash;&nbsp;Judder: 27% @ 24 judders&minus;per&minus;second [see&nbsp;note&nbsp;1]

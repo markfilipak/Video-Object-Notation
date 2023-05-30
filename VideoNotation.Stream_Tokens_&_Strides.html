@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META http-equiv="content-type" content="text/html; charset=utf-8">
+<META http-equiv="content-language" content="en">
+<META http-equiv="cache-control" content="no-cache">
+<META http-equiv="expires" content="Thu, 01 Jan 1970 00:00:00 GMT">
+<META http-equiv="pragma" content="no-cache">
+<META http-equiv="content-style-type" content="text/css">
+<LINK href="VideoNotation.css" rel="stylesheet" type="text/css">
+<META http-equiv="content-script-type" content="text/javascript">
+<SCRIPT src="VideoNotation.js"></SCRIPT>
+
+<TITLE>Tokens & Strides</TITLE>
+</HEAD>
+<BODY>
+
+<B class="big">Stream Tokens & Strides</B><BR>
+Capitalization, e.g. <B class="wheat">A</B> versus <B class="wheat">a</B>, differentiates two differing tokens, but capitalization otherwise has no significance at all. Sequencing, e.g. <B class="wheat">AB</B> versus <B class="wheat">BA</B> versus <B class="wheat">wK</B>, differentiates two differing tokens, but sequencing otherwise has no significance at all. All that matters is the order of tokens and matching. What are shown here is merely traditional usage.<BR>
+
+<BR>
+<B class="underline super">Tokens within strides.</B>
+
+<PRE class="white">
+<B><B class="wheat">0</B>..<B class="wheat">9</B> signify temporary or undifferentiated elements.
+
+  <B class="wheat">-</B> (hyphen) in  sps streams is a wildcard signifying 1 scan. For example, <B class="wheat">--</B> signifies 2 consecutive scans.
+  <B class="white">&nbsp;</B>          in  pps                                  1 picture.
+  <B class="white">&nbsp;</B>          in hpps                                  1 halfpic.
+
+<B class="wheat">A</B>..<B class="wheat">Z</B> in  sps streams signify top scans.    For example, <B class="wheat">A</B><B class="white">b</B><B class="wheat">C</B><B class="white">d</B>
+<B class="white">&nbsp;</B>  <B class="white">&nbsp;</B> in  sps                 top scans.                 <B class="white">a</B><B class="wheat">B</B><B class="white">c</B><B class="wheat">D</B>
+<B class="white">&nbsp;</B>  <B class="white">&nbsp;</B> in  pps                 pictures.                  <B class="wheat" style="padding:0 0.3em">A&nbsp;B</B>
+<B class="white">&nbsp;</B>  <B class="white">&nbsp;</B> in hpps                 top halfpics.              <B class="wheat">A</B><B class="white">a</B><B class="wheat">B</B><B class="white">b</B>
+
+<B class="wheat">a</B>..<B class="wheat">z</B> in  sps streams signify bottom scans. For example, <B class="white">A</B><B class="wheat">b</B><B class="white">C</B><B class="wheat">d</B>
+<B class="white">&nbsp;</B>  <B class="white">&nbsp;</B> in  sps                 bottom scans.              <B class="wheat">a</B><B class="white">B</B><B class="wheat">c</B><B class="white">D</B>
+<B class="white">&nbsp;</B>  <B class="white">&nbsp;</B> in  sps                 arbitrary scans.           <B class="wheat">a</B><B class="wheat">b</B><B class="wheat">c</B><B class="wheat">d</B>
+<B class="white">&nbsp;</B>  <B class="white">&nbsp;</B> in  pps                 nothing.
+<B class="white">&nbsp;</B>  <B class="white">&nbsp;</B> in hpps                 bottom halfpics.           <B class="white">A</B><B class="wheat">a</B><B class="white">B</B><B class="wheat">b</B></B></PRE>
+
+The information above may be more accessible via the following table.<BR>
+
+<BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD class="nowrap underline">Tokens in sps streams</TD><TD></TD>
+    <TD class="nowrap underline">Depictions in diagrams [see&nbsp;note&nbsp;1]</TD></TR>
+<TR><TD class="nowrap"><P><B class="wheat">AbCd</B> = 4 consecutive scans</P></TD><TD></TD>
+    <TD><P><B class="purple">(A)(b)(C)(d)</B> = 4 consecutive scans, top field first</P></TD></TR>
+<TR><TD class="nowrap"><P><B class="wheat">aBcD</B> = 4 consecutive scans</P></TD><TD></TD>
+    <TD><P><B class="purple">(a)(B)(c)(D)</B> = 4 consecutive scans, bottom field first</P></TD></TR>
+<TR><TD class="nowrap"><P><B class="wheat">abcd</B> = 4 consecutive scans</P></TD><TD></TD>
+    <TD><P><B class="purple">(a)(b)(c)(d)</B> = 4 consecutive scans, arbitrary sequence</P></TD></TR>
+<TR><TD class="nowrap"><P><B class="wheat">AC</B> = 2 top scans of <B class="wheat">AbCd</B></P></TD><TD></TD>
+    <TD><P><B class="purple">(A)(C)</B> = 2 scans decoded from <B class="purple">[A+b_][C+d_]</B></P></TD></TR>
+<TR><TD class="nowrap"><P><B class="wheat">BD</B> = 2 top scans of <B class="wheat">aBcD</B></P></TD><TD></TD>
+    <TD><P><B class="purple">(B)(D)</B> = 2 scans decoded from <B class="purple">[a+B_][c+D_]</B></P></TD></TR>
+<TR><TD class="nowrap"><P><B class="wheat">bd</B> = 2 bottom scans of <B class="wheat">AbCd</B></P></TD><TD></TD>
+    <TD><P><B class="purple">(b)(d)</B> = 2 scans decoded from <B class="purple">[A+b_][C+d_]</B></P></TD></TR>
+<TR><TD class="nowrap"><P><B class="wheat">ac</B> = 2 bottom scans of <B class="wheat">aBcD</B></P></TD><TD></TD>
+    <TD><P><B class="purple">(a)(c)</B> = 2 scans decoded from <B class="purple">[a+B_][c+D_]</B></P></TD></TR>
+<TR><TD><BR></TD></TR>
+<TR><TD class="nowrap underline">Tokens in pps streams</TD><TD></TD>
+    <TD class="nowrap underline">Depictions in diagrams [see&nbsp;note&nbsp;1]</TD></TR>
+<TR><TD class="nowrap"><P><B class="wheat">AB</B> = 2 consecutive pictures</TD><TD>&nbsp;</TD>
+    <TD><P><B class="purple">(Aa__)(Bb__)</B> = 2 pictures decoded from <B class="purple">[Aa__][Bb__]</B></P></TD></TR>
+<TR><TD><BR></TD></TR>
+<TR><TD class="nowrap underline">Tokens in hpps streams</TD><TD></TD>
+    <TD class="nowrap underline">Depictions in diagrams [see&nbsp;note&nbsp;1]</TD></TR>
+<TR><TD class="nowrap"><P><B class="wheat">AaBb</B> = 4 consecutive halfpics</P></TD><TD></TD>
+    <TD><P><B class="purple">(A)(a)(B)(b)</B> = 4 halfpics unweaved from <B class="purple">(Aa__)(Bb__)</B></P></TD></TR>
+<TR><TD class="nowrap"><P><B class="wheat">AB</B> = 2 top halfpics</P></TD><TD></TD>
+    <TD><P><B class="purple">(A)(B)</B> = 2 halfpics extracted from <B class="purple">(Aa__)(Bb__)</B></P></TD></TR>
+<TR><TD class="nowrap"><P><B class="wheat">ab</B> = 2 bottom halfpics</P></TD><TD></TD>
+    <TD><P><B class="purple">(a)(b)</B> = 2 halfpics extracted from <B class="purple">(Aa__)(Bb__)</B></P></TD></TR>
+</TABLE>
+
+<BR>
+<P>[note&nbsp;1] Diagrams appear solely to aid visualization but are not part of the notation.</P>
+
+<BR>
+<B class="underline super">Tokens that cross stride boundaries.</B><BR>
+<P><B class="wheat">^</B> (caret) in the current stride is replaced by a copy of the matching stream element from the ending of the previous stride. For example, <B class="wheat">(Ab)(Ab(A^))</B> takes the 3 scan pair stream, <B class="wheat">AbCdEf</B>, substitutes according to <B class="wheat">AbC^E^</B>, and outputs <B class="wheat">AbCbEd</B>.</P>
+<P><B class="wheat">$</B>&nbsp;</TD><TD>(dollar sign) in the current stride is replaced by a copy of the matching stream element from the beginning of the next stride. For example, <B class="wheat">(Ab)(($b)Ab)</B> takes the 3 scan pair stream, <B class="wheat">AbCdEf</B>, substitutes according to <B class="wheat">$b$dEf</B>, and outputs <B class="wheat">CbEdEf</B>.</P>
+
+<BR></BODY></HTML>
