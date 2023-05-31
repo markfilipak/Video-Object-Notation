@@ -60,8 +60,7 @@ Key: <B class="yellow">new terms</B> (not in notations)
     <TD></TD>
     <TD>&nbsp;</TD>
     <TD></TD></TR>
-<TR><TD colspan=3>SPECIAL CASE: if CAR = DAR (which is true for all known media),</TD>
-    <TD class="right bold">then SAR = 1/(SPX)</TD></TR>
+<TR><TD colspan=5>SPECIAL CASE: if CAR = DAR (which is true for all known media), then SAR = 1/(SPX)</TD></TR>
 <TR>    <TD></TD>
 <TD class="right">for 16:9 'PAL' DVD,<BR>for 4:3 'PAL' DVD,<BR>for 16:9 'NTSC' DVD,<BR>for 4:3 'NTSC' DVD,</TD>
     <TD class="bold">&nbsp;SAR = 64/45<BR>&nbsp;SAR = 16/15<BR>&nbsp;SAR = 32/27<BR>&nbsp;SAR = &nbsp;8/9</TD>
@@ -88,14 +87,14 @@ Key: <B class="yellow">new terms</B> (not in notations)
     <TD class="box1011 papaya bold">1024/720 = 64/45 dpp<BR>1 lpr</TD>
     <TD class="box1111">1024 dpl<BR>576 lpd</TD></TR>
 <TR><TD class="right">CAR = 2240/1260 = 16/9&nbsp;</TD>
-    <TD class="papaya bold right">SAR = 45/64&nbsp;</TD>
+    <TD class="papaya bold right"><BR>SPX = 45/64&nbsp;</TD>
     <TD></TD>
     <TD></TD>
-    <TD class="right">DAR = 1024/576 = 16/9&nbsp;</TD></TR>
+    <TD class="right">DAR = 1024/576 = 16/9&nbsp;<BR>SAR = 64/45&nbsp;</TD></TR>
 </TABLE></TD></TR></TABLE>
 
 <BR>
-<P>FILM SCANNER: If samples are made by film scanning, SAR is calculated from &Delta;p & &Delta;r.</P>
+<P>FILM SCANNER: If samples are made by film scanning, SPX is calculated from &Delta;p & &Delta;r.</P>
 <P>Example:</P>
 <P>scan plan:&nbsp;21.31&nbsp;x&nbsp;18.16&nbsp;mm is the CinemaScope 2.34 aspect, 35mm projection film frame.</P>
 <P>scan plan:&nbsp;&nbsp;1024&nbsp;x&nbsp;576 is the target 16:9 'PAL' display.</P>
@@ -110,22 +109,22 @@ Key: <B class="yellow">new terms</B> (not in notations)
     <TD class="papaya bold">&nbsp;FILM SCANNER &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
     <TD>&nbsp;PICTURE &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
     <TD class="papaya bold">&nbsp;PIXELS to DOTS &mdash;&mdash;&mdash;&mdash;&mdash;>&nbsp;</TD>
-    <TD>&nbsp;DISPLAY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD></TR>
+    <TD>&nbsp;DISPLAY &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</TD></TR>
 <TR><TD></TD>
     <TD class="box1011 papaya bold">&Delta;p = 14.7 &micro;m<BR>&Delta;r = 20.7 &micro;m</TD>
     <TD class="box1011">720 ppr<BR>576 (matted) rpp</TD>
     <TD class="box1011 papaya bold">1024/720 = 64/45 dpp<BR>1 lpr</TD>
     <TD class="box1111">1024 dpl<BR>576 lpd</TD></TR>
 <TR><TD></TD>
-    <TD colspan=2><B class="papaya bold">&nbsp;SAR = 14.7/20.7 = 49/69 [see note 2]</B></TD>
+    <TD colspan=2><B class="papaya bold">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<BR>&nbsp;SPX = 14.7/20.7 = 49/69 [see note 2]</B></TD>
     <TD></TD>
-    <TD class="right">DAR = 1024/576 = 16/9&nbsp;</TD></TR>
+    <TD class="right">DAR = 1024/576 = 16/9&nbsp;<BR>SAR = 69/49&nbsp;</TD></TR>
 </TABLE></TD></TR></TABLE>
 <BR>
 [note 2]
 <BLOCKQUOTE>
 <BLOCKQUOTE>
-<P>1, If displayed at 69/49, a 720 x 437 picture would produce a true-aspect, 1013 x 437 display image, but unfortunately, 49/69 SAR is not allowed by MPEG.</P>
+<P>1, If displayed with 69/49 SAR, a 720 x 437 picture would produce a true-aspect, 1013 x 437 display image, but unfortunately, 69/49 SAR is not allowed.</P>
 <P>2, On the other hand, if displayed using the required 64/45 for 16:9 'PAL' DVDs, a 720 x 437 picture would instead produce a display image that's stretched by 11 dots (to 1024 x 437).</P>
 </BLOCKQUOTE>
 <P>Thus, this 16:9 'PAL' DVD could be mastered,</P>
