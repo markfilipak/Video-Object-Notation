@@ -17,7 +17,8 @@
 
 <B class="big">Terminology & Intrinsic Rates & Default MPEG Tagging</B><BR>
 <I>System architects & documentarians recommend that unique data types be given unique names.</I><BR>
-
+<BR>
+&nbsp; Key: <B class="yellow">new terms</B> (but not used in notations) &nbsp; &nbsp; <B class="aqua">stream names</B> (used in notations)
 <BR>
 <B class="underline super">Uniqueness Principle and Assigning Names</B>
 
@@ -54,35 +55,35 @@ H.222, 2.1.14 coded P-frame: A P-frame picture or a pair of P-field pictures.
 
 <BR>
 Example 1:<BR>
-t1r0frames t1r1frames t0r0frames and t0r1frames (defined in the sections that follow) have individual names because each has unique 'top_field_first' & 'repeat_first_field' MPEG tags.
-In contrast, PAL soft telecined streams and NTSC soft telecined streams made from them are not considered unique, and are grouped together under the name "stframes".
+<B class="yellow">t1r0frames</B> <B class="yellow">t1r1frames</B> <B class="yellow">t0r0frames</B> and <B class="yellow">t0r1frames</B> (defined in the sections that follow) have individual names because each has unique 'top_field_first' & 'repeat_first_field' MPEG tags.
+In contrast, <B class="yellow">'PAL'-soft</B> streams and <B class="yellow">'NTSC'-soft</B> streams made from them are not considered unique, and are grouped together under the name "<B class="yellow"><B class="yellow">stframes</B></B>".
 They can share the same name because they are populated by the same sequence of the same elements:
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0><TR><TD><PRE class="white">
-  <I>PAL soft telecined stream</I>
-  11 t1r0frames + 1 t1r1frame + 11 t0r0frames + 1 t0r1frame + ..  24 PAL stframes per stride
+  <I><B class="yellow">'PAL'-soft</B> stream</I>
+  11 <B class="yellow">t1r0frames</B> + 1 <B class="yellow">t1r1frame</B> + 11 <B class="yellow">t0r0frames</B> + 1 <B class="yellow">t0r1frame</B> + ..  24 PAL <B class="yellow">stframes</B> per stride
 
-  <I>NTSC soft telecined stream</I>
-   1 t1r0frame  + 1 t1r1frame +  1 t0r0frame  + 1 t0r1frame + ..  4 NTSC stframes per stride</PRE></TD></TR></TABLE>
-The only difference between PAL versus NTSC soft telecined streams is the varying numbers of t#r#frames they contain. Since the notation smoothly handles varying numbers, PAL versus NTSC soft telecined streams are not considered unique and therefore do not deserve unique names.<BR>
+  <I><B class="yellow">'NTSC'-soft</B> stream</I>
+   1 <B class="yellow">t1r0frame</B>  + 1 <B class="yellow">t1r1frame</B> +  1 <B class="yellow">t0r0frame</B>  + 1 <B class="yellow">t0r1frame</B> + ..  4 NTSC <B class="yellow">stframes</B> per stride</PRE></TD></TR></TABLE>
+The only difference between <B class="yellow">'PAL'-soft</B> versus <B class="yellow">'NTSC'-soft</B> streams is the varying numbers of t#r#frames they contain. Since the notation smoothly handles varying numbers, <B class="yellow">'PAL'-soft</B> versus <B class="yellow">'NTSC'-soft</B> streams are not considered unique and therefore do not deserve unique names.<BR>
 
 <BR>
 Example 2:<BR>
-Before pull down, streams of halfpics have no pattern, just structurally identical halfpics.
-After pull down, streams of halfpics are still structurally identical, so still don't deserve to be given unique names.
-But once the halfpics are framed, the resulting frames do structurally differ and the streams show patterns.
-Consequently, they are given unique names: "ftframes" versus "combedtframes".
+Before pull down, streams of <B class="yellow">halfpics</B> have no pattern, just structurally identical <B class="yellow">halfpics</B>.
+After pull down, streams of <B class="yellow">halfpics</B> are still structurally identical, so still don't deserve to be given unique names.
+But once the <B class="yellow">halfpics</B> are framed, the resulting frames do structurally differ and the streams show patterns.
+Consequently, they are given unique names: "<B class="yellow">ftframes</B>" versus "<B class="yellow">combedtframes</B>".
 <PRE class="white">
-  <I>PAL hard telecined stream</I>
-  12 ftframes + 12 combedtframes + 1 ftframe + ..  25 PAL htframes per stride
+  <I><B class="yellow">'PAL'-hard</B> stream</I>
+  12 <B class="yellow">ftframes</B> + 12 <B class="yellow">combedtframes</B> + 1 <B class="yellow">ftframe</B> + ..  25 PAL <B class="yellow">htframes</B> per stride
 
-  <I>NTSC hard telecined stream</I>
-   2 ftframes +  2 combedtframes + 1 ftframe + ..  5 NTSC htframes per stride</PRE>
+  <I><B class="yellow">'NTSC'-hard</B> stream</I>
+   2 <B class="yellow">ftframes</B> +  2 <B class="yellow">combedtframes</B> + 1 <B class="yellow">ftframe</B> + ..  5 NTSC <B class="yellow">htframes</B> per stride</PRE>
 <!-- end show-hide box --></TD></TR></TABLE>
 
 <B class="underline super">12 Types of Streams</B>
 
 <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
-<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="box" onmouseover=box_size(this)>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 onmouseover=box_size(this)>
 <TR><TD><PRE class="white">
 <B>
 
@@ -97,24 +98,23 @@ Consequently, they are given unique names: "ftframes" versus "combedtframes".
     <TD><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="bold">
         <TR><TD class="center middle">&nbsp;camera&nbsp;</TD>
             <TD class="box1101"><B class="red">s</B>&nbsp; = <B class="red underline">S</B>cans<BR>
-                <B class="red">s</B>f = <B class="red underline">S</B>can<B class="underline">F</B>rames</TD>
+                <B class="red">s</B>f = <B class="yellow"><B class="red underline">S</B>can<B class="underline">F</B>rames</B></TD>
             <TD class="box1100" colspan=2>&nbsp;<B class="red">p</B>&nbsp; = &nbsp;&nbsp;&nbsp;&nbsp;<B class="red underline">P</B>ictures<BR>
-                &nbsp;<B class="red">p</B>f = &nbsp;&nbsp;&nbsp;&nbsp;<B class="red underline">P</B>ic<B class="underline">F</B>rames</TD></TR>
+                &nbsp;<B class="red">p</B>f = &nbsp;&nbsp;&nbsp;&nbsp;<B class="yellow"><B class="red underline">P</B>ic<B class="underline">F</B>rames</B></TD></TR>
         <TR><TD class="center middle">&nbsp;unweaved&nbsp;<BR>(fields)</TD>
             <TD class="box0101">&nbsp;</TD>
-            <TD class="box0110"><BR>h<B class="red">p</B>&nbsp; = <B class="underline">H</B>alf<B class="red underline">P</B>ics</TD>
-            <TD class="box0100">f<B class="red">t</B>f = <B class="underline">F</B>ield<B class="red underline">T</B>ele<B class="underline">F</B>rames<BR>
-                s<B class="red">t</B>f = &nbsp;<B class="underline">S</B>oft<B class="red underline">T</B>ele<B class="underline">F</B>rames<BR>
-                h<B class="red">t</B>f = &nbsp;<B class="underline">H</B>ard<B class="red underline">T</B>ele<B class="underline">F</B>rames</TD></TR>
+            <TD class="box0110"><BR>h<B class="red">p</B>&nbsp; = <B class="yellow"><B class="underline">H</B>alf<B class="red underline">P</B>ics</B></TD>
+            <TD class="box0110">f<B class="red">t</B>f = <B class="yellow"><B class="underline">F</B>ield<B class="red underline">T</B>ele<B class="underline">F</B>rames</B><BR>
+                s<B class="red">t</B>f = &nbsp;<B class="yellow"><B class="underline">S</B>oft<B class="red underline">T</B>ele<B class="underline">F</B>rames</B><BR>
+                h<B class="red">t</B>f = &nbsp;<B class="yellow"><B class="underline">H</B>ard<B class="red underline">T</B>ele<B class="underline">F</B>rames</B></TD></TR>
         <TR><TD class="center middle" rowspan=2>&nbsp;interlaced&nbsp;<BR>(pseudo)</TD>
             <TD class="box0101"></TD>
-            <TD class="box0010"><B class="red">tp</B>&nbsp; = <B class="red underline">T</B>ele<B class="red underline">P</B>ics<br>
-                <B class="red">tp</B>f = <B class="red underline">T</B>ele<B class="red underline">P</B>ic<B class="underline">F</B>rames</TD>
-            <TD class="box0110"></TD></TR>
+            <TD class="box0110"><B class="red">tp</B>&nbsp; = <B class="yellow"><B class="red underline">T</B>ele<B class="red underline">P</B>ics</B><br>
+                <B class="red">tp</B>f = <B class="yellow"><B class="red underline">T</B>ele<B class="red underline">P</B>ic<B class="underline">F</B>rames</B></TD></TR>
         <TR>
             <TD class="box0011"></TD>
-            <TD class="box0110"><B class="red">sp</B>&nbsp; = <B class="red underline">S</B>can<B class="red underline">P</B>ics<BR>
-                <B class="red">sp</B>f = <B class="red underline">S</B>can<B class="red underline">P</B>ic<B class="underline">F</B>rames</TD>
+            <TD class="box0110"><B class="red">sp</B>&nbsp; = <B class="yellow"><B class="red underline">S</B>can<B class="red underline">P</B>ics</B><BR>
+                <B class="red">sp</B>f = <B class="yellow"><B class="red underline">S</B>can<B class="red underline">P</B>ic<B class="underline">F</B>rames</B></TD>
             <TD class="box0000"></TD></TR>
         </TABLE></TD></TR>
 <TR><TD colspan=2><PRE class="white">
@@ -138,33 +138,32 @@ Consequently, they are given unique names: "ftframes" versus "combedtframes".
 <TR><TD colspan=2><PRE class="white">
 <B> <I class="bottom">___ the rates to the left appear in notations</I>
 /   \
-  <B class="aqua">sps</B> =    <B class="red underline">S</B>cans <B class="red underline">P</B>er <B class="red underline">S</B>econd = cropped or matted & SAR-scaled raw scans.
-  <B class="aqua">pps</B> = <B class="red underline">P</B>ictures <B class="red underline">P</B>er <B class="red underline">S</B>econd = cropped or matted & SAR-scaled raw captures.
- <B class="aqua">hpps</B> = <B class="red underline">H</B>alf<B class="red underline">P</B>ics <B class="red underline">P</B>er <B class="red underline">S</B>econd = halfpics unweaved from pictures.
- <B class="aqua">spps</B> = <B class="red underline">S</B>can<B class="red underline">P</B>ics <B class="red underline">P</B>er <B class="red underline">S</B>econd = interlaced scans (pseudo pictures).
- <B class="aqua">tpps</B> = <B class="red underline">T</B>ele<B class="red underline">P</B>ics <B class="red underline">P</B>er <B class="red underline">S</B>econd = interlaced halfpics (pseudo pictures).
+  <B class="aqua">sps</B> =    <B class="red underline">S</B>cans <B class="red underline">P</B>er <B class="red underline">S</B>econd = raw scans, (DAR)x2 cropped or matted & 1/(SAR)-scaled.
+  <B class="aqua">pps</B> = <B class="red underline">P</B>ictures <B class="red underline">P</B>er <B class="red underline">S</B>econd = raw captures, DAR cropped or matted & 1/(SAR)-scaled.
+ <B class="aqua">hpps</B> = <B class="yellow"><B class="red underline">H</B>alf<B class="red underline">P</B>ics</B> <B class="red underline">P</B>er <B class="red underline">S</B>econd = <B class="yellow">half-pictures</B> unweaved from pictures.
+ <B class="aqua">spps</B> = <B class="yellow"><B class="red underline">S</B>can<B class="red underline">P</B>ics</B> <B class="red underline">P</B>er <B class="red underline">S</B>econd = interlaced scans (pseudo pictures).
+ <B class="aqua">tpps</B> = <B class="yellow"><B class="red underline">T</B>ele<B class="red underline">P</B>ics</B> <B class="red underline">P</B>er <B class="red underline">S</B>econd = interlaced <B class="yellow">halfpics</B> (pseudo pictures).
 
- <B class="aqua">sfps</B> =    <B class="red underline">S</B>can<B class="red underline">F</B>rames <B class="red underline">P</B>er <B class="red underline">S</B>econd = frames of field-encoded scans.
- <B class="aqua">pfps</B> =     <B class="red underline">P</B>ic<B class="red underline">F</B>rames <B class="red underline">P</B>er <B class="red underline">S</B>econd = frame-encoded pictures (progressive).
-<B class="aqua">spfps</B> = <B class="red underline">S</B>can<B class="red underline">P</B>ic<B class="red underline">F</B>rames <B class="red underline">P</B>er <B class="red underline">S</B>econd = frame-encoded scanpics (non-progressive but tagged as progressive).
-<B class="aqua">tpfps</B> = <B class="red underline">T</B>ele<B class="red underline">P</B>ic<B class="red underline">F</B>rames <B class="red underline">P</B>er <B class="red underline">S</B>econd = frame-encoded telepics (non-progressive but tagged as progressive).
+ <B class="aqua">sfps</B> =    <B class="yellow"><B class="red underline">S</B>can<B class="red underline">F</B>rames</B> <B class="red underline">P</B>er <B class="red underline">S</B>econd = frames of field-encoded scans.
+ <B class="aqua">pfps</B> =     <B class="yellow"><B class="red underline">P</B>ic<B class="red underline">F</B>rames</B> <B class="red underline">P</B>er <B class="red underline">S</B>econd = frame-encoded pictures (progressive).
+<B class="aqua">spfps</B> = <B class="yellow"><B class="red underline">S</B>can<B class="red underline">P</B>ic<B class="red underline">F</B>rames</B> <B class="red underline">P</B>er <B class="red underline">S</B>econd = frame-encoded <B class="yellow">scanpics</B> (non-progressive but tagged as progressive).
+<B class="aqua">tpfps</B> = <B class="yellow"><B class="red underline">T</B>ele<B class="red underline">P</B>ic<B class="red underline">F</B>rames</B> <B class="red underline">P</B>er <B class="red underline">S</B>econd = frame-encoded <B class="yellow">telepics</B> (non-progressive but tagged as progressive).
 
-<B class="aqua">ftfps</B> = <B class="red underline">F</B>ield<B class="red underline">T</B>ele<B class="red underline">F</B>rames <B class="red underline">P</B>er <B class="red underline">S</B>econd = frames of field-encoded halfpics (progressive).
-<B class="aqua">stfps</B> =  <B class="red underline">S</B>oft<B class="red underline">T</B>ele<B class="red underline">F</B>rames <B class="red underline">P</B>er <B class="red underline">S</B>econd = frames of field-encoded halfpics (progressive, pull-down tagged).
-<B class="aqua">htfps</B> =  <B class="red underline">H</B>ard<B class="red underline">T</B>ele<B class="red underline">F</B>rames <B class="red underline">P</B>er <B class="red underline">S</B>econd = frames of field-encoded halfpics (non-progressive).
+<B class="aqua">ftfps</B> = <B class="yellow"><B class="red underline">F</B>ield<B class="red underline">T</B>ele<B class="red underline">F</B>rames</B> <B class="red underline">P</B>er <B class="red underline">S</B>econd = frames of field-encoded <B class="yellow">halfpics</B> (progressive).
+<B class="aqua">stfps</B> =  <B class="yellow"><B class="red underline">S</B>oft<B class="red underline">T</B>ele<B class="red underline">F</B>rames</B> <B class="red underline">P</B>er <B class="red underline">S</B>econd = frames of field-encoded <B class="yellow">halfpics</B> (progressive, pull-down tagged).
+<B class="aqua">htfps</B> =  <B class="yellow"><B class="red underline">H</B>ard<B class="red underline">T</B>ele<B class="red underline">F</B>rames</B> <B class="red underline">P</B>er <B class="red underline">S</B>econd = frames of field-encoded <B class="yellow">halfpics</B> (non-progressive).
 \___/</B></PRE>
 <BLOCKQUOTE><BLOCKQUOTE>
         <P><B>progressive</B>: The word "progressive" is used here in the informal sense.
-        Informally, "progressive" means a frame in which all lines are concurrent (which includes picframes, ftframes, and stframes), whereas formally, "progressive" means bearing an MPEG 'progressive_frame'=1 tag (which is limited to picframes).</P>
-        <P><B>unweave</B>: To make a 'top' (or 'bottom') half-picture, by extracting the odd (or even) lines of an existing picture.</P>
-        <P><B>interlace</B>: To make a pseudo picture by alternating the lines of two scans or non-progressive halfpics.</P>
+        Informally, "progressive" means a frame in which all lines are concurrent (which includes <B class="yellow">picframes</B> <B class="yellow">ftframes</B> & <B class="yellow">stframes</B>), whereas formally, "progressive" means bearing an MPEG 'progressive_frame'=1 tag (which is limited to <B class="yellow">picframes</B>).</P>
+        <P><B>unweave</B>: To make a 'top' (or 'bottom') <B class="yellow">half-picture</B>, by extracting the odd (or even) lines of an existing picture.</P>
+        <P><B>interlace</B>: To make a pseudo picture by alternating the lines of two scans or non-progressive <B class="yellow">halfpics</B>.</P>
         <P><B>pseudo picture</B>: Having the appearance of a picture but non-progressive due to line-to-line motion combing.</P>
-        <P><B>telecine</B>: To apply pull down to an hpps stream or to tag it for later pull down.</P>
+        <P><B>telecine</B>: To apply pull down to an <B class="aqua">hpps</B> stream or to tag it for later pull down.</P>
 </BLOCKQUOTE></BLOCKQUOTE>
 </TD></TR></TABLE>
 <!-- end show-hide box --></TD></TR></TABLE>
 
-<A name="scan-terms"></A>
 <B class="underline super">Scans</B><BR>
 Raw scans are images shot by analog TV cameras.<BR>
 PAL-scans & NTSC-scans are streams of field-encoded scans that are found on Blu-rays & DVDs.
@@ -172,11 +171,11 @@ PAL-scans & NTSC-scans are streams of field-encoded scans that are found on Blu-
   <B class="underline super">Scan Encoding</B>
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
-  <PRE class="white"> <I class="box">raw scans</I></B> &mdash;> (DAR)x2 &mdash;> SAR &mdash;> <B class="aqua">sps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">sfps</B> &mdash;> <I class="box">media</I>
-                                   \
-                                   <I>interlace</I> &mdash;> <B class="aqua">spps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">spfps</B> &mdash;> <I class="box">media</I></PRE>
-  <B class="aqua">sps</B>: scans per second. Cropped or matted & SAR-scaled raw scans.
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, half height, no combed lines, no cadence or judder.</P>
+  <PRE class="white"> <I class="box">raw scans</I></B> &mdash;> (DAR)x2 &mdash;> 1/(SAR) &mdash;> <B class="aqua">sps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">sfps</B> &mdash;> <I class="box">media</I>
+                                       \
+                                       <I>interlace</I> &mdash;> <B class="aqua">spps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">spfps</B> &mdash;> <I class="box">media</I></PRE>
+  <B class="aqua">sps</B>: scans per second. Raw scans, DAR cropped or matted & 1/(SAR)-scaled.
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, half height, no combed lines, no cadence or judder.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: Set in the camera. Usually either PAL (50sps) or NTSC (60'1.001sps).</P>
   &nbsp;&bullet;&nbsp;Defaults:
 
@@ -185,7 +184,7 @@ PAL-scans & NTSC-scans are streams of field-encoded scans that are found on Blu-
   <P>&nbsp;&bullet;&nbsp;60'1.001sps: <B class="wheat">.spr="640"</B>&nbsp;&nbsp; <B class="wheat">.rpc="240"</B>&nbsp;&nbsp; <B class="wheat">.colormatrix="bt601"</B></P>
 <!-- end show-hide box --></TD></TR></TABLE>
 
-  <B class="aqua">sfps</B>: scanframes per second. Frames of field-encoded scans.
+  <B class="aqua">sfps</B>: <B class="yellow">scanframes</B> per second. Frames of field-encoded scans.
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (sps)/2.</P>
   &nbsp;&bullet;&nbsp;Defaults:
 
@@ -196,14 +195,14 @@ PAL-scans & NTSC-scans are streams of field-encoded scans that are found on Blu-
 
   <P>&nbsp;&bullet;&nbsp;Default&nbsp;MPEG&nbsp;tagging:</P>
   <BLOCKQUOTE>
-    <P>&nbsp;&bullet;&nbsp;tbscanframes: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0.</P>
-    <P>&nbsp;&bullet;&nbsp;btscanframes: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=0.</P>
+    <P>&nbsp;&bullet;&nbsp;<B class="yellow">tbscanframes</B>: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0.</P>
+    <P>&nbsp;&bullet;&nbsp;<B class="yellow">btscanframes</B>: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=0.</P>
   </BLOCKQUOTE>
-  <B class="aqua">spps</B>: scanpics per second. Interlaced scans (pseudo pictures).
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, full height, moderate motion combing (1/(sps) seconds, odd-to-even lines), no cadence or judder.</P>
-  <P>&nbsp;&bullet;&nbsp;Strides: 2 scans &mdash;> 1 scanpic.</P>
+  <B class="aqua">spps</B>: <B class="yellow">scanpics</B> per second. Interlaced scans (pseudo pictures).
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, full height, moderate motion combing (1/(sps) seconds, odd-to-even lines), no cadence or judder.</P>
+  <P>&nbsp;&bullet;&nbsp;Strides: 2 scans &mdash;> 1 <B class="yellow">scanpic</B>.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (sps)/2.</P>
-  <B class="aqua">spfps</B>: scanpicframes per second. Frame-encoded scanpics (non-progressive but tagged as progressive).
+  <B class="aqua">spfps</B>: <B class="yellow">scanpicframes</B> per second. Frame-encoded <B class="yellow">scanpics</B> (non-progressive but tagged as progressive).
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: spps.</P>
   <P>&nbsp;&bullet;&nbsp;Default&nbsp;MPEG&nbsp;tagging: 'progressive_frame'=1, 'top_field_first'=0, 'repeat_first_field'=0.</P>
   <HR>
@@ -213,19 +212,17 @@ PAL-scans & NTSC-scans are streams of field-encoded scans that are found on Blu-
   <P>field&nbsp;of&nbsp;view: Full.</P>
   <P>horizontal&nbsp;resolution: Full.</P>
   <P>vertical&nbsp;resolution: Half.</P>
-  <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-  <P>scan&nbsp;image&nbsp;aspect&nbsp;ratio: (DAR)x2/(1/(SAR)).</P>
-  <P>line-to-line&nbsp;interval: Lines are consecutive, top to bottom, spanning 1/(sps) seconds [see&nbsp;note];<BR>
-  line(2 3..)time <SPAN class="nowrap">= line(1 2..)time</SPAN> <SPAN class="nowrap">+ 1/(sps)/(lines per scan)</SPAN> seconds.</P>
-  <P>pixel-to-pixel&nbsp;interval: Pixels are consecutive, left to right, spanning the line-to-line interval [see&nbsp;note];<BR>
-  pixel(2 3..)time <SPAN class="nowrap">= pixel(1 2..)time</SPAN> <SPAN class="nowrap">+ 1/(sps)/(pixels per line)/(lines per scan)</SPAN></SPAN> seconds.</P>
+  <P>pixel&nbsp;aspect: SAR.</P>
+  <P>image&nbsp;aspect: 2x(DAR)x(SAR).</P>
+  <P>row-to-row&nbsp;interval: Rows are consecutive, top to bottom, spanning 1/(sps) seconds [see&nbsp;note].</P>
+  <P>pixel-to-pixel&nbsp;interval: Pixels are consecutive, left to right, spanning the row-to-row interval [see&nbsp;note].</P>
   <BR>
-  <P>[note] Ignoring relatively brief scan-to-scan & line-to-line blanking intervals.</P>
+  <P>[note] Ignoring relatively brief track-to-track (horizontal) & scan-to-scan (vertical) blanking intervals.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set made from a raw scan via (DAR)x2 cropping or matting followed by SAR scaling.</P>
-  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, half height, no combed lines, slight diagonal motion parallax from top-left pixel to bottom-right pixel that can (usually unnoticeably) 'bend' straight lines.</P>
-  <P><B class="yellow">scanframes</B> (scan frames): A stream of tbscanframes or btscanframes but not a mix of the two.</P>
+  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, half height, no combed lines, slight diagonal motion parallax from top-left pixel to bottom-right pixel that can (usually unnoticeably) 'bend' straight lines.</P>
+  <P><B class="yellow">scanframes</B> (scan frames): A stream of <B class="yellow">tbscanframes</B> or <B class="yellow">btscanframes</B> but not a mix of the two.</P>
   <BLOCKQUOTE>
     <P><B>tbscanframe</B> ('top'-'bottom' scan frame): A consecutive pair of field-encoded scans in which the 'top' scan comes first.</P>
     <P><B>btscanframe</B> ('bottom'-'top' scan frame): A consecutive pair of field-encoded scans in which the 'bottom' scan comes first.</P>
@@ -236,53 +233,53 @@ PAL-scans & NTSC-scans are streams of field-encoded scans that are found on Blu-
   <P>field&nbsp;of&nbsp;view: Full.</P>
   <P>horizontal&nbsp;resolution: Full.</P>
   <P>vertical&nbsp;resolution: Full.</P>
-  <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-  <P>scanpic&nbsp;image&nbsp;aspect&nbsp;ratio: (DAR)/(1/(SAR)).</P>
+  <P>pixel&nbsp;aspect: SAR.</P>
+  <P>image&nbsp;aspect: (DAR)x(SAR).</P>
   <P>line-to-line&nbsp;interval: Lines from the 1st scan are interleaved with lines from the 2nd scan;<BR>
   line(2 3..)time <SPAN class="nowrap">= line(1 2..)time</SPAN> <SPAN class="nowrap">&plusmn; 1/(sps)</SPAN> seconds.</P>
   <P>pixel-to-pixel&nbsp;interval: The same as for scans.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <P>&nbsp;&bullet;&nbsp;The pseudo picture formed by interlacing a pair of consecutive scans.</P>
-  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, full height, moderate motion combing (1/(sps) seconds, each odd to even numbered line).</P>
-  <P><B class="yellow">scanpicframe</B> (scan picture frame): A frame-encoded scanpic.</P>
+  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, full height, moderate motion combing (1/(sps) seconds, each odd to even numbered line).</P>
+  <P><B class="yellow">scanpicframe</B> (scan picture frame): A frame-encoded <B class="yellow">scanpic</B>.</P>
   <BR>
   [note]&nbsp;The meaning of 'top_field_first' varies.
-  <P>&nbsp;&bullet;&nbsp;For scanframes, 'top_field_first' is <B class="red">descriptive</B>.
+  <P>&nbsp;&bullet;&nbsp;For <B class="yellow">scanframes</B>, 'top_field_first' is <B class="red">descriptive</B>.
   It answers the question:<B class="red"><I> Which field comes first in the frame?</I></B>
   The 'repeat_first_field' tag is ignored.</P>
-  <P>&nbsp;&bullet;&nbsp;For stframes, 'top_field_first' is <B class="red">prescriptive</B>.
+  <P>&nbsp;&bullet;&nbsp;For <B class="yellow">stframes</B>, 'top_field_first' is <B class="red">prescriptive</B>.
   It answers the question:<B class="red"><I> How is pull down done during play?</I></B>
-  Internally, stframes are always 'top' followed by 'bottom'.
+  Internally, <B class="yellow">stframes</B> are always 'top' followed by 'bottom'.
   The 'top_field_first' & 'repeat_first_field' tags are instead used to control the pull down that is to be done during play.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <PRE class="white">
- <I class="box">raw scans</I></B> &mdash;> (DAR)x2 &mdash;> SAR &mdash;> <B class="aqua">sps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">sfps</B> &mdash;> <I class="box">media</I>
-                                   \
-                                   <I>interlace</I> &mdash;> <B class="aqua">spps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">spfps</B> &mdash;> <I class="box">media</I></PRE>
+ <I class="box">raw scans</I></B> &mdash;> (DAR)x2 &mdash;> 1/(SAR) &mdash;> <B class="aqua">sps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">sfps</B> &mdash;> <I class="box">media</I>
+                                       \
+                                       <I>interlace</I> &mdash;> <B class="aqua">spps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">spfps</B> &mdash;> <I class="box">media</I></PRE>
   <B class="underline super">Scan Decoding</B>
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <PRE class="white">
-<I class="box">media</I> &mdash;> <B class="aqua">sfps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">sps</B> &mdash;> <I>interlace</I> &mdash;> <B class="aqua">spps</B> &mdash;> 1/(SAR) &mdash;> <I class="box">screen</I></PRE>
+<I class="box">media</I> &mdash;> <B class="aqua">sfps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">sps</B> &mdash;> <I>interlace</I> &mdash;> <B class="aqua">spps</B> &mdash;> SAR &mdash;> <I class="box">screen</I></PRE>
   <B class="aqua">sfps</B>: scanframes per second. Frames of field-encoded scans.
-  A stream of tbscanframes or btscanframes but not a mix of the two.
+  A stream of <B class="yellow">tbscanframes</B> or <B class="yellow">btscanframes</B> but not a mix of the two.
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: Copied from the media.</P>
   <P>&nbsp;&bullet;&nbsp;Default&nbsp;MPEG&nbsp;tagging: Copied from the media.</P>
   <BLOCKQUOTE>
-    <P>&nbsp;&bullet;&nbsp;tbscanframes: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0.</P>
-    <P>&nbsp;&bullet;&nbsp;btscanframes: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=0.</P>
+    <P>&nbsp;&bullet;&nbsp;<B class="yellow">tbscanframes</B>: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0.</P>
+    <P>&nbsp;&bullet;&nbsp;<B class="yellow">btscanframes</B>: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=0.</P>
   </BLOCKQUOTE>
-  <B class="aqua">sps</B>: scans per second. Cropped or matted & SAR-scaled raw scans.
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, half height, no combed lines, no cadence or judder.</P>
+  <B class="aqua">sps</B>: scans per second. Raw scans, DAR cropped or matted & 1/(SAR)-scaled.
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, half height, no combed lines, no cadence or judder.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (sfps)x2.</P>
-  <B class="aqua">spps</B>: scanpics per second. Interlaced scans (pseudo pictures).
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, full height, moderate motion combing (1/(sps) seconds, odd-to-even lines), no cadence or judder.</P>
-  <P>&nbsp;&bullet;&nbsp;Strides: 2 scans &mdash;> 1 scanpic.</P>
+  <B class="aqua">spps</B>: <B class="yellow">scanpics</B> per second. Interlaced scans (pseudo pictures).
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, full height, moderate motion combing (1/(sps) seconds, odd-to-even lines), no cadence or judder.</P>
+  <P>&nbsp;&bullet;&nbsp;Strides: 2 scans &mdash;> 1 <B class="yellow">scanpic</B>.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (sps)/2.</P>
   <HR>
-  <P><B class="yellow">scanframes</B> (scan frames): A stream of tbscanframes or btscanframes but not a mix of the two.</P>
+  <P><B class="yellow">scanframes</B> (scan frames): A stream of <B class="yellow">tbscanframes</B> or <B class="yellow">btscanframes</B> but not a mix of the two.</P>
   <BLOCKQUOTE>
     <P><B>tbscanframe</B> ('top'-'bottom' scan frame): A consecutive pair of field-encoded scans in which the 'top' scan comes first.</P>
     <P><B>btscanframe</B> ('bottom'-'top' scan frame): A consecutive pair of field-encoded scans in which the 'bottom' scan comes first.</P>
@@ -293,49 +290,46 @@ PAL-scans & NTSC-scans are streams of field-encoded scans that are found on Blu-
   <P>field&nbsp;of&nbsp;view: Full.</P>
   <P>horizontal&nbsp;resolution: Full.</P>
   <P>vertical&nbsp;resolution: Half.</P>
-  <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-  <P>scan&nbsp;image&nbsp;aspect&nbsp;ratio: (DAR)x2/(1/(SAR)).</P>
-  <P>line-to-line&nbsp;interval: Lines are consecutive, top to bottom, spanning 1/(sps) seconds [see&nbsp;note];<BR>
-  line(2 3..)time <SPAN class="nowrap">= line(1 2..)time</SPAN> <SPAN class="nowrap">+ 1/(sps)/(lines per scan)</SPAN> seconds.</P>
-  <P>pixel-to-pixel&nbsp;interval: Pixels are consecutive, left to right, spanning the line-to-line interval [see&nbsp;note];<BR>
-  pixel(2 3..)time <SPAN class="nowrap">= pixel(1 2..)time</SPAN> <SPAN class="nowrap">+ 1/(sps)/(pixels per line)/(lines per scan)</SPAN></SPAN> seconds.</P>
+  <P>pixel&nbsp;aspect: SAR.</P>
+  <P>image&nbsp;aspect: 2x(DAR)x(SAR).</P>
+  <P>line-to-line&nbsp;interval: Lines are consecutive, top to bottom, spanning 1/(sps) seconds [see&nbsp;note].</P>
+  <P>pixel-to-pixel&nbsp;interval: Pixels are consecutive, left to right, spanning the row-to-row interval [see&nbsp;note].</P>
   <BR>
-  <P>[note] Ignoring relatively brief scan-to-scan & line-to-line blanking intervals.</P>
+  <P>[note] Ignoring relatively brief sample-to-sample & track-to-track blanking intervals.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set made from a raw scan via (DAR)x2 cropping or matting followed by SAR scaling.</P>
-  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, half height, no combed lines, slight diagonal motion parallax from top-left pixel to bottom-right pixel that can (usually unnoticeably) 'bend' straight lines.</P>
+  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, half height, no combed lines, slight diagonal motion parallax from top-left pixel to bottom-right pixel that can (usually unnoticeably) 'bend' straight lines.</P>
   <B class="yellow">scanpic</B> (scan picture):
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <P>field&nbsp;of&nbsp;view: Full.</P>
   <P>horizontal&nbsp;resolution: Full.</P>
   <P>vertical&nbsp;resolution: Full.</P>
-  <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-  <P>scanpic&nbsp;image&nbsp;aspect&nbsp;ratio: (DAR)/(1/(SAR)).</P>
+  <P>pixel&nbsp;aspect: SAR.</P>
+  <P>image&nbsp;aspect: (DAR)x(SAR).</P>
   <P>line-to-line&nbsp;interval: Lines from the 1st scan are interleaved with lines from the 2nd scan;<BR>
   line(2 3..)time <SPAN class="nowrap">= line(1 2..)time</SPAN> <SPAN class="nowrap">&plusmn; 1/(sps)</SPAN> seconds.</P>
   <P>pixel-to-pixel&nbsp;interval: The same as for scans.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <P>&nbsp;&bullet;&nbsp;The pseudo picture formed by interlacing a pair of consecutive scans.</P>
-  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, full height, moderate motion combing (1/(sps) seconds, each odd to even numbered line).</P>
+  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, full height, moderate motion combing (1/(sps) seconds, each odd to even numbered line).</P>
   <BR>
   [note]&nbsp;The meaning of 'top_field_first' varies.
   <P>&nbsp;&bullet;&nbsp;For scanframes, 'top_field_first' is <B class="red">descriptive</B>.
   It answers the question:<B class="red"><I> Which field comes first in the frame?</I></B>
   The 'repeat_first_field' tag is ignored.</P>
-  <P>&nbsp;&bullet;&nbsp;For stframes, 'top_field_first' is <B class="red">prescriptive</B>.
+  <P>&nbsp;&bullet;&nbsp;For <B class="yellow">stframes</B>, 'top_field_first' is <B class="red">prescriptive</B>.
   It answers the question:<B class="red"><I> How is pull down done during play?</I></B>
-  Internally, stframes are always 'top' followed by 'bottom'.
+  Internally, <B class="yellow">stframes</B> are always 'top' followed by 'bottom'.
   The 'top_field_first' & 'repeat_first_field' tags are instead used to control the pull down that is to be done during play.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
 <PRE class="white">
- <I class="box">media</I> &mdash;> <B class="aqua">sfps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">sps</B> &mdash;> <I>interlace</I> &mdash;> <B class="aqua">spps</B> &mdash;> 1/(SAR) &mdash;> <I class="box">screen</I></PRE>
+ <I class="box">media</I> &mdash;> <B class="aqua">sfps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">sps</B> &mdash;> <I>interlace</I> &mdash;> <B class="aqua">spps</B> &mdash;> SAR &mdash;> <I class="box">screen</I></PRE>
 </BLOCKQUOTE>
 
-<A name="picture-terms"></A>
 <B class="underline">Pictures</B><BR>
 Raw pictures are images shot by digital cinema cameras or sampled from film.<BR>
 Cine-slow are streams of frame-encoded pictures (often called "progressive") that are found on Blu-rays but not on DVDs.
@@ -343,9 +337,9 @@ Cine-slow are streams of frame-encoded pictures (often called "progressive") tha
   <B class="underline super">Picture Encoding</B>
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
-  <PRE class="white"> <I class="box">raw captures</I> &mdash;> DAR &mdash;> SAR &mdash;> <B class="aqua">pps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">pfps</B> &mdash;> <I class="box">media</I></PRE>
-  <B class="aqua">pps</B>: pictures per second. Cropped or matted & SAR-scaled raw captures.
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, full height, no combed lines, no cadence, no judder.</P>
+  <PRE class="white"> <I class="box">raw captures</I> &mdash;> DAR &mdash;> 1/(SAR) &mdash;> <B class="aqua">pps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">pfps</B> &mdash;> <I class="box">media</I></PRE>
+  <B class="aqua">pps</B>: pictures per second. Raw captures, DAR cropped or matted & 1/(SAR)-scaled.
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, full height, no combed lines, no cadence, no judder.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: Set in the camera. For cinema, usually 24pps.</P>
   <B class="aqua">pfps</B>: picframes per second. Frame-encoded pictures (progressive).
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: pps.</P>
@@ -357,30 +351,30 @@ Cine-slow are streams of frame-encoded pictures (often called "progressive") tha
   <P>field&nbsp;of&nbsp;view: Full.</P>
   <P>horizontal&nbsp;resolution: Full.</P>
   <P>vertical&nbsp;resolution: Full.</P>
-  <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-  <P>picture&nbsp;aspect&nbsp;ratio: (DAR)/(1/(SAR)).</P>
+  <P>pixel&nbsp;aspect: SAR.</P>
+  <P>image&nbsp;aspect: (DAR)x(SAR).</P>
   <P>line-to-line&nbsp;interval: Zero.</P>
   <P>pixel-to-pixel&nbsp;interval: Zero.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set made from a raw picture via DAR cropping or matting followed by SAR scaling.</P>
-  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, full height, no combed lines.</P>
+  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, full height, no combed lines.</P>
   <B class="yellow">picframe</B> (picture frame): A frame-encoded picture.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <PRE class="white">
- <I class="box">raw captures</I> &mdash;> DAR &mdash;> SAR &mdash;> <B class="aqua">pps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">pfps</B> &mdash;> <I class="box">media</I></PRE>
+ <I class="box">raw captures</I> &mdash;> DAR &mdash;> 1/(SAR) &mdash;> <B class="aqua">pps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">pfps</B> &mdash;> <I class="box">media</I></PRE>
 
   <B class="underline super">Picture Decoding</B>
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <PRE class="white">
-<I class="box">media</I> &mdash;> <B class="aqua">pfps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">pps</B> &mdash;> 1/(SAR) &mdash;> <I class="box">screen</I></PRE>
+<I class="box">media</I> &mdash;> <B class="aqua">pfps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">pps</B> &mdash;> SAR &mdash;> <I class="box">screen</I></PRE>
   <B class="aqua">pfps</B>: picframes per second. Frame-encoded pictures (progressive).
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: Copied from the media.</P>
   <P>&nbsp;&bullet;&nbsp;Default&nbsp;MPEG&nbsp;tagging: Copied from the media.</P>
-  <B class="aqua">pps</B>: pictures per second. Cropped or matted & SAR-scaled raw captures.
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, full height, no combed lines, no cadence, no judder.</P>
+  <B class="aqua">pps</B>: pictures per second. Raw captures, DAR cropped or matted & 1/(SAR)-scaled.
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, full height, no combed lines, no cadence, no judder.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: pfps.</P>
   <HR>
   <P><B class="yellow">picframe</B> (picture frame): A frame-encoded picture.</P>
@@ -390,38 +384,37 @@ Cine-slow are streams of frame-encoded pictures (often called "progressive") tha
   <P>field&nbsp;of&nbsp;view: Full.</P>
   <P>horizontal&nbsp;resolution: Full.</P>
   <P>vertical&nbsp;resolution: Full.</P>
-  <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-  <P>picture&nbsp;aspect&nbsp;ratio: (DAR)/(1/(SAR)).</P>
+  <P>pixel&nbsp;aspect: SAR.</P>
+  <P>image&nbsp;aspect: (DAR)x(SAR).</P>
   <P>line-to-line&nbsp;interval: Zero.</P>
   <P>pixel-to-pixel&nbsp;interval: Zero.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set made from a raw picture via DAR cropping or matting followed by SAR scaling.</P>
-  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, full height, no combed lines.</P>
+  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, full height, no combed lines.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <PRE class="white">
- <I class="box">media</I> &mdash;> <B class="aqua">pfps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">pps</B> &mdash;> 1/(SAR) &mdash;> <I class="box">screen</I></PRE>
+ <I class="box">media</I> &mdash;> <B class="aqua">pfps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">pps</B> &mdash;> SAR &mdash;> <I class="box">screen</I></PRE>
 </BLOCKQUOTE>
-<A name="field-telecine-terms"></A>
 <B>Field telecines</B><BR>
 Telecines are pictures adapted for analog TV.
-Each original picture is unweaved to two halfpics and field-encoded during mastering.<BR>
+Each original picture is unweaved to two <B class="yellow">halfpics</B> and field-encoded during mastering.<BR>
 PAL-fast (aka "PAL speedup") streams are found on Blu-rays & DVDs.
 For field telecine, field tags are not configured for pull down during either mastering or play &mdash; <B class="red">there is no pull down at all.</B>
 <BLOCKQUOTE>
   <B class="underline super">Field Telecine Encoding</B>
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
-  <PRE class="white"> <I class="box">raw captures</I> &mdash;> DAR &mdash;> SAR &mdash;> <B class="aqua">pps</B> &mdash;> <I>unweave</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">ftfps</B> &mdash;> <I class="box">media</I></PRE>
-  <B class="aqua">pps</B>: pictures per second. Cropped or matted & SAR-scaled raw captures.
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, full height, no combed lines, no cadence, no judder.</P>
+  <PRE class="white"> <I class="box">raw captures</I> &mdash;> DAR &mdash;> 1/(SAR) &mdash;> <B class="aqua">pps</B> &mdash;> <I>unweave</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">ftfps</B> &mdash;> <I class="box">media</I></PRE>
+  <B class="aqua">pps</B>: pictures per second. Raw captures, DAR cropped or matted & 1/(SAR)-scaled.
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, full height, no combed lines, no cadence, no judder.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: Set in the camera. For cinema, usually 24pps.</P>
-  <B class="aqua">hpps</B>: halfpics per second. Half-pictures unweaved from pictures.
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, half height, no combed lines, no cadence, no judder.</P>
-  <P>&nbsp;&bullet;&nbsp;Strides: 1 picture &mdash;> 2 halfpics.</P>
+  <B class="aqua">hpps</B>: <B class="yellow">halfpics</B> per second. Half-pictures unweaved from pictures.
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, half height, no combed lines, no cadence, no judder.</P>
+  <P>&nbsp;&bullet;&nbsp;Strides: 1 picture &mdash;> 2 <B class="yellow">halfpics</B>.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (pps)x2.</P>
-  <B class="aqua">ftfps</B>: ftframes per second. Frames of field-encoded halfpics (progressive).
+  <B class="aqua">ftfps</B>: <B class="yellow">ftframes</B> per second. Frames of field-encoded <B class="yellow">halfpics</B> (progressive).
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (hpps)/2.</P>
   <P>&nbsp;&bullet;&nbsp;Default&nbsp;MPEG&nbsp;tagging: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0.</P>
   <HR>
@@ -431,104 +424,103 @@ For field telecine, field tags are not configured for pull down during either ma
   <P>field&nbsp;of&nbsp;view: Full.</P>
   <P>horizontal&nbsp;resolution: Full.</P>
   <P>vertical&nbsp;resolution: Full.</P>
-  <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-  <P>picture&nbsp;aspect&nbsp;ratio: (DAR)/(1/(SAR)).</P>
+  <P>pixel&nbsp;aspect: SAR.</P>
+  <P>image&nbsp;aspect: (DAR)x(SAR).</P>
   <P>line-to-line&nbsp;interval: Zero.</P>
   <P>pixel-to-pixel&nbsp;interval: Zero.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set made from a raw picture via DAR cropping or matting followed by SAR scaling.</P>
-  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, full height, no combed lines.</P>
+  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, full height, no combed lines.</P>
   <B class="yellow">halfpic</B> (half-picture):
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <P>field&nbsp;of&nbsp;view: Full.</P>
   <P>horizontal&nbsp;resolution: Full.</P>
   <P>vertical&nbsp;resolution: Half.</P>
-  <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-  <P>image&nbsp;aspect&nbsp;ratio: (DAR)x2/(1/(SAR)).</P>
+  <P>pixel&nbsp;aspect: SAR.</P>
+  <P>image&nbsp;aspect: 2x(DAR)x(SAR).</P>
   <P>line-to-line&nbsp;interval: Zero.</P>
   <P>pixel-to-pixel&nbsp;interval: Zero.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set unweaved from a picture, consisting of either the odd numbered or even numbered picture lines.</P>
-  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, half height, no combed lines.</P>
-  <P><B class="yellow">ftframe</B> (field telecined frame): A field-encoded pair of consecutive halfpics showing concurrent camera scenes.</P>
+  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, half height, no combed lines.</P>
+  <P><B class="yellow">ftframe</B> (field telecined frame): A field-encoded pair of consecutive <B class="yellow">halfpics</B> showing concurrent camera scenes.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
-  <PRE class="white"> <I class="box">raw captures</I> &mdash;> DAR &mdash;> SAR &mdash;> <B class="aqua">pps</B> &mdash;> <I>unweave</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">ftfps</B> &mdash;> <I class="box">media</I></PRE>
+  <PRE class="white"> <I class="box">raw captures</I> &mdash;> DAR &mdash;> 1/(SAR) &mdash;> <B class="aqua">pps</B> &mdash;> <I>unweave</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">ftfps</B> &mdash;> <I class="box">media</I></PRE>
   <B class="underline super">Field Telecine Decoding</B>
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
-  <PRE class="white"> <I class="box">media</I> &mdash;>&nbsp;<B class="aqua">ftfps</B> &mdash;>&nbsp;<I>fields</I> &mdash;>&nbsp;<B class="aqua">hpps</B> &mdash;>&nbsp;<I>interlace</I> &mdash;>&nbsp;<B class="aqua">pps</B> &mdash;>&nbsp;1/(SAR) &mdash;>&nbsp;<I class="box">screen</I></PRE>
-  <B class="aqua">ftfps</B>: ftframes per second. Frames of field-encoded halfpics (progressive).
+  <PRE class="white"> <I class="box">media</I> &mdash;>&nbsp;<B class="aqua">ftfps</B> &mdash;>&nbsp;<I>fields</I> &mdash;>&nbsp;<B class="aqua">hpps</B> &mdash;>&nbsp;<I>interlace</I> &mdash;>&nbsp;<B class="aqua">pps</B> &mdash;> SAR &mdash;>&nbsp;<I class="box">screen</I></PRE>
+  <B class="aqua">ftfps</B>: <B class="yellow">ftframes</B> per second. Frames of field-encoded <B class="yellow">halfpics</B> (progressive).
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: Copied from the media.</P>
   <P>&nbsp;&bullet;&nbsp;Default&nbsp;MPEG&nbsp;tagging: Copied from the media.</P>
-  <B class="aqua">hpps</B>: halfpics per second. Half-pictures unweaved from pictures.
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, half height, no combed lines, no cadence, no judder.</P>
+  <B class="aqua">hpps</B>: <B class="yellow">halfpics</B> per second. Half-pictures unweaved from pictures.
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, half height, no combed lines, no cadence, no judder.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (ftfps)x2.</P>
-  <B class="aqua">pps</B>: pictures per second. Cropped or matted & SAR-scaled raw captures.
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, full height, no combed lines, no cadence, no judder.</P>
-  <P>&nbsp;&bullet;&nbsp;Strides: 2 halfpics &mdash;> 1 picture.</P>
+  <B class="aqua">pps</B>: pictures per second. Raw captures, DAR cropped or matted & 1/(SAR)-scaled.
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, full height, no combed lines, no cadence, no judder.</P>
+  <P>&nbsp;&bullet;&nbsp;Strides: 2 <B class="yellow">halfpics</B> &mdash;> 1 picture.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (hpps)/2.</P>
   <HR>
-  <P><B class="yellow">ftframe</B> (field telecined frame): A field-encoded pair of consecutive halfpics showing concurrent camera scenes.</P>
+  <P><B class="yellow">ftframe</B> (field telecined frame): A field-encoded pair of consecutive <B class="yellow">halfpics</B> showing concurrent camera scenes.</P>
   <B class="yellow">halfpic</B> (half-picture):
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <P>field&nbsp;of&nbsp;view: Full.</P>
   <P>horizontal&nbsp;resolution: Full.</P>
   <P>vertical&nbsp;resolution: Half.</P>
-  <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-  <P>image&nbsp;aspect&nbsp;ratio: (DAR)x2/(1/(SAR)).</P>
+  <P>pixel&nbsp;aspect: SAR.</P>
+  <P>image&nbsp;aspect: 2x(DAR)x(SAR).</P>
   <P>line-to-line&nbsp;interval: Zero.</P>
   <P>pixel-to-pixel&nbsp;interval: Zero.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set unweaved from a picture, consisting of either the odd numbered or even numbered picture lines.</P>
-  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, half height, no combed lines.</P>
+  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, half height, no combed lines.</P>
   <B>picture</B>:
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <P>field&nbsp;of&nbsp;view: Full.</P>
   <P>horizontal&nbsp;resolution: Full.</P>
   <P>vertical&nbsp;resolution: Full.</P>
-  <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-  <P>picture&nbsp;aspect&nbsp;ratio: (DAR)/(1/(SAR)).</P>
+  <P>pixel&nbsp;aspect: SAR.</P>
+  <P>image&nbsp;aspect: (DAR)x(SAR).</P>
   <P>line-to-line&nbsp;interval: Zero.</P>
   <P>pixel-to-pixel&nbsp;interval: Zero.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set made from a raw picture via DAR cropping or matting followed by SAR scaling.</P>
-  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, full height, no combed lines.</P>
+  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, full height, no combed lines.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
-  <PRE class="white"> <I class="box">media</I> &mdash;>&nbsp;<B class="aqua">ftfps</B> &mdash;>&nbsp;<I>fields</I> &mdash;>&nbsp;<B class="aqua">hpps</B> &mdash;>&nbsp;<I>interlace</I> &mdash;>&nbsp;<B class="aqua">pps</B> &mdash;>&nbsp;1/(SAR) &mdash;>&nbsp;<I class="box">screen</I></PRE>
+  <PRE class="white"> <I class="box">media</I> &mdash;>&nbsp;<B class="aqua">ftfps</B> &mdash;>&nbsp;<I>fields</I> &mdash;>&nbsp;<B class="aqua">hpps</B> &mdash;>&nbsp;<I>interlace</I> &mdash;>&nbsp;<B class="aqua">pps</B> &mdash;> SAR &mdash;>&nbsp;<I class="box">screen</I></PRE>
 </BLOCKQUOTE>
-<A name="soft-telecine-terms"></A>
 <B>Soft Telecines</B><BR>
-NTSC-soft streams are found on Blu-rays & DVDs &mdash; <I>PAL-soft may also exist.</I>
-For soft telecine, as for field telecine, halfpics are mastered as fields but unlike field telecine, pull-down tags are added during mastering so that <B class="red">pull down is done during play</B>.<BR>
+NTSC-soft streams are found on Blu-rays & DVDs &mdash; <I><B class="yellow">'PAL'-soft</B> may also exist.</I>
+For soft telecine, as for field telecine, <B class="yellow">halfpics</B> are mastered as fields but unlike field telecine, pull-down tags are added during mastering so that <B class="red">pull down is done during play</B>.<BR>
 <BLOCKQUOTE>
   <B class="underline super">Soft Telecine Encoding</B>
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
-  <PRE class="white"> <I class="box">raw captures</I> &mdash;> DAR &mdash;> SAR &mdash;> <B class="aqua">pps</B> &mdash;> <I>unweave</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">stfps</B> &mdash;> <I class="box">media</I></PRE>
-  <B class="aqua">pps</B>: pictures per second. Cropped or matted & SAR-scaled raw captures.
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, full height, no combed lines, no cadence, no judder.</P>
+  <PRE class="white"> <I class="box">raw captures</I> &mdash;> DAR &mdash;> 1/(SAR) &mdash;> <B class="aqua">pps</B> &mdash;> <I>unweave</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">stfps</B> &mdash;> <I class="box">media</I></PRE>
+  <B class="aqua">pps</B>: pictures per second. Raw captures, DAR cropped or matted & 1/(SAR)-scaled.
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, full height, no combed lines, no cadence, no judder.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: Set in the camera. For cinema, usually 24pps.</P>
-  <B class="aqua">hpps</B>: halfpics per second. Half-pictures unweaved from pictures.
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, half height, no combed lines, no cadence, no judder.</P>
-  <P>&nbsp;&bullet;&nbsp;Strides: 1 picture &mdash;> 2 halfpics.</P>
+  <B class="aqua">hpps</B>: <B class="yellow">halfpics</B> per second. Half-pictures unweaved from pictures.
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, half height, no combed lines, no cadence, no judder.</P>
+  <P>&nbsp;&bullet;&nbsp;Strides: 1 picture &mdash;> 2 <B class="yellow">halfpics</B>.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (pps)x2.</P>
-  <B class="aqua">stfps</B>: stframes per second. Frames of field-encoded halfpics (progressive, pull-down tagged).
+  <B class="aqua">stfps</B>: <B class="yellow">stframes</B> per second. Frames of field-encoded <B class="yellow">halfpics</B> (progressive, pull-down tagged).
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (hpps)/2.</P>
   &nbsp;&bullet;&nbsp;Default&nbsp;MPEG&nbsp;tagging:
   <BLOCKQUOTE>
-    <P>&nbsp;&bullet;&nbsp;t1r0frames: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0.</P>
-    <P>&nbsp;&bullet;&nbsp;t1r1frames: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=1.</P>
-    <P>&nbsp;&bullet;&nbsp;t0r0frames: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=0.</P>
-    <P>&nbsp;&bullet;&nbsp;t0r1frames: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=1.</P>
+    <P>&nbsp;&bullet;&nbsp;<B class="yellow">t1r0frames</B>: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0.</P>
+    <P>&nbsp;&bullet;&nbsp;<B class="yellow">t1r1frames</B>: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=1.</P>
+    <P>&nbsp;&bullet;&nbsp;<B class="yellow">t0r0frames</B>: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=0.</P>
+    <P>&nbsp;&bullet;&nbsp;<B class="yellow">t0r1frames</B>: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=1.</P>
   </BLOCKQUOTE>
   <HR>
   <B>picture</B>:
@@ -537,46 +529,46 @@ For soft telecine, as for field telecine, halfpics are mastered as fields but un
   <P>field&nbsp;of&nbsp;view: Full.</P>
   <P>horizontal&nbsp;resolution: Full.</P>
   <P>vertical&nbsp;resolution: Full.</P>
-  <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-  <P>picture&nbsp;aspect&nbsp;ratio: (DAR)/(1/(SAR)).</P>
+  <P>pixel&nbsp;aspect: SAR.</P>
+  <P>image&nbsp;aspect: (DAR)x(SAR).</P>
   <P>line-to-line&nbsp;interval: Zero.</P>
   <P>pixel-to-pixel&nbsp;interval: Zero.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set made from a raw picture via DAR cropping or matting followed by SAR scaling.</P>
-  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, full height, no combed lines.</P>
+  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, full height, no combed lines.</P>
   <B class="yellow">halfpic</B> (half-picture):
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <P>field&nbsp;of&nbsp;view: Full.</P>
   <P>horizontal&nbsp;resolution: Full.</P>
   <P>vertical&nbsp;resolution: Half.</P>
-  <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-  <P>pixel&nbsp;image&nbsp;aspect&nbsp;ratio: (DAR)x2/(1/(SAR)).</P>
+  <P>pixel&nbsp;aspect: SAR.</P>
+  <P>image&nbsp;aspect: 2x(DAR)x(SAR).</P>
   <P>line-to-line&nbsp;interval: Zero.</P>
   <P>pixel-to-pixel&nbsp;interval: Zero.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set unweaved from a picture, consisting of either the odd numbered or even numbered picture lines.</P>
-  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, half height, no combed lines.</P>
-  <P><B class="yellow">ftframe</B> (field telecined frame): A field-encoded pair of consecutive halfpics showing concurrent camera scenes.</P>
-  <P><B class="yellow">stframe</B> (soft telecined frame): A ftframe tagged so that players do pull down.</P>
+  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, half height, no combed lines.</P>
+  <P><B class="yellow">ftframe</B> (field telecined frame): A field-encoded pair of consecutive <B class="yellow">halfpics</B> showing concurrent camera scenes.</P>
+  <P><B class="yellow">stframe</B> (soft telecined frame): An <B class="yellow">ftframe</B> tagged so that players do pull down.</P>
   <BLOCKQUOTE>
-    <P><B class="yellow">t1r0frame</B>: A ftframe with original tags: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0 (renamed for this use as a convenience).</P>
-    <P><B class="yellow">t1r1frame</B>: A ftframe with modified tags: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=1.</P>
-    <P><B class="yellow">t0r10rame</B>: A ftframe with modified tags: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=0.</P>
-    <P><B class="yellow">t0r11rame</B>: A ftframe with modified tags: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=1.</P>
+    <P><B class="yellow">t1r0frame</B>: An <B class="yellow">ftframe</B> with original tags: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0 (renamed for this use as a convenience).</P>
+    <P><B class="yellow">t1r1frame</B>: An <B class="yellow">ftframe</B> with modified tags: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=1.</P>
+    <P><B class="yellow">t0r10rame</B>: An <B class="yellow">ftframe</B> with modified tags: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=0.</P>
+    <P><B class="yellow">t0r11rame</B>: An <B class="yellow">ftframe</B> with modified tags: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=1.</P>
   </BLOCKQUOTE>
-  &nbsp;&nbsp;&nbsp;Trimming stframes? Be careful.
+  &nbsp;&nbsp;&nbsp;Trimming <B class="yellow">stframes</B>? Be careful.
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
-  If a stream of stframes is cut at the wrong place, the line pairs following the cut are inverted when played.<BR>
+  If a stream of <B class="yellow">stframes</B> is cut at the wrong place, the line pairs following the cut are inverted when played.<BR>
   <BR>
   <PRE class="white">
-PAL                                      t1r1frame               t0r1frame
-                  ____t1r0frames____    / ____t0r0frames____    /
+PAL                                      <B class="yellow">t1r1frame</B>               <B class="yellow">t0r1frame</B>
+                  ____<B class="yellow">t1r0frames</B>____    / ____<B class="yellow">t0r0frames</B>____    /
                  /                  \  / /                  \  /
-   halfpics &mdash;&mdash;> AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXx                                                   ______________________play______________________
+   <B class="yellow">halfpics</B> &mdash;&mdash;> AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXx                                                   ______________________play______________________
                 trtrtrtrtrtrtrtrtrtrtrtr<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r.. <&mdash;&mdash; '<B class="red">top_field_first</B>' 'repeat_first_field'     /                                                \
 Euro pull down  101010101010101010101011<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>1 &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;> AaBbCcDdEeFfGgHhIiJjKkLlLmMnNoOpPqQrRsStTuUvVwWxXx..
  1 frame  cut     1010101010101010101011<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>110 &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;> BbCcDdEeFfGgHhIiJjKkLlLmMnNoOpPqQrRsStTuUvVwWxXxAa..
@@ -603,10 +595,10 @@ Euro pull down  101010101010101010101011<B class="red">0</B>0<B class="red">0</B
 <B class="red">22 frames cut = inverted line pairs                         0</B>0<B class="red">0</B>110101010101010101010101100000000000000000000 &mdash;&mdash;&mdash;> <B class="red">wWxXxAaBbCcDdEeFfGgHhIiJjKkLlLmMnNoOpPqQrRsStTuUvV..</B>
 <B class="red">23 frames cut = inverted line pairs                           0</B>11010101010101010101010110000000000000000000000 &mdash;> <B class="red">xXxAaBbCcDdEeFfGgHhIiJjKkLlLmMnNoOpPqQrRsStTuUvVwW..</B>
                                                               XxAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWw..
-NTSC                   t1r1frame       t0r0frame
-                      t1r0frame \     / t0r1frame
+NTSC                   <B class="yellow">t1r1frame</B>       <B class="yellow">t0r0frame</B>
+                      <B class="yellow">t1r0frame</B> \     / <B class="yellow">t0r1frame</B>
                                \ \   / /
-                   halfpics &mdash;&mdash;> AaBbCcDd                                                __play__
+                   <B class="yellow">halfpics</B> &mdash;&mdash;> AaBbCcDd                                                __play__
                                 trtr<B class="red">t</B>r<B class="red">t</B>r.. <&mdash;&mdash; '<B class="red">top_field_first</B>' 'repeat_first_field'  /        \
 2-3 pull down                   1011<B class="red">0</B>0<B class="red">0</B>1 &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;> AaBbBcCdDd..
 1 frame  cut = 3-2 pull down      11<B class="red">0</B>0<B class="red">0</B>110 &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;> BbBcCdDdAa..
@@ -620,51 +612,51 @@ NTSC                   t1r1frame       t0r0frame
   <P>&nbsp;&bullet;&nbsp;For scanframes, 'top_field_first' is <B class="red">descriptive</B>.
   It answers the question:<B class="red"><I> Which field comes first in the frame?</I></B>
   The 'repeat_first_field' tag is ignored.</P>
-  <P>&nbsp;&bullet;&nbsp;For stframes, 'top_field_first' is <B class="red">prescriptive</B>.
+  <P>&nbsp;&bullet;&nbsp;For <B class="yellow">stframes</B>, 'top_field_first' is <B class="red">prescriptive</B>.
   It answers the question:<B class="red"><I> How is pull down done during play?</I></B>
-  Internally, stframes are always 'top' followed by 'bottom'.
+  Internally, <B class="yellow">stframes</B> are always 'top' followed by 'bottom'.
   The 'top_field_first' & 'repeat_first_field' tags are instead used to control the pull down that is to be done during play.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
-  <PRE class="white"> <I class="box">raw captures</I> &mdash;> DAR &mdash;> SAR &mdash;> <B class="aqua">pps</B> &mdash;> <I>unweave</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">stfps</B> &mdash;> <I class="box">media</I></PRE>
+  <PRE class="white"> <I class="box">raw captures</I> &mdash;> DAR &mdash;> 1/(SAR) &mdash;> <B class="aqua">pps</B> &mdash;> <I>unweave</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">stfps</B> &mdash;> <I class="box">media</I></PRE>
   <B class="underline super">Soft Telecine Decoding</B>
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
-  <PRE class="white"> <I class="box">media</I> &mdash;> <B class="aqua">stfps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>pull-down</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>interlace</I> &mdash;> <B class="aqua">tpps</B> &mdash;> 1/(SAR) &mdash;> <I class="box">screen</I></PRE>
-  <B class="aqua">stfps</B>: stframes per second. Frames of field-encoded halfpics (progressive, pull-down tagged).
+  <PRE class="white"> <I class="box">media</I> &mdash;> <B class="aqua">stfps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>pull-down</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>interlace</I> &mdash;> <B class="aqua">tpps</B> &mdash;> SAR &mdash;> <I class="box">screen</I></PRE>
+  <B class="aqua">stfps</B>: <B class="yellow">stframes</B> per second. Frames of field-encoded <B class="yellow">halfpics</B> (progressive, pull-down tagged).
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: Copied from the media.</P>
   <P>&nbsp;&bullet;&nbsp;Default&nbsp;MPEG&nbsp;tagging: Copied from the media.</P>
   <BLOCKQUOTE>
-    <P>&nbsp;&bullet;&nbsp;t1r0frames: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0.</P>
-    <P>&nbsp;&bullet;&nbsp;t1r1frames: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=1.</P>
-    <P>&nbsp;&bullet;&nbsp;t0r0frames: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=0.</P>
-    <P>&nbsp;&bullet;&nbsp;t0r1frames: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=1.</P>
+    <P>&nbsp;&bullet;&nbsp;<B class="yellow">t1r0frames</B>: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0.</P>
+    <P>&nbsp;&bullet;&nbsp;<B class="yellow">t1r1frames</B>: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=1.</P>
+    <P>&nbsp;&bullet;&nbsp;<B class="yellow">t0r0frames</B>: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=0.</P>
+    <P>&nbsp;&bullet;&nbsp;<B class="yellow">t0r1frames</B>: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=1.</P>
   </BLOCKQUOTE>
-  <B class="aqua">hpps</B>: halfpics per second. Half-pictures unweaved from pictures.
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, half height, no combed lines, no cadence, no judder.</P>
+  <B class="aqua">hpps</B>: <B class="yellow">halfpics</B> per second. Half-pictures unweaved from pictures.
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, half height, no combed lines, no cadence, no judder.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (stfps)x2.</P>
-  <B class="aqua">tpps</B>: telepics per second. Interlaced halfpics (pseudo pictures).
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, full height, conspicuous motion combing (1/(pps) seconds, all odd lines to all even lines), pronounced cadence & judder.</P>
+  <B class="aqua">tpps</B>: telepics per second. Interlaced <B class="yellow">halfpics</B> (pseudo pictures).
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, full height, conspicuous motion combing (1/(pps) seconds, all odd lines to all even lines), pronounced cadence & judder.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (hpps)/2.</P>
   <HR>
-  <P><B class="yellow">ftframe</B> (field telecined frame): A field-encoded pair of consecutive halfpics showing concurrent camera scenes.</P>
-  <P><B class="yellow">stframe</B> (soft telecined frame): A ftframe tagged so that players do pull down.</P>
+  <P><B class="yellow">ftframe</B> (field telecined frame): A field-encoded pair of consecutive <B class="yellow">halfpics</B> showing concurrent camera scenes.</P>
+  <P><B class="yellow">stframe</B> (soft telecined frame): An <B class="yellow">ftframe</B> tagged so that players do pull down.</P>
   <BLOCKQUOTE>
-    <P><B class="yellow">t1r0frame</B>: A ftframe with original tags: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0 (renamed for this use as a convenience).</P>
-    <P><B class="yellow">t1r1frame</B>: A ftframe with modified tags: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=1.</P>
-    <P><B class="yellow">t0r10rame</B>: A ftframe with modified tags: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=0.</P>
-    <P><B class="yellow">t0r11rame</B>: A ftframe with modified tags: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=1.</P>
+    <P><B class="yellow"><B class="yellow">t1r0frame</B></B>: An <B class="yellow">ftframe</B> with original tags: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0 (renamed for this use as a convenience).</P>
+    <P><B class="yellow">t1r1frame</B>: An <B class="yellow">ftframe</B> with modified tags: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=1.</P>
+    <P><B class="yellow">t0r10rame</B>: An <B class="yellow">ftframe</B> with modified tags: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=0.</P>
+    <P><B class="yellow">t0r11rame</B>: An <B class="yellow">ftframe</B> with modified tags: 'progressive_frame'=0, 'top_field_first'=0, 'repeat_first_field'=1.</P>
   </BLOCKQUOTE>
-  &nbsp;&nbsp;&nbsp;Trimming stframes? Be careful.
+  &nbsp;&nbsp;&nbsp;Trimming <B class="yellow">stframes</B>? Be careful.
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
-  If a stream of stframes is cut at the wrong place, the line pairs following the cut are inverted when played.<BR>
+  If a stream of <B class="yellow">stframes</B> is cut at the wrong place, the line pairs following the cut are inverted when played.<BR>
   <BR>
   <PRE class="white">
-PAL                                      t1r1frame               t0r1frame
-                  ____t1r0frames____    / ____t0r0frames____    /
+PAL                                      <B class="yellow">t1r1frame</B>               <B class="yellow">t0r1frame</B>
+                  ____<B class="yellow">t1r0frames</B>____    / ____<B class="yellow">t0r0frames</B>____    /
                  /                  \  / /                  \  /
-   halfpics &mdash;&mdash;> AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXx                                                   ______________________play______________________
+   <B class="yellow">halfpics</B> &mdash;&mdash;> AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXx                                                   ______________________play______________________
                 trtrtrtrtrtrtrtrtrtrtrtr<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r<B class="red">t</B>r.. <&mdash;&mdash; '<B class="red">top_field_first</B>' 'repeat_first_field'     /                                                \
 Euro pull down  101010101010101010101011<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>1 &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;> AaBbCcDdEeFfGgHhIiJjKkLlLmMnNoOpPqQrRsStTuUvVwWxXx..
  1 frame  cut     1010101010101010101011<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>0<B class="red">0</B>110 &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;> BbCcDdEeFfGgHhIiJjKkLlLmMnNoOpPqQrRsStTuUvVwWxXxAa..
@@ -691,10 +683,10 @@ Euro pull down  101010101010101010101011<B class="red">0</B>0<B class="red">0</B
 <B class="red">22 frames cut = inverted line pairs                         0</B>0<B class="red">0</B>110101010101010101010101100000000000000000000 &mdash;&mdash;&mdash;> <B class="red">wWxXxAaBbCcDdEeFfGgHhIiJjKkLlLmMnNoOpPqQrRsStTuUvV..</B>
 <B class="red">23 frames cut = inverted line pairs                           0</B>11010101010101010101010110000000000000000000000 &mdash;> <B class="red">xXxAaBbCcDdEeFfGgHhIiJjKkLlLmMnNoOpPqQrRsStTuUvVwW..</B>
                                                               XxAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWw..
-NTSC                   t1r1frame       t0r0frame
-                      t1r0frame \     / t0r1frame
+NTSC                   <B class="yellow">t1r1frame</B>       <B class="yellow">t0r0frame</B>
+                      <B class="yellow">t1r0frame</B> \     / <B class="yellow">t0r1frame</B>
                                \ \   / /
-                   halfpics &mdash;&mdash;> AaBbCcDd                                                __play__
+                   <B class="yellow">halfpics</B> &mdash;&mdash;> AaBbCcDd                                                __play__
                                 trtr<B class="red">t</B>r<B class="red">t</B>r.. <&mdash;&mdash; '<B class="red">top_field_first</B>' 'repeat_first_field'  /        \
 2-3 pull down                   1011<B class="red">0</B>0<B class="red">0</B>1 &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;> AaBbBcCdDd..
 1 frame  cut = 3-2 pull down      11<B class="red">0</B>0<B class="red">0</B>110 &mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;> BbBcCdDdAa..
@@ -709,14 +701,14 @@ NTSC                   t1r1frame       t0r0frame
   <P>field&nbsp;of&nbsp;view: Full.</P>
   <P>horizontal&nbsp;resolution: Full.</P>
   <P>vertical&nbsp;resolution: Half.</P>
-  <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-  <P>pixel&nbsp;image&nbsp;aspect&nbsp;ratio: (DAR)x2/(1/(SAR)).</P>
+  <P>pixel&nbsp;aspect: SAR.</P>
+  <P>image&nbsp;aspect: 2x(DAR)x(SAR).</P>
   <P>line-to-line&nbsp;interval: Zero.</P>
   <P>pixel-to-pixel&nbsp;interval: Zero.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set unweaved from a picture, consisting of either the odd numbered or even numbered picture lines.</P>
-  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, half height, no combed lines.</P>
+  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, half height, no combed lines.</P>
   <P><B class="yellow">telepics</B> (telecine pictures): A stream of mixed pictures & combedtelepics.</P>
   <BLOCKQUOTE>
     <B>picture</B>:
@@ -725,77 +717,76 @@ NTSC                   t1r1frame       t0r0frame
     <P>field&nbsp;of&nbsp;view: Full.</P>
     <P>horizontal&nbsp;resolution: Full.</P>
     <P>vertical&nbsp;resolution: Full.</P>
-    <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-    <P>picture&nbsp;aspect&nbsp;ratio: (DAR)/(1/(SAR)).</P>
+    <P>pixel&nbsp;aspect: SAR.</P>
+    <P>image&nbsp;aspect: (DAR)x(SAR).</P>
     <P>line-to-line&nbsp;interval: Zero.</P>
     <P>pixel-to-pixel&nbsp;interval: Zero.</P>
     <!-- end show-hide box --></TD></TR></TABLE>
 
     <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set made from a raw picture via DAR cropping or matting followed by SAR scaling.</P>
-    <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, full height, no combed lines.</P>
+    <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, full height, no combed lines.</P>
     <B class="yellow">combedtelepic</B> (combed telecine picture):
 
     <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
     <P>field&nbsp;of&nbsp;view: Full.</P>
     <P>horizontal&nbsp;resolution: Full.</P>
     <P>vertical&nbsp;resolution: Full.</P>
-    <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-    <P>scanpic&nbsp;image&nbsp;aspect&nbsp;ratio: (DAR)/(1/(SAR)).</P>
+    <P>pixel&nbsp;aspect: SAR.</P>
+    <P>image&nbsp;aspect: (DAR)x(SAR).</P>
     <P>line-to-line&nbsp;interval: 1/(pps) seconds, all odd lines to all even lines.</P>
     <P>pixel-to-pixel&nbsp;interval: Zero.</P>
     <!-- end show-hide box --></TD></TR></TABLE>
 
     <P>&nbsp;&bullet;&nbsp;A pseudo picture in which the odd-line image was shot 1/(pps) seconds before the even-line image.</P>
-    <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, full height, conspicuous motion combing.</P>
+    <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, full height, conspicuous motion combing.</P>
   </BLOCKQUOTE>
   <BR>
   [note]&nbsp;The meaning of 'top_field_first' varies.
   <P>&nbsp;&bullet;&nbsp;For scanframes, 'top_field_first' is <B class="red">descriptive</B>.
   It answers the question:<B class="red"><I> Which field comes first in the frame?</I></B>
   The 'repeat_first_field' tag is ignored.</P>
-  <P>&nbsp;&bullet;&nbsp;For stframes, 'top_field_first' is <B class="red">prescriptive</B>.
+  <P>&nbsp;&bullet;&nbsp;For <B class="yellow">stframes</B>, 'top_field_first' is <B class="red">prescriptive</B>.
   It answers the question:<B class="red"><I> How is pull down done during play?</I></B>
-  Internally, stframes are always 'top' followed by 'bottom'.
+  Internally, <B class="yellow">stframes</B> are always 'top' followed by 'bottom'.
   The 'top_field_first' & 'repeat_first_field' tags are instead used to control the pull down that is to be done during play.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
-  <PRE class="white"> <I class="box">media</I> &mdash;> <B class="aqua">stfps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>pull-down</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>interlace</I> &mdash;> <B class="aqua">tpps</B> &mdash;> 1/(SAR) &mdash;> <I class="box">screen</I></PRE>
+  <PRE class="white"> <I class="box">media</I> &mdash;> <B class="aqua">stfps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>pull-down</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>interlace</I> &mdash;> <B class="aqua">tpps</B> &mdash;> SAR &mdash;> <I class="box">screen</I></PRE>
 </BLOCKQUOTE>
-<A name="hard-telecine-terms"></A>
 <B>Hard Telecines</B><BR>
 NTSC-hard streams are found on Blu-rays & DVDs &mdash; <I>PAL-hard may also exist.</I>
-For hard telecine, as for field & soft telecines, halfpics are mastered as fields but unlike soft telecine, <B class="red">pull down is done during mastering</B>, so the number of fields is greater than the number of original halfpics by a pull-down factor: 48-to-50 for 'PAL', 8-to-10 for 'NTSC'.
+For hard telecine, as for field & soft telecines, <B class="yellow">halfpics</B> are mastered as fields but unlike soft telecine, <B class="red">pull down is done during mastering</B>, so the number of fields is greater than the number of original <B class="yellow">halfpics</B> by a pull-down factor: 48-to-50 for 'PAL', 8-to-10 for 'NTSC'.
 <BLOCKQUOTE>
   <B class="underline super">Hard Telecine Encoding</B>
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
-  <PRE class="white"> <I class="box">raw captures</I> &mdash;> DAR &mdash;> SAR &mdash;> <B class="aqua">pps</B> &mdash;> <I>unweave</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>pull-down</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">htfps</B> &mdash;> <I class="box">media</I>
-                                                                          \
-                                                                          <I>interlace</I> &mdash;> <B class="aqua">tpps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">tpfps</B> &mdash;> <I class="box">media</I></PRE>
-  <B class="aqua">pps</B>: pictures per second. Cropped or matted & SAR-scaled raw captures.
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, full height, no combed lines, no cadence, no judder.</P>
+  <PRE class="white"> <I class="box">raw captures</I> &mdash;> DAR &mdash;> 1/(SAR) &mdash;> <B class="aqua">pps</B> &mdash;> <I>unweave</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>pull-down</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">htfps</B> &mdash;> <I class="box">media</I>
+                                                                              \
+                                                                              <I>interlace</I> &mdash;> <B class="aqua">tpps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">tpfps</B> &mdash;> <I class="box">media</I></PRE>
+  <B class="aqua">pps</B>: pictures per second. Raw captures, DAR cropped or matted & 1/(SAR)-scaled.
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, full height, no combed lines, no cadence, no judder.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: Set in the camera. For cinema, usually 24pps.</P>
-  <B class="aqua">hpps</B>: halfpics per second. Half-pictures unweaved from pictures.
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, half height, no combed lines, no cadence, no judder.</P>
+  <B class="aqua">hpps</B>: <B class="yellow">halfpics</B> per second. Half-pictures unweaved from pictures.
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, half height, no combed lines, no cadence, no judder.</P>
   <BLOCKQUOTE>
     <P>Left:</P>
-    <P>&nbsp;&bullet;&nbsp;Strides: 1 picture &mdash;> 2 halfpics.</P>
+    <P>&nbsp;&bullet;&nbsp;Strides: 1 picture &mdash;> 2 <B class="yellow">halfpics</B>.</P>
     <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (pps)x2.</P>
     <P>Right:</P>
     <P>&nbsp;&bullet;&nbsp;Strides: Determined by stride-match notation.
-    Example: For <B class="wheat">(AaBbCcDd)(AaBbBcCdDd)</B>, (8&nbsp;halfpics)&nbsp;&mdash;>&nbsp;(10 halfpics).</P>
+    Example: For <B class="wheat">(AaBbCcDd)(AaBbBcCdDd)</B>, (8&nbsp;<B class="yellow">halfpics</B>)&nbsp;&mdash;>&nbsp;(10 <B class="yellow">halfpics</B>).</P>
     <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (left hpps)x(right stride)/(left stride).
-    Example:&nbsp;(48hpps)x(10&nbsp;halfpics)/(8&nbsp;halfpics)&nbsp;=&nbsp;60hpps.</P>
+    Example:&nbsp;(48hpps)x(10&nbsp;<B class="yellow">halfpics</B>)/(8&nbsp;<B class="yellow">halfpics</B>)&nbsp;=&nbsp;60hpps.</P>
   </BLOCKQUOTE>
-  <B class="aqua">htfps</B>: htframes per second. Frames of field-encoded halfpics (non-progressive).
+  <B class="aqua">htfps</B>: <B class="yellow">htframes</B> per second. Frames of field-encoded <B class="yellow">halfpics</B> (non-progressive).
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (hpps)/2.</P>
   <P>&nbsp;&bullet;&nbsp;Default&nbsp;MPEG&nbsp;tagging:</P>
   <BLOCKQUOTE>
-    <P>&nbsp;&bullet;&nbsp;ftframe: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0.</P>
-    <P>&nbsp;&bullet;&nbsp;combedtframe: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0.</P>
+    <P>&nbsp;&bullet;&nbsp;<B class="yellow">ftframe</B>: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0.</P>
+    <P>&nbsp;&bullet;&nbsp;<B class="yellow">combedtframe</B>: 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0.</P>
   </BLOCKQUOTE>
-  <B class="aqua">tpps</B>: telepics per second. Interlaced halfpics (pseudo pictures).
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, full height, conspicuous motion combing, pronounced cadence & judder.</P>
+  <B class="aqua">tpps</B>: telepics per second. Interlaced <B class="yellow">halfpics</B> (pseudo pictures).
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, full height, conspicuous motion combing, pronounced cadence & judder.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (hpps)/2.</P>
   <P><B class="aqua">tpfps</B>: telepicframes per second. Frame-encoded telepics (non-progressive but tagged as progressive).
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: tpps.</P>
@@ -807,32 +798,32 @@ For hard telecine, as for field & soft telecines, halfpics are mastered as field
   <P>field&nbsp;of&nbsp;view: Full.</P>
   <P>horizontal&nbsp;resolution: Full.</P>
   <P>vertical&nbsp;resolution: Full.</P>
-  <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-  <P>picture&nbsp;aspect&nbsp;ratio: (DAR)/(1/(SAR)).</P>
+  <P>pixel&nbsp;aspect: SAR.</P>
+  <P>image&nbsp;aspect: (DAR)x(SAR).</P>
   <P>line-to-line&nbsp;interval: Zero.</P>
   <P>pixel-to-pixel&nbsp;interval: Zero.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set made from a raw picture via DAR cropping or matting followed by SAR scaling.</P>
-  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, full height, no combed lines.</P>
+  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, full height, no combed lines.</P>
   <B class="yellow">halfpic</B> (half-picture):
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
   <P>field&nbsp;of&nbsp;view: Full.</P>
   <P>horizontal&nbsp;resolution: Full.</P>
   <P>vertical&nbsp;resolution: Half.</P>
-  <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-  <P>pixel&nbsp;image&nbsp;aspect&nbsp;ratio: (DAR)x2/(1/(SAR)).</P>
+  <P>pixel&nbsp;aspect: SAR.</P>
+  <P>image&nbsp;aspect: 2x(DAR)x(SAR).</P>
   <P>line-to-line&nbsp;interval: Zero.</P>
   <P>pixel-to-pixel&nbsp;interval: Zero.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set unweaved from a picture, consisting of either the odd numbered or even numbered picture lines.</P>
-  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, half height, no combed lines.</P>
-  <P><B class="yellow">htframes</B> (hard telecined frames): A stream of mixed ftframes & combedtframes.</P>
+  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, half height, no combed lines.</P>
+  <P><B class="yellow">htframes</B> (hard telecined frames): A stream of mixed <B class="yellow">ftframes</B> & <B class="yellow">combedtframes</B>.</P>
   <BLOCKQUOTE>
-    <P><B class="yellow">ftframe</B> (field telecined frame): A field-encoded pair of consecutive halfpics in which the 'top' & 'bottom' fields' images are concurrent.</P>
-    <P><B class="yellow">combedtframe</B> (combed telecined frame): A field-encoded pair of consecutive halfpics in which the 'top' field's image was shot 1/(pps) seconds before the 'bottom' field's image.</P>
+    <P><B class="yellow">ftframe</B> (field telecined frame): A field-encoded pair of consecutive <B class="yellow">halfpics</B> in which the 'top' & 'bottom' fields' images are concurrent.</P>
+    <P><B class="yellow">combedtframe</B> (combed telecined frame): A field-encoded pair of consecutive <B class="yellow">halfpics</B> in which the 'top' field's image was shot 1/(pps) seconds before the 'bottom' field's image.</P>
   </BLOCKQUOTE>
   <P><B class="yellow">telepics</B> (telecine pictures): A stream of mixed pictures & combedtelepics.</P>
   <BLOCKQUOTE>
@@ -842,55 +833,55 @@ For hard telecine, as for field & soft telecines, halfpics are mastered as field
     <P>field&nbsp;of&nbsp;view: Full.</P>
     <P>horizontal&nbsp;resolution: Full.</P>
     <P>vertical&nbsp;resolution: Full.</P>
-    <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-    <P>picture&nbsp;aspect&nbsp;ratio: (DAR)/(1/(SAR)).</P>
+    <P>pixel&nbsp;aspect: SAR.</P>
+    <P>image&nbsp;aspect: (DAR)x(SAR).</P>
     <P>line-to-line&nbsp;interval: Zero.</P>
     <P>pixel-to-pixel&nbsp;interval: Zero.</P>
     <!-- end show-hide box --></TD></TR></TABLE>
 
     <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set made from a raw picture via DAR cropping or matting followed by SAR scaling.</P>
-    <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, full height, no combed lines.</P>
+    <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, full height, no combed lines.</P>
     <B class="yellow">combedtelepic</B> (combed telecine picture):
 
     <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
     <P>field&nbsp;of&nbsp;view: Full.</P>
     <P>horizontal&nbsp;resolution: Full.</P>
     <P>vertical&nbsp;resolution: Full.</P>
-    <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-    <P>scanpic&nbsp;image&nbsp;aspect&nbsp;ratio: (DAR)/(1/(SAR)).</P>
+    <P>pixel&nbsp;aspect: SAR.</P>
+    <P>image&nbsp;aspect: (DAR)x(SAR).</P>
     <P>line-to-line&nbsp;interval: 1/(pps) seconds, all odd lines to all even lines.</P>
     <P>pixel-to-pixel&nbsp;interval: Zero.</P>
     <!-- end show-hide box --></TD></TR></TABLE>
 
     <P>&nbsp;&bullet;&nbsp;A pseudo picture in which the odd-line image was shot 1/(pps) seconds before the even-line image.</P>
-    <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, full height, conspicuous motion combing.</P>
+    <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, full height, conspicuous motion combing.</P>
   </BLOCKQUOTE>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <PRE class="white">
- <I class="box">raw captures</I> &mdash;> DAR &mdash;> SAR &mdash;> <B class="aqua">pps</B> &mdash;> <I>unweave</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>pull-down</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">htfps</B> &mdash;> <I class="box">media</I>
-                                                                          \
-                                                                          <I>interlace</I> &mdash;> <B class="aqua">tpps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">tpfps</B> &mdash;> <I class="box">media</I></PRE>
+ <I class="box">raw captures</I> &mdash;> DAR &mdash;> 1/(SAR) &mdash;> <B class="aqua">pps</B> &mdash;> <I>unweave</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>pull-down</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">htfps</B> &mdash;> <I class="box">media</I>
+                                                                              \
+                                                                              <I>interlace</I> &mdash;> <B class="aqua">tpps</B> &mdash;> <I>frames</I> &mdash;> <B class="aqua">tpfps</B> &mdash;> <I class="box">media</I></PRE>
   <B class="underline super">Hard Telecine Decoding</B>
 
   <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
-  <PRE class="white"> <I class="box">media</I> &mdash;> <B class="aqua">htfps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>interlace</I> &mdash;> <B class="aqua">tpps</B> &mdash;> 1/(SAR) &mdash;> <I class="box">screen</I></PRE>
-  <B class="aqua">htfps</B>: htframes per second. Frames of field-encoded halfpics (non-progressive).
+  <PRE class="white"> <I class="box">media</I> &mdash;> <B class="aqua">htfps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>interlace</I> &mdash;> <B class="aqua">tpps</B> &mdash;> SAR &mdash;> <I class="box">screen</I></PRE>
+  <B class="aqua">htfps</B>: <B class="yellow">htframes</B> per second. Frames of field-encoded <B class="yellow">halfpics</B> (non-progressive).
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: Copied from the media.</P>
   <P>&nbsp;&bullet;&nbsp;Default&nbsp;MPEG&nbsp;tagging: Copied from the media.</P>
-  <B class="aqua">hpps</B>: halfpics per second. Half-pictures unweaved from pictures.
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, half height, no combed lines, no cadence, no judder.</P>
+  <B class="aqua">hpps</B>: <B class="yellow">halfpics</B> per second. Half-pictures unweaved from pictures.
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, half height, no combed lines, no cadence, no judder.</P>
   <P>&nbsp;&bullet;&nbsp;Strides: Determined by stride-match notation.
-  Example: For <B class="wheat">(AaBbCcDd)(AaBbBcCdDd)</B>, (8&nbsp;halfpics)&nbsp;&mdash;>&nbsp;(10 halfpics).</P>
+  Example: For <B class="wheat">(AaBbCcDd)(AaBbBcCdDd)</B>, (8&nbsp;<B class="yellow">halfpics</B>)&nbsp;&mdash;>&nbsp;(10 <B class="yellow">halfpics</B>).</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (htfps)x2.</P>
-  <B class="aqua">tpps</B>: telepics per second. Interlaced halfpics (pseudo pictures).
-  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: SAR scaled, full height, conspicuous motion combing, pronounced cadence & judder.</P>
+  <B class="aqua">tpps</B>: telepics per second. Interlaced <B class="yellow">halfpics</B> (pseudo pictures).
+  <P>&nbsp;&bullet;&nbsp;Stream&nbsp;appearance: 1/(SAR)-scaled, full height, conspicuous motion combing, pronounced cadence & judder.</P>
   <P>&nbsp;&bullet;&nbsp;Intrinsic&nbsp;rate: (hpps)/2.</P>
   <HR>
-  <P><B class="yellow">htframes</B> (hard telecined frames): A stream of mixed ftframes & combedtframes.</P>
+  <P><B class="yellow">htframes</B> (hard telecined frames): A stream of mixed <B class="yellow">ftframes</B> & <B class="yellow">combedtframes</B>.</P>
   <BLOCKQUOTE>
-    <P><B class="yellow">ftframe</B> (field telecined frame): A field-encoded pair of consecutive halfpics in which the 'top' & 'bottom' fields' images are concurrent.</P>
-    <P><B class="yellow">combedtframe</B> (combed telecined frame): A field-encoded pair of consecutive halfpics in which the 'top' field's image was shot 1/(pps) seconds before the 'bottom' field's image.</P>
+    <P><B class="yellow">ftframe</B> (field telecined frame): A field-encoded pair of consecutive <B class="yellow">halfpics</B> in which the 'top' & 'bottom' fields' images are concurrent.</P>
+    <P><B class="yellow">combedtframe</B> (combed telecined frame): A field-encoded pair of consecutive <B class="yellow">halfpics</B> in which the 'top' field's image was shot 1/(pps) seconds before the 'bottom' field's image.</P>
   </BLOCKQUOTE>
   <B class="yellow">halfpic</B> (half-picture):
 
@@ -898,14 +889,14 @@ For hard telecine, as for field & soft telecines, halfpics are mastered as field
   <P>field&nbsp;of&nbsp;view: Full.</P>
   <P>horizontal&nbsp;resolution: Full.</P>
   <P>vertical&nbsp;resolution: Half.</P>
-  <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-  <P>pixel&nbsp;image&nbsp;aspect&nbsp;ratio: (DAR)x2/(1/(SAR)).</P>
+  <P>pixel&nbsp;aspect: SAR.</P>
+  <P>image&nbsp;aspect: 2x(DAR)x(SAR).</P>
   <P>line-to-line&nbsp;interval: Zero.</P>
   <P>pixel-to-pixel&nbsp;interval: Zero.</P>
   <!-- end show-hide box --></TD></TR></TABLE>
 
   <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set unweaved from a picture, consisting of either the odd numbered or even numbered picture lines.</P>
-  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, half height, no combed lines.</P>
+  <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, half height, no combed lines.</P>
   <P><B class="yellow">telepics</B> (telecine pictures): A stream of mixed pictures & combedtelepics.</P>
   <BLOCKQUOTE>
     <B>picture</B>:
@@ -914,31 +905,31 @@ For hard telecine, as for field & soft telecines, halfpics are mastered as field
     <P>field&nbsp;of&nbsp;view: Full.</P>
     <P>horizontal&nbsp;resolution: Full.</P>
     <P>vertical&nbsp;resolution: Full.</P>
-    <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-    <P>picture&nbsp;aspect&nbsp;ratio: (DAR)/(1/(SAR)).</P>
+    <P>pixel&nbsp;aspect: SAR.</P>
+    <P>image&nbsp;aspect: (DAR)x(SAR).</P>
     <P>line-to-line&nbsp;interval: Zero.</P>
     <P>pixel-to-pixel&nbsp;interval: Zero.</P>
     <!-- end show-hide box --></TD></TR></TABLE>
 
     <P>&nbsp;&bullet;&nbsp;A pixels-by-lines data set made from a raw picture via DAR cropping or matting followed by SAR scaling.</P>
-    <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, full height, no combed lines.</P>
+    <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, full height, no combed lines.</P>
     <B class="yellow">combedtelepic</B> (combed telecine picture):
 
     <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
     <P>field&nbsp;of&nbsp;view: Full.</P>
     <P>horizontal&nbsp;resolution: Full.</P>
     <P>vertical&nbsp;resolution: Full.</P>
-    <P>pixel&nbsp;aspect&nbsp;ratio: SAR.</P>
-    <P>scanpic&nbsp;image&nbsp;aspect&nbsp;ratio: (DAR)/(1/(SAR)).</P>
+    <P>pixel&nbsp;aspect: SAR.</P>
+    <P>image&nbsp;aspect: (DAR)x(SAR).</P>
     <P>line-to-line&nbsp;interval: 1/(pps) seconds, all odd lines to all even lines.</P>
     <P>pixel-to-pixel&nbsp;interval: Zero.</P>
     <!-- end show-hide box --></TD></TR></TABLE>
 
     <P>&nbsp;&bullet;&nbsp;A pseudo picture in which the odd-line image was shot 1/(pps) seconds before the even-line image.</P>
-    <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: SAR scaled, full height, conspicuous motion combing.</P>
+    <P>&nbsp;&bullet;&nbsp;Image&nbsp;appearance: 1/(SAR)-scaled, full height, conspicuous motion combing.</P>
     <!-- end show-hide box --></TD></TR></TABLE>
 
-    <PRE class="white"> <I class="box">media</I> &mdash;> <B class="aqua">htfps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>interlace</I> &mdash;> <B class="aqua">tpps</B> &mdash;> 1/(SAR) &mdash;> <I class="box">screen</I></PRE>
+    <PRE class="white"> <I class="box">media</I> &mdash;> <B class="aqua">htfps</B> &mdash;> <I>fields</I> &mdash;> <B class="aqua">hpps</B> &mdash;> <I>interlace</I> &mdash;> <B class="aqua">tpps</B> &mdash;> SAR &mdash;> <I class="box">screen</I></PRE>
   </BLOCKQUOTE>
 </BLOCKQUOTE>
 

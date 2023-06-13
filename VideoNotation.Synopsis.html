@@ -60,8 +60,8 @@ Though the stream & element types & their physical properties are detailed in fu
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="top nowrap">
 <TR><TD style="width:0.5ex"></TD><TD style="width:0.5ex"></TD><TD style="width:0.5ex"></TD><TD style="width:0.5ex">&nbsp;</TD><TD style="width:0.5ex"></TD><TD style="width:0.5ex">&nbsp;</TD><TD style="width:0.5ex"></TD><TD style="width:0.5ex">&nbsp;</TD><TD></TD></TR>
 <TR><TD colspan=99><PRE class="white">
-  Key: <B class="yellow">new terms</B> not part of notations     <B class="aqua">stream names</B> used in notations
-       <B class="wheat">notations</B>                           <B class="purple">diagrams</B></PRE></TD></TR>
+  Key: <B class="yellow">new terms</B> (but not used in notations)     <B class="aqua">stream names</B> (used in notations)
+       <B class="wheat">notations</B>                                 <B class="purple">diagrams</B></PRE></TD></TR>
 <TR><TD colspan=99><HR></TD></TR>
 <TR><TD colspan=99 class="wrap"><P><B class="yellow">PAL-scan</B> is a 50<B class="aqua">sps</B> stream that has been field encoded and framed at 25<B class="aqua">sfps</B>.</P></TD></TR>
 <TR><TD colspan=99 class="wrap"><P><B class="yellow">NTSC-scan</B> is a 60'1.001<B class="aqua">sps</B> stream that has been field encoded and framed at 30'1.001<B class="aqua">sfps</B>.</P></TD></TR>
@@ -89,25 +89,50 @@ Though the stream & element types & their physical properties are detailed in fu
     <TD colspan=99 class="wrap"><P><&mdash; scan frames, e.g. PAL-scan & NTSC-scan TV shows & some documentaries on DVDs & older blu-rays; 2 field-encoded scans per frame at <B class="aqua"><I>scanframes&minus;per&minus;second</I></B> rate.</P></TD></TR>
 <TR><TD colspan=99 class="wrap">
         <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">[A+b][C+d]</B> are 2 scanframes with 'top' field first, <B class="purple">[a+B][c+D]</B> are 2 scanframes with 'bottom' field first.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sfps[sps</B> decodes a downstream sps stream, e.g. <B class="purple">(a)(b)(c)(d)..</B>, from upstream scanframes, e.g. <B class="purple">[a+b][c+d]..</B>.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sps]sfps</B> encodes a downstream sfps stream, e.g. <B class="purple">[a+b][c+d]..</B>, from upstream scans, e.g. <B class="purple">(a)(b)(c)(d)..</B>; drops final orphan, if any.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sps(ab)(((ab))a+a)]sfps</B> same as previous except repeats final orphan, if any.</P></TD></TR>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sfps[sps</B> decodes upstream scanframes, e.g. <B class="purple">[a+b][c+d]..</B>, to make a downstream sps stream, e.g. <B class="purple">(a)(b)(c)(d)..</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sps]sfps</B> encodes upstream scans, e.g. <B class="purple">(a)(b)(c)(d)..</B>, to make a downstream sfps stream, e.g. <B class="purple">[a+b][c+d]..</B>; drops the final orphan, if any.<br>
+        Examples:</P></TD></TR>
 <TR><TD colspan=99 class="wrap">
+        <BLOCKQUOTE>
+        <P><B class="wheat">sps(ab)(((ab))aa)]sfps</B> is the same as <B class="wheat">sps]sfps</B> except it doubles the final orphan, if any.</P>
         <PRE class="white">
-        <B class="wheat">sps</B>                // <B class="purple">(a___)(b___)(c___)(d___)..(y___)</B> checked for orphan
-        <B class="wheat">(ab)(((ab))a+a)</B>    // <B class="purple">(a___)(b___)(c___)(d___)..(y___)(y___)</B> detected, repeated
-        <B class="wheat">]sfps</B>              // <B class="purple">[a+b_______][c+d_______]..[y+y_______]</B> encoded</PRE></TD></TR>
-<TR><TD colspan=99><P>&nbsp;&bullet;&nbsp;<B class="wheat">sps(a)(aa)]sfps</B> is bob decomb.</P>
+        Step by step detail:
+        <B class="wheat">sps(ab)</B>            // <B class="purple">(a___)(b___)(c___)(d___)..(y___)(z___)</B> no orphan
+        <B class="wheat">(((ab)</B>             // <B class="purple">(a___)(b___)(c___)(d___)..(y___)(z___)</B> there are 'ab' matches to the stream end
+         <B class="wheat">)aa</B>               //                                        there is no miss
+        <B class="wheat">)]sfps</B>             // <B class="purple">[a+b_______][c+d_______]..[y+z_______]</B> encode & frame
+        &mdash;or&mdash;
+        <B class="wheat">sps(ab)</B>            // <B class="purple">(a___)(b___)(c___)(d___)..(y___)</B>       'y' is orphan
+        <B class="wheat">(((ab)</B>             // <B class="purple">(a___)(b___)(c___)(d___)..</B>             'ab' matches
+         <B class="wheat">)aa</B>               //                           <B class="purple">(y___)(y___)</B> the stream ends on a miss, so 'aa'
+        <B class="wheat">)]sfps</B>             // <B class="purple">[a+b_______][c+d_______]..[y+y_______]</B> field encode & frame</PRE>
+        </BLOCKQUOTE></TD></TR>
+<TR><TD colspan=99>
+        <BLOCKQUOTE>
+        <P><B class="wheat">sps(a)(aa)]sfps</B> is bob decomb.</P>
         <PRE class="white">
-        <B class="wheat">sps</B>                // <B class="purple">(A___)(b___)(C___)(d___)..(z___)</B> orphans don't matter
-        <B class="wheat">(a)(aa)</B>            // <B class="purple">(A)(A)(b)(b)(C)(C)(d)(d)..(z)(z)</B> images & rate doubled
-        <B class="wheat">]sfps</B>              // <B class="purple">[A+A_][b+b_][C+C_][d+d_]..[z+z_]</B> encoded</PRE></TD></TR>
-<TR><TD colspan=99><P>&nbsp;&bullet;&nbsp;<B class="wheat">&="interpolate"sps(ab)((a&$b)a&bb)]sfps</B> is SME decomb.</P>
+        <B class="wheat">sps(a)</B>             // <B class="purple">(a___)(b___)(c___)(d___)..(y___)</B>
+        <B class="wheat">(aa)</B>               // <B class="purple">(a)(a)(b)(b)(c)(c)(d)(d)..(y)(y)</B> bob doubling, so orphans don't matter
+        <B class="wheat">]sfps</B>              // <B class="purple">[a+a_][b+b_][c+c_][d+d_]..[y+y_]</B></PRE>
+        </BLOCKQUOTE></TD></TR>
+<TR><TD colspan=99>
+        <BLOCKQUOTE>
+        <P><B class="wheat">&="interpolate"sps(ab)(((a&$b)a&bb)aa)]sfps</B> is SME decomb.</P>
         <PRE class="white">
-        <B class="wheat">&="interpolate"</B>    // operator loaded
-        <B class="wheat">sps(ab)(((ab))a+a)</B> // <B class="purple">(a___)(b___)(c___)(d___)..(y___)(z___)</B> checked for orphan
-        <B class="wheat">(ab)((a&$b)a&bb)</B>   // <B class="purple">(A&C_)(b___)(C&E_)(d___)..(Y&z_)(z___)</B> interpolated
-        <B class="wheat">]sfps</B>              // <B class="purple">[B+b_______][D+d_______]..[Y&z+z_____]</B> encoded</PRE></TD></TR>
+        <B class="wheat">&="interpolate"</B>    // load interpolation operator
+        <B class="wheat">sps(ab)</B>            // <B class="purple">(a___)(b___)(c___)(d___)..(w___)(x___)(y___)(z___)</B> no orphan
+        <B class="wheat">(((a&$b)</B>           // <B class="purple">(a&c_)(b___)(c&e_)(d___)..(w&y_)(x___)</B>             matches
+          <B class="wheat">a&bb</B>             //                                       <B class="purple">(y&z_)(z___)</B> the end is on a match
+         <B class="wheat">)aa</B>               //                                                    there is no miss
+        <B class="wheat">)]sfps</B>             // <B class="purple">[a&c+b_____][c&e+d_____]..[w&y+x_____][y&z+z_____]</B>
+        &mdash;or&mdash;
+        <B class="wheat">&="interpolate"</B>    // load interpolation operator
+        <B class="wheat">sps(ab)</B>            // <B class="purple">(a___)(b___)(c___)(d___)..(w___)(x___)(y___)</B>       'y' is orphan
+        <B class="wheat">(((a&$b)</B>           // <B class="purple">(a&c_)(b___)(c&e_)(d___)..(w&y_)(x___)</B>             match
+          <B class="wheat">a&bb</B>             //                                                    there is no end match
+         <B class="wheat">)aa</B>               //                                       <B class="purple">(y___)(y___)</B> the end is on a miss
+        <B class="wheat">)]sfps</B>             // <B class="purple">[a&c+b_____][c&e+d_____]..[w&y+x_____][y+y_______]</B></PRE>
+        </BLOCKQUOTE></TD></TR>
 
 <TR><TD colspan=99><HR></TD></TR>
 
@@ -122,17 +147,17 @@ Though the stream & element types & their physical properties are detailed in fu
     <TD colspan=99 class="wrap"><P><&mdash; picture frames, e.g. cine-slow blu-ray movies; frame-encoded pictures (aka progressive) at <B class="aqua"><I>picframes&minus;per&minus;second</I></B> rate.</P></TD></TR>
 <TR><TD colspan=99 class="wrap">
         <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">[Aa__][Bb__]</B> are 2 picframes.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">pfps[pps</B> decodes a downstream pps stream, e.g. <B class="purple">(Aa__)(Bb__)..</B>, from upstream picframes, e.g. <B class="purple">[Aa__][Bb__]..</B>.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">pps]pfps</B> encodes a downstream pfps stream, e.g. <B class="purple">[Aa__][Bb__]..</B>, from upstream pictures, e.g. <B class="purple">(Aa__)(Bb__)..</B>.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">24pps<WBR>.fromfile("source")<WBR>.a.fromfile("audiosource")<WBR>.s.fromfile("subtitlesource")<WBR>]<WBR>24'1.001pfps<WBR>.tofile("target")</B> creates a cine-slow video. Since they are attached prior to encoding, audio & subs are automatically resampled by |24'1.001 pfps|/|24 pps| = 1000/1001 during encoding.</P></TD></TR>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">pfps[pps</B> decodes upstream picframes, e.g. <B class="purple">[Aa__][Bb__]..</B>, to make a downstream pps stream, e.g. <B class="purple">(Aa__)(Bb__)..</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">pps]pfps</B> encodes upstream pictures, e.g. <B class="purple">(Aa__)(Bb__)..</B>, to make a downstream pfps stream, e.g. <B class="purple">[Aa__][Bb__]..</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">24pps<WBR>.fromfile("<I class="green">source</I>")<WBR>.a.fromfile("<I class="green">audiosource</I>")<WBR>.s.fromfile("<I class="green">subtitlesource</I>")<WBR>]<WBR>24'1.001pfps<WBR>.tofile("<I class="green">target</I>")</B> creates a cine-slow video. Since they are added prior to encoding, audio & subs are automatically resampled by |24'1.001 pfps|/|24 pps| = 1000/1001 during encoding.</P></TD></TR>
 
 <TR><TD><B class="yellow">halfpics</B></TD><TD></TD>
     <TD class="right"><B class="aqua">hpps</B></TD><TD></TD>
     <TD colspan=99 class="wrap"><P><&mdash; half-pictures at <B class="aqua"><I>halfpics&minus;per&minus;second</I></B> rate.</P></TD></TR>
 <TR><TD colspan=99 class="wrap">
         <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">(A)(a)(B)(b)</B> are 4 halfpics unweaved from 2 pictures, <B class="purple">(Aa__)(Bb__)</B>.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">hpps__pps</B> weaves downstream pictures, e.g. <B class="purple">(Aa__)(Bb__)..</B>, from upstream halfpics, e.g. <B class="purple">(A)(a)(B)(b)..</B>.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">pps__hpps</B> unweaves downstream halfpics, e.g. <B class="purple">(A)(a)(B)(b)..</B>, from upstream pictures, e.g. <B class="purple">(Aa__)(Bb__)..</B>.</P></TD></TR>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">hpps__pps</B> weaves upstream halfpics, e.g. <B class="purple">(A)(a)(B)(b)..</B>, to make downstream pictures, e.g. <B class="purple">(Aa__)(Bb__)..</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">pps__hpps</B> unweaves upstream pictures, e.g. <B class="purple">(Aa__)(Bb__)..</B>, to make downstream halfpics, e.g. <B class="purple">(A)(a)(B)(b)..</B>.</P></TD></TR>
 
 <TR><TD colspan=99><HR></TD></TR>
 <TR><TD>
@@ -143,9 +168,9 @@ Though the stream & element types & their physical properties are detailed in fu
     <P>&nbsp;&bullet;&nbsp;all fields tagged 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0;</P></TD></TR>
 <TR><TD colspan=99 class="wrap">
         <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">[A+a_][B+b_]</B> are 2 ftframes.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">ftfps[hpps</B>: decodes a downstream hpps stream, e.g. <B class="purple">(A)(a)(B)(b)..</B>, from upstream ftframes, e.g. <B class="purple">[A+a_][B+b_]..</B>.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">hpps]ftfps</B>: encodes a downstream ftframe stream, e.g. <B class="purple">[A+a_][B+b_]..</B>, from upstream halfpics, e.g. <B class="purple">(A)(a)(B)(b)..</B>.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">24pps<WBR>.fromfile("source")<WBR>hpps<WBR>]<WBR>25ftfps<WBR><WBR>.a.fromfile("audiosource")<WBR>.s.fromfile("subtitlesource").tofile("target")</B> creates a 'PAL'-fast video. Since they are attached to 25ftfps, audio & subs are presumed to already match 25ftfps.</P></TD></TR>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">ftfps[hpps</B>: decodes upstream ftframes, e.g. <B class="purple">[A+a_][B+b_]..</B>, to make a downstream hpps stream, e.g. <B class="purple">(A)(a)(B)(b)..</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">hpps]ftfps</B>: encodes upstream halfpics, e.g. <B class="purple">(A)(a)(B)(b)..</B>, to make a downstream ftframe stream, e.g. <B class="purple">[A+a_][B+b_]..</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">24pps<WBR>.fromfile("<I class="green">source</I>")<WBR>hpps<WBR>]<WBR>25ftfps<WBR><WBR>.a.fromfile("<I class="green">audiosource</I>")<WBR>.s.fromfile("<I class="green">subtitlesource</I>").tofile("<I class="green">target</I>")</B> creates a 'PAL'-fast video. Since they are added to 25ftfps, audio & subs are presumed to already match 25ftfps.</P></TD></TR>
 
 <TR><TD><B class="yellow">stframes</B></TD><TD></TD>
     <TD class="right"><B class="aqua">stfps</B></TD><TD></TD>
@@ -170,8 +195,8 @@ Though the stream & element types & their physical properties are detailed in fu
 <TR><TD colspan=99 class="wrap">
         <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">[A+a_][B+b_]</B> are 2 stframes.</P>
         <P>&nbsp;&bullet;&nbsp;<B class="wheat">stfps__ftfps</B> mux-converts to ftframes by setting all frames to 'progressive_frame'=0, 'top_field_first'=1, 'repeat_first_field'=0.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">hpps]stfps</B> encodes a downstream stframe stream, e.g. <B class="purple">[A+a_][B+b_]..</B>, from upstream halfpics, e.g. <B class="purple">(A)(a)(B)(b)..</B>.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">24pps<WBR>.fromfile("source")<WBR>hpps<WBR>]<WBR>24'1.001stfps<WBR>.tofile("target")</B> creates an 'NTSC'-soft video.</P></TD></TR>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">hpps]stfps</B> encodes upstream halfpics, e.g. <B class="purple">(A)(a)(B)(b)..</B>, to make a downstream stframe stream, e.g. <B class="purple">[A+a_][B+b_]..</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">24pps<WBR>.fromfile("<I class="green">source</I>")<WBR>hpps<WBR>]<WBR>24'1.001stfps<WBR>.tofile("<I class="green">target</I>")</B> creates an 'NTSC'-soft video.</P></TD></TR>
 <TR><TD colspan=99 class="wrap"><P><I>Note: Some DVD movies that are outwardly stfps appear to have some sections, usually coinciding with particular scenes, that have stretches of hard telecined frames 'underneath' the soft telecine.
 The sections have oddly spaced combed pairs sometimes separated by 5 uncombed frames, sometimes by 7, sometimes by 9, etc.
 For such situations, consider adding this notation fragment:</I> <B class="wheat">&="blend"<WBR>(ab)(ab.iscombed?a&bb:ab)</B>, <I>somewhere downstream from the source decoding.</I>
@@ -191,8 +216,8 @@ For such situations, consider adding this notation fragment:</I> <B class="wheat
     <TD class="right"></TD><TD></TD></TD></TR>
 <TR><TD colspan=99 class="wrap">
         <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">[A+a_][B+b_][B+c_][C+d_][D+d_]</B> are 5 'NTSC' htframes with 2-3-2-3 pull-down. Frames 3 & 4 are htcombframes.
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">hpps]htfps</B> encodes a downstream htframe stream, e.g. <B class="purple">[A+a_][B+b_]..</B>, from upstream halfpics, e.g. <B class="purple">(A)(a)(B)(b)..</B>.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">24pps<WBR>.fromfile("source")<WBR>hpps<WBR>(Aa-Dd)(AaBbBcCdDd)<WBR>]<WBR>30'1.001htfps<WBR>.tofile("target")</B> creates an 'NTSC'-hard video.</P></TD></TR>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">hpps]htfps</B> encodes upstream halfpics, e.g. <B class="purple">(A)(a)(B)(b)..</B>, to make a downstream htframe stream, e.g. <B class="purple">[A+a_][B+b_]..</B>.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">24pps<WBR>.fromfile("<I class="green">source</I>")<WBR>hpps<WBR>(Aa-Dd)(AaBbBcCdDd)<WBR>]<WBR>30'1.001htfps<WBR>.tofile("<I class="green">target</I>")</B> creates an 'NTSC'-hard video.</P></TD></TR>
 
 <TR><TD colspan=99><HR></TD></TR>
 <TR><TD colspan=99 class="wrap"><I>In addition to pictures, scanpics & htpics are the streams that drive displays (after 1/(SAR)-scaling of course).</I></TD></TR>
@@ -202,8 +227,8 @@ For such situations, consider adding this notation fragment:</I> <B class="wheat
     <TD colspan=99 class="wrap"><P><&mdash; scan (pseudo) pictures; scans interlaced at <B class="aqua"><I>scanpics&minus;per&minus;second</I></B> rate.</P></TD></TR>
 <TR><TD colspan=99 class="wrap">
         <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">(Ab__)(Cd__)</B> are 2 scanpics.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sfps<WBR>.fromfile("source")<WBR>[<WBR>sps<WBR>_<WBR>spps<WBR>.play</B> plays without decombing.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sfps<WBR>.fromfile("source")<WBR>[<WBR>sps<WBR>(a)(aa)<WBR>pps<WBR>.play</B> plays with bob decombing.</P></TD></TR>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sfps<WBR>.fromfile("<I class="green">source</I>")<WBR>[<WBR>sps<WBR>_<WBR>spps<WBR>.play</B> plays without decombing.</P>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sfps<WBR>.fromfile("<I class="green">source</I>")<WBR>[<WBR>sps<WBR>(a)(aa)<WBR>pps<WBR>.play</B> plays with bob decombing.</P></TD></TR>
 
 <TR><TD><B class="yellow">htpics</B></TD><TD></TD>
     <TD class="right"><B class="aqua">htpps</B></TD><TD></TD>
@@ -223,21 +248,21 @@ For such situations, consider adding this notation fragment:</I> <B class="wheat
 
 <TR><TD colspan=99><HR></TD></TR>
 <TR><TD colspan=99 class="wrap"><I>Spframes & htpframes are not recommended due to combing effects, but both have been seen in the wild.
-        Both are usually non-commercial or poorly mastered media.</I></TD></TR>
+        They usually are non-commercial or poorly mastered media.</I></TD></TR>
 
 <TR><TD><B class="yellow">spframes</B></TD><TD></TD>
     <TD class="right"><B class="aqua">spfps</B></TD><TD></TD>
     <TD colspan=99 class="wrap"><P><&mdash; scan (pseudo) picture frames; scanpics frame-encoded at <B class="aqua"><I>spframes&minus;per&minus;second</I></B> rate.</P></TD></TR>
 <TR><TD colspan=99 class="wrap">
         <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">[ab__][cd__]</B> are 2 spframes.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sps]sfps</B> encodes a downstream scanframe stream, e.g. <B class="purple">[ab__][cd__]..</B>, from upstream scans, e.g. <B class="purple">(a)(b)(c)(d)..</B>; drops final orphan, if any.</P></TD></TR>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">sps]sfps</B> encodes upstream scans, e.g. <B class="purple">(a)(b)(c)(d)..</B>, to make a downstream scanframe stream, e.g. <B class="purple">[ab__][cd__]..</B>; drops final orphan, if any.</P></TD></TR>
 
 <TR><TD><B class="yellow">htpframes</B></TD><TD></TD>
     <TD class="right"><B class="aqua">htpfps</B></TD><TD></TD>
     <TD colspan=99 class="wrap"><P><&mdash; hard telecined (pseudo) picture frames; htpics frame-encoded at <B class="aqua"><I>htpframes&minus;per&minus;second</I></B> rate.</P></TD></TR>
 <TR><TD colspan=99 class="wrap">
         <P>&nbsp;&bullet;&nbsp;diagram elements: <B class="purple">[Aa__][Bb__][Bc__][Cd__][Dd__]</B> is a stride of 5 'NTSC' htpframes with 2-3-2-3 pull-down.</P>
-        <P>&nbsp;&bullet;&nbsp;<B class="wheat">htpps]htpfps</B> encodes a downstream htpframe stream, e.g. <B class="purple">[Aa__][Bb__][Bc__][Cd__][Dd__]</B>, from upstream htpics, e.g. <B class="purple">(Aa__)(Bb__)(Bc__)(Cd__)(Dd__)</B>.</P></TD></TR>
+        <P>&nbsp;&bullet;&nbsp;<B class="wheat">htpps]htpfps</B> encodes upstream htpics, e.g. <B class="purple">(Aa__)(Bb__)(Bc__)(Cd__)(Dd__)</B>, to make a downstream htpframe stream, e.g. <B class="purple">[Aa__][Bb__][Bc__][Cd__][Dd__]</B>.</P></TD></TR>
 
 </TABLE>
 

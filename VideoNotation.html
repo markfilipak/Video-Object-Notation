@@ -15,8 +15,26 @@
 </HEAD>
 <BODY>
 
+<!--
+Please help me understand how to read the documentation.
+ffmpeg-protocols.html, section 3.39, i.e. subfile, has an example:
+
+  subfile,,start,153391104,end,268142592,,:/media/dvd/VIDEO_TS/VTS_08_1.VOB
+
+Here's what works:
+
+  ffmpeg -f data -start 153391104 -end 268142592 -i subfile:/media/dvd/VIDEO_TS/VTS_08_1.VOB -map 0 -c copy -f data "c:\AUTOMATA preview.VOB"
+
+I found it on the net.
+
+How does one go from the documentation example to what works?
+
+Thanks very much,
+Mark.
+-->
+
 <B>A Video Object Notation<BR>
-Mark Filipak, May 19 2023.</B><BR>
+Mark Filipak, June 13 2023.</B><BR>
 <img src=VideoNotation.mail.png><BR>
 
 <BR>
@@ -105,9 +123,9 @@ Abbreviations make true rates useable in file names (which has been found to be 
     <TD>Dollar sign followed by a name is a temporary variable. For example, <B class="wheat">$<I class="green">name</I>="<I class="green">notation</I>"</B>.</TD></TR>
 <TR><TD class="center"><B class="wheat">&</B>&nbsp;</TD>
     <TD>Ampersand is an overload operator.
-        It must be declared before use.
-        For example, <B class="wheat">&="blend"A&B</B> blends pictures 'A' and 'B'.
-        <B class="wheat">&="interpolate"A&C</B> creates a new picture that conceptually is 'B'.</TD></TR>
+        It must be declared before use. For example,<BR>
+        <B class="wheat">&="blend"(AB)(A&B)</B> transforms two elements, 'A' & 'B', to make one element, 'A&B', that blends 'A' & 'B'.<BR>
+        <B class="wheat">&="interpolate"(AC)(A&C)</B> transforms two elements, 'A' & 'C', to make one element, 'A&C', that conceptually is 'B'.</TD></TR>
 <TR><TD class="center"><B class="wheat">#</B>&nbsp;</TD>
     <TD>Number sign &mdash;&nbsp;think: a <I>number</I> of times &mdash;&nbsp;identifies a looper. Example: <B class="wheat">(5#<I class="green">notation</I>)</B>, runs <I class="green">notation</I> 5 times.</TD></TR>
 <TR><TD class="center"><B class="wheat">?</B>&nbsp;<B class="wheat">:</B>&nbsp;</TD>
@@ -144,16 +162,18 @@ Abbreviations make true rates useable in file names (which has been found to be 
 <!-- begin show-hide box --><A style="cursor:pointer" class="anchor-x" onclick="javascript:anchor_show_onclick(this);"><IMG src="VideoNotation.anchor_show.png"></A><BR><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="display:none"><TR><TD class="box"><TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 style="width:100%;padding-top:0.25em"><TR><TD class="left"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD><TD class="right"><A style="cursor:pointer" onclick="anchor_x_onclick(this);" class="anchor-x"><IMG src="VideoNotation.anchor_x.png"></A></TD></TR></TABLE><!-- this is needed -->
 <P><B class="wheat">.a.<I class="green">property_or_method</I></B> operates on all audio streams &mdash;&nbsp;this is usually what you want.</P>
 <P><B class="wheat">.a<I class="green">n</I>.<I class="green">property_or_method</I></B> is notation that focuses on audio stream 0 1 2...</P>
-<P><B class="wheat">.s<I class="green">n</I></B> returns '?' if audio stream <B><I class="green">n</I></B> does not exist.</P>
-<P><B class="wheat">.s.<I class="green">property_or_method</I></B> operates on all audio streams &mdash;&nbsp;this is usually what you want.</P>
+<P><B class="wheat">.a<I class="green">n</I></B> returns '?' if audio stream <B><I class="green">n</I></B> does not exist.</P>
+<P><B class="wheat">.s.<I class="green">property_or_method</I></B> operates on all subtitle streams &mdash;&nbsp;this is usually what you want.</P>
 <P><B class="wheat">.s<I class="green">n</I>.<I class="green">property_or_method</I></B> is notation that focuses on subtitle stream 0 1 2...</P>
 <P><B class="wheat">.s<I class="green">n</I></B> returns '?' if subtitle stream <B><I class="green">n</I></B> does not exist.</P>
 <BR>
 <B class="underline super">Audio synchronization.</B><BR>
-Audio resampling is generally needed to synchronize audio to forced frame rate changes. It can be done by remuxing, e.g., <B class="wheat">24'1.001fps_24fps.a.resample("1.001")</B>, without requiring video transcoding.<BR>
+Audio resampling is needed to synchronize audio during forced frame rate changes.
+It can be done by remuxing, e.g., <B class="wheat">24'1.001fps_24fps.a.resample("1.001")</B>.<BR>
 <BR>
 <BLOCKQUOTE>
-Example: When mastering cinema to cine-slow, running time stretches by 1001/1000. Resampling 48kHz audio by 1.001 to 48.048kHz &mdash;&nbsp;more samples &mdash;&nbsp;stretches audio to fit the video but makes tone a little flat.
+Example: When mastering cinema to cine-slow, running time stretches by 1001/1000.
+Resampling audio by 1.001 (which makes more samples) stretches audio to fit the video (which unfortunately makes tone a little flat).
 <BLOCKQUOTE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="box nowrap">
 <TR><TD class="right">Compare <B class="wheat">24pps</B> <AUDIO controls style="width:10em;height:1.5em;margin-bottom:0.4em"><SOURCE src="1000Hz.mp3" type="audio/mpeg"></AUDIO></TD></TR>
@@ -164,7 +184,8 @@ When remuxing back to cinema, <B class="wheat">24'1.001fps_24fps.a.resample("'1.
 </BLOCKQUOTE>
 <BR>
 <BLOCKQUOTE>
-Example: When mastering cinema to PAL-fast, running time shrinks by 24/25. Resampling 48kHz audio by 0.96 to 46.08kHz &mdash;&nbsp;fewer samples &mdash;&nbsp;shrinks audio to fit the video but makes tone quite sharp.<BR>
+Example: When mastering cinema to PAL-fast, running time shrinks by 24/25.
+Resampling audio by 0.96 (which makes fewer samples) shrinks audio to fit the video (which unfortunately makes tone a little sharp).<BR>
 <BLOCKQUOTE>
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="box nowrap">
 <TR><TD class="right">Compare <B class="wheat">24pps</B> <AUDIO controls style="width:10em;height:1.5em;margin-bottom:0.4em"><SOURCE src="1000Hz.mp3" type="audio/mpeg"></AUDIO></TD></TR>
@@ -251,6 +272,10 @@ multiplexed_bit_stream = transport_stream | program_stream
 
 
 -->
+
+<BR>
+<B>More Examples.</B><BR>
+In the following, "jps" means "judders-per-second", "ipvs" means "interpolations per video second".<BR>
 
 <BR>
 <B class="underline super">10-to-8 Detelecine</B>
@@ -353,7 +378,7 @@ They illustrate how the notation can make complex operations compact and easy to
                     //                 ================         combed</B></PRE>
 PTSs: Forced by 1/1.001
 &mdash;&nbsp;Combing: 40%
-&mdash;&nbsp;Judder: 53% [see&nbsp;note&nbsp;1] @ 6 judders&minus;per&minus;second [see&nbsp;note&nbsp;2]
+&mdash;&nbsp;Judder: 53% [see&nbsp;note&nbsp;1] @ 6 jps (judders&minus;per&minus;second) [see&nbsp;note&nbsp;2]
 &mdash;&nbsp;Cadence: 4+3+3+3+3 [see&nbsp;note&nbsp;3]
 &mdash;&nbsp;Burden: None
 &mdash;&nbsp;Generations: 0-0-0-0-0.<BR>
@@ -369,7 +394,7 @@ PTSs: Forced by 1/1.001
    By identical consideration of bottom halfpics <B class="purple nowrap">(c_-20%)(d_________+60%)</B>, the judder is also 80%.
    The 2 judders overlap by only 1/3rd, so when the top & bottom halfpics are superimposed, the overall judder is reduced to 53%.
    </BLOCKQUOTE>
-<P>[note&nbsp;2] One judder per 1/6 second = 1/(1/6) judders&minus;per&minus;second.</P>
+<P>[note&nbsp;2] One judder per 1/6 second = 1/(1/6) jps.</P>
 <P>[note&nbsp;3] Cadence is smoothness across entire strides.
    To visualize it, imagine a clip showing a mouse running across a tiled floor.<BR>
    For top halfpics, during 5 uniform frame times, the mouse appears to traverse 2+1+1+2+2 'tiles'.<BR>
@@ -392,7 +417,7 @@ PTSs: Forced by 1/1.001
                     //                 ========                 combed</B></PRE>
 PTSs: Forced by 1/1.001
 &mdash;&nbsp;Combing: 20%
-&mdash;&nbsp;Judder: 80% [see&nbsp;note&nbsp;1] @ 6 judders&minus;per&minus;second [see&nbsp;note&nbsp;2]
+&mdash;&nbsp;Judder: 80% [see&nbsp;note&nbsp;1] @ 6 jps [see&nbsp;note&nbsp;2]
 &mdash;&nbsp;Cadence: 3+2+3+4+4 [see&nbsp;note&nbsp;3]
 &mdash;&nbsp;Burden: None
 &mdash;&nbsp;Generations: 0-0-0-0-0.<BR>
@@ -408,7 +433,7 @@ PTSs: Forced by 1/1.001
    By identical consideration of bottom halfpics <B class="purple nowrap">(a_-20%)(b_________+60%)</B>, the judder is also 80%.
    The 2 judders overlap by 100%, so when the top & bottom halfpics are superimposed, the overall judder is 80%.
    </BLOCKQUOTE>
-<P>[note&nbsp;2] One judder per 1/6 second = 1/(1/6) judders&minus;per&minus;second.</P>
+<P>[note&nbsp;2] One judder per 1/6 second = 1/(1/6) jps.</P>
 <P>[note&nbsp;3] Cadence is smoothness across entire strides.
    To visualize it, imagine a clip showing a mouse running across a tiled floor.<BR>
    For top halfpics, during 5 uniform frame times, the mouse appears to traverse 1+1+2+2+2 'tiles'.<BR>
@@ -434,9 +459,9 @@ PTSs: Forced by 1/1.001
 <B class="wheat">=30pps]30'1.001pfps</B>       // <B class="purple">[pic0_______+7%][pic1_______+7%][pic2______-20%][pic3_______+7%][pic4_______+7%]</B> encode</B></PRE>
 PTSs: Forced by 1/1.001
 &mdash;&nbsp;Combing: None
-&mdash;&nbsp;Judder: 27% [see&nbsp;note&nbsp;1] @ 6 judders&minus;per&minus;second [see&nbsp;note&nbsp;2]
+&mdash;&nbsp;Judder: 27% [see&nbsp;note&nbsp;1] @ 6 jps [see&nbsp;note&nbsp;2]
 &mdash;&nbsp;Cadence: 3+3+4+3+3 [see&nbsp;note&nbsp;3]
-&mdash;&nbsp;Burden: 36 picture interpolations per video second [see&nbsp;note&nbsp;4]
+&mdash;&nbsp;Burden: 36 picture ipvs (interpolations per video second) [see&nbsp;note&nbsp;4]
 &mdash;&nbsp;Generations: 0-2-1-1-2.<BR>
 
 <BR>
@@ -450,7 +475,7 @@ PTSs: Forced by 1/1.001
    The time difference is +1/15 characters =&nbsp;+7% followed by -4/20 characters =&nbsp;-20%. The judder is the absolute sum =&nbsp;27%.</TD></TR>
    </TABLE>
    </BLOCKQUOTE>
-<P>[note&nbsp;2] One judder per 1/6 second = 1/(1/6) judders&minus;per&minus;second.</P>
+<P>[note&nbsp;2] One judder per 1/6 second = 1/(1/6) jps.</P>
 <P>[note&nbsp;3] Except for the end stride, during 5 uniform frame times, the mouse appears to traverse 15+15+20+15+15 'tiles' (which reduces to 3+3+4+3+3).</P>
 <P>[note&nbsp;4] Interpolations = 0+2+1+1+2 per 1/6 video second = 6/(1/6).</P>
 
@@ -458,7 +483,7 @@ PTSs: Forced by 1/1.001
 <I>
 Distinguishing between images versus frames is useful.
 To appreciate the difference consider this: 4-to-5 interpolation creates strides of interpolated pictures having durations 1/32, 1/32, 1/24, 1/32, 1/32 seconds with zero judder and no cadence.
-But forcing the pictures into 1/30 second frames produces 27% judder @ 6 judders&minus;per&minus;second & 3+3+4+3+3 cadence.
+But forcing the pictures into 1/30 second frames produces 27% judder @ 6 jps & 3+3+4+3+3 cadence.
 </I><BR>
 <!-- end show-hide box --></TD></TR></TABLE>
 
@@ -480,9 +505,9 @@ But forcing the pictures into 1/30 second frames produces 27% judder @ 6 judders
 <B class="wheat">]120fps</B>                 // <B class="purple">[pic0_______+7%][pic1_______+7%][pic2______-20%][pic3_______+7%][pic4_______+7%]</B> encode</B></PRE>
 PTSs: Unforced
 &mdash;&nbsp;Combing: None
-&mdash;&nbsp;Judder: 27% @ 24 judders&minus;per&minus;second [see&nbsp;note&nbsp;1]
+&mdash;&nbsp;Judder: 27% @ 24 jps [see&nbsp;note&nbsp;1]
 &mdash;&nbsp;Cadence: 3+3+4+3+3
-&mdash;&nbsp;Burden: 216 picture interpolations per video second
+&mdash;&nbsp;Burden: 216 picture ipvs
 &mdash;&nbsp;Generations: 0-4-3-3-4.<BR>
 
 <BR>
@@ -492,13 +517,13 @@ Compare with display on 60Hz TVs.
 <B>                           <B class="purple">[pic0_______________________+7%][pic2_____________________-8.5%][pic4___________</B> on 60Hz TV</B></PRE>
 PTSs: Unforced
 &mdash;&nbsp;Combing: None
-&mdash;&nbsp;Judder: 15% @ 24 judders&minus;per&minus;second [see&nbsp;note&nbsp;1]
+&mdash;&nbsp;Judder: 15% @ 24 jps [see&nbsp;note&nbsp;1]
 &mdash;&nbsp;Cadence: 6+7+6+7+6
-&mdash;&nbsp;Burden: 216 picture interpolations per video second
+&mdash;&nbsp;Burden: 216 picture ipvs
 &mdash;&nbsp;Generations: 0-4-3-3-4.<BR>
 
 <BR>
-<P>[note&nbsp;1] Judder rates above 17 judders&minus;per&minus;second are generally considered judder-free.</P>
+<P>[note&nbsp;1] Judder rates above 17 jps are generally considered judder-free.</P>
 <!-- end show-hide box --></TD></TR></TABLE>
 
 <BR>
@@ -610,9 +635,9 @@ The bad pull-down appears to have been ordinary 8-to-10 telecine cinema that was
 <BR>
 <B><I>Extra credit.</I></B><BR>
 Recall that:<BR>
-<P>1, 24'1.001pps to 30'1.001htfps via 8-to-10 telecine has 53% judder @ 6 judders&minus;per&minus;second &mdash;&nbsp;awful but people think it's unavoidable.</P>
-<P>2, 24'1.001pps to 30'1.001htfps via 4-to-5 interpolation has 27% judder @ 6 judders&minus;per&minus;second &mdash;&nbsp;better, but not great.</P>
-<P>3, 24'1.001pps to 120'1.001pfps via 1-to-5 interpolation has 15% judder @ 24 judders&minus;per&minus;second when viewed on a 60Hz TV &mdash;&nbsp;terrific but a time consuming transcode.</P>
+<P>1, 24'1.001pps to 30'1.001htfps via 8-to-10 telecine has 53% judder @ 6 jps &mdash;&nbsp;awful but people think it's unavoidable.</P>
+<P>2, 24'1.001pps to 30'1.001htfps via 4-to-5 interpolation has 27% judder @ 6 jps &mdash;&nbsp;better, but not great.</P>
+<P>3, 24'1.001pps to 120'1.001pfps via 1-to-5 interpolation has 15% judder @ 24 jps when viewed on a 60Hz TV &mdash;&nbsp;terrific but a time consuming transcode.</P>
 <P><I>60Hz TVs that have variable rate screens will sync to and play 57.6'1.001pfps just fine. That presents an opportunity for improvement.</I></P>
 <P>4, Instead of 1 2 or 3, what about 24'1.001pps to 57.6'1.001pfps via 5-to-6 interpolation + doubling?</P>
 <PRE class="white">
@@ -621,7 +646,7 @@ Recall that:<BR>
 <B class="wheat">(1)(11)]57.6'1.001pfps</B></B></PRE>
 PTSs: Unforced
 &mdash;&nbsp;Combing: ___
-&mdash;&nbsp;Judder: ___% @ ___ judders&minus;per&minus;second
+&mdash;&nbsp;Judder: ___% @ ___ jps
 &mdash;&nbsp;Cadence: ___+___+___+___+___+___
 &mdash;&nbsp;Burden: ___
 &mdash;&nbsp;Generations: ___-___-___-___-___-___.<BR>
@@ -660,9 +685,9 @@ PTSs: Unforced
 <B class="purple">(pic0___________-5%)(pic1__________+11%)(pic2___________-5%)(pic3___________-5%)(pic4__________+11%)(pic5___________-5%)</B> 28.8'1.001pps</B></PRE>
 PTSs: Unforced
 &mdash;&nbsp;Combing: None
-&mdash;&nbsp;Judder: 16% [see&nbsp;note&nbsp;1] @ 9.6 judders&minus;per&minus;second [see&nbsp;note&nbsp;2]
+&mdash;&nbsp;Judder: 16% [see&nbsp;note&nbsp;1] @ 9.6 jps [see&nbsp;note&nbsp;2]
 &mdash;&nbsp;Cadence: 7+6+7+7+6+7 [see&nbsp;note&nbsp;3]
-&mdash;&nbsp;Burden: 62.4 picture interpolations per video second [see&nbsp;note&nbsp;4]
+&mdash;&nbsp;Burden: 62.4 picture ipvs [see&nbsp;note&nbsp;4]
 &mdash;&nbsp;Generations: 0-3-3-1-3-3.<BR>
 
 <BR>
@@ -673,9 +698,9 @@ PTSs: Unforced
        <TD>&nbsp; &nbsp;</TD><TD>
    The time difference is -1/21 characters =&nbsp;-5% followed by  +2/18 characters =&nbsp;+11%. The overall judder is the absolute sum =&nbsp;16%.</TD></TR>
    </TABLE></BLOCKQUOTE>
-<P>[note&nbsp;2] 2 judders per 5/24 second = 2/(5/24) judders&minus;per&minus;second.</P>
+<P>[note&nbsp;2] 2 judders per 5/24 second = 2/(5/24) jps.</P>
 <P>[note&nbsp;3] During 6 uniform frame times, the 'mouse' appears to traverse 21+18+21+21+18+21 'tiles' (which reduces to 7+6+7+7+6+7).</P>
-<P>[note&nbsp;4] Interpolations = 0+3+3+1+3+3 per 5/24 video second = 13/(5/24) interpolations per video second.</P>
+<P>[note&nbsp;4] Interpolations = 0+3+3+1+3+3 per 5/24 video second = 13/(5/24) ipvs.</P>
 
 <BR>
 <I>This table compares the approaches.</I>
@@ -716,7 +741,7 @@ PTSs: Unforced
     <TD class="center nowrap">7+6+7+7+6+7</TD>          <TD></TD>
     <TD class="center nowrap">62.4 ipvs</TD></TR>
 </TABLE><BR>
-<I>Are the metrics useful?</I>
+<I>Question: Are the metrics sensible & useful to you?</I>
 <!-- end show-hide box --></TD></TR></TABLE>
 
 <BR></BODY></HTML>

@@ -20,30 +20,43 @@
 <BR>
 &nbsp;Parsing:
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
-<TR><TD><PRE class="white">
-<B>&nbsp;&nbsp;()()
-&nbsp;()(())
-()((()))</B></PRE></TD><TD class="box0100"></TD><TD>&nbsp;</TD>
-    <TD><PRE class="white" style="padding:0;margin:0">
-<B><B class="wheat">(<I class="green">stride</I>)</B>     <B class="wheat">(<I class="green">match</I>)</B>
-<B class="wheat">(<I class="green">stride</I>)</B>    <B class="wheat">((<I class="green">match</I>))</B>
-<B class="wheat">(<I class="green">stride</I>)</B>   <B class="wheat">(((<I class="green">match</I>)))</B>
-<B class="wheat">(<I class="green">stride</I>)</B> <B class="wheat">(<I class="green">new</I>(<I class="green">match</I>))</B>
-<B class="wheat">(<I class="green">stride</I>)((<I class="green">new</I>(<I class="green">match</I>)))</B>
-<B class="wheat">(<I class="green">stride</I>)</B>    <B class="wheat">((<I class="green">match</I>)<I class="green">end</I>)</B>
-<B class="wheat">(<I class="green">stride</I>)</B>   <B class="wheat">(((<I class="green">match</I>)<I class="green">end</I>))</B>
-<B class="wheat">(<I class="green">stride</I>)</B> <B class="wheat">(<I class="green">new</I>(<I class="green">match</I>)<I class="green">end</I>)</B>
-<B class="wheat">(<I class="green">stride</I>)((<I class="green">new</I>(<I class="green">match</I>)<I class="green">end</I>))</B>
-<B class="wheat">(<I class="green">stride</I>)</B>   <B class="wheat">(((<I class="green">match</I>))<I class="green">miss</I>)</B>
-<B class="wheat">(<I class="green">stride</I>)((<I class="green">new</I>(<I class="green">match</I>))<I class="green">miss</I>)</B>
-<B class="wheat">(<I class="green">stride</I>)</B>   <B class="wheat">(((<I class="green">match</I>)<I class="green">end</I>)<I class="green">miss</I>)</B>
-<B class="wheat">(<I class="green">stride</I>)((<I class="green">new</I>(<I class="green">match</I>)<I class="green">end</I>)<I class="green">miss</I>)</B></PRE></TD><TD class="box0100"></TD><TD>&nbsp;</TD>
-    <TD><P>Spaces are ignored.</P>
+<TR><TD><B>&nbsp;&nbsp;()()</B></TD>
+    <TD class="box0100" rowspan=13>&nbsp;</TD>
+    <TD rowspan=13>&nbsp;</TD>
+    <TD><B class="wheat">(<I class="green">stride</I>)</B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<B class="wheat">(<I class="green">match</I>)</B></TD>
+    <TD class="box0100" rowspan=13>&nbsp;</TD>
+    <TD rowspan=13>&nbsp;</TD>
+    <TD rowspan=13>
+        <P>Spaces are ignored.</P>
         <P><B><I class="green">stride</I></B> can only be tokens.</P>
-        <P>Token repetition, if any, in <B><I class="green">stride</I></B> implies the search pattern.</P>
+        <P>Token repetition, if any, in <B><I class="green">stride</I></B> sets the search pattern.</P>
         <P>Tokens in <B><I class="green">new match end miss</I></B> specify token replacements or reordering.</P>
         <P><B><I class="green">new end miss</I></B> are optional.</P>
         <P><B><I class="green">new match end miss</I></B> can contain any notation, including nested stride-matches.</P></TD></TR>
+<TR><TD><B>&nbsp;()(())</B></TD>
+    <TD><B class="wheat">(<I class="green">stride</I>)</B>&nbsp;&nbsp;&nbsp;&nbsp;<B class="wheat">((<I class="green">match</I>))</B></TD></TR>
+<TR><TD><B>()((()))</B></TD>
+    <TD><B class="wheat">(<I class="green">stride</I>)</B>&nbsp;&nbsp;&nbsp;<B class="wheat">(((<I class="green">match</I>)))</B></TD></TR>
+<TR><TD><B>&nbsp;()(())</B></TD>
+    <TD><B class="wheat">(<I class="green">stride</I>)</B>&nbsp;<B class="wheat">(<I class="green">new</I>(<I class="green">match</I>))</B></TD></TR>
+<TR><TD><B>()((()))</B></TD>
+    <TD><B class="wheat">(<I class="green">stride</I>)((<I class="green">new</I>(<I class="green">match</I>)))</B></TD></TR>
+<TR><TD><B>&nbsp;()(())</B></TD>
+    <TD><B class="wheat">(<I class="green">stride</I>)</B>&nbsp;&nbsp;&nbsp;&nbsp;<B class="wheat">((<I class="green">match</I>)<I class="green">end</I>)</B></TD></TR>
+<TR><TD><B>()((()))</B></TD>
+    <TD><B class="wheat">(<I class="green">stride</I>)</B>&nbsp;&nbsp;&nbsp;<B class="wheat">(((<I class="green">match</I>)<I class="green">end</I>))</B></TD></TR>
+<TR><TD><B>&nbsp;()(())</B></TD>
+    <TD><B class="wheat">(<I class="green">stride</I>)</B>&nbsp;<B class="wheat">(<I class="green">new</I>(<I class="green">match</I>)<I class="green">end</I>)</B></TD></TR>
+<TR><TD><B>()((()))</B></TD>
+    <TD><B class="wheat">(<I class="green">stride</I>)((<I class="green">new</I>(<I class="green">match</I>)<I class="green">end</I>))</B></TD></TR>
+<TR><TD><B>()((()))</B></TD>
+    <TD><B class="wheat">(<I class="green">stride</I>)</B>&nbsp;&nbsp;&nbsp;<B class="wheat">(((<I class="green">match</I>))<I class="green">miss</I>)</B></TD></TR>
+<TR><TD><B>()((()))</B></TD>
+    <TD><B class="wheat">(<I class="green">stride</I>)((<I class="green">new</I>(<I class="green">match</I>))<I class="green">miss</I>)</B></TD></TR>
+<TR><TD><B>()((()))</B></TD>
+    <TD><B class="wheat">(<I class="green">stride</I>)</B>&nbsp;&nbsp;&nbsp;<B class="wheat">(((<I class="green">match</I>)<I class="green">end</I>)<I class="green">miss</I>)</B></TD></TR>
+<TR><TD><B>()((()))</B></TD>
+    <TD><B class="wheat">(<I class="green">stride</I>)((<I class="green">new</I>(<I class="green">match</I>)<I class="green">end</I>)<I class="green">miss</I>)</B></TD><TD>&nbsp;</TD></TR>
 </TABLE>
 
 <BR>
@@ -67,7 +80,7 @@ Example, reverse 'NTSC' telecine, 2-3-2-3 pull-down: <B class="wheat">(AaBbBcCdD
     <TD>This is a fully populated stride-match using labels in place of actual notations.</TD></TR>
 <TR><TD><BR></TD></TR>
 
-<TR><TD><B class="wheat">(<I class="green">stride</I>)</B> &nbsp; &nbsp; <B class="wheat">(<I class="green">match</I>)</B></TD>
+<TR><TD><B class="wheat">(<I class="green">stride</I>) &nbsp; &nbsp; (<I class="green">match</I>)</B></TD>
     <TD>Input elements are buffered until stride number of elements have been accumulated.
         <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
         <TR><TD>&nbsp;&bullet;&nbsp;</TD><TD>If the buffer's content matches the pattern found in <I class="green">stride</I>, the buffer is down-streamed to the <I class="green">match</I> notation, the input pointer is increased by the length of <I class="green">stride</I>, and processing loops back to scan for more input.</TD></TR>

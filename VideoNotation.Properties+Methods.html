@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META http-equiv="content-type" content="text/html; charset=utf-8">
+<META http-equiv="content-language" content="en">
+<META http-equiv="cache-control" content="no-cache">
+<META http-equiv="expires" content="Thu, 01 Jan 1970 00:00:00 GMT">
+<META http-equiv="pragma" content="no-cache">
+<META http-equiv="content-style-type" content="text/css">
+<LINK href="VideoNotation.css" rel="stylesheet" type="text/css">
+<META http-equiv="content-script-type" content="text/javascript">
+<SCRIPT src="VideoNotation.js"></SCRIPT>
+
+<TITLE>A Video Notation, Properties & Methods</TITLE>
+</HEAD>
+<BODY>
+
+Property names are in camelCase.<BR>
+Object names are in CamelCase.<BR>
+A successful method performs the specified method and returns the stream.<BR>
+An unsuccessful method does nothing and returns an error: ?<I>text</I>.<BR>
+Successfully setting a property sets the property and returns the stream.<BR>
+Unsuccessfully setting a property does nothing and returns an error: ?<I>text</I>.<BR>
+
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD></TD><TD>&nbsp;&nbsp;</TD><TD></TD></TR>
+<TR><TD class="nowrap underline center"><B>System Frame Objects</B> [see note 1]</TD><TD></TD><TD class="nowrap underline center"><B>System Image Objects</B></TD></TR>
+<TR><TD>
+  <!-- System Frame Objects -->
+  <P><I>stream</I><TT>.fifo</TT> is the buffer</P>
+  <P><I>stream</I><TT>.newest</TT> is the most recent element</P>
+  <P><TT>[</TT><I>token</I><TT>]</TT> is this element within a stride</P>
+  <P><I>fps</I> focuses on the element stream</P>
+  <P><I>fps</I><TT>.a</TT> focuses on all audio streams</P>
+  <P><TT>$.</TT>a<I>n</I> (<I>n</I> = 0 1 2...) focuses on audio stream <I>n</I></P>
+  <P><I>fps</I><TT>.s</TT> focuses on all subtitle streams</P>
+  <P><TT>$.</TT>s<I>n</I> (<I>n</I> = 0 1 2...) focuses on subtitle stream <I>n</I></P>
+  </TD><TD><BR></TD><TD>
+  <!-- System Image Objects -->
+  <P><I>fifo</I> is the image buffer</P>
+  <P><I>ips</I> (<I>ips</I> = hps pps sps tps) focuses on an image stream</P>
+  <P><I>newest</I> is most recent image</P>
+  <P><I>token</I> is this image within a stride</P>
+  </TD></TR>
+<TR><TD><BR></TD></TR>
+<TR><TD class="nowrap underline center"><B>System Properties</B> [see note 2]</TD><TD></TD><TD class="nowrap underline center"><B>System Methods</B> [see note 3]</TD></TR>
+<TR><TD>
+  <!-- System Properties -->
+  <P>$<I>v</I> (r/w, <I>v</I> = 0..9 A..Z a..z) general purpose variables</P>
+  <P>$<I>v</I>.Bcount (r) gets number of bytes in $<I>v</I></P>
+  <P>$<I>v</I>.floor (r) gets integer value of $<I>v</I></P>
+  <P><I>[fifo].n</I> (r) gets number of [fifo] elements</P>
+  <P><I>fps</I> (r) gets element stream</P>
+  <P><TT>$.</TT>a.</I> (r) gets number of audio streams</P>
+  <P><TT>$.</TT><I>decoderName</I> (r) gets <B>!</B> if decoder does not exist</P>
+  <P><TT>$.</TT><I>decoderName</I> (w) overrides intrinsic decoder</P>
+  <P><TT>$.</TT>n</I> (r) gets most recent element number</P>
+  <P><TT>$.</TT>pcr</I> (r) gets program clock reference [see note 4]</P>
+  <P><TT>$.</TT>pixform</I> (r/w) gets/sets pixel format (e.g., yuv420p)</P>
+  <P><TT>$.</TT>pixform.<I>pixForm</I> (r) gets <B>!</B> if <I>pixForm</I> is not supported</P>
+  <P><TT>$.</TT>dpi (r) gets number of dots per line</P>
+  <P><TT>$.</TT><I>encoderName</I> (r) gets <B>!</B> if encoder does not exist</P>
+  <P><TT>$.</TT><I>encoderName</I> (w) overrides intrinsic encoder</P>
+  <P><TT>$.</TT>fifo (r) gets number of ips.fifo images
+  <P><TT>$.</TT>lpi (r) gets number of lines per image</P>
+  <P><TT>$.</TT>n (r) gets most recent image number</P>
+  <P><TT>$.</TT>ppr (r) gets number of pixels per row</P>
+  <P><TT>$.</TT>rps (r) gets number of rows per sample</P>
+  </TD><TD></TD><TD>
+  <!-- System Methods -->
+  <P><TT>$.</TT><I>decoderName</I><TT>("</TT><I>parameters</I><TT>")</TT> decodes fps stream, outputs ips stream</P>
+  <P><TT>$.fifo.drop</TT> discards $'s oldest element</P>
+  <P><TT>$.fifo.dropall</TT> discards all fps.fifo elements</P>
+  <P><TT>$.fifo.pop</TT> moves $'s oldest element to $</P>
+  <P><TT>$.fifo.popall</TT> moves all fps.fifo elements to fps</P>
+  <P><TT>$.fromfile("</TT><I>filespec</I><TT>")</TT> reads fps stream from a file</P>
+  <P><TT>$.fromport("</TT><I>domain</I><TT>","</TT><I>port</I><TT>")</TT> reads fps stream from <I>domain</I>:<I>port</I></P>
+  <P><TT>$.fromport("</TT><I>port</I><TT>")</TT> reads fps stream from localhost:<I>port</I></P>
+  <P><TT>$.tofile("</TT><I>filespec</I><TT>")</TT> writes fps stream to a file</P>
+  <P><TT>$.toport("</TT><I>domain</I><TT>","</TT><I>port</I><TT>")</TT> writes fps stream to <I>domain</I>:<I>port</I></P>
+  <P><TT>$.toport("</TT><I>port</I><TT>")</TT> writes fps stream to localhost:<I>port</I></P>
+  <P><TT>$.usingport("</TT><I>port</I><TT>")</TT> connects via localhost:<I>port</I></P>
+  <P><TT>$.</TT><I>encoderName</I><TT>("</TT><I>parameters</I><TT>")</TT> encodes ips, outputs fps</P>
+  </TD></TR>
+<TR><TD><BR></TD></TR>
+<TR><TD class="nowrap underline center"><B>Frame Properties</B></TD><TD></TD><TD class="nowrap underline center"><B>Frame Methods</B></TD></TR>
+<TR><TD>
+  <!-- Frame Properties -->
+  <P>[<I>token</I>].b (r) gets <B>!</B> if not a B-frame</P>
+  <P>[<I>token</I>].i (r) gets <B>!</B> if not an I-frame</P>
+  <P>[<I>token</I>].i.dts (r/w) gets/sets I-frame's DTS</P>
+  <P>[<I>token</I>].i.fps (r) gets I-frame's fps</P>
+  <P>[<I>token</I>].i.pts (r/w) gets/sets I-frame's PTS</P>
+  <P>[<I>token</I>].p (r) gets <B>!</B> if not a P-frame</P>
+  </TD><TD></TD><TD>
+  <!-- Frame Methods -->
+  <P>[<I>token</I>].<I>decoderName</I>(<I>parameters</I>) decodes this element and adds it to ips</P>
+  <P>[<I>token</I>].fromfile("<I>filespec</I>") reads this element from <I>filespec</I></P>
+  <P>[<I>token</I>].push copies this element to fps.fifo</P>
+  <P>[<I>token</I>].tofile("<I>filespec</I>") writes this element to <I>filespec</I></P>
+<TR><TD><BR></TD></TR>
+<TR><TD class="nowrap underline center"><B>Image Properties</B></TD><TD></TD><TD class="nowrap underline center"><B>Image Methods</B></TD></TR>
+<TR><TD>
+  <!-- Image Properties -->
+  <P><I>token</I>.fps (r) gets inherited fps</P>
+  <P><I>token</I>.h (r/w) gets/sets image's height in lines</P>
+  <P><I>token</I>.pts (r/w) gets/sets inherited PTS</P>
+  <P><I>token</I>.w (r/w) gets/sets image's width in dots</P>
+  <P><I>token</I>.x (r/w) gets/sets image's left offset</P>
+  <P><I>token</I>.y (r/w) gets/sets image's top offset</P>
+  </TD><TD></TD><TD>
+  <!-- Image Methods -->
+  <P><I>token</I>.<I>encoderName</I>(<I>parameters</I>) encodes & outputs this image</P>
+  <P><I>token</I>.fromfile("<I>filespec</I>") reads this image from <I>filespec</I></P>
+  <P><I>token</I>.push copies this image to ips.fifo</P>
+  <P><I>token</I>.tofile("<I>filespec</I>") writes this image to <I>filespec</I></P>
+<TR><TD><BR></TD></TR>
+<TR><TD class="nowrap underline center"><B>Audio Properties</B></TD><TD></TD><TD class="nowrap underline center"><B>Audio Methods</B></TD></TR>
+<TR><TD>
+  <!-- Audio Properties -->
+  Note: All of the <B>.a.</B> properties apply equally to <B>.a<I>n</I></B>
+  </TD><TD></TD><TD>
+  <!-- Audio Methods -->
+  Note: All of the <B>.a.</B> properties apply equally to <B>.a<I>n</I></B>
+  <P><TT>$.</TT>a.fromfile("<I>filespec</I>") reads an audio stream from <I>filespec</I></P>
+  <P><TT>$.</TT>a.upsample("<I>factor</I>") resamples audio by <I>factor</I> [see&nbsp;note&nbsp;5]</P>
+  <P><TT>$.</TT>a.downsample("<I>factor</I>") resamples audio by 1/<I>factor</I> [see&nbsp;note&nbsp;5]</P>
+  <P><TT>$.</TT>a.resample("<I>fromfps/tofps</I>") resamples audio by <I>fromfps/tofps</I> [see&nbsp;note&nbsp;5]</P>
+  </TD></TR>
+</TABLE>
+
+<BR>
+<P>[note&nbsp;1] Backets, [], are parts of object labels, not delimiters.</P>
+
+<P>[note&nbsp;2] The system automatically creates variables when encountered, variable declarations are not needed.</P>
+
+<P>[note&nbsp;3] Replace  with the number of bytes in <I>filespec</I>, 1 byte per character for ANSI/UTF-8, 2 bytes per character for UTF-16.
+No quotes or escape characters are needed.</P>
+
+<P>[note&nbsp;4] PCR (program clock reference) is 90000tps (ticks-per-second) for VOB & M2TS, 1000tps for MKV; 60000tps & 30000tps have been seen for MP4.
+"PCR" is called "tbn" (e.g., "90k tbn") by FFmpeg.</P>
+
+<P>[note&nbsp;5] <I>factor</I> less than 1 down samples, which shrinks running time and pitches tonality sharp, while greater than 1 up samples.
+More convenient forms are fps.a.resample("<I>toHz</I>/<I>fromHz</I>") & especially fps.a.resample("<I>from*ps</I>/<I>to*ps</I>").
+For example, when mastering for <A href="VideoNotation.Commonly_Found.html#PAL-fast">PAL-fast^</A> (from 24pps to 25fps), audio resampling can be specified by <TT>fps.a.resample("0.96")</TT> or <TT>fps.a.resample("46080/48000")</TT> or <TT>fps.a.resample("24/25")</TT>.
+To reverse PAL-fast, <TT>fps.a.resample("1/0.96")</TT> or <TT>fps.a.resample("48000/46080")</TT> or <TT>fps.a.resample("25/24")</TT>.</P>
+
+
+<BR><BR>
+<B>File concatenation.</B><BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0><TR><TD><PRE>
+$i='1' $s='/media/cdrom/VIDEO_TS/VTS_01_1.VOB'      ...craft the 1st source <I>filespec</I>
+fps.fromfile($s.Bcount,$s)                          ...get the file
+( [A] )                                             ...stride: single frames
+( ( [A] )                                             ...match: output the frame
+  [A]                                                 ...end match: output the frame
+  $i++ $s='/media/cdrom/VIDEO_TS/VTS_01_'+$i+'.VOB'   ...& craft the next <I>filespec</I>
+  fps.fromfile($s.Bcount,$s)                          ...& get the file
+)
+<I> ...continues with follow-on notation </I></PRE></TD></TR></TABLE>
+
+
+<BR><BR>
+<!-- Orphaned frames -->
+<B>Orphaned frames at the beginning of a frame stream.</B>
+Replace them with the 1st I-frame (when it's received).
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0><TR><TD><PRE>
+$c='0'         ...copies of the first I-frame replace any preceding orphans
+( [A] )        ...stride: single frames
+(                ...match:
+  ( [A].i!='!' )   ...query: is it an I-frame?
+  ( ( $c+1 # [A] )   ...yes: copy of the newest image for each orphan + 1
+    ..               ...& output the entire remaining stream
+  )
+  ( c++ )            ...no: the frame is an orphaned P- or B-frame, so count it
+)
+<I> ...continues with follow-on notation </I></PRE></TD></TR></TABLE>
+
+<BR>
+<B>Orphaned frames at the end of a frame stream, remuxing.</B>
+Replace them with the newest I-frame.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0><TR><TD><PRE>
+fps.fifo.dropall      ...the newest I-frame replaces any succeeding orphans
+( [A] )               ...stride: single frames
+( (                     ...match but not end match:
+    ( [A].i!='!' )        ...query-1: is [A] an I-frame?
+    ( $i=[A] )__            ...yes-1: save the newest I-frame [see note 1]
+    ( [A].b!='!' )        ...query-2: is [A] a B-frame?
+    ( [A].push )            ...yes-2: copy [A] to the FIFO
+    ( fps.fifo.dropall )    ...no-2: clear the FIFO
+  )                     ...end match:
+  ( [A].b!='!' )          ...query-3: is [A] a B-frame?
+  ( ( fps.fifo+1 # $i )     ...yes-3: copy of the newest image for each orphan + 1
+    fps.fifo.dropall        ...& clear the FIFO
+  )
+  ( fps.fifo.popall [A] )   ...no-3: output the frames in the FIFO & output [A]
+)
+<I> ...continues with follow-on notation </I></PRE></TD></TR></TABLE>
+
+<BR>
+<P>[note&nbsp;1] Following the 'yes-1' term, '__' is needed.
+It prevents '([A].b!='!')' being interpreted as an 'no-1' term instead of 'query-2'.</P>
+
+<BR>
+<B>Orphaned frames at the end of a frame stream, recoding.</B>
+Replace them with the newest image in the image stream.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0><TR><TD><PRE>
+fps.fifo.dropall        ...the newest image replaces any succeeding orphans
+( [A] )                 ...stride: single frames
+( (                       ...match but not end match:
+    ( [A].b!='!' )          ...query-1: is [A] a B-frame?
+    ( [A].push )              ...yes-1: copy [A] to the FIFO
+    ( fps.fifo.dropall )      ...no-1: clear the FIFO
+  )                       ...end match:
+  ( [A].b!='!' )            ...query-2: is [A] a B-frame?
+  ( ( fps.fifo+1 # newest )   ...yes-2: copy of the newest image for each orphan + 1
+    fps.fifo.dropall          ...& clear the FIFO
+  )
+  ( fps.fifo.popall [A] )     ...no-2: output the frames in the FIFO & output [A]
+)
+<I> ...continues with follow-on notation </I></PRE></TD></TR></TABLE>
+
+<BR>
+<I>Professionals recommend that PTSs always begin at zero and are gap free.
+Follow any of the above with PTS initialization, below, in order to supply valid presentation time stamps to the substituted frames.</I>
+
+
+<BR><BR>
+<!-- PTS initialization -->
+<B>PTS initialization, remuxing</B> (works for constant or variable frame rate). The 1st frame must be an I-frame.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0><TR><TD><PRE>
+$p='0'                            ...(showing the computational details of the first 5 frames)
+( [A] )                           ...stride: single frames
+(                                   ...match:
+  ( [A].i!='!' )                      ...query: is [A] an I-frame?
+  ( [A].i.pts=$p.floor $f=[A].i.fps )   ...yes: set PTS & update $f based on this I-frame's fps (e.g., 24000/1001)
+                                        ...1 $p =       0/1   | $p.floor =     0/1
+                                        ...2    =  375375/100 |          =  3753/1
+                                        ...3    =   75075/10  |          =  7507/1
+                                        ...4    = 1126125/100 |          = 11261/1
+                                        ...5    =   15015/1   |          = 15015/1
+  [A] $p+=fps.pcr/$f                  ...output this frame & accumulate $p to have it ready for the next I-frame
+)                                     ...  fps.pcr/$f = (90000/1)/(24000/1001) => 3753.75 => 375375/100
+                                      ...1 $p =       0/1   + 375375/100                             =>  375375/100
+                                      ...2    =  375375/100 + 375375/100 =>  750750/100              =>   75075/10
+                                      ...3    =   75075/10  + 375375/100 =>  750750/100 + 375375/100 => 1126125/100
+                                      ...4    = 1126125/100 + 375375/100 => 1501500/100              =>   15015/1
+                                      ...5    =   15015/1   + 375375/100                             => 1876875/100
+<I> ...continues with follow-on notation </I></PRE></TD></TR></TABLE>
+
+<BR>
+<B>PTS initialization, recoding</B> (works for constant or variable frame rate). The 1st image can be anything.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0><TR><TD><PRE>
+$p='0'
+( A )               ...stride: single images
+(                     ...match:
+  A.pts=$p.floor        ...set PTS
+  A $p+=fps.pcr/A.fps   ...& output the image & accumulate PTS
+)
+<I> ...continues with follow-on notation </I></PRE></TD></TR></TABLE>
+
+<BR><BR></BODY></HTML>
