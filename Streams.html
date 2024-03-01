@@ -104,10 +104,10 @@ that.style.height=parseInt(window.innerHeight/2)+'px';
 </HEAD>
 <BODY>
 
-<B class="big">Streams</B> —— <I>visualization of the physical properties of an 'NTSC' video for example, having only 7 frames.</I><BR>
+<B class="big">Streams</B> —— <I>visualizing the physical properties of an 'NTSC' video for example that has only 7 frames.</I><BR>
 There are more structures and headers than are shown here but what's here is what matters most.
 There are 4 pixels (2x2) per quad, 8 quads in a 16x2 pair of rows, 16 rows per macroblock, 45 macroblocks per slice, 30 slices per 'picture'.
-The 'pictures' are encoded, muxed in with audio and subtitles, and then packetized.<BR><BR>
+The 'pictures' are encoded, audio and subtitles are muxed in, and then packetized.<BR><BR>
 
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 class="nowrap">
 <TR><TD><HR class="white" style="width:10em;border:none"></TD>
@@ -146,26 +146,26 @@ The 'pictures' are encoded, muxed in with audio and subtitles, and then packetiz
     <TD class="x1"></TD><TD class="x1"></TD><TD class="x1"></TD><TD class="x1"></TD><TD class="x1"></TD><TD class="x1"></TD><TD class="x1"></TD><TD class="x1"></TD><TD class="x1"></TD><TD class="x1"></TD>
 </TR>
 
-<TR><TD rowspan=5 class="x1 right" style="vertical-align:middle">pixels&nbsp;</TD>
-    <TD colspan=43 class="box0000 x1"></TD>
+<TR><TD colspan=40 class="box0000 x1"></TD>
     <TD colspan=4  class="box0000 x1" style="border:solid white 1px;background-color:black"> </TD><TD colspan=4  class="box0000 x1" style="border:solid white 1px;background-color:silver"> </TD>
-    <TD colspan=1  class="box0000 x1"></TD>
+    <TD colspan=5  class="box0000 x1"></TD>
     <TD colspan=4  class="box0000 x1" style="border:solid white 1px;background-color:blue"> </TD><TD colspan=4  class="box0000 x1" style="border:solid white 1px;background-color:blue"> </TD>
-    <TD colspan=1  class="box0000 x1"></TD>
+    <TD colspan=5  class="box0000 x1"></TD>
     <TD colspan=4  class="box0000 x1" style="border:solid white 1px;background-color:red"> </TD><TD colspan=4  class="box0000 x1" style="border:solid white 1px;background-color:red"> </TD>
     <TD colspan=200 rowspan=2 class="x1">&nbsp;&nbsp;// pixels are specified as 2x2 quads.<BR>&nbsp;&nbsp;// There are a myriad of mapping schemes.</TD>
 </TR>
-<TR><TD colspan=43 class="box0000 x1"></TD>
+<TR><TD colspan=40 class="box0000 x1"></TD>
     <TD colspan=4  class="box0000 x1" style="border:solid white 1px;background-color:gray"> </TD><TD colspan=4  class="box0000 x1" style="border:solid white 1px;background-color:darkgray"> </TD>
-    <TD colspan=1  class="box0000 x1"></TD>
+    <TD colspan=5  class="box0000 x1"></TD>
     <TD colspan=4  class="box0000 x1" style="border:solid white 1px;background-color:blue"> </TD><TD colspan=4  class="box0000 x1" style="border:solid white 1px;background-color:blue"> </TD>
-    <TD colspan=1  class="box0000 x1"></TD>
+    <TD colspan=5  class="box0000 x1"></TD>
     <TD colspan=4  class="box0000 x1" style="border:solid white 1px;background-color:red"> </TD><TD colspan=4  class="box0000 x1" style="border:solid white 1px;background-color:red"></TD>
 </TR>
-<TR><TD colspan=44 class="box0000 x1"></TD>
+    <TD class="x1">&nbsp;</TD>
 </TR>
 
-<TR><TD colspan=2  class="box0000 x1"></TD>
+<TR><TD rowspan=4 class="x1 right" style="vertical-align:middle">the pixels in&nbsp;<BR>macroblock 1&nbsp;&nbsp;</TD>
+    <TD colspan=2 class="x1"></TD>
     <TD colspan=18 class="box1001 x1 center">pix 11536</TD>
     <TD colspan=18 class="box1101 x1 center">pix 11537</TD>
     <TD colspan=18 class="box1001 x1 center" style="border-top:dashed 1px;border-bottom-width:2px">pix 11538</TD>
@@ -173,6 +173,7 @@ The 'pictures' are encoded, muxed in with audio and subtitles, and then packetiz
     <TD colspan=18 class="box1101 x1 center">pix 11540</TD>
     <TD colspan=6  class="box0000 x1 center"><B>··</B></TD>
     <TD colspan=18 class="box1101 x1 center">pix 11551</TD>
+    <TD colspan=20  class="x1"></TD><TD colspan=200 rowspan=4 class="x1" style="vertical-align:middle">// macroblock = 16x16 pix.</TD>
 </TR>
 <TR><TD colspan=2  class="box0000 x1"></TD>
     <TD colspan=18 class="box1011 x1 center">pix 12256</TD>
@@ -183,62 +184,82 @@ The 'pictures' are encoded, muxed in with audio and subtitles, and then packetiz
     <TD colspan=6  class="box0000 x1 center"><B>··</B></TD>
     <TD colspan=18 class="box1111 x1 center">pix 12271</TD>
 </TR>
-
-<TR><TD colspan=3  class="box0000 x1">&nbsp;</TD>
+<TR><TD colspan=2  class="box0000 x1"></TD>
     <TD colspan=18 class="box0000 x1 center big">:</TD>
-    <TD colspan=18 class="box0000 x1"></TD>
-    <TD colspan=18 class="box0000 x1"></TD>
-    <TD colspan=18 class="box0000 x1"></TD>
+    <TD colspan=18 class="box0000 x1 center big">:</TD>
+    <TD colspan=18 class="box0000 x1 center big">:</TD>
+    <TD colspan=18 class="box0000 x1 center big">:</TD>
+    <TD colspan=18 class="box0000 x1 center big">:</TD>
     <TD colspan=6  class="box0000 x1"></TD>
-    <TD colspan=18 class="box0000 x1"></TD>
     <TD colspan=18 class="box0000 x1 center big">:</TD>
 </TR>
-<TR><TD colspan=3  class="box0000 x1"></TD>
+<TR><TD colspan=2  class="box0000 x1"></TD>
     <TD colspan=18 class="box1111 x1 center">pix 22336</TD>
-    <TD colspan=18 class="box0000 x1 center"></TD>
-    <TD colspan=18 class="box0000 x1 center"></TD>
-    <TD colspan=18 class="box0000 x1 center"></TD>
-    <TD colspan=18 class="box0000 x1 center"></TD>
+    <TD colspan=18 class="box1110 x1 center">pix 22337</TD>
+    <TD colspan=18 class="box1110 x1 center">pix 22338</TD>
+    <TD colspan=18 class="box1110 x1 center">pix 22339</TD>
+    <TD colspan=18 class="box1110 x1 center">pix 22340</TD>
     <TD colspan=6  class="box0000 x1 center"><B>··</B></TD>
     <TD colspan=18 class="box1111 x1 center">pix 22351</TD>
-</TR>
-
-<TR><TD colspan=1 class="x1"></TD>
+</TR><!--
+<TR><TD class="x1"></TD>
     <TD colspan=45 class="box0000 x1 center bold">'————————————————————————.</TD>
     <TD colspan=22 class="box0000 x1"></TD>
     <TD colspan=51 class="box0000 x1 center bold">.————————————————————————————'</TD>
+</TR>-->
+<TR style="line-height:90%">
+    <TD class="x1"></TD>
+    <TD colspan=45 class="box0000 x1 center bold">\______________________&nbsp;<BR>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;\</TD>
+    <TD colspan=22 class="box0000 x1"></TD>
+    <TD colspan=51 class="box0000 x1 center bold">&nbsp;__________________________/<BR>/&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
 </TR>
 
-<TR><TD class="x1 right">macroblocks&nbsp;</TD>
-    <TD colspan=17 class="box0000 x1"></TD>
-    <TD colspan=26 class="box1111 x1 center">macroblock 45</TD>
-    <TD colspan=26 class="box1111 x1 center" style="border-top:dashed 1px;border-bottom-width:2px">macroblock 46</TD>
-    <TD colspan=26 class="box1111 x1 center">macroblock 47</TD>
+<TR><TD class="x1 right">slice 0&nbsp;&nbsp;</TD>
+    <TD colspan=14 class="box0000 x1"></TD>
+    <TD colspan=28 class="box1101 x1 center">macroblock 0</TD>
+    <TD colspan=28 class="box1111 x1 center" style="border-top:dashed 1px;border-bottom-width:2px">macroblock 1</TD>
+    <TD colspan=28 class="box1101 x1 center">macroblock 2</TD>
     <TD colspan=6  class="box0000 x1 center"><B>··</B></TD>
-    <TD colspan=26 class="box1111 x1 center">macroblock 89</TD>
-    <TD colspan=3 class="x1"></TD><TD colspan=200 class="x1">// macroblock = 16x16 pix.</TD>
+    <TD colspan=28 class="box1101 x1 center">macroblock 44</TD>
+    <TD colspan=4 class="x1"></TD><TD colspan=200 rowspan=4 class="x1" style="vertical-align:middle">// slice = 720x16 pix.</TD>
 </TR>
-<TR><TD colspan=16 class="x1"></TD>
-    <TD colspan=35 class="box0000 x1 center bold">'——————————————————.</TD>
+<TR><TD class="x1 right">slice 1&nbsp;&nbsp;</TD>
+    <TD colspan=14 class="box0000 x1"></TD>
+    <TD colspan=28 class="box1111 x1 center">macroblock 45</TD>
+    <TD colspan=28 class="box1110 x1 center">macroblock 46</TD>
+    <TD colspan=28 class="box1110 x1 center">macroblock 47</TD>
+    <TD colspan=6  class="box0000 x1 center"><B>··</B></TD>
+    <TD colspan=28 class="box1111 x1 center">macroblock 89</TD>
+</TR>
+<TR><TD class="x1"></TD>
+    <TD colspan=14 class="box0000 x1"></TD>
+    <TD colspan=28 class="box0000 x1 center big">:</TD>
+    <TD colspan=28 class="box0000 x1 center big">:</TD>
+    <TD colspan=28 class="box0000 x1 center big">:</TD>
+    <TD colspan=6  class="box0000 x1"></TD>
+    <TD colspan=28 class="box0000 x1 center big">:</TD>
+</TR>
+<TR><TD class="x1 right">slice 29&nbsp;</TD>
+    <TD colspan=14 class="box0000 x1"></TD>
+    <TD colspan=28 class="box1111 x1 center">macroblock 1305</TD>
+    <TD colspan=28 class="box1110 x1 center">macroblock 1306</TD>
+    <TD colspan=28 class="box1110 x1 center">macroblock 1307</TD>
+    <TD colspan=6  class="box0000 x1 center"><B>··</B></TD>
+    <TD colspan=28 class="box1111 x1 center">macroblock 1349</TD>
+</TR><!--
+<TR><TD colspan=13 class="x1"></TD>
+    <TD colspan=38 class="box0000 x1 center bold">'————————————————————.</TD>
     <TD colspan=12 class="box0000 x1"></TD>
-    <TD colspan=67 class="box0000 x1 center bold">.——————————————————————————————————————'</TD>
-</TR>
-<TR><TD class="x1 right">slices&nbsp;</TD>
-    <TD colspan=32></TD>
-    <TD colspan=16 class="box1111 x1 center">slice 0</TD>
-    <TD colspan=16 class="box1111 x1 center" style="border-top:dashed 1px;border-bottom-width:2px">slice 1</TD>
-    <TD colspan=16 class="box1111 x1 center">slice 2</TD>
-    <TD colspan=6  class="box0000 x1 center"><B>··</B></TD>
-    <TD colspan=16 class="box1111 x1 center">slice 29</TD>
-    <TD colspan=28  class="x1"></TD><TD colspan=200 class="x1">// slice = 720x16 pix.</TD>
+    <TD colspan=72 class="box0000 x1 center bold">.—————————————————————————————————————————'</TD>
+</TR>-->
+<TR style="line-height:90%">
+    <TD colspan=13 class="x1"></TD>
+    <TD colspan=38 class="box0000 x1 center bold">\__________________&nbsp;<BR>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;\</TD>
+    <TD colspan=12 class="box0000 x1"></TD>
+    <TD colspan=72 class="box0000 x1 center bold">&nbsp;_______________________________________/<BR>/ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</TD>
 </TR>
 
-<TR><TD colspan=31 class="x1"></TD>
-    <TD colspan=20 class="box0000 x1 center bold">'—————————.</TD>
-    <TD colspan=12 x1"></TD>
-    <TD colspan=42 class="box0000 x1 center bold">.———————————————————————'</TD>
-</TR>
-<TR><TD class="right">'pictures'&nbsp;</TD>
+<TR><TD class="x1 right">'pictures'&nbsp;</TD>
     <TD colspan=16 class="box1011 x1 center">picdata</TD>
     <TD colspan=16 class="box1011 x1 center">picdata</TD>
     <TD colspan=16 class="box1111 x1 center">picdata</TD>
@@ -246,11 +267,12 @@ The 'pictures' are encoded, muxed in with audio and subtitles, and then packetiz
     <TD colspan=16 class="box1111 x1 center">picdata</TD>
     <TD colspan=16 class="box1011 x1 center">picdata</TD>
     <TD colspan=16 class="box1111 x1 center">picdata</TD>
-    <TD colspan=18 class="x1"></TD><TD colspan=200 class="x1">// picdata = 720x480 pix.</TD>
+    <TD colspan=24  class="x1"></TD><TD colspan=200 class="x1">// picdata = 720x480 pix.</TD>
 </TR>
 
 <TR><TD><HR class="white" style="width:0;border:none"></TD></TR>
-<TR><TD class="right">coded 'pictures'&nbsp;</TD>
+
+<TR><TD class="x1 right">coded 'pictures'&nbsp;</TD>
     <TD colspan=14 class="box1111 x1 center turquoise">I</TD>
     <TD colspan=2  class="box0000 x1"></TD>
     <TD colspan=3  class="box1111 x1 center turquoise">B</TD>
@@ -267,7 +289,8 @@ The 'pictures' are encoded, muxed in with audio and subtitles, and then packetiz
 </TR>
 
 <TR><TD><HR class="white" style="width:0;border:none"></TD></TR>
-<TR><TD class="right">'picture' stream&nbsp;</TD>
+
+<TR><TD class="x1 right">'picture' stream&nbsp;</TD>
     <TD colspan=14 class="box1011 x1 center turquoise">I</TD>
     <TD colspan=3  class="box1011 x1 center turquoise">B</TD>
     <TD colspan=3  class="box1011 x1 center turquoise">B</TD>
@@ -278,62 +301,67 @@ The 'pictures' are encoded, muxed in with audio and subtitles, and then packetiz
 </TR>
 
 <TR><TD><HR class="white" style="width:0;border:none"></TD></TR>
-<TR><TD class="right">'picture' headers&nbsp;</TD>
-    <TD colspan=1  class="box1111 x1 black"></TD>
+
+<TR><TD class="x1 right">'picture' headers&nbsp;</TD>
+    <TD class="box1111 x1 black"></TD>
     <TD colspan=14 class="box1011 x1 center turquoise" style="border-left-color:darkturquoise">I</TD>
-    <TD colspan=1  class="box1111 x1 black"></TD>
+    <TD class="box1111 x1 black"></TD>
     <TD colspan=3  class="box1011 x1 center turquoise" style="border-left-color:darkturquoise">B</TD>
-    <TD colspan=1  class="box1111 x1 black"></TD>
+    <TD class="box1111 x1 black"></TD>
     <TD colspan=3  class="box1011 x1 center turquoise" style="border-left-color:darkturquoise">B</TD>
-    <TD colspan=1  class="box1111 x1 black"></TD>
+    <TD class="box1111 x1 black"></TD>
     <TD colspan=6  class="box1011 x1 center turquoise" style="border-left-color:darkturquoise">P</TD>
-    <TD colspan=1  class="box1111 x1 black"></TD>
+    <TD class="box1111 x1 black"></TD>
     <TD colspan=3  class="box1011 x1 center turquoise" style="border-left-color:darkturquoise">B</TD>
-    <TD colspan=1  class="box1111 x1 black"></TD>
+    <TD class="box1111 x1 black"></TD>
     <TD colspan=3  class="box1011 x1 center turquoise" style="border-left-color:darkturquoise">B</TD>
-    <TD colspan=1  class="box1111 x1 black"></TD>
+    <TD class="box1111 x1 black"></TD>
     <TD colspan=14 class="box1111 x1 center turquoise" style="border-left-color:darkturquoise">I</TD>
     <TD colspan=6 class="box0000 x1"></TD><TD colspan=200 class="box0000 x1">// 0x00000100 start code.</TD>
 </TR>
 
 <TR><TD><HR class="white" style="width:0;border:none"></TD></TR>
-<TR><TD class="right">GOP & user data&nbsp;</TD>
-    <TD colspan=1  class="box1111 x1 black"></TD>
+
+<TR><TD class="x1 right">GOP & user data&nbsp;</TD>
+    <TD class="box1111 x1 black"></TD>
     <TD colspan=15 class="box1111 x1 center turquoise" style="border-left-color:darkturquoise">I</TD>
     <TD colspan=4  class="box1110 x1 center turquoise">B</TD>
     <TD colspan=4  class="box1110 x1 center turquoise">B</TD>
     <TD colspan=7  class="box1110 x1 center turquoise">P</TD>
     <TD colspan=4  class="box1110 x1 center turquoise">B</TD>
     <TD colspan=4  class="box1110 x1 center turquoise">B</TD>
-    <TD colspan=1  class="box1110 x1 black"></TD>
+    <TD class="box1110 x1 black"></TD>
     <TD colspan=15 class="box1111 x1 center turquoise" style="border-left-color:darkturquoise">I</TD>
     <TD colspan=4 class="box0000 x1"></TD><TD colspan=210 class="box0000 x1">// GOP (0x000001B8 start code) is optional; user data is optional.</TD>
 </TR>
 
 <TR><TD><HR class="white" style="width:0;border:none"></TD></TR>
-<TR><TD class="right">video sequence&nbsp;</TD>
-    <TD colspan=1  class="box1111 x1 black"></TD>
-    <TD colspan=1  class="box1110 x1 turquoise"></TD>
+
+<TR><TD class="x1 right">video sequence&nbsp;</TD>
+    <TD class="box1111 x1 black"></TD>
+    <TD class="box1110 x1 turquoise"></TD>
     <TD colspan=15 class="box1110 x1 center turquoise" style="border-left-color:darkturquoise">I</TD>
     <TD colspan=4  class="box1110 x1 center turquoise">B</TD>
     <TD colspan=4  class="box1110 x1 center turquoise">B</TD>
     <TD colspan=7  class="box1110 x1 center turquoise">P</TD>
     <TD colspan=4  class="box1110 x1 center turquoise">B</TD>
     <TD colspan=4  class="box1110 x1 center turquoise">B</TD>
-    <TD colspan=1  class="box1110 x1 turquoise"></TD>
+    <TD class="box1110 x1 turquoise"></TD>
     <TD colspan=15 class="box1111 x1 center turquoise" style="border-left-color:darkturquoise;border-right-color:darkturquoise">I</TD>
-    <TD colspan=1  class="box1110 x1 black"></TD>
+    <TD class="box1110 x1 black"></TD>
     <TD colspan=2  class="box0000 x1"></TD><TD colspan=200 class="box0000 x1">// 0x000001B3 start code, 0x000001B7 end code.</TD>
 </TR>
 
 <TR><TD><HR class="white" style="width:0;border:none"></TD></TR>
-<TR><TD class="right">video&nbsp;</TD>
+
+<TR><TD class="x1 right">video&nbsp;</TD>
     <TD colspan=57 class="box1111 x1 turquoise"></TD>
     <TD colspan=5  class="box0000 x1">&nbsp;</TD>
 </TR>
 
 <TR><TD><HR class="white" style="width:0;border:none"></TD></TR>
-<TR><TD class="right">video packets&nbsp;</TD>
+
+<TR><TD class="x1 right">video packets&nbsp;</TD>
     <TD colspan=2 class="box1011 x1 turquoise"> </TD>
     <TD colspan=2 class="box1011 x1 turquoise"> </TD>
     <TD colspan=2 class="box1011 x1 turquoise"> </TD>
@@ -367,7 +395,8 @@ The 'pictures' are encoded, muxed in with audio and subtitles, and then packetiz
 </TR>
 
 <TR><TD><HR class="white" style="width:0;border:none"></TD></TR>
-<TR><TD class="right">audio & subtitles&nbsp;</TD>
+
+<TR><TD class="x1 right">audio & subtitles&nbsp;</TD>
     <TD colspan=2 class="box0000 x1"> </TD>
     <TD colspan=2 class="box0000 x1"> </TD>
     <TD colspan=2 class="box1011 x1 pink"> </TD>
@@ -380,7 +409,8 @@ The 'pictures' are encoded, muxed in with audio and subtitles, and then packetiz
 </TR>
 
 <TR><TD><HR class="white" style="width:0;border:none"></TD></TR>
-<TR><TD class="right">multiplex stream&nbsp;</TD>
+
+<TR><TD class="x1 right">multiplex stream&nbsp;</TD>
     <TD colspan=2 class="box1011 x1 turquoise"> </TD>
     <TD colspan=2 class="box1011 x1 turquoise" style="border-left-color:darkturquoise"> </TD>
     <TD colspan=2 class="box1011 x1 pink" style="border-left-color:hotpink"> </TD>
@@ -417,7 +447,8 @@ The 'pictures' are encoded, muxed in with audio and subtitles, and then packetiz
 </TR>
 
 <TR><TD><HR class="white" style="width:0;border:none"></TD></TR>
-<TR><TD class="right">PES headers&nbsp;</TD>
+
+<TR><TD class="x1 right">PES headers&nbsp;</TD>
     <TD colspan=1 class="box1011 x1 black" style="border-right-color:darkturquoise"></TD>
     <TD colspan=2 class="box1011 x1 turquoise" style="border-left-color:darkturquoise"> </TD>
     <TD colspan=1 class="box1011 x1 black" style="border-right-color:darkturquoise"></TD>
@@ -486,7 +517,8 @@ The 'pictures' are encoded, muxed in with audio and subtitles, and then packetiz
 </TR>
 
 <TR><TD><HR class="white" style="width:0;border:none"></TD></TR>
-<TR><TD class="right">PS headers&nbsp;</TD>
+
+<TR><TD class="x1 right">PS headers&nbsp;</TD>
     <TD colspan=1 class="box1011 x1 black" style="border-right-color:darkturquoise"></TD>
     <TD colspan=3 class="box1011 x1 turquoise" style="border-left-color:darkturquoise"> </TD>
     <TD colspan=1 class="box1011 x1 black" style="border-right-color:darkturquoise"></TD>
@@ -555,7 +587,8 @@ The 'pictures' are encoded, muxed in with audio and subtitles, and then packetiz
 </TR>
 
 <TR><TD><HR class="white" style="width:0;border:none"></TD></TR>
-<TR><TD class="right">program stream&nbsp;</TD>
+
+<TR><TD class="x1 right">program stream&nbsp;</TD>
     <TD colspan=5 class="box1011 x1 turquoise"> </TD>
     <TD colspan=3 class="box1111 x1 turquoise" style="border-right-color:darkturquoise"> </TD>
     <TD colspan=2 class="box1011 x1 pink" style="border-left-color:hotpink"> </TD>
@@ -591,7 +624,8 @@ The 'pictures' are encoded, muxed in with audio and subtitles, and then packetiz
 </TR>
 
 <TR><TD><HR class="white" style="width:0;border:none"></TD></TR>
-<TR><TD class="right">transport stream&nbsp;</TD>
+
+<TR><TD class="x1 right">transport stream&nbsp;</TD>
     <TD colspan=1 class="box1011 x1 turquoise"></TD><TD colspan=1 class="box1011 x1 turquoise"></TD><TD colspan=1 class="box1011 x1 turquoise"></TD><TD colspan=1 class="box1011 x1 turquoise"></TD><TD colspan=1 class="box1011 x1 turquoise"></TD>
     <TD colspan=1 class="box1011 x1 turquoise"></TD><TD colspan=1 class="box1011 x1 turquoise"></TD><TD colspan=1 class="box1011 x1 turquoise"></TD><TD colspan=1 class="box1011 x1 pink"></TD><TD colspan=1 class="box1011 x1 pink"></TD>
     <TD colspan=1 class="box1011 x1 pink"></TD><TD colspan=1 class="box1011 x1 pink"></TD><TD colspan=1 class="box1011 x1 pink"></TD><TD colspan=1 class="box1011 x1 pink"></TD><TD colspan=1 class="box1011 x1 pink"></TD>
