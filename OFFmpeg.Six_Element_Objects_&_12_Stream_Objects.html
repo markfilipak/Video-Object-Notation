@@ -188,7 +188,7 @@ Method <B class="wheat">hfps.[</B> decodes to produce a new hps stream.
 </PRE></TD>
 
 <TD class="box1111"><PRE class="white">
-<B class="underline">pps</B> (pictures-per-second): consecutive p elements
+<B class="underline">pps</B> (pictures-per-second): a stream of p elements
 — called <I>progressive</I> by some authorities.
 pps streams have the following intrinsic properties:
 &bullet; resolution: full.
@@ -249,27 +249,25 @@ tpfps streams have the following intrinsic properties:
 Method <B class="wheat">tpfps.[</B> decodes to produce a new tpps stream.
 </PRE></TD></TR>
 
-</TABLE>
-
-<PRE class="white" style="line-height:94%">
+<TR><TD colspan=2 class="box0000"><PRE class="white" style="line-height:94%">
 [note1] Here is a mapping of the stream-to-stream production methods: sfps———sps———spps———spfps
 
                                                                       hfps———hps———pps————pfps
                                                                               |
                                                                       tfps———tps———tpps———tpfps
-</PRE>
-<HR class="white" style="width:61em">
-<PRE class="white">
+</PRE></TD></TR>
+
+<TR><TD colspan=2 class="box0000">
+<HR class="white"><PRE class="white">
 [note2] Pipe rate is not always actual timing.          <B class="lightgreen">[____]</B>
 Using actual timing, the two h elements are coincident: <B class="lightgreen">[____]</B>, but in pipelines they are serial: <B class="lightgreen">[_][_]</B>.
-</PRE>
-<HR class="white" style="width:61em">
-<PRE class="white">
+</PRE></TD></TR>
+
+<TR><TD colspan=2 class="box0000">
+<HR class="white"><PRE class="white">
 [note3] Stride-match can be used to create anonymous streams to do other things.
-</PRE>
+</PRE></TD></TR>
 
-<PRE class="white">
-</PRE>
-
+</TABLE>
 
 <BR></BODY></HTML>
