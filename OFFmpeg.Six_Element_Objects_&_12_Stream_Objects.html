@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META http-equiv="content-type" content="text/html; charset=utf-8">
+<META http-equiv="content-language" content="en">
+<META http-equiv="cache-control" content="no-cache">
+<META http-equiv="expires" content="Thu, 01 Jan 1970 00:00:00 GMT">
+<META http-equiv="pragma" content="no-cache">
+<META http-equiv="content-style-type" content="text/css">
+<!--<LINK href="OFFmpeg.css" rel="stylesheet" type="text/css">-->
+<STYLE>
+*{font-family:monospace;margin:0;padding:0}
+A{border-bottom:solid black 1px;font-weight:bold}
+BODY{background-color:#FFFFE8;padding:0 1.5em 0 0.5em}
+BLOCKQUOTE{padding-left:2em}
+HR{margin:0.25em}
+IMG{border:1px solid black}
+P{padding-left:2em;text-indent:-2em;margin-top:0.2em}
+PRE{background-color:wheat;padding:0 0.5em;margin:0.25em 0}
+TABLE{/*padding:0 3em 0 0;*/border:none}
+TR{vertical-align:top}
+TD{padding:0}
+.anchor-open{border:none;text-decoration:none;vertical-align:bottom;padding:0 0.1em}
+.anchor-x{border:none;text-decoration:none;vertical-align:bottom}
+.aqua{background-color:#D5FFEA;font-weight:bold}
+.big{font-size:120%}
+.black{background-color:black}
+.bold{font-weight:bold}
+.bottom{vertical-align:bottom}
+.box0000{border-top:solid white 1px;border-right:solid white 1px;border-bottom:solid white 1px;border-left:solid white 1px;padding:0 0.25em}
+.box0001{border-top:solid white 1px;border-right:solid white 1px;border-bottom:solid white 1px;border-left:solid black 1px;padding:0 0.25em}
+.box0010{border-top:solid white 1px;border-right:solid white 1px;border-bottom:solid black 1px;border-left:solid white 1px;padding:0 0.25em}
+.box0011{border-top:solid white 1px;border-right:solid white 1px;border-bottom:solid black 1px;border-left:solid black 1px;padding:0 0.25em}
+.box0100{border-top:solid white 1px;border-right:solid black 1px;border-bottom:solid white 1px;border-left:solid white 1px;padding:0 0.25em}
+.box0101{border-top:solid white 1px;border-right:solid black 1px;border-bottom:solid white 1px;border-left:solid black 1px;padding:0 0.25em}
+.box0110{border-top:solid white 1px;border-right:solid black 1px;border-bottom:solid black 1px;border-left:solid white 1px;padding:0 0.25em}
+.box0111{border-top:solid white 1px;border-right:solid black 1px;border-bottom:solid black 1px;border-left:solid black 1px;padding:0 0.25em}
+.box1000{border-top:solid black 1px;border-right:solid white 1px;border-bottom:solid white 1px;border-left:solid white 1px;padding:0 0.25em}
+.box1001{border-top:solid black 1px;border-right:solid white 1px;border-bottom:solid white 1px;border-left:solid black 1px;padding:0 0.25em}
+.box1010{border-top:solid black 1px;border-right:solid white 1px;border-bottom:solid black 1px;border-left:solid white 1px;padding:0 0.25em}
+.box1011{border-top:solid black 1px;border-right:solid white 1px;border-bottom:solid black 1px;border-left:solid black 1px;padding:0 0.25em}
+.box1100{border-top:solid black 1px;border-right:solid black 1px;border-bottom:solid white 1px;border-left:solid white 1px;padding:0 0.25em}
+.box1101{border-top:solid black 1px;border-right:solid black 1px;border-bottom:solid white 1px;border-left:solid black 1px;padding:0 0.25em}
+.box1110{border-top:solid black 1px;border-right:solid black 1px;border-bottom:solid black 1px;border-left:solid white 1px;padding:0 0.25em}
+.box1111{border-top:solid black 1px;border-right:solid black 1px;border-bottom:solid black 1px;border-left:solid black 1px;padding:0 0.25em}
+.box{border:solid black 1px;padding:0 0.25em}
+.center{text-align:center}
+.gold{background-color:gold}
+.green{color:forestgreen;border-color:forestgreen !important;font-weight:bold}
+.left{text-align:left}
+.lightgray{background-color:lightgray}
+.lightgreen{background-color:lightgreen;border-color:lightgreen}
+.middle{vertical-align:middle}
+.normal{font-weight:normal}
+.nowrap{white-space:nowrap}
+.overline{border-top:solid black 1px}
+.papaya{background-color:papayawhip}
+.pink{background-color:hotpink}
+.purple{background-color:#EFDFFF}
+.red{color:crimson;border-color:crimson !important;font-weight:bold}
+.right{text-align:right}
+.serif{font-family:serif;font-size:0.8em;line-height:0.95em;letter-spacing:0.04em}
+.show{margin:-1.2em 0 0 3.5em}
+.small{font-size:85%}
+.super{vertical-align:super}
+.top{vertical-align:top}
+.turquoise{background-color:darkturquoise}
+.underline{border-bottom:solid black 1px;line-height:1.5em}
+.unnowrap{white-space:normal}
+.wheat{background-color:wheat}
+.white{background-color:#FFFFE8/*;margin:0.2em 0.2em*/}
+.wrap{white-space:normal}
+.x0{padding:0 !important}
+.x1{padding:0.1em !important}
+.yellow{background-color:#FFFF4A;font-weight:bold}
+</STYLE>
+<META http-equiv="content-script-type" content="text/javascript">
+<SCRIPT>
+function anchor_show_onclick(that)
+{
+that.nextSibling.nextSibling.style.display='block';
+iframe_size(that.nextSibling.nextSibling.firstChild.firstChild.firstChild.firstChild.nextSibling.nextSibling);
+}
+function anchor_x_onclick(that)
+{
+that.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.style.display='none';
+}
+function iframe_open(that)
+{
+window.open(that.parentNode.parentNode.parentNode.parentNode.nextSibling.nextSibling.src);
+}
+function box_size(that)
+{
+that.style.width=parseInt(window.getComputedStyle(document.body).getPropertyValue('width'))+'px';
+}
+function iframe_size(that)
+{
+that.style.width=parseInt(window.getComputedStyle(document.body).getPropertyValue('width'))+'px';
+that.style.height=parseInt(window.innerHeight/2)+'px';
+}
+</SCRIPT>
+
+<TITLE>Six Element Objects & 12 Stream Objects</TITLE>
+</HEAD>
+<BODY>
+
+<B class="big">Six Element Objects & 12 Stream Objects</B> —— <I>a table of element object & stream object characteristics.</I><BR>
+The following objects each possess physical characteristics that uniquely differentiate them.
+They are the object-oriented equivalents of datatypes but can also possess uniquely suited properties and methods.<BR>
+
+<BR>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+
+<TR class="bold center"><TD>Half resolution image streams & field streams</TD><TD>Full resolution image streams & frame streams</TD></TR>
+
+<TD class="box1001" style="border-style:dotted"><PRE class="yellow">
+<B class="underline">s</B> (scan): the native scan element.
+&bullet; resolution: half.
+&bullet; pixels: consecutive, left to right, top to bottom.<BR>
+</PRE></TD>
+
+<TD class="box1101" style="border-style:dotted"><PRE class="yellow">
+<B class="underline">sp</B> (scanpic): a consecutive pair of scans, weaved — a
+pseudo picture.
+&bullet; resolution: full.
+&bullet; shows combing in every image containing motion.
+</PRE></TD>
+</TR>
+
+<TR><TD class="box1011"><PRE class="white">
+<B class="underline">sps</B> (scans-per-second): a stream of s elements.
+sps streams have the following intrinsic properties:
+&bullet; resolution: half.
+&bullet; pipe rate: sps.
+Method <B class="wheat">sps.spps</B> weaves to produce a new spps stream.
+Method <B class="wheat">sps.]</B> encodes to produce a new sfps stream.
+<B class="underline">sfps</B> (scan-frames-per-second): field encoded sps.
+sfps streams have the following intrinsic properties:
+&bullet; resolution: half (per field).
+&bullet; pipe rate: sfps = sps/2.
+Method <B class="wheat">sfps.[</B> decodes to produce a new sps stream.
+</PRE></TD>
+
+<TD class="box1111"><PRE class="white">
+<B class="underline">spps</B> (scanpics-per-second): a stream of sp elements.
+spps streams have the following intrinsic properties:
+&bullet; resolution: full.
+&bullet; pipe rate: spps = sps/2.
+&bullet; shows combing in every image containing motion.
+Method <B class="wheat">spps.sps</B> unweaves to produce a new sps stream.
+Method <B class="wheat">spps.]</B> encodes to produce a new spfps stream.
+<B class="underline">spfps</B> (scanpic-frames-per-second): frame encoded spps.
+spfps streams have the following intrinsic properties:
+&bullet; resolution: full.
+&bullet; pipe rate: spfps = spps.
+&bullet; shows combing in every frame containing motion.
+Method <B class="wheat">spfps.[</B> decodes to produce a new spps stream.
+</PRE></TD></TR>
+
+<TD class="box0001" style="border-style:dotted"><PRE class="yellow">
+<B class="underline">h</B> (halfpics): two concurrent half 'pictures' as
+unweaved from a single 'picture'.
+&bullet; resolution: half.
+</PRE></TD>
+
+<TD class="box0101" style="border-style:dotted"><PRE class="yellow">
+<B class="underline">p</B> (picture): the native 'picture' element.
+&bullet; resolution: full.
+&bullet; pixels: simultaneous.
+</PRE></TD></TR>
+
+<TR><TD class="box1011"><PRE class="white">
+<B class="underline">hps</B> (halfpics-per-second): a stream of h elements.
+hps streams have the following intrinsic properties:
+&bullet; resolution: half.
+&bullet; pipe rate: hps = pps*2 [note2].
+&bullet; hps weaved together is pps.
+Method <B class="wheat">hps.pps</B> weaves to produce a new pps stream.
+Method <B class="wheat">hps.(AaBbCcDd(AaBbBcCdDd))</B> uses stride-match
+to produce a new tps stream, 'NTSC' telecine in this
+case. [note3]
+Method <B class="wheat">hps.]</B> encodes to produce a new hfps stream.
+<B class="underline">hfps</B> (halfpic-frames-per-second): field encoded hps.
+hfps streams have the following intrinsic properties:
+&bullet; resolution: half (per field).
+&bullet; pipe rate: hfps = hps/2.
+Method <B class="wheat">hfps.[</B> decodes to produce a new hps stream.
+</PRE></TD>
+
+<TD class="box1111"><PRE class="white">
+<B class="underline">pps</B> (pictures-per-second): consecutive p elements
+— called <I>progressive</I> by some authorities.
+pps streams have the following intrinsic properties:
+&bullet; resolution: full.
+&bullet; pipe rate: pps.
+Method <B class="wheat">pps.hps</B> unweaves to produce a new hps stream.
+Method <B class="wheat">pps.]</B> encodes to produce a new pfps stream.
+<B class="underline">pfps</B> (picture-frames-per-second): frame encoded pps.
+pfps streams have the following intrinsic properties:
+&bullet; resolution: full.
+&bullet; pipe rate: pfps = pps.
+Method <B class="wheat">pfps.[</B> decodes to produce a new pps stream.
+</PRE></TD></TR>
+
+<TR><TD class="box0001" style="border-style:dotted"><PRE class="yellow">
+<B class="underline">th</B> (telehalfpics): two non-concurrent half 'pictures'
+as unweaved from two consecutive 'pictures'.
+&bullet; resolution: half.
+</PRE></TD>
+
+<TD class="box0101" style="border-style:dotted"><PRE class="yellow">
+<B class="underline">tp</B> (telepics): a th element, weaved — a pseudo picture.
+&bullet; resolution: full.
+&bullet; shows combing in every image containing motion.
+</PRE></TD></TR>
+
+<TR><TD class="box1011"><PRE class="white">
+<B class="underline">tps</B> (telecines-per-second): a stream of h elements
+combined with strategically placed th elements.
+tps streams have the following intrinsic properties:
+&bullet; resolution: half.
+&bullet; pipe rate: tps = hps*(h_count+th_count)/(h_count+1).
+Method <B class="wheat">tps.tpps</B> weaves to produce a new tpps stream.
+Method <B class="wheat">tps.(AaBbBcCdDd(AaBbCcDd))</B> uses stride-match
+to produce a new hps stream, 'NTSC' detelecine in
+this case. [note3]
+Method <B class="wheat">tps.]</B> encodes to produce a new tfps stream.
+<B class="underline">tfps</B> (telecine-frames-per-second): field encoded tps.
+tfps streams have the following intrinsic properties:
+&bullet; resolution: half (per field).
+&bullet; pipe rate: tfps = tps/2.
+Method <B class="wheat">tfps.[</B> decodes to produce a new tps stream.
+</PRE></TD>
+
+<TD class="box1111"><PRE class="white">
+<B class="underline">tpps</B> (telepics-per-second): a stream of p elements
+combined with strategically placed tp elements.
+tpps streams have the following intrinsic properties:
+&bullet; resolution: full.
+&bullet; pipe rate: tpps = pps*(p_count+tp_count)/(p_count+1).
+&bullet; shows combing in every tp image containing motion.
+Method <B class="wheat">tpps.tps</B> unweaves to produce a new tps stream.
+Method <B class="wheat">tpps.]</B> encodes to produce a new tpfps stream.
+<B class="underline">tpfps</B> (telepic-frames-per-second): frame encoded tpps.
+tpfps streams have the following intrinsic properties:
+&bullet; resolution: full.
+&bullet; pipe rate: tpfps = tpps.
+&bullet; shows combing in every tp frame containing motion.
+Method <B class="wheat">tpfps.[</B> decodes to produce a new tpps stream.
+</PRE></TD></TR>
+
+</TABLE>
+
+<PRE class="white" style="line-height:94%">
+[note1] Here is a mapping of the stream-to-stream production methods: sfps———sps———spps———spfps
+
+                                                                      hfps———hps———pps————pfps
+                                                                              |
+                                                                      tfps———tps———tpps———tpfps
+</PRE>
+<HR class="white" style="width:61em">
+<PRE class="white">
+[note2] Pipe rate is not always actual timing.          <B class="lightgreen">[____]</B>
+Using actual timing, the two h elements are coincident: <B class="lightgreen">[____]</B>, but in pipelines they are serial: <B class="lightgreen">[_][_]</B>.
+</PRE>
+<HR class="white" style="width:61em">
+<PRE class="white">
+[note3] Stride-match can be used to create anonymous streams to do other things.
+</PRE>
+
+<PRE class="white">
+</PRE>
+
+
+<BR></BODY></HTML>
