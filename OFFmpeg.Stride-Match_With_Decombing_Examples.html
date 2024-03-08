@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META http-equiv="content-type" content="text/html; charset=utf-8">
+<META http-equiv="content-language" content="en">
+<META http-equiv="cache-control" content="no-cache">
+<META http-equiv="expires" content="Thu, 01 Jan 1970 00:00:00 GMT">
+<META http-equiv="pragma" content="no-cache">
+<META http-equiv="content-style-type" content="text/css">
+<!--<LINK href="OFFmpeg.css" rel="stylesheet" type="text/css">-->
+<STYLE>
+*{font-family:monospace;margin:0;padding:0}
+A{border-bottom:solid black 1px;font-weight:bold}
+BODY{background-color:#FFFFE8;padding:0 1.5em 0 0.5em}
+BLOCKQUOTE{padding-left:2em}
+HR{margin:0.25em}
+IMG{border:1px solid black}
+P{padding-left:2em;text-indent:-2em;margin-top:0.2em}
+PRE{background-color:wheat;padding:0 0.5em;margin:0.25em 0}
+TABLE{/*padding:0 3em 0 0;*/border:none}
+TR{vertical-align:top}
+TD{padding:0}
+.anchor-open{border:none;text-decoration:none;vertical-align:bottom;padding:0 0.1em}
+.anchor-x{border:none;text-decoration:none;vertical-align:bottom}
+.aqua{background-color:#D5FFEA;font-weight:bold}
+.big{font-size:120%}
+.black{background-color:black}
+.bold{font-weight:bold}
+.bottom{vertical-align:bottom}
+.box0000{border-top:solid white 1px;border-right:solid white 1px;border-bottom:solid white 1px;border-left:solid white 1px;padding:0 0.25em}
+.box0001{border-top:solid white 1px;border-right:solid white 1px;border-bottom:solid white 1px;border-left:solid black 1px;padding:0 0.25em}
+.box0010{border-top:solid white 1px;border-right:solid white 1px;border-bottom:solid black 1px;border-left:solid white 1px;padding:0 0.25em}
+.box0011{border-top:solid white 1px;border-right:solid white 1px;border-bottom:solid black 1px;border-left:solid black 1px;padding:0 0.25em}
+.box0100{border-top:solid white 1px;border-right:solid black 1px;border-bottom:solid white 1px;border-left:solid white 1px;padding:0 0.25em}
+.box0101{border-top:solid white 1px;border-right:solid black 1px;border-bottom:solid white 1px;border-left:solid black 1px;padding:0 0.25em}
+.box0110{border-top:solid white 1px;border-right:solid black 1px;border-bottom:solid black 1px;border-left:solid white 1px;padding:0 0.25em}
+.box0111{border-top:solid white 1px;border-right:solid black 1px;border-bottom:solid black 1px;border-left:solid black 1px;padding:0 0.25em}
+.box1000{border-top:solid black 1px;border-right:solid white 1px;border-bottom:solid white 1px;border-left:solid white 1px;padding:0 0.25em}
+.box1001{border-top:solid black 1px;border-right:solid white 1px;border-bottom:solid white 1px;border-left:solid black 1px;padding:0 0.25em}
+.box1010{border-top:solid black 1px;border-right:solid white 1px;border-bottom:solid black 1px;border-left:solid white 1px;padding:0 0.25em}
+.box1011{border-top:solid black 1px;border-right:solid white 1px;border-bottom:solid black 1px;border-left:solid black 1px;padding:0 0.25em}
+.box1100{border-top:solid black 1px;border-right:solid black 1px;border-bottom:solid white 1px;border-left:solid white 1px;padding:0 0.25em}
+.box1101{border-top:solid black 1px;border-right:solid black 1px;border-bottom:solid white 1px;border-left:solid black 1px;padding:0 0.25em}
+.box1110{border-top:solid black 1px;border-right:solid black 1px;border-bottom:solid black 1px;border-left:solid white 1px;padding:0 0.25em}
+.box1111{border-top:solid black 1px;border-right:solid black 1px;border-bottom:solid black 1px;border-left:solid black 1px;padding:0 0.25em}
+.box{border:solid black 1px;padding:0 0.25em}
+.center{text-align:center}
+.gold{background-color:gold}
+.green{color:forestgreen;border-color:forestgreen !important;font-weight:bold}
+.left{text-align:left}
+.lightgray{background-color:lightgray}
+.lightgreen{background-color:lightgreen;border-color:lightgreen}
+.middle{vertical-align:middle}
+.normal{font-weight:normal}
+.nowrap{white-space:nowrap}
+.overline{border-top:solid black 1px}
+.papaya{background-color:papayawhip}
+.pink{background-color:hotpink}
+.purple{background-color:#EFDFFF}
+.red{color:crimson;border-color:crimson !important;font-weight:bold}
+.right{text-align:right}
+.serif{font-family:serif;font-size:0.8em;line-height:0.95em;letter-spacing:0.04em}
+.show{margin:-1.2em 0 0 3.5em}
+.small{font-size:85%}
+.super{vertical-align:super}
+.top{vertical-align:top}
+.turquoise{background-color:darkturquoise}
+.underline{border-bottom:solid black 1px;line-height:1.5em}
+.unnowrap{white-space:normal}
+.wheat{background-color:wheat}
+.white{background-color:#FFFFE8/*;margin:0.2em 0.2em*/}
+.wrap{white-space:normal}
+.x0{padding:0 !important}
+.x1{padding:0.1em !important}
+.yellow{background-color:#FFFF4A;font-weight:bold}
+</STYLE>
+<META http-equiv="content-script-type" content="text/javascript">
+<SCRIPT>
+function anchor_show_onclick(that)
+{
+that.nextSibling.nextSibling.style.display='block';
+iframe_size(that.nextSibling.nextSibling.firstChild.firstChild.firstChild.firstChild.nextSibling.nextSibling);
+}
+function anchor_x_onclick(that)
+{
+that.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.style.display='none';
+}
+function iframe_open(that)
+{
+window.open(that.parentNode.parentNode.parentNode.parentNode.nextSibling.nextSibling.src);
+}
+function box_size(that)
+{
+that.style.width=parseInt(window.getComputedStyle(document.body).getPropertyValue('width'))+'px';
+}
+function iframe_size(that)
+{
+that.style.width=parseInt(window.getComputedStyle(document.body).getPropertyValue('width'))+'px';
+that.style.height=parseInt(window.innerHeight/2)+'px';
+}
+</SCRIPT>
+
+<TITLE>Stride-Match With Decombing Examples</TITLE>
+</HEAD>
+<BODY>
+
+<B class="big">Stride-Match With Decombing Examples</B> —— <I>process streams based on patterns.</I><BR>
+
+The inspiration for stride-match is FFmpeg's '-vf shuffleframes'.
+Using this scheme, halfpics can be rearranged and/or dropped and/or repeated without limit.
+Using this scheme, scripts can be included without limit.
+This scheme supports a great number of operations that are dedicated functions in FFmpeg.<BR>
+
+<BR>
+Here's an example of stride-match doing 'NTSC' detelecine.
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0><TR><TD><PRE class="white box1111" style="padding:0.5em">
+  <B class="wheat">get'</B><I>source</I><B class="wheat">'{$v[tps(AaBbBcCdDd(AaBbCcDd))]$a$s$c}put'</B><I>target</I><B class="wheat">'end</B>
+     demux__/  /     \_stride_/ \match_/   \      \__mux
+      decode__/                             \__encode
+
+          sSuppose that upstream is
+          AaBbCcCdDeEeFfGgGhHiIiJj and the stride-match is
+                                   (AaBbBcCdDd(AaBbCcDd)).
+                                    ..B.B..d.d is the pattern and what is downstreamed is
+  <I>Scan 1</I>: AaBbC                     <I>pattern not seen</I>                Aa
+  <I>Scan 2</I>:   BbCcCdDeEe              <I>pattern seen</I>                      BbCcDdEe
+  <I>Scan 3</I>:             FfGgGhHiIi    <I>pattern seen</I>                              FfGgHhIi
+  <I>Scan 4</I>:                       Jj  <I>stream ends before stride ends</I>                    Jj
+
+                                                                    AaBbCcDdEeFfGgHhIiJj
+</PRE></TD></TR></TABLE>
+
+<HR class="white" style="width:0">
+
+There are eight forms of stride-match.
+<PRE class="white">
+            <B class="wheat">(</B><I>stride</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><B class="wheat">)</B>                //  <B>(())</B>
+            <B class="wheat">(</B><I>stride</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>miss</I><B class="wheat">)</B>            //  <B>(())</B>
+           <B class="wheat">(</B><I>stride</I><B class="wheat">(</B><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end-match</I><B class="wheat">)</B><B class="wheat">)</B>      // <B>((()))</B>
+           <B class="wheat">(</B><I>stride</I><B class="wheat">(</B><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end-match</I><B class="wheat">)</B><I>miss</I><B class="wheat">)</B>  // <B>((()))</B>
+  <B class="wheat">(</B><I>stride</I><B class="wheat">(</B><I>new-match</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><B class="wheat">)</B><B class="wheat">)</B>               // <B>((()))</B>
+  <B class="wheat">(</B><I>stride</I><B class="wheat">(</B><I>new-match</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><B class="wheat">)</B><I>miss</I><B class="wheat">)</B>           // <B>((()))</B>
+  <B class="wheat">(</B><I>stride</I><B class="wheat">(</B><I>new-match</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end-match</I><B class="wheat">)</B><B class="wheat">)</B>      // <B>((()))</B>
+  <B class="wheat">(</B><I>stride</I><B class="wheat">(</B><I>new-match</I><B class="wheat">(</B><I>match</I><B class="wheat">)</B><I>end-match</I><B class="wheat">)</B><I>miss</I><B class="wheat">)</B>  // <B>((()))</B>
+</PRE>
+
+<HR class="white" style="width:0">
+
+<I>new-match match end-match</I> & <I>miss</I> can include scripts.
+Scripts can be anything, including embedded stride-matches.
+Stride-matches containing embedded stride-matches can be difficult to write and analyze, but beautification is supported and will help, as will a text editor's bracket-matching function.<BR>
+
+<HR class="white" style="width:0">
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0><TR><TD class="box1111" style="padding:0.5em">
+
+<B><I>stride</I></B>:
+Stride is a string of halfpic tokens in PTS order.
+There is no intrinsic meaning to the tokens, whatever is meaningful is accepted.
+For example, a 2-3 pulldown would best be denoted as 10 elements: <B class="wheat">AaBbBcCdDd</B>, but <B class="wheat">1234356787</B> or <B class="wheat">engigwmsls</B> would work as well.
+Stride length should be the minimum needed to make a scanner pattern; <B class="wheat">AaBbBcCdDd</B> will work better than <B class="wheat">AaBbBcCdDdEeFfFgGhHh</B>.<BR>
+
+<HR class="white" style="width:0">
+
+<B>The scanner</B>:
+Each stride-match constructs an internal, purpose-built scanner that accumulates elements as they arrive from upstream.
+The scanner monitors the accumulation and looks for patterns.<BR>
+
+<HR class="white" style="width:0">
+
+<B>The pattern</B>:
+In the 'NTSC' detelecine example at the top of this page, AaBbBcCdDd produces a ..B.B..d.d pattern, where the 3rd halfpic matches the 5th and the 8th halfpic matches the 10th.
+<P>&nbsp;• The pattern is in the stride; there's no way to search for a different pattern than the pattern in the stride.</P>
+<P>&nbsp;• A pattern match causes both the stride string and the accumulated halfpics to be passed to the matches.</P>
+<P>&nbsp;• A pattern miss causes the oldest accumulated halfpic pair to be removed from the accumulation and passed to <I>miss</I> if it exists.
+If <I>miss</I> does not exist, the oldest accumulated halfpic pair is passed downstream.
+In either case, the scanner fetches the next halfpic pair from upstream and continues.</P>
+<P>&nbsp;• If the current stream ends short of a full stride, the matches are entirely skipped and any orphans are passed to <I>miss</I>.
+If <I>miss</I> does not exist, then the orphans are passed downstream, unchanged.</P>
+<P>&nbsp;• As a practical matter, the scanner must buffer additional elements to cover the span from the end of a stride to the point where it can detect a miss.</P>
+<P>&nbsp;• If the pattern is .. or .... or ...... etc., then every halfpic pair matches the pattern and all that matters is the length of the stride (i.e., the number of dots in the pattern).
+
+<HR class="white" style="width:0">
+
+<B><I>match</I></B>:
+Halfpics can be rearranged and/or dropped and/or repeated by rearranging and/or dropping and/or repeating the tokens populating <I>match</I>.
+<P>&nbsp;• Tokens that are dropped in the matches denote halfpics that are to be dropped from upstream.</P>
+<P>&nbsp;• Tokens that are repeated in the matches denote halfpics that are to be repeated downstream.</P>
+<P>&nbsp;• The <I>match</I> is executed immediately upon the match.</P>
+<P>&nbsp;• If <I>match</I> includes script, enclose the script in double-quotes.</P>
+
+<HR class="white" style="width:0">
+
+<B><I>new-match</I></B>:
+A script executed on the first matching stride of a new stream.
+<P>&nbsp;• If present, a <I>new-match</I> is executed immediately upon the first match of a new stream.</P>
+<P>&nbsp;• If <I>new-match</I> includes script, enclose the script in double-quotes.</P>
+<P>&nbsp;• After a pattern not seen event, <I>new-match</I> becomes elegible once again for use in later strides.
+<P>&nbsp;• If there is no <I>new-match</I>, then <I>match</I> is run, instead.</P>
+
+<HR class="white" style="width:0">
+
+<B><I>end-match</I></B>:
+A script executed on the ending matching stride of an ending stream.
+<P>&nbsp;• If present, an <I>end-match</I> is executed immediately upon the ending match.</P>
+<P>&nbsp;• If <I>end-match</I> includes script, enclose the script in double-quotes.</P>
+<P>&nbsp;• If there is no <I>end-match</I>, then <I>match</I> is run, instead.</P>
+
+<HR class="white" style="width:0">
+
+<B><I>miss</I></B>:
+A script that receives halfpics downstreamed to it while the </B><I>stride</I> continues to not be matched — that could be the rest of the stream.
+<I>Miss</I> has the following important properties:
+<P>&nbsp;• If the stride-match switches from <I>miss</I> to <I>match</I> or from <I>match</I> to <I>miss</I>, then the stride-match signals the discontinuity by tagging the new halfpics as a new stream.
+When <I>match</I> signals the discontinuity, <I>miss</I> responds by downstreaming the current accumulated input halfpics, if any, and by accumulating anew.</P>
+<P>&nbsp;• When <I>stride</I> exhausts its input stream and consequently has nothing to downstream, <I>miss</I> is automatically skipped.
+So, when it's invoked, <I>miss</I> will always receive at least one halfpic and need not defend against (or otherwise consider) null input.</P>
+<P>&nbsp;• Any 'stale' halfpics left in <I>miss</I> when the input stream is exhausted are downstreamed unchanged.</P>
+
+</TD></TR></TABLE>
+
+<HR class="white" style="width:0">
+
+<B>Important — Running time</B>: Stride-match maintains running time.
+For example, if it increases or decreases the number of halfpics, then rate is automatically increased or decreased by the same amount.
+In the 'NTSC' detelecine example at the top of this page, upstream strides of 10 telehalfpics at 30/1.001 tps are reduced to downstream strides of 8 halfpics at 24/1.001 hps.
+Running time is preserved, audio and subtitles remain in sync.
+
+<BR><BR>
+Examples of stride-match for simple stream filtering.<BR>
+Note: Spaces have been added for beautification.
+<PRE class="white">
+<B class="wheat">(1(1))</B> //a do-nothing stride-match that downstreams everything.
+<B class="wheat">(1( ))</B> //a total blocker that downstreams nothing.
+<B class="wheat">(<I class="white normal">    stride     </I>( (1( )) )                 )</B> //<I>match</I> that discards only matching strides.
+<B class="wheat">(<I class="white normal">    stride     </I>( (1(1)) )     (1( ))      )</B> //<I>miss</I> that discards only non-matching strides.
+<B class="wheat">(<I class="white normal">stride</I>( (1( )) ( (1(1)) )        )        )</B> //<I>new match</I> that discards only the first stride.
+<B class="wheat">(<I class="white normal">stride</I>(        ( (1(1)) ) (1( )) )        )</B> //<I>end match</I> that discards only the ending stride.
+</PRE><BR>
+
+In the examples that follow<BR>
+<P><B class="wheat">&</B> is an assignable operator, so <B class="wheat">&'blend'</B> followed by <B class="wheat">a&b</B> produces a single downstream halfpic that's the blend of two upstream halfpics.</P>
+<P><B class="wheat">^</B> is the ending halfpic of the stride that preceded the current stride.</P>
+<P><B class="wheat">$</B>, when inside a stride-match, is the first halfpic of the stride that follows the current stride.</P>
+<P><B class="wheat">$</B>, when outside a stride-match, is shorthand for stream-object, so <B class="wheat">$v</B> means video stream, <B class="wheat">$a2</B> means 3rd audio stream, etcetera.</P>
+(Note that the two dollar signs are unrelated.)<BR>
+
+<BR>
+<B class="underline">Bob</B> — <I>progressive frames replace scan fields.</I>
+<PRE class="white">
+<B class="wheat">get'</B><I>source</I><B class="wheat">'{$v[sps(1(11))pps]$a$s$c}put'</B><I>target</I><B class="wheat">'end</B>
+is the OFFmpeg script, and it can be beautified:
+<B class="wheat">get'</B><I>source</I><B class="wheat">'{</B>  // +—stride—>+—stride—>
+<B class="wheat">$v[sps</B>        // <B class="lightgreen">(a_______)(b_______)</B>...
+<B class="wheat">(1(11))</B>       // <B class="lightgreen">(a__)(a__)(b__)(b__)</B>...
+<B class="wheat">pps]</B>          // <B class="lightgreen">[aa______][bb______]</B>...
+<B class="wheat">$a$s$c}put'</B><I>target</I><B class="wheat">'end</B>
+</PRE>
+<B class="underline">PTSs</B>:&nbsp;Unforced,
+<B class="underline">Judder</B>:&nbsp;none,
+<B class="underline">Cadence</B>:&nbsp;none,
+<B class="underline">Burden</B>:&nbsp;none,
+<B class="underline">Generations</B>:&nbsp;0,
+<B class="underline">Defects</B>:&nbsp;|sps/2|&nbsp;bobs/sec<BR>
+
+<BR>
+<B class="underline">Soft Bob</B> — <I>a smaller bob with line doubling done by decoders, not by the encoder.</I>
+<PRE class="white">
+<B class="wheat">get'</B><I>source</I><B class="wheat">'{</B>
+<B class="wheat">$v[sps</B>       // <B class="lightgreen">(a_______)(b_______)</B>...
+<B class="wheat">]dar'/2'</B>     // <B class="lightgreen">[a_______][b_______]</B>...
+<B class="wheat">$a$s$c}put'</B><I>target</I><B class="wheat">'end</B>
+</PRE>
+<B class="underline">PTSs</B>:&nbsp;Unforced,
+<B class="underline">Judder</B>:&nbsp;none,
+<B class="underline">Cadence</B>:&nbsp;none,
+<B class="underline">Burden</B>:&nbsp;none,
+<B class="underline">Generations</B>:&nbsp;0,
+<B class="underline">Defects</B>:&nbsp;|sps/2|&nbsp;bobs/sec<BR>
+
+<BR>
+<B class="underline">Blend</B> — <I>blended progressive frames replace scan fields.</I>
+<PRE class="white">
+<B class="wheat">&'blend'get'</B><I>source</I><B class="wheat">'{</B>  // +—stride———————————>+—stride———————————>   if orphan
+<B class="wheat">$v[sps</B>                // <B class="lightgreen">(a_______)(b_______)(c_______)(d_______)</B>...<B class="lightgreen">(1_______)</B>
+<B class="wheat">(12(1&2)1"sps'/2'")</B>   // <B class="lightgreen">(a&b_______________)(c&d_______________)</B>...<B class="lightgreen">(1_________________)</B>
+<B class="wheat">(1(11))</B>               // <B class="lightgreen">(a&b_____)(a&b_____)(c&d_____)(c&d_____)</B>...<B class="lightgreen">(1_______)(1_______)</B>
+<B class="wheat">pps]</B>                  // <B class="lightgreen">[a&ba&b____________][c&dc&d____________]</B>...<B class="lightgreen">[11________________]</B>
+<B class="wheat">$a$s$c}put'</B><I>target</I><B class="wheat">'end</B>
+</PRE>
+<B class="underline">PTSs</B>:&nbsp;Unforced,
+<B class="underline">Judder</B>:&nbsp;none,
+<B class="underline">Cadence</B>:&nbsp;none,
+<B class="underline">Burden</B>:&nbsp;|sps/2|&nbsp;blends/sec,
+<B class="underline">Generations</B>:&nbsp;0,
+<B class="underline">Defects</B>:&nbsp;blending<BR>
+
+<BR>
+<B class="underline">Double Blend</B> — <I>blend but with finer blending.</I>
+<PRE class="white">
+<B class="wheat">&'blend'get'</B><I>source</I><B class="wheat">'{</B>  // +—stride—>+—stride—>+—stride—>
+<B class="wheat">$v[sps</B>                // <B class="lightgreen">(a_______)(b_______)(c_______)</B>...
+<B class="wheat">(1(1(^&1)))</B>           // <B class="lightgreen">(a_______)(a&b_____)(b&c_____)</B>...
+<B class="wheat">(1(11))</B>               // <B class="lightgreen">(a__)(a__)(a&b)(a&b)(b&c)(b&c)</B>...
+<B class="wheat">pps]</B>                  // <B class="lightgreen">[aa______][a&ba&b__][b&cb&c__]</B>...
+<B class="wheat">$a$s$c}put'</B><I>target</I><B class="wheat">'end</B>
+</PRE>
+<B class="underline">PTSs</B>:&nbsp;Unforced,
+<B class="underline">Judder</B>:&nbsp;none,
+<B class="underline">Cadence</B>:&nbsp;none,
+<B class="underline">Burden</B>:&nbsp;|sps|&nbsp;blends/sec,
+<B class="underline">Generations</B>:&nbsp;0,
+<B class="underline">Defects</B>:&nbsp;blending<BR>
+
+<BR>
+<B class="underline">Double Soft Blend</B> — <I>field double blend with decoder line doubling.</I>
+<PRE class="white">
+<B class="wheat">&'blend'get'</B><I>source</I><B class="wheat">'{</B>  // +—stride—>+—stride—>+—stride—>
+<B class="wheat">$v[sps</B>                // <B class="lightgreen">(a_______)(b_______)(c_______)</B>...
+<B class="wheat">(1(1(^&1)))</B>           // <B class="lightgreen">(a_______)(a&b_____)(b&c_____)</B>...
+<B class="wheat">]dar'/2'</B>              // <B class="lightgreen">[a_______][a&b_____][b&c_____]</B>...
+<B class="wheat">$a$s$c}put'</B><I>target</I><B class="wheat">'end</B>
+</PRE>
+<B class="underline">PTSs</B>:&nbsp;Unforced,
+<B class="underline">Judder</B>:&nbsp;none,
+<B class="underline">Cadence</B>:&nbsp;none,
+<B class="underline">Burden</B>:&nbsp;|sps|&nbsp;blends/sec,
+<B class="underline">Generations</B>:&nbsp;0,
+<B class="underline">Defects</B>:&nbsp;blending<BR>
+
+<BR>
+<B class="underline">SNM Interpolate</B> — <I>interpolated progressive frames replace scan fields, best for fade-in.</I>
+<PRE class="white">
+<B class="wheat">&'interpolate'get'</B><I>source</I><B class="wheat">'{</B>    // +—stride———————————>+—stride———————————>   +—stride———————————>if orphan
+<B class="wheat">$v[sps(12</B>                     // <B class="lightgreen">(A_______)(b_______)(C_______)(d_______)</B>...<B class="lightgreen">(Y_______)(z_______)(1_______)</B>
+<B class="wheat">(11&2</B>                         // <B class="lightgreen">(A_______)(A&b_____)</B>
+     <B class="wheat">(1^&2))</B>                  //                     <B class="lightgreen">(C_______)(b&d_____)</B>...<B class="lightgreen">(Y_______)(x&z_____)</B>
+            <B class="wheat">(1(11))"sps'/2'")</B> //                                                                <B class="lightgreen">(1_______)(1_______)</B>
+<B class="wheat">pps]</B>                          // <B class="lightgreen">[AA&b______________][Cc________________]</B>...<B class="lightgreen">[Yy________________][11________________]</B>
+<B class="wheat">$a$s$c}put'</B><I>target</I><B class="wheat">'end</B>
+</PRE>
+<B class="underline">PTSs</B>:&nbsp;Unforced,
+<B class="underline">Judder</B>:&nbsp;none,
+<B class="underline">Cadence</B>:&nbsp;none,
+<B class="underline">Burden</B>:&nbsp;|sps/2|&nbsp;interpolations/sec,
+<B class="underline">Generations</B>:&nbsp;1,
+<B class="underline">Defects</B>:&nbsp;none<BR>
+
+<BR>
+<B class="underline">SME Interpolate</B> — <I>like SNM interpolate but best for fade-out.</I>
+<PRE class="white">
+<B class="wheat">&'interpolate'get'</B><I>source</I><B class="wheat">'{</B>    // +—stride———————————>+—stride———————————>   +—stride———————————>if orphan
+<B class="wheat">$v[sps(12</B>                     // <B class="lightgreen">(A_______)(b_______)(C_______)(d_______)</B>...<B class="lightgreen">(Y_______)(z_______)(1_______)</B>
+<B class="wheat">((1&$2)</B>                       // <B class="lightgreen">(A&C_____)(b_______)(C&E_____)(d_______)</B>...
+       <B class="wheat">1&22)</B>                  //                                            <B class="lightgreen">(Y&z_____)(z_______)</B>
+            <B class="wheat">(1(11))"sps'/2'")</B> //                                                                <B class="lightgreen">(1_______)(1_______)</B>
+<B class="wheat">pps]</B>                          // <B class="lightgreen">[Bb________________][Dd________________]</B>...<B class="lightgreen">[Y&zz______________][11________________]</B>
+<B class="wheat">$a$s$c}put'</B><I>target</I><B class="wheat">'end</B>
+</PRE>
+<B class="underline">PTSs</B>:&nbsp;Unforced,
+<B class="underline">Judder</B>:&nbsp;none,
+<B class="underline">Cadence</B>:&nbsp;none,
+<B class="underline">Burden</B>:&nbsp;|sps/2|&nbsp;interpolations/sec,
+<B class="underline">Generations</B>:&nbsp;1,
+<B class="underline">Defects</B>:&nbsp;none<BR>
+
+<BR>
+<B class="underline">SNME Interpolate</B> — <I>combined SNM interpolate & SME interpolate and twice as fluid.</I>
+<PRE class="white">
+<B class="wheat">&'interpolate'get'</B><I>source</I><B class="wheat">'{</B>           // +—stride———————————>+—stride———————————>   +—stride———————————>if orphan
+<B class="wheat">$v[sps(12</B>                            // <B class="lightgreen">(A_______)(b_______)(C_______)(d_______)</B>...<B class="lightgreen">(Y_______)(z_______)(1_______)</B>
+<B class="wheat">(11&21&$2</B>                            // <B class="lightgreen">(A__)(A&b)(A&C)(b__)</B>
+         <B class="wheat">(1^&21&$2)</B>                  //                     <B class="lightgreen">(C__)(b&d)(C&E)(d__)</B>...
+                   <B class="wheat">1^&21&22)</B>         //                                            <B class="lightgreen">(Y__)(x&z)(Y&z)(z__)</B>
+                            <B class="wheat">(1(11)))</B> //                                                                <B class="lightgreen">(1__)(1__)</B>
+<B class="wheat">pps]</B>                                 // <B class="lightgreen">[AA&b____][Bb______][Cc______][Dd______]</B>...<B class="lightgreen">[Yy______][Y&zz____][11______]</B>
+<B class="wheat">$a$s$c}put'</B><I>target</I><B class="wheat">'end</B>
+</PRE>
+<B class="underline">PTSs</B>:&nbsp;Unforced,
+<B class="underline">Judder</B>:&nbsp;none,
+<B class="underline">Cadence</B>:&nbsp;none,
+<B class="underline">Burden</B>:&nbsp;|sps|&nbsp;interpolations/sec,
+<B class="underline">Generations</B>:&nbsp;1,
+<B class="underline">Defects</B>:&nbsp;none<BR>
+
+<BR>
+</BODY></HTML>
