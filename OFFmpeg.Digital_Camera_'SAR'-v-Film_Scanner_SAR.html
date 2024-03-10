@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META http-equiv="content-type" content="text/html; charset=utf-8">
+<META http-equiv="content-language" content="en">
+<META http-equiv="cache-control" content="no-cache">
+<META http-equiv="expires" content="Thu, 01 Jan 1970 00:00:00 GMT">
+<META http-equiv="pragma" content="no-cache">
+<META http-equiv="content-style-type" content="text/css">
+<!--<LINK href="OFFmpeg.css" rel="stylesheet" type="text/css">-->
+<STYLE>
+*{font-family:monospace;margin:0;padding:0}
+A{border-bottom:solid black 1px;font-weight:bold}
+BODY{background-color:#FFFFE8;padding:0 1.5em 0 0.5em}
+BLOCKQUOTE{padding-left:2em}
+HR{margin:0.25em}
+IMG{border:1px solid black}
+P{padding-left:2em;text-indent:-2em;margin-top:0.2em}
+PRE{background-color:wheat;padding:0 0.5em;margin:0.25em 0}
+TABLE{/*padding:0 3em 0 0;*/border:none}
+TR{vertical-align:top}
+TD{padding:0}
+.anchor-open{border:none;text-decoration:none;vertical-align:bottom;padding:0 0.1em}
+.anchor-x{border:none;text-decoration:none;vertical-align:bottom}
+.aqua{background-color:#D5FFEA;font-weight:bold}
+.big{font-size:120%}
+.black{background-color:black}
+.bold{font-weight:bold}
+.bottom{vertical-align:bottom}
+.box0000{border-top:solid white 1px;border-right:solid white 1px;border-bottom:solid white 1px;border-left:solid white 1px;padding:0 0.25em}
+.box0001{border-top:solid white 1px;border-right:solid white 1px;border-bottom:solid white 1px;border-left:solid black 1px;padding:0 0.25em}
+.box0010{border-top:solid white 1px;border-right:solid white 1px;border-bottom:solid black 1px;border-left:solid white 1px;padding:0 0.25em}
+.box0011{border-top:solid white 1px;border-right:solid white 1px;border-bottom:solid black 1px;border-left:solid black 1px;padding:0 0.25em}
+.box0100{border-top:solid white 1px;border-right:solid black 1px;border-bottom:solid white 1px;border-left:solid white 1px;padding:0 0.25em}
+.box0101{border-top:solid white 1px;border-right:solid black 1px;border-bottom:solid white 1px;border-left:solid black 1px;padding:0 0.25em}
+.box0110{border-top:solid white 1px;border-right:solid black 1px;border-bottom:solid black 1px;border-left:solid white 1px;padding:0 0.25em}
+.box0111{border-top:solid white 1px;border-right:solid black 1px;border-bottom:solid black 1px;border-left:solid black 1px;padding:0 0.25em}
+.box1000{border-top:solid black 1px;border-right:solid white 1px;border-bottom:solid white 1px;border-left:solid white 1px;padding:0 0.25em}
+.box1001{border-top:solid black 1px;border-right:solid white 1px;border-bottom:solid white 1px;border-left:solid black 1px;padding:0 0.25em}
+.box1010{border-top:solid black 1px;border-right:solid white 1px;border-bottom:solid black 1px;border-left:solid white 1px;padding:0 0.25em}
+.box1011{border-top:solid black 1px;border-right:solid white 1px;border-bottom:solid black 1px;border-left:solid black 1px;padding:0 0.25em}
+.box1100{border-top:solid black 1px;border-right:solid black 1px;border-bottom:solid white 1px;border-left:solid white 1px;padding:0 0.25em}
+.box1101{border-top:solid black 1px;border-right:solid black 1px;border-bottom:solid white 1px;border-left:solid black 1px;padding:0 0.25em}
+.box1110{border-top:solid black 1px;border-right:solid black 1px;border-bottom:solid black 1px;border-left:solid white 1px;padding:0 0.25em}
+.box1111{border-top:solid black 1px;border-right:solid black 1px;border-bottom:solid black 1px;border-left:solid black 1px;padding:0 0.25em}
+.box{border:solid black 1px;padding:0 0.25em}
+.center{text-align:center}
+.gold{background-color:gold}
+.green{color:forestgreen;border-color:forestgreen !important;font-weight:bold}
+.left{text-align:left}
+.lightgray{background-color:lightgray}
+.lightgreen{background-color:lightgreen;border-color:lightgreen}
+.middle{vertical-align:middle}
+.normal{font-weight:normal}
+.nowrap{white-space:nowrap}
+.overline{border-top:solid black 1px}
+.papaya{background-color:papayawhip}
+.pink{background-color:hotpink}
+.purple{background-color:#EFDFFF}
+.red{color:crimson;border-color:crimson !important;font-weight:bold}
+.right{text-align:right}
+.serif{font-family:serif;font-size:0.8em;line-height:0.95em;letter-spacing:0.04em}
+.show{margin:-1.2em 0 0 3.5em}
+.small{font-size:85%}
+.super{vertical-align:super}
+.top{vertical-align:top}
+.turquoise{background-color:darkturquoise}
+.underline{border-bottom:solid black 1px;line-height:1.5em}
+.unnowrap{white-space:normal}
+.wheat{background-color:wheat}
+.white{background-color:#FFFFE8/*;margin:0.2em 0.2em*/}
+.wrap{white-space:normal}
+.x0{padding:0 !important}
+.x1{padding:0.1em !important}
+.yellow{background-color:#FFFF4A;font-weight:bold}
+</STYLE>
+<META http-equiv="content-script-type" content="text/javascript">
+<SCRIPT>
+function anchor_show_onclick(that)
+{
+that.nextSibling.nextSibling.style.display='block';
+iframe_size(that.nextSibling.nextSibling.firstChild.firstChild.firstChild.firstChild.nextSibling.nextSibling);
+}
+function anchor_x_onclick(that)
+{
+that.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.style.display='none';
+}
+function iframe_open(that)
+{
+window.open(that.parentNode.parentNode.parentNode.parentNode.nextSibling.nextSibling.src);
+}
+function box_size(that)
+{
+that.style.width=parseInt(window.getComputedStyle(document.body).getPropertyValue('width'))+'px';
+}
+function iframe_size(that)
+{
+that.style.width=parseInt(window.getComputedStyle(document.body).getPropertyValue('width'))+'px';
+that.style.height=parseInt(window.innerHeight/2)+'px';
+}
+</SCRIPT>
+
+<TITLE>Digital Camera 'SAR'—v—Film Scanner SAR</TITLE>
+</HEAD>
+<BODY>
+
+<B class="big">Digital Camera 'SAR'—v—Film Scanner SAR</B> —— <I>a dense presentation explaining them and why they're not the same.</I><BR>
+They appear to be the same in practice but they're quite different.<BR>
+
+<BR>
+&nbsp; Key: <B class="yellow">new terms</B> &nbsp; &nbsp; Aliases: 'SAR' 'picture' 'PAL' 'NTSC'
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0>
+<TR><TD class="box1111"><PRE class="white">
+<B class="big">'SAR' is a transform</B> [note1].
+<SPAN class="box0000">         SHOTS        </SPAN><SPAN class="box0000">   SHOTS-to-'PICTURES'  </SPAN><SPAN class="box0000">   'PICTURES' [note2]   </SPAN><SPAN class="box0000">'PICTURES'-to-DISPLAY </SPAN><SPAN class="box0000">        DISPLAY</SPAN>
+<SPAN class="box1001"><B class="yellow">spl</B>: <I>samples-per-line</I> </SPAN><SPAN class="box1001"><B class="yellow">pps</B>: <I>pixels-per-sample</I>  </SPAN><SPAN class="box1001"><B class="yellow">ppr</B>: <I>pixels-per-row</I>     </SPAN><SPAN class="box1001"><B class="yellow">dpp</B>: <I>dots-per-pixel</I>   </SPAN><SPAN class="box1101"><B class="yellow">dpl</B>: <I>dots-per-line</I>      </SPAN>
+<SPAN class="box0001"><B class="yellow">lps</B>: <I>lines-per-shot</I>   </SPAN><SPAN class="box0001"><B class="yellow">rpl</B>: <I>rows-per-line</I>      </SPAN><SPAN class="box0001"><B class="yellow">rpp</B>: <I>rows-per-'picture'</I> </SPAN><SPAN class="box0001"><B class="yellow">lpr</B>: <I>lines-per-row</I>    </SPAN><SPAN class="box0101"><B class="yellow">lpd</B>: <I>lines-per-display</I>  </SPAN>
+<SPAN class="box1000">                      </SPAN><SPAN class="box1000">     <B class="yellow">pps</B> = <B class="yellow">ppr</B>/<B class="yellow">spl</B>      </SPAN><SPAN class="box1000">                        </SPAN><SPAN class="box1000">     <B class="yellow">dpp</B> = <B class="yellow">dpl</B>/<B class="yellow">ppr</B>    </SPAN><SPAN class="box1000">                        </SPAN>
+<SPAN class="box0000">                      </SPAN><SPAN class="box0000">     <B class="yellow">rpl</B> = <B class="yellow">rpp</B>/<B class="yellow">lps</B>      </SPAN><SPAN class="box0000">                        </SPAN><SPAN class="box0000">     <B class="yellow">lpr</B> = <B class="yellow">lpd</B>/<B class="yellow">rpp</B></SPAN>
+<SPAN class="box0000">                      </SPAN><SPAN class="box0000">                        </SPAN><SPAN class="box0000">     PAR = <B class="yellow">ppr</B>/<B class="yellow">rpp</B>      </SPAN><SPAN class="box0000">   'SAR' = <B class="yellow">dpp</B>/<B class="yellow">lpr</B>    </SPAN><SPAN class="box0000">     DAR = <B class="yellow">dpl</B>/<B class="yellow">lpd</B></SPAN>
+<SPAN class="box0000">                      </SPAN><SPAN class="box0000">                        </SPAN><SPAN class="box0000">                        </SPAN><SPAN class="box0000">= (<B class="yellow">dpl</B>/<B class="yellow">ppr</B>)/(<B class="yellow">lpd</B>/<B class="yellow">rpp</B>)</SPAN>
+<SPAN class="box0000">                      </SPAN><SPAN class="box0000">                        </SPAN><SPAN class="box0000">                        </SPAN><SPAN class="box0000">= (<B class="yellow">dpl</B>/<B class="yellow">lpd</B>)/(<B class="yellow">ppr</B>/<B class="yellow">rpp</B>) &lt;—— real, not a trick</SPAN>
+<SPAN class="box0000">                      </SPAN><SPAN class="box0000">                        </SPAN><SPAN class="box0000">                        </SPAN><SPAN class="box0000">    'SAR' = DAR/PAR</SPAN>
+
+'SAR' can be interpreted as <B class="yellow">dpp</B> (dots-per-pixel) but only if <B class="yellow">lpd</B> = <B class="yellow">rpp</B>, which isn't true for 4:3 'NTSC' DVDs.
+
+<SPAN class="box0000"> </SPAN><SPAN class="box0000"> </SPAN><SPAN class="box0000"> </SPAN><SPAN class="box0000">                                               MPEG calls <B class="yellow">ppr</B>, "W", and calls <B class="yellow">rpp</B>, "H" &lt;—— is an MPEG quirk</SPAN>
+<SPAN class="box0000"> </SPAN><SPAN class="box0000">        If 'SAR' &gt; 1, then <B class="yellow">lpd</B> = <B class="yellow">rpp</B>   ——&gt;   </SPAN><SPAN class="box1001"> </SPAN><SPAN class="box1000">If 'SAR' &gt; 1, then treat DAR as (W*'SAR')/H, </SPAN><SPAN class="box1100"><B class="yellow">dpl</B> = <B class="yellow">ppr</B>*'SAR'         </SPAN>
+<SPAN class="box0000"> </SPAN><SPAN class="box0000">                                             </SPAN><SPAN class="box0001"> </SPAN><SPAN class="box0000">                                             </SPAN><SPAN class="box0100"><B class="yellow">lpd</B> = <B class="yellow">rpp</B>               </SPAN>
+<SPAN class="box0000"> </SPAN><SPAN class="box0000">        If 'SAR' &lt; 1, then <B class="yellow">lpd</B> &ne; <B class="yellow">rpp</B>   ——&gt;   </SPAN><SPAN class="box1001"> </SPAN><SPAN class="box1000">If 'SAR' &lt; 1, then treat DAR as W/(H/'SAR'), </SPAN><SPAN class="box1100"><B class="yellow">dpl</B> = <B class="yellow">ppr</B>               </SPAN>
+<SPAN class="box0000"> </SPAN><SPAN class="box0000">          (i.e., 4:3 'NTSC' DVDs)            </SPAN><SPAN class="box0011"> </SPAN><SPAN class="box0010">                                             </SPAN><SPAN class="box0110"><B class="yellow">lpd</B> = <B class="yellow">rpp</B>/'SAR'         </SPAN>
+
+Thus, for 16:9 'NTSC' DVDs, 720x480 —> 853x480, but for 4:3 'NTSC' DVDs, 720x480 —> 720x540.
+</PRE>
+
+<HR class="white"><PRE class="white">
+[note1] <I>'pictures'-to-display transform</I> would be a more appropriate term than <I>SAR</I>, but <I>SAR</I> is entrenched and cannot
+reasonably be changed. <I>SAR</I> appears in MPEG specifications because MPEG's original experience was film scanning. Since
+'pictures'-to-display transform can be used like SAR but is not SAR, 'pictures'-to-display transform is herein called
+'SAR', an alias. Readers encountering SAR in literature not dealing with film scanning are urged to think 'SAR', a
+'pictures'-to-display transform.
+</PRE>
+<HR class="white"><PRE class="white">
+[note2] MPEG calls pixel data a <I>picture</I> but it's not a picture, it's data. Here it is called 'picture', an alias.
+</PRE>
+
+</TD></TR><TR><TD class="box0000">
+
+<HR class="white" style="width:0">
+<B>Digital camera example</B>: Suppose an ARRI Alexa XT shoots a 16:9 'PAL' video that's displayed on a 1920x1080 TV.
+<PRE class="white">
+2242x1441 is the size of RGB-equivalent photosites synthesized from the Alexa's Bayer sensor array.
+2240x1260 is the largest (i.e., highest resolution) 16:9 capture area.
+<SPAN class="box0000">     ARRI Alexa XT    </SPAN><SPAN class="box0000">   SHOTS-to-'PICTURES'  </SPAN><SPAN class="box0000">       'PICTURES'       </SPAN><SPAN class="box0000">'PICTURES'-to-DISPLAY </SPAN><SPAN class="box0000">        DISPLAY</SPAN>
+<SPAN class="box1001"><B class="yellow">spl</B> = 2240            </SPAN><SPAN class="box1001"><B class="yellow">pps</B> = 720/2240 = 9/28   </SPAN><SPAN class="box1101"><B class="yellow">ppr</B> = 720               </SPAN><SPAN class="box1000"><B class="yellow">dpp</B> = 1920/720 = 8/3  </SPAN><SPAN class="box1101"><B class="yellow">dpl</B> = 1920              </SPAN>
+<SPAN class="box0001"><B class="yellow">lps</B> = 1260            </SPAN><SPAN class="box0001"><B class="yellow">rpl</B> = 576/1260 = 16/35  </SPAN><SPAN class="box0101"><B class="yellow">rpp</B> = 576               </SPAN><SPAN class="box0000"><B class="yellow">lpr</B> = 1080/576 = 15/8 </SPAN><SPAN class="box0101"><B class="yellow">lpd</B> = 1080              </SPAN>
+<SPAN class="box1000">                      </SPAN><SPAN class="box1000">                        </SPAN><SPAN class="box1000">     PAR = ppr/rpp      </SPAN><SPAN class="box1000">   'SAR' = <B class="yellow">dpp</B>/<B class="yellow">lpr</B>    </SPAN><SPAN class="box1000">                        </SPAN>
+<SPAN class="box0000">                      </SPAN><SPAN class="box0000">                        </SPAN><SPAN class="box0000">         = 720/576 = 5/4</SPAN><SPAN class="box0000">         = (8/3)/(15/8) = 64/45</SPAN>
+</PRE>
+
+<TR><TD class="box1111"><PRE class="white">
+<B class="big">SAR is an aspect</B>.
+<SPAN class="box0000">                      </SPAN><SPAN class="box0000">          SCANS         </SPAN><SPAN class="box0000">       'PICTURES'       </SPAN><SPAN class="box0000">'PICTURES'-to-DISPLAY </SPAN><SPAN class="box0000">        DISPLAY</SPAN>
+<SPAN class="box0000">Related but different.</SPAN><SPAN class="box1001">&Delta;p: <I>pixel-to-pixel</I>      </SPAN><SPAN class="box1001"><B class="yellow">ppr</B> = frame_width/&Delta;p    </SPAN><SPAN class="box1001"><B class="yellow">dpp</B>: <I>dots-per-pixel</I>   </SPAN><SPAN class="box1101"><B class="yellow">dpl</B>: <I>dots-per-line</I>      </SPAN>
+<SPAN class="box0000">SAR is not 'SAR'.     </SPAN><SPAN class="box0011">&Delta;r: <I>row-to-row</I>          </SPAN><SPAN class="box0011"><B class="yellow">rpp</B> = frame_height/&Delta;r   </SPAN><SPAN class="box0011"><B class="yellow">lpr</B>: <I>lines-per-row</I>    </SPAN><SPAN class="box0111"><B class="yellow">lpd</B>: <I>lines-per-display</I>  </SPAN>
+<SPAN class="box0000">                      </SPAN><SPAN class="box0000">      1/SAR = &Delta;p/&Delta;r &lt;—— this is MPEG's definition of sample aspect ratio</SPAN>
+</PRE>
+
+</TD></TR><TR><TD class="box0000">
+
+<HR class="white" style="width:0">
+
+<B>Film scanner example</B>: Suppose a 2.39 aspect, 35mm CinemaScope print is scanned to make a 16:9 'PAL' video.
+<PRE class="white">
+Plan: 838x700 mils is the 35mm projection film frame.
+      720x428 is the 'picture', where 1024 is the display width and 1024/2.39 = 428 is the display height.
+      &Delta;p = (838 mils)/(720 pixels) = 1.17 mils-per-pixel, pixel-to-pixel.
+      &Delta;r = (700 mils)/(428 rows) &nbsp; = 1.63 mils-per-row, row-to-row.
+<SPAN class="box0000">                      </SPAN><SPAN class="box0000">                        </SPAN><SPAN class="box0000">       'PICTURES'       </SPAN><SPAN class="box0000">'PICTURES'-to-DISPLAY </SPAN><SPAN class="box0000">        DISPLAY</SPAN>
+<SPAN class="box0000"><B>Planned scan</B>: The planned 'picture' is for    </SPAN><SPAN class="box0000"></SPAN><SPAN class="box1001"><B class="yellow">ppr</B> = 720               </SPAN><SPAN class="box1001"><B class="yellow">dpp</B> = 1024/720 = 64/45</SPAN><SPAN class="box1101"><B class="yellow">dpl</B> = 1024              </SPAN>
+<SPAN class="box0000">16:9 'PAL'. The 'SAR' for 16:9 'PAL' is 64/45 </SPAN><SPAN class="box0000"></SPAN><SPAN class="box0011"><B class="yellow">rpp</B> = 428               </SPAN><SPAN class="box0011"><B class="yellow">lpr</B> = 1               </SPAN><SPAN class="box0111"><B class="yellow">lpd</B> = 428               </SPAN>
+<SPAN class="box0000">of course.                                    </SPAN><SPAN class="box0000"></SPAN><SPAN class="box0000">                        </SPAN><SPAN class="box0000">     'SAR' = 64/45</SPAN>
+<SPAN class="box0000">                      </SPAN><SPAN class="box0000">         SCANS</SPAN>
+<SPAN class="box0000"><B>Actual scan</B>: &Delta;r/&Delta;p    </SPAN><SPAN class="box1001">&Delta;p = 1.17 mils-per-pixel</SPAN><SPAN class="box1001"><B class="yellow">ppr</B> = 716               </SPAN><SPAN class="box1001"><B class="yellow">dpp</B> = 163/117         </SPAN><SPAN class="box1101"><B class="yellow">dpl</B> = 716*163/117 = 997 </SPAN>
+<SPAN class="box0000">produces 163/117 SAR  </SPAN><SPAN class="box0011">&Delta;r = 1.63 mils-per-row  </SPAN><SPAN class="box0011"><B class="yellow">rpp</B> = 429               </SPAN><SPAN class="box0011"><B class="yellow">lpr</B> = 1               </SPAN><SPAN class="box0111"><B class="yellow">lpd</B> = 429               </SPAN>
+<SPAN class="box0000">and a 997x429 image.  </SPAN><SPAN class="box0000">     SAR = 163/117</SPAN>
+<SPAN class="box0000">                      </SPAN>
+<SPAN class="box0000"><B>Result</B> [note3]: Indirectly, 64/45 'SAR' is    </SPAN><SPAN class="box0000"></SPAN><SPAN class="box1001"><B class="yellow">ppr</B> = 716               </SPAN><SPAN class="box1001"><B class="yellow">dpp</B> = 64/45           </SPAN><SPAN class="box1101"><B class="yellow">dpl</B> = 716*64/45 = 1018  </SPAN>
+<SPAN class="box0000">used, a squashed image is displayed [note4].  </SPAN><SPAN class="box0000"></SPAN><SPAN class="box0011"><B class="yellow">rpp</B> = 429               </SPAN><SPAN class="box0011"><B class="yellow">lpr</B> = 1               </SPAN><SPAN class="box0111"><B class="yellow">lpd</B> = 429               </SPAN>
+<SPAN class="box0000">                                              </SPAN><SPAN class="box0000"></SPAN><SPAN class="box0000">                        </SPAN><SPAN class="box0000">     'SAR' = 64/45</SPAN>
+</PRE>
+</TD></TR><TR><TD class="box0000">
+<HR class="white">
+<PRE class="white">
+[note3] Here's what really happens during play:
+The 'aspect_ratio_information' & 'video_format' MPEG headers say the video is 16:9 'PAL'. <I>That's correct.</I>
+The 'horizontal_size_value' & 'vertical_size_value' MPEG headers say the video is 720x576. <I>That's correct.</I>
+The player sees that the TV is 1920x1080 for example. <I>That's correct.</I>
+Then, the player scales the 720x576 directly to 1920x1080 [note4]. <I>That's not correct.</I>
+The player can't know that 'SAR' isn't 64/45. It squashes the image from 1920x826 (2.32 aspect) [note5] to 1909x804
+(2.37 aspect) [note4].
+</PRE>
+
+</TD></TR><TR><TD class="box0000">
+
+<HR class="white">
+<PRE class="white">
+[note4] Using the well known 720x576-to-1920x1080 direct conversion, the player takes pixel blocks measuring 8x3 pixels
+and scales them to make dot blocks measuring 15x8 dots. That combines 'SAR'-scaling and upscaling in one step.
+The 720-to-1920 upscale = 1920/720 = 8/3           the frame:      (720*8/3)x(576*15/8)     = 1920x1080.
+The 576-to-1080 upscale = 1080/576 = 15/8   the image inside:      (716*8/3)x(429*15/8)     = 1909x804.
+</PRE>
+<HR class="white">
+<PRE class="white">
+[note5] Here's what would be correct if 263/227 SAR was used.
+                                        the SAR-scaled image:  (716*163/117)x429            =&nbsp; 997x429.
+Technique 1,                 very difficult 1920/997 upscale: (997*1920/997)x(429*1920/997) = 1920x826.
+Technique 2,                         difficult 48/25 upscale:    (997*48/25)x(429*48/25)    = 1914x823.
+Technique 3,                easy 2/1 upscale & 74 pixel crop:     (997*2-74)x(429*2)        = 1920x858.
+</PRE>
+<HR class="white">
+<PRE class="white">
+The above explanation and notes show how mechanical film scanners squash videos from 1914x823 to 1909x804 for example.
+That was very common for DVDs mastered in the 1990s and 2000s. Photosite film capture greatly improved the situation.
+Since photosite film capture replaced mechanical film scanning, image squashing no longer occurs.
+</PRE>
+
+</TD></TR></TABLE>
+
+</BODY></HTML>
